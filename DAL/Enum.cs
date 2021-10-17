@@ -15,6 +15,7 @@ namespace DAL
 
             public enum StatusDrone {Available, Maintenance, Delivery}; // מצב רחפן- פנוי, תחזוקה, משלוח
 
+            public enum Priorities { Normal,Fast, Emergency }; // עדיפות- רגיל, מהיר, חירום
 
         }
     }
