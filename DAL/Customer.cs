@@ -18,7 +18,11 @@ namespace DAL
                 public double Latitude { get; set; } // קו רוחב
                 public double Longitude { get; set; }// קו אורך
 
-
+                public override string ToString()
+                {
+                    return String.Format("Customer- Id: {0}, Name: {1}, Longitude: {2}, Latitude: {3}, Phone: {4}"
+                        , Id, Name, Longitude, Latitude, Phone);
+                }
             }
         }
     }

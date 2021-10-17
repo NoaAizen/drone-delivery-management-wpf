@@ -24,7 +24,12 @@ namespace DAL
                 public DateTime Delivered { get; set; } // זמן הגעת החבילה למקבל 
 
 
-
+                public override string ToString()
+                {
+                    return String.Format("Parcel- Id: {0}, SenderId: {1}, TargetId: {2}, Weight: {3}, Priority: {4}," +
+                        " Requested: {5}, DroneId: {6}, Scheduled: {7}, PickedUp: {8}, Delivered:{9}"
+                        , Id, SenderId, TargetId, Weight, Priority, Requested, DroneId, Scheduled, PickedUp, Delivered);
+                }
             }
         }
     }

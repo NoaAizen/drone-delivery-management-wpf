@@ -17,9 +17,13 @@ namespace DAL
                 public WeightCategories MaxWeight { get; set; }// קטגוריית משקל
                 public StatusDrone Status  { get; set; }// מצב רחפן
                 public double Battery { get; set; } // מצב סוללה
-               
 
 
+                public override string ToString()
+                {
+                    return String.Format("Drone- Id: {0}, Moodle: {1}, Max Weight: {2}, Status: {3}, Battery: {4}"
+                        , Id, Moodle, MaxWeight, Status, Battery);
+                }
             }
         }
     }

@@ -17,7 +17,11 @@ namespace DAL
                 public int DroneId { get; set; }// מזהה רחפן 
                 public int StationId { get; set; }//  מזהה תחנת-בסיס 
 
-
+                public override string ToString()
+                {
+                    return String.Format("DroneCharge- DroneId: {0}, StationId: {1}"
+                        , DroneId, StationId);
+                }
 
             }
         }

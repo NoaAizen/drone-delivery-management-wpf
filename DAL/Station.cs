@@ -14,7 +14,11 @@ namespace DAL
                 public double Latitude { get; set; } // קו רוחב
                 public int AvailableStations { get; set; }// מספר עמודות הטענה 
 
-
+                public override string ToString()
+                {
+                    return String.Format("Station- Id: {0}, Name: {1}, Longitude: {2}, Latitude: {3}, AvailableStations: {4}"
+                        , Id, Name, Longitude, Latitude, AvailableStations); 
+                }
             }
         }
     }
