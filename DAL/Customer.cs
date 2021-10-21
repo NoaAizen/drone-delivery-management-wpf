@@ -12,6 +12,17 @@ namespace DAL
         {
             public struct Customer
             {
+            
+
+                public Customer(int id, string name_Customers, string telephon, double longitude, double latitude) : this()
+                {
+                    Id = id;
+                    Name = name_Customers;
+                    Phone = telephon;
+                    Longitude = longitude;
+                    Latitude = latitude;
+                }
+
                 public int Id { get; set; }// מספר מזהה
                 public string Name { get; set; }// שם לקוח
                 public string Phone{ get; set; }// מספר טלפון

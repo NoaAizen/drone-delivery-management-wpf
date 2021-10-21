@@ -12,6 +12,17 @@ namespace DAL
         {
             public struct Drone
             {
+                
+
+                public Drone(int id, string modle, WeightCategories MAX_weight, StatusDrone status, double battery) 
+                {
+                    Id = id;
+                    Moodle = modle;
+                    MaxWeight = MAX_weight;
+                    Status = status;
+                    Battery = battery;
+                }
+
                 public int Id { get; set; }// מספר מזהה
                 public string Moodle { get; set; }// מודל רחפן
                 public WeightCategories MaxWeight { get; set; }// קטגוריית משקל
