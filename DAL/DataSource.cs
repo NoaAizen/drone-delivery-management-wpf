@@ -26,15 +26,17 @@ namespace DAL
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
                     StatusDrone status;
                     WeightCategories MAX_weight;
-                    int Id, Name, ChargeSlots, temp;
+                    Priorities priorities;
+                    DateTime Requsted, Schduled, PickedUp, Delivered;
+                    int Id, Name, ChargeSlots, temp, IdSender, IdTarget, IdDrone;
                     double longitude, latitude, battery;
                     string modle, Name_Customers,Telephon;
                     for (int i = 0; i < 2; i++)
                     {
                         Id = i;
-                        Name = r.Next(1, 10000);
+                        Name = r.Next(1000, 10000);
                         ChargeSlots = r.Next(1, 100);
-                        longitude = r.Next(-180, 180);
+                        longitude = r.NextDouble(-180, 180);
                         latitude = r.Next(-90, 90);
                         listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
                     }
@@ -54,10 +56,32 @@ namespace DAL
                     {
                         Id = i;
                         Name_Customers = Arr[i];
-                        temp = r.Next(1000000, 10000001);
+                        temp = r.Next(1000000, 10000000);
                         Telephon = temp.ToString();
                         longitude = r.Next(-180, 180);
                         latitude = r.Next(-90, 90);
+                        listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
+                    }
+
+                    DateTime RandomDay()
+                    {
+                        DateTime start = new DateTime(2010, 1, 1);
+                        int range = (DateTime.Today - start).Days;
+                        return start.AddDays(r.Next(range));
+                    }
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Id = i;
+                        IdSender = r.Next(100000000, 1000000000);
+                        IdTarget = r.Next(100000000, 1000000000);
+                        MAX_weight = (WeightCategories)r.Next(0, 3);
+                        priorities = (Priorities)r.Next(0, 3);
+                        IdDrone = r.Next(1000, 10000);
+                        Requsted= RandomDay();
+                        Schduled = Requsted.AddHours(1);
+                        PickedUp = Schduled.AddHours(1);
+                        Delivered = PickedUp.AddHours(1);
                         listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
                     }
 
