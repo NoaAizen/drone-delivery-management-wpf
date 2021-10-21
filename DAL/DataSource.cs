@@ -20,7 +20,7 @@ namespace DAL
             {
                 public static int CounterForParcels { get; set; }// מספר רץ עבור חבילות
                 public static Random r = new Random();
-
+               
                 public static void Initialize()
                 {
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
@@ -36,8 +36,8 @@ namespace DAL
                         Id = i;
                         Name = r.Next(1000, 10000);
                         ChargeSlots = r.Next(1, 100);
-                        longitude = r.NextDouble(-180, 180);
-                        latitude = r.Next(-90, 90);
+                        longitude = r.NextDouble()*( 180+180)-180;//NextDouble() * (maximum - minimum) + minimum;
+                        latitude = r.NextDouble() * (90 + 90) - 90;
                         listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
                     }
                     for (int i = 0; i < 5; i++)
@@ -47,7 +47,7 @@ namespace DAL
                         modle = "FF" + temp;
                         MAX_weight = (WeightCategories)r.Next(0, 3);
                         status = (StatusDrone)r.Next(0, 3);
-                        battery = r.Next(0, 101);
+                        battery = r.NextDouble() * (100) ;
                         listDrones.Add(new IDAL.DO.Drone(Id, modle, MAX_weight, status, battery));
                     }
 
@@ -58,18 +58,12 @@ namespace DAL
                         Name_Customers = Arr[i];
                         temp = r.Next(1000000, 10000000);
                         Telephon = temp.ToString();
-                        longitude = r.Next(-180, 180);
-                        latitude = r.Next(-90, 90);
+                        longitude = r.NextDouble() * (180 + 180) - 180;
+                        latitude = r.NextDouble() * (90 + 90) - 90;
                         listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
                     }
 
-                    DateTime RandomDay()
-                    {
-                        DateTime start = new DateTime(2010, 1, 1);
-                        int range = (DateTime.Today - start).Days;
-                        return start.AddDays(r.Next(range));
-                    }
-
+                    
                     for (int i = 0; i < 10; i++)
                     {
                         Id = i;
@@ -82,12 +76,18 @@ namespace DAL
                         Schduled = Requsted.AddHours(1);
                         PickedUp = Schduled.AddHours(1);
                         Delivered = PickedUp.AddHours(1);
-                        listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
+                        CounterForParcels++;
+                        listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                     }
-
+                   
                 }
 
-
+               public static DateTime RandomDay()
+                {
+                    DateTime start = new DateTime(2010, 1, 1, r.Next(8, 18), r.Next(0, 60), 0);
+                    int range = (DateTime.Today - start).Days;
+                    return start.AddDays(r.Next(range));
+                }
             }
         }
     }

@@ -12,6 +12,22 @@ namespace DAL
         {
             public struct Parcel
             {
+              
+
+                public Parcel(int id, int idSender, int idTarget, WeightCategories mAX_weight, Priorities priorities, int idDrone, DateTime requsted, DateTime schduled, DateTime pickedUp, DateTime delivered) : this()
+                {
+                    Id = id;
+                    SenderId = idSender;
+                    TargetId = idTarget;
+                    Weight = mAX_weight;
+                    Priority = priorities;
+                    DroneId = idDrone;
+                    Requested = requsted;
+                    Scheduled = schduled;
+                    PickedUp = pickedUp;
+                    Delivered = delivered;
+                }
+
                 public int Id { get; set; }// מספר מזהה חבילה
                 public int SenderId { get; set; }// מזהה לוקח שולח
                 public int TargetId { get; set; }// מזהה לוקח מקבל
