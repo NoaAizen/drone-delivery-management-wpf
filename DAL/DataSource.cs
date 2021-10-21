@@ -10,10 +10,10 @@ namespace DAL
     {
         class DataSource
         {
-            internal static List<IDAL.DO.Drone> listDrones = new List<IDAL.DO.Drone>();
-            internal static List<IDAL.DO.Station> listStations = new List<IDAL.DO.Station>();
-            internal static List<IDAL.DO.Customer> listCustomers = new List<IDAL.DO.Customer>();
-            internal static List<IDAL.DO.Parcel> listParcels = new List<IDAL.DO.Parcel>();
+            internal static List<IDAL.DO.Drone> listDrones = new List<IDAL.DO.Drone>(10);
+            internal static List<IDAL.DO.Station> listStations = new List<IDAL.DO.Station>(5);
+            internal static List<IDAL.DO.Customer> listCustomers = new List<IDAL.DO.Customer>(100);
+            internal static List<IDAL.DO.Parcel> listParcels = new List<IDAL.DO.Parcel>(1000);
             
             public void InitializationDrone()
             {
