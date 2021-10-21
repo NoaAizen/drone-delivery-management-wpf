@@ -23,7 +23,17 @@ namespace DAL
             {
                 DataSource.listDrones.Add(new IDAL.DO.Drone(Id, Model, MAX_weight, status, battery));
             }
+            public static void AddCustomer(int Id, string Name_Customers, string Telephon, double longitude, double latitude)
+            {
+                DataSource.listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
             }
+            public static void AddParcel(int Id, int IdSender, int IdTarget, IDAL.DO.WeightCategories MAX_weight,
+               IDAL.DO.Priorities priorities, int IdDrone, DateTime Requsted, DateTime Schduled, DateTime PickedUp, DateTime Delivered)
+            {
+                DataSource.Config.CounterForParcels++;
+                DataSource.listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+            }
+
 
         }
     }

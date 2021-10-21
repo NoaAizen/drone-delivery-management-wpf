@@ -44,5 +44,33 @@ namespace ConsoleUI
             DAL.DalObject.DalObject.AddDrone(id, model, MAX_weight, status, battery);
         
         }
+
+        public static void AddParcelData()
+        {
+            Console.WriteLine("Enter Parcel's Id:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Id of sender:");
+            int IdSender = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Id of target:");
+            int IdTarget = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Parcel's weight categories(Light = 0, Intermediate = 1, Heavy = 2):");
+            temp = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.WeightCategories MAX_weight = (DAL.IDAL.DO.WeightCategories)temp;
+            Console.WriteLine("Enter Parcel's priority(Normal = 0, Fast = 1, Emergency = 2):");
+            temp = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Priorities priorities = (DAL.IDAL.DO.Priorities)temp;
+            Console.WriteLine("Enter Id of Drone:");
+            int IdDrone = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Parcel's Requsted time:");
+            DateTime Requsted = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Parcel's Schduled time:");
+            DateTime Schduled = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Parcel's PickedUp time:");
+            DateTime PickedUp = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Parcel's Delivered time:");
+            DateTime Delivered = DateTime.Parse(Console.ReadLine());
+            DAL.DalObject.DalObject.AddParcel(id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered);
+          
+        }
     }
 }
