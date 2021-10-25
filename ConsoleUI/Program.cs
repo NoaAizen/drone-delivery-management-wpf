@@ -24,7 +24,8 @@ namespace ConsoleUI
             double longitude = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's latitude:");
             double latitude = double.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.AddStation(id, Name, ChargeSlots, longitude, latitude);
+            DAL.IDAL.DO.Station s = new DAL.IDAL.DO.Station(id, Name, ChargeSlots, longitude, latitude);
+            DAL.DalObject.DalObject.AddStation(s);
         }
 
         public static void AddDroneData()
@@ -41,8 +42,25 @@ namespace ConsoleUI
             DAL.IDAL.DO.StatusDrone status = (DAL.IDAL.DO.StatusDrone)temp;
             Console.WriteLine("Enter drone's battery:");
             double battery = double.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.AddDrone(id, model, MAX_weight, status, battery);
+            DAL.IDAL.DO.Drone d = new DAL.IDAL.DO.Drone(id, model, MAX_weight, status, battery);
+            DAL.DalObject.DalObject.AddDrone(d);
         
+        }
+
+        public static void AddCustomerData()
+        {
+            Console.WriteLine("Enter customer's Id:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter customer's name:");
+            string Name = Console.ReadLine();
+            Console.WriteLine("Enter customer's phone number:");
+            string Telephon = Console.ReadLine();
+            Console.WriteLine("Enter customer's longitude:");
+            double longitude = double.Parse(Console.ReadLine());
+            Console.WriteLine("Enter customer's latitude:");
+            double latitude = double.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Customer c = new DAL.IDAL.DO.Customer(id, Name, Telephon, longitude, latitude);
+            DAL.DalObject.DalObject.AddCustomer(c);
         }
 
         public static void AddParcelData()
@@ -69,7 +87,9 @@ namespace ConsoleUI
             DateTime PickedUp = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Enter Parcel's Delivered time:");
             DateTime Delivered = DateTime.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.AddParcel(id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered);
+            DAL.IDAL.DO.Parcel p= new DAL.IDAL.DO.Parcel(id, IdSender, IdTarget, MAX_weight, 
+                priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered);
+           DAL.DalObject.DalObject.AddParcel(p);
           
         }
 

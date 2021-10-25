@@ -15,23 +15,22 @@ namespace DAL
                 DataSource.Config.Initialize();
             }
 
-            public static void AddStation (int Id, int Name, int ChargeSlots, double longitude, double latitude)
+            public static void AddStation (DAL.IDAL.DO.Station s)
             {
-                DataSource.listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
+                DataSource.listStations.Add(s);
             }
-            public static void AddDrone(int Id, string Model, IDAL.DO.WeightCategories MAX_weight,IDAL.DO.StatusDrone status, double battery)
+            public static void AddDrone(DAL.IDAL.DO.Drone d)
             {
-                DataSource.listDrones.Add(new IDAL.DO.Drone(Id, Model, MAX_weight, status, battery));
+                DataSource.listDrones.Add( d);
             }
-            public static void AddCustomer(int Id, string Name_Customers, string Telephon, double longitude, double latitude)
+            public static void AddCustomer(DAL.IDAL.DO.Customer c)
             {
-                DataSource.listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
+                DataSource.listCustomers.Add(c);
             }
-            public static void AddParcel(int Id, int IdSender, int IdTarget, IDAL.DO.WeightCategories MAX_weight,
-               IDAL.DO.Priorities priorities, int IdDrone, DateTime Requsted, DateTime Schduled, DateTime PickedUp, DateTime Delivered)
+            public static void AddParcel(DAL.IDAL.DO.Parcel p)
             {
                 DataSource.Config.CounterForParcels++;
-                DataSource.listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                DataSource.listParcels.Add(p);
             }
 
 
