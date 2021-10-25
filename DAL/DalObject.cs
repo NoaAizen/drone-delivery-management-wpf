@@ -252,7 +252,7 @@ namespace DAL
                 }
                 return temp;
             }
-            public static List<IDAL.DO.Parcel> ViewParcenNoDronelList()//הדפסת חבילות
+            public static List<IDAL.DO.Parcel> ViewParcenNoDronelList()//הדפסת חבילות שעוד לא שויכו לרחפן
             {
                 List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
