@@ -33,6 +33,19 @@ namespace DAL
                 DataSource.listParcels.Add(p);
             }
 
+            public static void UpdateDroneToParcel(int idDrone, int idParcel)
+            {
+                for(int i=0; i< DataSource.listParcels.Capacity;i++)
+                {
+                    if(DataSource.listParcels[i].Id == idParcel)
+                    {
+                        DAL.IDAL.DO.Parcel p = DataSource.listParcels[i];
+                        p.DroneId = idDrone;
+                        DataSource.listParcels[i] = p;
+                    }
+                }
+            }
+
 
         }
     }
