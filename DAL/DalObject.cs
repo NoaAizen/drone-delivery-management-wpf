@@ -34,7 +34,7 @@ namespace DAL
             }
             public static void UpdateDroneToParcel(int idDrone, int idParcel)
             {
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if (DataSource.listParcels[i].Id == idParcel)
                     {
@@ -48,7 +48,7 @@ namespace DAL
 
             public static void CollectionParcelFromDrone(int idDrone, int idParcel)//איסוף חבילה לרחפן 
             {
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if (DataSource.listParcels[i].Id == idParcel)
                     {
@@ -57,7 +57,7 @@ namespace DAL
                         DataSource.listParcels[i] = p;
                     }
                 }
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -72,7 +72,7 @@ namespace DAL
             public static void DeliveryParcelForCustomer(int idCustomer, int idParcel)//אספקת חבילה ללקוח 
             {
                 int idDrone=0;//לבדוק שלא הציב 0 בif
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if (DataSource.listParcels[i].Id == idParcel)
                     {
@@ -83,7 +83,7 @@ namespace DAL
                         DataSource.listParcels[i] = p;
                     }
                 }
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)//לבדוק שלא הציב 0 בif
@@ -97,7 +97,7 @@ namespace DAL
 
             public static void SendingDroneForCharging(int idDrone, int idStation)// שליחת רחפן לטעינה בתחנת בסיס
             {
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -107,7 +107,7 @@ namespace DAL
                         DataSource.listDrones[i] = d;
                     }
                 }
-                for (int i = 0; i < DataSource.listStations.Capacity; i++)//עדכון מספר תחנות הטענה פנויות
+                for (int i = 0; i < DataSource.listStations.Count; i++)//עדכון מספר תחנות הטענה פנויות
                 {
 
                     if (DataSource.listStations[i].Id == idStation)
@@ -123,7 +123,7 @@ namespace DAL
 
             public static void ReleaseDroneFromCharging(int idDrone, int idStation)// שחרור רחפן מטעינה בתחנת בסיס
             {
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -134,7 +134,7 @@ namespace DAL
                         DataSource.listDrones[i] = d;
                     }
                 }
-                for (int i = 0; i < DataSource.listStations.Capacity; i++)//עדכון מספר תחנות הטענה פנויות
+                for (int i = 0; i < DataSource.listStations.Count; i++)//עדכון מספר תחנות הטענה פנויות
                 {
 
                     if (DataSource.listStations[i].Id == idStation)
@@ -150,7 +150,7 @@ namespace DAL
             public static IDAL.DO.Station ViewStation(int idStation)//הדפסת תחנה
             {
                 IDAL.DO.Station s = new IDAL.DO.Station();
-                for (int i = 0; i < DataSource.listStations.Capacity; i++)
+                for (int i = 0; i < DataSource.listStations.Count; i++)
                 {
                     if (DataSource.listStations[i].Id == idStation)
                     {
@@ -165,7 +165,7 @@ namespace DAL
             public static IDAL.DO.Drone ViewDrone(int idDrone)//הדפסת רחפן
             {
                 IDAL.DO.Drone d = new IDAL.DO.Drone();
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)
+                for (int i = 0; i < DataSource.listDrones.Count; i++)
                 {
                     if (DataSource.listDrones[i].Id == idDrone)
                     {
@@ -181,7 +181,7 @@ namespace DAL
               public static IDAL.DO.Customer ViewCustomer(int idCustomer)//הדפסת לקוח
             {
                 IDAL.DO.Customer c = new IDAL.DO.Customer();
-                for (int i = 0; i < DataSource.listCustomers.Capacity; i++)
+                for (int i = 0; i < DataSource.listCustomers.Count; i++)
                 {
                     if (DataSource.listCustomers[i].Id == idCustomer)
                     {
@@ -196,7 +196,7 @@ namespace DAL
             public static IDAL.DO.Parcel ViewParcel(int idParcel)//הדפסת חבילה
             {
                 IDAL.DO.Parcel p = new IDAL.DO.Parcel();
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if (DataSource.listParcels[i].Id == idParcel)
                     {
@@ -212,7 +212,7 @@ namespace DAL
             {
                 List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
 
-                for (int i = 0; i < DataSource.listStations.Capacity; i++)
+                for (int i = 0; i < DataSource.listStations.Count; i++)
                 {
                     
                        temp.Add(DataSource.listStations[i]);
@@ -223,7 +223,7 @@ namespace DAL
             {
                 List<IDAL.DO.Drone> temp = new List<IDAL.DO.Drone>();
 
-                for (int i = 0; i < DataSource.listDrones.Capacity; i++)
+                for (int i = 0; i < DataSource.listDrones.Count; i++)
                 {
 
                     temp.Add(DataSource.listDrones[i]);
@@ -234,7 +234,7 @@ namespace DAL
             {
                 List<IDAL.DO.Customer> temp = new List<IDAL.DO.Customer>();
 
-                for (int i = 0; i < DataSource.listCustomers.Capacity; i++)
+                for (int i = 0; i < DataSource.listCustomers.Count; i++)
                 {
 
                     temp.Add(DataSource.listCustomers[i]);
@@ -245,7 +245,7 @@ namespace DAL
             {
                 List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
 
                     temp.Add(DataSource.listParcels[i]);
@@ -256,7 +256,7 @@ namespace DAL
             {
                 List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
-                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if(DataSource.listParcels[i].DroneId == 0)
                     temp.Add(DataSource.listParcels[i]);
