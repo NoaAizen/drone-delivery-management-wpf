@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -136,6 +137,71 @@ namespace ConsoleUI
             int idStation = int.Parse(Console.ReadLine());
             DAL.IDAL.DO.Station s= DAL.DalObject.DalObject.ViewStation(idStation);
             Console.WriteLine(s);
+        }
+        public static void ViewDronePrint()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Drone d = DAL.DalObject.DalObject.ViewDrone(idDrone);
+            Console.WriteLine(d);
+        }
+        public static void ViewCustomerPrint()
+        {
+            Console.WriteLine("Enter Customer's Id:");
+            int idCustomer = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Customer c = DAL.DalObject.DalObject.ViewCustomer(idCustomer);
+            Console.WriteLine(c);
+        }
+        
+         public static void ViewParcelPrint()
+        { 
+            Console.WriteLine("Enter Parcel's Id:");
+            int idParcel = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Parcel p = DAL.DalObject.DalObject.ViewParcel(idParcel);
+            Console.WriteLine(p);
+        }
+        public static void ViewStationListPrint()
+        {
+             List<DAL.IDAL.DO.Station> s = DAL.DalObject.DalObject.ViewStationList();
+             foreach(DAL.IDAL.DO.Station item in s)
+              {
+                 Console.WriteLine(item) ;
+              }
+        }
+        
+        public static void ViewDroneListPrint()
+        {
+            List<DAL.IDAL.DO.Drone> d = DAL.DalObject.DalObject.ViewDroneList();
+            foreach (DAL.IDAL.DO.Drone item in d)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        
+        public static void ViewCustomerListPrint()
+        {
+            List<DAL.IDAL.DO.Customer> c = DAL.DalObject.DalObject.ViewCustomerList();
+            foreach (DAL.IDAL.DO.Customer item in c)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        
+        public static void ViewParcelListPrint()
+        {
+            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcelList();
+            foreach (DAL.IDAL.DO.Parcel item in p)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public static void ViewParcenNoDronelListPrint()
+        {
+            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcenNoDronelList();
+            foreach (DAL.IDAL.DO.Parcel item in p)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

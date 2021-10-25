@@ -147,10 +147,10 @@ namespace DAL
             }
 
 
-            public static IDAL.DO.Station ViewStation(int idStation)
+            public static IDAL.DO.Station ViewStation(int idStation)//הדפסת תחנה
             {
                 IDAL.DO.Station s = new IDAL.DO.Station();
-                for (int i = 0; i < DataSource.listStations.Capacity; i++)//עדכון מספר תחנות הטענה פנויות
+                for (int i = 0; i < DataSource.listStations.Capacity; i++)
                 {
                     if (DataSource.listStations[i].Id == idStation)
                     {
@@ -162,8 +162,107 @@ namespace DAL
                 }
                 return s;
             }
+            public static IDAL.DO.Drone ViewDrone(int idDrone)//הדפסת רחפן
+            {
+                IDAL.DO.Drone d = new IDAL.DO.Drone();
+                for (int i = 0; i < DataSource.listDrones.Capacity; i++)
+                {
+                    if (DataSource.listDrones[i].Id == idDrone)
+                    {
+                        d = DataSource.listDrones[i];
+                        return d;
 
+                    }
 
+                }
+                return d;
+            }
+            
+              public static IDAL.DO.Customer ViewCustomer(int idCustomer)//הדפסת לקוח
+            {
+                IDAL.DO.Customer c = new IDAL.DO.Customer();
+                for (int i = 0; i < DataSource.listCustomers.Capacity; i++)
+                {
+                    if (DataSource.listCustomers[i].Id == idCustomer)
+                    {
+                        c = DataSource.listCustomers[i];
+                        return c;
+
+                    }
+
+                }
+                return c;
+            }
+            public static IDAL.DO.Parcel ViewParcel(int idParcel)//הדפסת חבילה
+            {
+                IDAL.DO.Parcel p = new IDAL.DO.Parcel();
+                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                {
+                    if (DataSource.listParcels[i].Id == idParcel)
+                    {
+                        p = DataSource.listParcels[i];
+                        return p;
+
+                    }
+                }
+                return p;
+            }
+
+            public static List <IDAL.DO.Station> ViewStationList()//הדפסת תחנות
+            {
+                List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
+
+                for (int i = 0; i < DataSource.listStations.Capacity; i++)
+                {
+                    
+                       temp.Add(DataSource.listStations[i]);
+                }
+                    return temp;
+            }
+            public static List<IDAL.DO.Drone> ViewDroneList()//הדפסת רחפנים
+            {
+                List<IDAL.DO.Drone> temp = new List<IDAL.DO.Drone>();
+
+                for (int i = 0; i < DataSource.listDrones.Capacity; i++)
+                {
+
+                    temp.Add(DataSource.listDrones[i]);
+                }
+                return temp;
+            }
+            public static List<IDAL.DO.Customer> ViewCustomerList()//הדפסת לקוחות
+            {
+                List<IDAL.DO.Customer> temp = new List<IDAL.DO.Customer>();
+
+                for (int i = 0; i < DataSource.listCustomers.Capacity; i++)
+                {
+
+                    temp.Add(DataSource.listCustomers[i]);
+                }
+                return temp;
+            }
+            public static List<IDAL.DO.Parcel> ViewParcelList()//הדפסת חבילות
+            {
+                List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
+
+                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                {
+
+                    temp.Add(DataSource.listParcels[i]);
+                }
+                return temp;
+            }
+            public static List<IDAL.DO.Parcel> ViewParcenNoDronelList()//הדפסת חבילות
+            {
+                List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
+
+                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                {
+                    if(DataSource.listParcels[i].DroneId == 0)
+                    temp.Add(DataSource.listParcels[i]);
+                }
+                return temp;
+            }
         }
     }
 }
