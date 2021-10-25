@@ -72,5 +72,6 @@ namespace ConsoleUI
             DAL.DalObject.DalObject.AddParcel(id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered);
           
         }
+
     }
 }
