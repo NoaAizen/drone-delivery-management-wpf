@@ -14,6 +14,13 @@ namespace DAL
              public struct DroneCharge// טעינת סוללת רחפן 
 
             {
+
+                public DroneCharge(int idDrone, int idStation) 
+                {
+                    DroneId = idDrone;
+                    StationId = idStation;
+                }
+
                 public int DroneId { get; set; }// מזהה רחפן 
                 public int StationId { get; set; }//  מזהה תחנת-בסיס 
 

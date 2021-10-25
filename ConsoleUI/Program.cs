@@ -110,5 +110,32 @@ namespace ConsoleUI
             int idDrone = int.Parse(Console.ReadLine());
             DAL.DalObject.DalObject.CollectionParcelFromDrone(idDrone, idParcel);
         }
+        public static void DeliveryParcelForCustomerData()
+        {
+            Console.WriteLine("Enter Parcel's Id:");
+            int idParcel = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Customer's Id:");
+            int idCustomer = int.Parse(Console.ReadLine());
+            DAL.DalObject.DalObject.DeliveryParcelForCustomer(idCustomer, idParcel);
+        }
+
+        ///////// שליחת רחפן לטעינה
+
+        public static void ReleaseDroneFromChargingData()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Station's Id:");
+            int idStation = int.Parse(Console.ReadLine());
+            DAL.DalObject.DalObject.ReleaseDroneFromCharging(idDrone, idStation);
+        }
+
+        public static void ViewStationPrint()
+        {
+            Console.WriteLine("Enter Station's Id:");
+            int idStation = int.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Station s= DAL.DalObject.DalObject.ViewStation(idStation);
+            Console.WriteLine(s);
+        }
     }
 }
