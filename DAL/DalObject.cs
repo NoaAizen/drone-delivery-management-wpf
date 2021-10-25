@@ -15,13 +15,13 @@ namespace DAL
                 DataSource.Config.Initialize();
             }
 
-            public static void AddStation (DAL.IDAL.DO.Station s)
+            public static void AddStation(DAL.IDAL.DO.Station s)
             {
                 DataSource.listStations.Add(s);
             }
             public static void AddDrone(DAL.IDAL.DO.Drone d)
             {
-                DataSource.listDrones.Add( d);
+                DataSource.listDrones.Add(d);
             }
             public static void AddCustomer(DAL.IDAL.DO.Customer c)
             {
@@ -32,21 +32,43 @@ namespace DAL
                 DataSource.Config.CounterForParcels++;
                 DataSource.listParcels.Add(p);
             }
-
             public static void UpdateDroneToParcel(int idDrone, int idParcel)
             {
-                for(int i=0; i< DataSource.listParcels.Capacity;i++)
+                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
                 {
-                    if(DataSource.listParcels[i].Id == idParcel)
+                    if (DataSource.listParcels[i].Id == idParcel)
                     {
                         DAL.IDAL.DO.Parcel p = DataSource.listParcels[i];
                         p.DroneId = idDrone;
+                        p.Scheduled = DateTime.Now;
                         DataSource.listParcels[i] = p;
                     }
                 }
             }
 
+            public static void CollectionParcelFromDrone(int idDrone, int idParcel)//איסוף חבילה לרחפן 
+            {
+                for (int i = 0; i < DataSource.listParcels.Capacity; i++)
+                {
+                    if (DataSource.listParcels[i].Id == idParcel)
+                    {
+                        DAL.IDAL.DO.Parcel p = DataSource.listParcels[i];
+                        p.PickedUp = DateTime.Now;
+                        DataSource.listParcels[i] = p;
+                    }
+                }
+                for (int i = 0; i < DataSource.listDrones.Capacity; i++)//עדכון סטטוס
+                {
 
+                    if (DataSource.listDrones[i].Id == idDrone)
+                    {
+                        DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
+                        d.Status = (DAL.IDAL.DO.StatusDrone)2;
+                        DataSource.listDrones[i] = d;
+                    }
+                }
+            }
         }
     }
 }
+

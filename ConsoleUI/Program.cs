@@ -100,8 +100,15 @@ namespace ConsoleUI
             int idParcel = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.UpdateDroneToParcel(idParcel, idDrone);
+            DAL.DalObject.DalObject.UpdateDroneToParcel(idDrone, idParcel);
         }
-
+        public static void CollectionParcelFromDroneData()
+        {
+            Console.WriteLine("Enter Parcel's Id:");
+            int idParcel = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            DAL.DalObject.DalObject.CollectionParcelFromDrone(idDrone, idParcel);
+        }
     }
 }
