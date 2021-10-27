@@ -14,14 +14,14 @@ namespace DAL
             {
               
 
-                public Parcel(int id, int idSender, int idTarget, WeightCategories mAX_weight, Priorities priorities, int idDrone, DateTime requsted, DateTime schduled, DateTime pickedUp, DateTime delivered) : this()
+                public Parcel(int id, int idSender, int idTarget, WeightCategories mAX_weight, Priorities priorities, int idDrone, DateTime requsted, DateTime schduled, DateTime pickedUp, DateTime delivered) 
                 {
                     Id = id;
                     SenderId = idSender;
                     TargetId = idTarget;
                     Weight = mAX_weight;
                     Priority = priorities;
-                    DroneId = idDrone;
+                    DroneId = 0;
                     Requested = requsted;
                     Scheduled = schduled;
                     PickedUp = pickedUp;

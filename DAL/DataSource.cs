@@ -24,7 +24,7 @@ namespace DAL
                 public static void Initialize()
                 {
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
-                    StatusDrone status;
+                    StatusDrone status=0;
                     WeightCategories MAX_weight;
                     Priorities priorities;
                     DateTime Requsted, Schduled, PickedUp, Delivered;

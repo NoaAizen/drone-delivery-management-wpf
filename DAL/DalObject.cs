@@ -32,7 +32,7 @@ namespace DAL
                 DataSource.Config.CounterForParcels++;
                 DataSource.listParcels.Add(p);
             }
-            public static void UpdateDroneToParcel(int idDrone, int idParcel)
+            public static void UpdateDroneToParcel(int idDrone, int idParcel) //שיוך חבילה לרחפן
             {
                 for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
@@ -46,7 +46,7 @@ namespace DAL
                 }
             }
 
-            public static void CollectionParcelFromDrone(int idDrone, int idParcel)//איסוף חבילה לרחפן 
+            public static void CollectionParcelFromDrone(int idDrone, int idParcel)//איסוף חבילה ע"י רחפן 
             {
                 for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
@@ -260,6 +260,17 @@ namespace DAL
                 {
                     if(DataSource.listParcels[i].DroneId == 0)
                     temp.Add(DataSource.listParcels[i]);
+                }
+                return temp;
+            }
+            public static List<IDAL.DO.Station> ViewAvailableChargingStationslList() // הדפסת תחנות עם עמדות טעינה פנויות
+            {
+                List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
+
+                for (int i = 0; i < DataSource.listStations.Count; i++)
+                {
+                    if(DataSource.listStations[i].AvailableStations>0)
+                    temp.Add(DataSource.listStations[i]);
                 }
                 return temp;
             }

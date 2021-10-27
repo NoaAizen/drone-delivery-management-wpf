@@ -120,7 +120,17 @@ namespace ConsoleUI
             DAL.DalObject.DalObject.DeliveryParcelForCustomer(idCustomer, idParcel);
         }
 
+
         ///////// שליחת רחפן לטעינה
+        public static void SendingDroneForChargingData()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            ViewAvailableChargingStationslListPrint();
+            Console.WriteLine("Enter Station's Id:");
+            int idStation = int.Parse(Console.ReadLine());
+            DAL.DalObject.DalObject.ReleaseDroneFromCharging(idDrone, idStation);
+        }
 
         public static void ReleaseDroneFromChargingData()
         {
@@ -199,6 +209,14 @@ namespace ConsoleUI
         {
             List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcenNoDronelList();
             foreach (DAL.IDAL.DO.Parcel item in p)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        public static void ViewAvailableChargingStationslListPrint()
+        {
+            List<DAL.IDAL.DO.Station> s = DAL.DalObject.DalObject.ViewAvailableChargingStationslList();
+            foreach (DAL.IDAL.DO.Station item in s)
             {
                 Console.WriteLine(item);
             }
