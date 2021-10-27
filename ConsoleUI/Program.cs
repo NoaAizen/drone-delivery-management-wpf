@@ -3,12 +3,24 @@ using System.Collections.Generic;
 
 namespace ConsoleUI
 {
+    public enum choice {ADD=1, UPDATE, VIEW, VIEWLIST, EXIT    }; 
+
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            AddStationData();
+            Console.WriteLine(@"Enter Type your choice: 
+                1: for add
+                2: for update
+                3: for view
+                4: for list view
+                5: for exit");
+            choice Choice = (choice)(int.Parse(Console.ReadLine()));
+            
+            while (choice!=0)
+            {
+
+            }
            
         }
        static int temp = 0;
