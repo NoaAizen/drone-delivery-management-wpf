@@ -15,6 +15,8 @@ namespace DAL
             internal static List<IDAL.DO.Station> listStations = new List<IDAL.DO.Station>(5);
             internal static List<IDAL.DO.Customer> listCustomers = new List<IDAL.DO.Customer>(100);
             internal static List<IDAL.DO.Parcel> listParcels = new List<IDAL.DO.Parcel>(1000);
+            internal static List<IDAL.DO.DroneCharge> listDroneCharges = new List<IDAL.DO.DroneCharge>(5);
+
 
             internal class Config
             {
@@ -24,7 +26,7 @@ namespace DAL
                 public static void Initialize()
                 {
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
-                    StatusDrone status=0;
+                    StatusDrone status;
                     WeightCategories MAX_weight;
                     Priorities priorities;
                     DateTime Requsted, Schduled, PickedUp, Delivered;

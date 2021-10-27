@@ -118,6 +118,7 @@ namespace DAL
                     }
                 }
                 DAL.IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge(idDrone, idStation);
+                DataSource.listDroneCharges.Add(dc);
             }
 
 
@@ -142,6 +143,15 @@ namespace DAL
                         DAL.IDAL.DO.Station s = DataSource.listStations[i];
                         s.AvailableStations += 1;
                         DataSource.listStations[i] = s;
+                    }
+                }
+                for (int i = 0; i < DataSource.listDroneCharges.Count; i++)
+                {
+                    if (DataSource.listDroneCharges[i].StationId == idStation && 
+                        DataSource.listDroneCharges[i].DroneId== idDrone)
+                    {
+                        DAL.IDAL.DO.DroneCharge dc = DataSource.listDroneCharges[i];
+                        DataSource.listDroneCharges.Remove(dc);
                     }
                 }
             }
