@@ -13,6 +13,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            DAL.DalObject.DalObject.InitializeData();
             Choice choice = 0;
             Add add;
             Update update;
@@ -44,13 +45,16 @@ Enter your selection:
                         switch(add)
                         {
                             case Add.STATION:
-                                Console.WriteLine(add);
+                                AddStationData();
                                 break;
                             case Add.DRONE:
+                                AddDroneData();
                                 break;
                             case Add.CUSTOMER:
+                                AddCustomerData();
                                 break;
                             case Add.PARCEL:
+                                AddParcelData();
                                 break;
                             default:
                                 Console.WriteLine("Enter a number between 1 to 4");
@@ -71,14 +75,19 @@ Enter your selection:
                         switch(update)
                         {
                             case Update.ASSING:
+                                UpdateDroneToParcelData();
                                 break;
                             case Update.COLLECTION:
+                                CollectionParcelFromDroneData();
                                 break;
                             case Update.DELIVERY:
+                                DeliveryParcelForCustomerData();
                                 break;
                             case Update.CHARGING:
+                                SendingDroneForChargingData();
                                 break;
                             case Update.RELEASE:
+                                ReleaseDroneFromChargingData();
                                 break;
                             default:
                                 Console.WriteLine("Enter a number between 1 to 5");
@@ -98,12 +107,16 @@ Enter your selection:
                         switch (view)
                         {
                             case View.STATION:
+                                ViewStationPrint();
                                 break;
                             case View.DRONE:
+                                ViewDronePrint();
                                 break;
                             case View.CUSTOMER:
+                                ViewCustomerPrint();
                                 break;
                             case View.PARCEL:
+                                ViewParcelPrint();
                                 break;
                             default:
                                 Console.WriteLine("Enter a number between 1 to 4");
@@ -125,16 +138,22 @@ Enter your selection:
                         switch (viewList)
                         {
                             case ViewList.STATIONS:
+                                ViewStationListPrint();
                                 break;
                             case ViewList.DRONES:
+                                ViewDroneListPrint();
                                 break;
                             case ViewList.CUSTOMERS:
+                                ViewCustomerListPrint();
                                 break;
                             case ViewList.PARCELS:
+                                ViewParcelListPrint();
                                 break;
                             case ViewList.NODRONE:
+                                ViewParcelNoDronelListPrint();
                                 break;
                             case ViewList.AVAILABLE:
+                                ViewAvailableChargingStationslListPrint();
                                 break;
                             default:
                                 Console.WriteLine("Enter a number between 1 to 6");
@@ -270,7 +289,7 @@ Enter your selection:
             ViewAvailableChargingStationslListPrint();
             Console.WriteLine("Enter Station's Id:");
             int idStation = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.ReleaseDroneFromCharging(idDrone, idStation);
+            DAL.DalObject.DalObject.SendingDroneForCharging(idDrone, idStation);
         }
 
         public static void ReleaseDroneFromChargingData()

@@ -284,6 +284,10 @@ namespace DAL
                 }
                 return temp;
             }
+            public static void InitializeData()
+            {
+                DataSource.Config.Initialize();
+            }
         }
     }
 }
