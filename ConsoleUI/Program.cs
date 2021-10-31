@@ -3,23 +3,152 @@ using System.Collections.Generic;
 
 namespace ConsoleUI
 {
-    public enum choice {ADD=1, UPDATE, VIEW, VIEWLIST, EXIT    }; 
+    public enum Choice {ADD=1, UPDATE, VIEW, VIEWLIST, EXIT};
+    public enum Add {STATION=1, DRONE, CUSTOMER, PARCEL};
+    public enum Update {ASSING=1, COLLECTION, DELIVERY, CHARGING, RELEASE };
+    public enum View { STATION = 1, DRONE, CUSTOMER, PARCEL };
+    public enum ViewList { STATIONS = 1, DRONES, CUSTOMERS, PARCELS, NODRONE, AVAILABLE };
 
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(@"Enter Type your choice: 
-                1: for add
-                2: for update
-                3: for view
-                4: for list view
-                5: for exit");
-            choice Choice = (choice)(int.Parse(Console.ReadLine()));
-            
-            while (choice!=0)
+            Choice choice = 0;
+            Add add;
+            Update update;
+            View view;
+            ViewList viewList;
+            while (choice != (Choice)5)
             {
+                Console.WriteLine(@"What action would you like to take? 
+Enter your choice: 
+1: for add
+2: for update
+3: for view
+4: for list view
+5: for exit");
+                choice = (Choice)int.Parse(Console.ReadLine());
+                //Console.WriteLine(choice);
+                switch(choice)
+                {
+                    case Choice.ADD:
+                        //Console.WriteLine(choice);
+                        Console.WriteLine(@"
+What addition would you like to make? 
+Enter your selection:
+1: for add a station
+2: for add a drone
+3: for add a customer
+4: for add a parcel");
+                        add = (Add)int.Parse(Console.ReadLine());
+                        switch(add)
+                        {
+                            case Add.STATION:
+                                Console.WriteLine(add);
+                                break;
+                            case Add.DRONE:
+                                break;
+                            case Add.CUSTOMER:
+                                break;
+                            case Add.PARCEL:
+                                break;
+                            default:
+                                Console.WriteLine("Enter a number between 1 to 4");
+                                break;
+                        };
+                        break;
 
+                    case Choice.UPDATE:
+                        Console.WriteLine(@"
+What update would you like to make? 
+Enter your selection:
+1: for assign a parcel to a drone
+2: for collection a parcel by a drone
+3: for delivery a parcel for a customer
+4: for sending a drone for charging
+5: for release a drone from charging");
+                        update = (Update)int.Parse(Console.ReadLine());
+                        switch(update)
+                        {
+                            case Update.ASSING:
+                                break;
+                            case Update.COLLECTION:
+                                break;
+                            case Update.DELIVERY:
+                                break;
+                            case Update.CHARGING:
+                                break;
+                            case Update.RELEASE:
+                                break;
+                            default:
+                                Console.WriteLine("Enter a number between 1 to 5");
+                                break;
+                        };
+                        break;
+
+                    case Choice.VIEW:
+                        Console.WriteLine(@"
+Which view would you like? 
+Enter your selection:
+1: for view a station
+2: for view a drone
+3: for view a customer
+4: for view a parcel");
+                        view = (View)int.Parse(Console.ReadLine());
+                        switch (view)
+                        {
+                            case View.STATION:
+                                break;
+                            case View.DRONE:
+                                break;
+                            case View.CUSTOMER:
+                                break;
+                            case View.PARCEL:
+                                break;
+                            default:
+                                Console.WriteLine("Enter a number between 1 to 4");
+                                break;
+                        };
+                        break;
+
+                    case Choice.VIEWLIST:
+                        Console.WriteLine(@"
+Which view of list would you like? 
+Enter your selection:
+1: for view the stations list
+2: for view the drones list
+3: for view the customers list
+4: for view the parcels list
+5: for view parcels that have not yet been assigned to a drone
+6: for view stations with available charging stations");
+                        viewList = (ViewList)int.Parse(Console.ReadLine());
+                        switch (viewList)
+                        {
+                            case ViewList.STATIONS:
+                                break;
+                            case ViewList.DRONES:
+                                break;
+                            case ViewList.CUSTOMERS:
+                                break;
+                            case ViewList.PARCELS:
+                                break;
+                            case ViewList.NODRONE:
+                                break;
+                            case ViewList.AVAILABLE:
+                                break;
+                            default:
+                                Console.WriteLine("Enter a number between 1 to 6");
+                                break;
+                        };
+                        break;
+
+                    case Choice.EXIT:
+                        break;
+
+                    default:
+                        Console.WriteLine("Enter a number between 1 to 5" );
+                        break;
+                };
             }
            
         }
@@ -217,9 +346,9 @@ namespace ConsoleUI
                 Console.WriteLine(item);
             }
         }
-        public static void ViewParcenNoDronelListPrint()
+        public static void ViewParcelNoDronelListPrint()
         {
-            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcenNoDronelList();
+            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcelNoDronelList();
             foreach (DAL.IDAL.DO.Parcel item in p)
             {
                 Console.WriteLine(item);
