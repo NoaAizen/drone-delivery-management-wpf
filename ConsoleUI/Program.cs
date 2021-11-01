@@ -171,7 +171,7 @@ Enter your selection:
            
         }
        static int temp = 0;
-        //קליטת והדספת נותנים
+        //קליטת והדפסת נותנים
         /// <summary>
         /// קליטה של של הוספת אטובוס
         /// </summary>
