@@ -9,30 +9,52 @@ namespace DAL
     namespace DalObject
     {
         public class DalObject
-        {
-            DalObject()
+        {/// <summary>
+         /// בנאי
+         /// </summary>
+            public DalObject()
             {
                 DataSource.Config.Initialize();
             }
-
+            /// <summary>
+            /// פונקצית  הוספת רחפן לרשימת הרחפנים הקיימים 
+            /// </summary>
+            /// <param name="s"></param>
             public static void AddStation(DAL.IDAL.DO.Station s)
             {
                 DataSource.listStations.Add(s);
             }
+            /// <summary>
+            /// פונקצית הוספת רחפן לרשימת רחפנים 
+            /// </summary>
+            /// <param name="d"></param>
             public static void AddDrone(DAL.IDAL.DO.Drone d)
             {
                 DataSource.listDrones.Add(d);
             }
+            /// <summary>
+            ///  פונקציית קליטת לקוח חדש לרשימת הלקוחות 
+            /// </summary>
+            /// <param name="c"></param>
             public static void AddCustomer(DAL.IDAL.DO.Customer c)
             {
                 DataSource.listCustomers.Add(c);
             }
+            /// <summary>
+            ///  פונקציית קליטת חבילה למשלוח
+            /// </summary>
+            /// <param name="p"></param>
             public static void AddParcel(DAL.IDAL.DO.Parcel p)
             {
-                DataSource.Config.CounterForParcels++;
+                DataSource.Config.CounterForParcels++;//עדכון הרץ
                 DataSource.listParcels.Add(p);
             }
-            public static void UpdateDroneToParcel(int idDrone, int idParcel) //שיוך חבילה לרחפן
+            /// <summary>
+            /// פונקצית שיוך חבילה לרחפן 
+            /// </summary>
+            /// <param name="idDrone"></param>
+            /// <param name="idParcel"></param>
+            public static void UpdateDroneToParcel(int idDrone, int idParcel) 
             {
                 for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
@@ -45,8 +67,12 @@ namespace DAL
                     }
                 }
             }
-
-            public static void CollectionParcelFromDrone(int idDrone, int idParcel)//איסוף חבילה ע"י רחפן 
+            /// <summary>
+            /// פונקציית איסוף חבילה ע"י רחפן 
+            /// </summary>
+            /// <param name="idDrone"></param>
+            /// <param name="idParcel"></param>
+            public static void CollectionParcelFromDrone(int idDrone, int idParcel)
             {
                 for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
@@ -57,7 +83,7 @@ namespace DAL
                         DataSource.listParcels[i] = p;
                     }
                 }
-                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס של הרחפן שהוא לא פנוי
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -68,10 +94,14 @@ namespace DAL
                     }
                 }
             }
-
-            public static void DeliveryParcelForCustomer(int idCustomer, int idParcel)//אספקת חבילה ללקוח 
+            /// <summary>
+            /// פונקציית אספקת חבילה ללקוח 
+            /// </summary>
+            /// <param name="idCustomer"></param>
+            /// <param name="idParcel"></param>
+            public static void DeliveryParcelForCustomer(int idCustomer, int idParcel)
             {
-                int idDrone=0;//לבדוק שלא הציב 0 בif
+                int idDrone=0;//בשביל שימוש בפרמטר הזה
                 for (int i = 0; i < DataSource.listParcels.Count; i++)
                 {
                     if (DataSource.listParcels[i].Id == idParcel)
@@ -86,7 +116,7 @@ namespace DAL
                 for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
                 {
 
-                    if (DataSource.listDrones[i].Id == idDrone)//לבדוק שלא הציב 0 בif
+                    if (DataSource.listDrones[i].Id == idDrone)
                     {
                         DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
                         d.Status = (DAL.IDAL.DO.StatusDrone)0;
@@ -94,10 +124,14 @@ namespace DAL
                     }
                 }
             }
-
-            public static void SendingDroneForCharging(int idDrone, int idStation)// שליחת רחפן לטעינה בתחנת בסיס
+            /// <summary>
+            /// פונקציית שליחת רחפן לטעינה בתחנת בסיס
+            /// </summary>
+            /// <param name="idDrone"></param>
+            /// <param name="idStation"></param>
+            public static void SendingDroneForCharging(int idDrone, int idStation)
             {
-                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטוטוס של הרחן
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -121,10 +155,14 @@ namespace DAL
                 DataSource.listDroneCharges.Add(dc);
             }
 
-
-            public static void ReleaseDroneFromCharging(int idDrone, int idStation)// שחרור רחפן מטעינה בתחנת בסיס
+            /// <summary>
+            /// פונקציית שחרור רחפן מטעינה בתחנת בסיס
+            /// </summary>
+            /// <param name="idDrone"></param>
+            /// <param name="idStation"></param>
+            public static void ReleaseDroneFromCharging(int idDrone, int idStation)
             {
-                for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
+                for (int i = 0; i < DataSource.listDrones.Count; i++)//  עדכון בטירה ועדכון סטטוס
                 {
 
                     if (DataSource.listDrones[i].Id == idDrone)
@@ -145,7 +183,7 @@ namespace DAL
                         DataSource.listStations[i] = s;
                     }
                 }
-                for (int i = 0; i < DataSource.listDroneCharges.Count; i++)
+                for (int i = 0; i < DataSource.listDroneCharges.Count; i++)//עדכון של רשימת טעינת הסוללה 
                 {
                     if (DataSource.listDroneCharges[i].StationId == idStation && 
                         DataSource.listDroneCharges[i].DroneId== idDrone)
@@ -156,8 +194,12 @@ namespace DAL
                 }
             }
 
-
-            public static IDAL.DO.Station ViewStation(int idStation)//הדפסת תחנה
+            /// <summary>
+            /// פונקציית להדפסה תחנה אחת
+            /// </summary>
+            /// <param name="idStation"></param>
+            /// <returns></returns>
+            public static IDAL.DO.Station ViewStation(int idStation)//
             {
                 IDAL.DO.Station s = new IDAL.DO.Station();
                 for (int i = 0; i < DataSource.listStations.Count; i++)
@@ -172,7 +214,12 @@ namespace DAL
                 }
                 return s;
             }
-            public static IDAL.DO.Drone ViewDrone(int idDrone)//הדפסת רחפן
+            /// <summary>
+            /// פונקציית להדפסת רחפן אחת
+            /// </summary>
+            /// <param name="idDrone"></param>
+            /// <returns></returns>
+            public static IDAL.DO.Drone ViewDrone(int idDrone)
             {
                 IDAL.DO.Drone d = new IDAL.DO.Drone();
                 for (int i = 0; i < DataSource.listDrones.Count; i++)
@@ -187,8 +234,12 @@ namespace DAL
                 }
                 return d;
             }
-            
-              public static IDAL.DO.Customer ViewCustomer(int idCustomer)//הדפסת לקוח
+            /// <summary>
+            /// פונקציית הדפסת לקוח אחד
+            /// </summary>
+            /// <param name="idCustomer"></param>
+            /// <returns></returns>
+              public static IDAL.DO.Customer ViewCustomer(int idCustomer)//
             {
                 IDAL.DO.Customer c = new IDAL.DO.Customer();
                 for (int i = 0; i < DataSource.listCustomers.Count; i++)
@@ -203,6 +254,11 @@ namespace DAL
                 }
                 return c;
             }
+            /// <summary>
+            /// הדפסת חבילה אחת
+            /// </summary>
+            /// <param name="idParcel"></param>
+            /// <returns></returns>
             public static IDAL.DO.Parcel ViewParcel(int idParcel)//הדפסת חבילה
             {
                 IDAL.DO.Parcel p = new IDAL.DO.Parcel();
@@ -217,8 +273,11 @@ namespace DAL
                 }
                 return p;
             }
-
-            public static List <IDAL.DO.Station> ViewStationList()//הדפסת תחנות
+            /// <summary>
+            /// פונמיתת הדפסת כל התחנות
+            /// </summary>
+            /// <returns></returns>
+            public static List <IDAL.DO.Station> ViewStationList()//
             {
                 List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
 
@@ -229,7 +288,11 @@ namespace DAL
                 }
                     return temp;
             }
-            public static List<IDAL.DO.Drone> ViewDroneList()//הדפסת רחפנים
+            /// <summary>
+            /// פונקציית הדפסת כל הרפנים
+            /// </summary>
+            /// <returns></returns>
+            public static List<IDAL.DO.Drone> ViewDroneList()
             {
                 List<IDAL.DO.Drone> temp = new List<IDAL.DO.Drone>();
 
@@ -240,7 +303,11 @@ namespace DAL
                 }
                 return temp;
             }
-            public static List<IDAL.DO.Customer> ViewCustomerList()//הדפסת לקוחות
+            /// <summary>
+            /// פונקציית הדפסת כל לקוחות
+            /// </summary>
+            /// <returns></returns>
+            public static List<IDAL.DO.Customer> ViewCustomerList()
             {
                 List<IDAL.DO.Customer> temp = new List<IDAL.DO.Customer>();
 
@@ -251,7 +318,11 @@ namespace DAL
                 }
                 return temp;
             }
-            public static List<IDAL.DO.Parcel> ViewParcelList()//הדפסת חבילות
+            /// <summary>
+            /// פונקציית הדפסת כל חבילות
+            /// </summary>
+            /// <returns></returns>
+            public static List<IDAL.DO.Parcel> ViewParcelList()
             {
                 List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
@@ -262,7 +333,11 @@ namespace DAL
                 }
                 return temp;
             }
-            public static List<IDAL.DO.Parcel> ViewParcelNoDronelList()//הדפסת חבילות שעוד לא שויכו לרחפן
+            /// <summary>
+            /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
+            /// </summary>
+            /// <returns></returns>
+            public static List<IDAL.DO.Parcel> ViewParcelNoDronelList()
             {
                 List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
@@ -273,7 +348,11 @@ namespace DAL
                 }
                 return temp;
             }
-            public static List<IDAL.DO.Station> ViewAvailableChargingStationslList() // הדפסת תחנות עם עמדות טעינה פנויות
+            /// <summary>
+            /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
+            /// </summary>
+            /// <returns></returns>
+            public static List<IDAL.DO.Station> ViewAvailableChargingStationslList() 
             {
                 List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
 
@@ -284,10 +363,9 @@ namespace DAL
                 }
                 return temp;
             }
-            public static void InitializeData()
-            {
-                DataSource.Config.Initialize();
-            }
+
+           
+
         }
     }
 }

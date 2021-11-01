@@ -10,7 +10,9 @@ namespace DAL
     namespace IDAL
     {
         namespace DO
-        {
+        {/// <summary>
+        /// enums
+        /// </summary>
             public enum WeightCategories {Light, Medium, Heavy }; // קטגוריית משקל- קל, ביניים, כבד
 
             public enum StatusDrone {Available, Maintenance, Delivery}; // מצב רחפן- פנוי, תחזוקה, משלוח

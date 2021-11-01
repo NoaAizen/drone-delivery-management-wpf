@@ -10,21 +10,27 @@ namespace DAL
     namespace DalObject
     {
         class DataSource
-        {
+        {/// <summary>
+        /// הגדרת הרשימות
+        /// </summary>
             internal static List<IDAL.DO.Drone> listDrones = new List<IDAL.DO.Drone>(10);
             internal static List<IDAL.DO.Station> listStations = new List<IDAL.DO.Station>(5);
             internal static List<IDAL.DO.Customer> listCustomers = new List<IDAL.DO.Customer>(100);
             internal static List<IDAL.DO.Parcel> listParcels = new List<IDAL.DO.Parcel>(1000);
             internal static List<IDAL.DO.DroneCharge> listDroneCharges = new List<IDAL.DO.DroneCharge>(5);
 
-
+        
             internal class Config
             {
+                //שדות
                 public static int CounterForParcels { get; set; }// מספר רץ עבור חבילות
                 public static Random r = new Random();
-               
+              /// <summary>
+              /// פונקציית אתחול נתונים
+              /// </summary>
                 public static void Initialize()
                 {
+                    //משתני עזר
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
                     StatusDrone status;
                     WeightCategories MAX_weight;
@@ -33,6 +39,7 @@ namespace DAL
                     int Id, Name, ChargeSlots, temp, IdSender, IdTarget, IdDrone;
                     double longitude, latitude, battery;
                     string modle, Name_Customers,Telephon;
+                    //אתחול של תחנות
                     for (int i = 0; i < 2; i++)
                     {
                         Id = i;
@@ -42,6 +49,7 @@ namespace DAL
                         latitude = r.NextDouble() * (90 + 90) - 90;
                         listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
                     }
+                    //אתחול של רחפנים 
                     for (int i = 0; i < 5; i++)
                     {
                         Id = i;
@@ -53,7 +61,7 @@ namespace DAL
                         listDrones.Add(new IDAL.DO.Drone(Id, modle, MAX_weight, status, battery));
                     }
 
-
+                    //אתחול של לוקחות
                     for (int i = 0; i < 10; i++)
                     {
                         Id = i;
@@ -65,7 +73,7 @@ namespace DAL
                         listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
                     }
 
-                    
+                    ///אתחול של חבילות
                     for (int i = 0; i < 10; i++)
                     {
                         Id = i;
@@ -83,7 +91,10 @@ namespace DAL
                     }
                    
                 }
-
+                /// <summary>
+                /// פונקצית עזר לחישוב של זמנים 
+                /// </summary>
+                /// <returns></returns>
                public static DateTime RandomDay()
                 {
                     DateTime start = new DateTime(2010, 1, 1, r.Next(8, 18), r.Next(0, 60), 0);
