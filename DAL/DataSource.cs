@@ -56,9 +56,9 @@ namespace DAL
                         temp = r.Next(1, 10000);
                         modle = "FF" + temp;
                         MAX_weight = (WeightCategories)r.Next(0, 3);
-                        status = (StatusDrone)r.Next(0, 3);
-                        battery = r.NextDouble() * (100) ;
-                        listDrones.Add(new IDAL.DO.Drone(Id, modle, MAX_weight, status, battery));
+                        //status = (StatusDrone)r.Next(0, 3);
+                        //battery = r.NextDouble() * (100) ;
+                        listDrones.Add(new IDAL.DO.Drone(Id, modle, MAX_weight)); //, status, battery));
                     }
 
                     //אתחול של לוקחות

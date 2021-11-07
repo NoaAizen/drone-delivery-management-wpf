@@ -89,7 +89,7 @@ namespace DAL
                     if (DataSource.listDrones[i].Id == idDrone)
                     {
                         DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
-                        d.Status = (DAL.IDAL.DO.StatusDrone)2;
+                        //d.Status = (DAL.IDAL.DO.StatusDrone)2;
                         DataSource.listDrones[i] = d;
                     }
                 }
@@ -119,7 +119,7 @@ namespace DAL
                     if (DataSource.listDrones[i].Id == idDrone)
                     {
                         DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
-                        d.Status = (DAL.IDAL.DO.StatusDrone)0;
+                        //d.Status = (DAL.IDAL.DO.StatusDrone)0;
                         DataSource.listDrones[i] = d;
                     }
                 }
@@ -137,7 +137,7 @@ namespace DAL
                     if (DataSource.listDrones[i].Id == idDrone)
                     {
                         DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
-                        d.Status = (DAL.IDAL.DO.StatusDrone)1;
+                      //  d.Status = (DAL.IDAL.DO.StatusDrone)1;
                         DataSource.listDrones[i] = d;
                     }
                 }
@@ -168,8 +168,8 @@ namespace DAL
                     if (DataSource.listDrones[i].Id == idDrone)
                     {
                         DAL.IDAL.DO.Drone d = DataSource.listDrones[i];
-                        d.Status = (DAL.IDAL.DO.StatusDrone)0;
-                        d.Battery = 100;
+                       // d.Status = (DAL.IDAL.DO.StatusDrone)0;
+                       // d.Battery = 100;
                         DataSource.listDrones[i] = d;
                     }
                 }
