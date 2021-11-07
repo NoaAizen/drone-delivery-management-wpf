@@ -32,12 +32,12 @@ namespace DAL
                 {
                     //משתני עזר
                     string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel","tamar","ben","gad","dan","moshe" };//מערך שמות של הלקוח
-                    StatusDrone status;
+                  //  StatusDrone status;
                     WeightCategories MAX_weight;
                     Priorities priorities;
                     DateTime Requsted, Schduled, PickedUp, Delivered;
                     int Id, Name, ChargeSlots, temp, IdSender, IdTarget, IdDrone;
-                    double longitude, latitude, battery;
+                    double longitude, latitude; //battery;
                     string modle, Name_Customers,Telephon;
                     //אתחול של תחנות
                     for (int i = 0; i < 2; i++)
