@@ -12,7 +12,9 @@ namespace BL
         {
 
             class CustomerInParcel//לקוח ברשימה
-            {
+            {        
+                public int Id { get; set; }// מספר מזהה
+                public string Name { get; set; }// שם לקוח
             }
 
         }

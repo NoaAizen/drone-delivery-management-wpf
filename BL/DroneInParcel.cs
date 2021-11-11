@@ -12,6 +12,7 @@ namespace BL
         {
             class DroneInParcel//רחפן בחבילה
             {
+
             }
         }
 

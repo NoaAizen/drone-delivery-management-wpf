@@ -13,6 +13,8 @@ namespace BL
         {
             class Location
             {
+                public double Longitude { get; set; }// קו אורך
+                public double Latitude { get; set; } // קו רוחב
             }
         }
     }
