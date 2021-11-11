@@ -12,7 +12,9 @@ namespace BL
         {
             class DroneInParcel//רחפן בחבילה
             {
-
+                public int Id { get; set; }// מספר מזהה
+                public double Battery { get; set; } // מצב סוללה
+                public Location CurrentLocation { get; set; }//מיקום נוכחי
             }
         }
 
