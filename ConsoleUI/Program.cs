@@ -12,9 +12,10 @@ namespace ConsoleUI
 
     class Program
     {
+        static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
-            DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
+            //D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
             Choice choice = 0;
             Add add;
             Update update;
@@ -171,6 +172,7 @@ Enter your selection:
            
         }
        static int temp = 0;
+       //static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();
         //קליטת והדפסת נותנים
         /// <summary>
         /// קליטה של של הוספת אטובוס
@@ -188,7 +190,7 @@ Enter your selection:
             Console.WriteLine("Enter station's latitude:");
             double latitude = double.Parse(Console.ReadLine());
             DAL.IDAL.DO.Station s = new DAL.IDAL.DO.Station(id, Name, ChargeSlots, longitude, latitude);
-            DAL.DalObject.DalObject.AddStation(s);
+            D.AddStation(s);
         }
         /// <summary>
         /// קליטת נתונים של רחפן
@@ -204,11 +206,11 @@ Enter your selection:
             DAL.IDAL.DO.WeightCategories MAX_weight = (DAL.IDAL.DO.WeightCategories)temp;
             Console.WriteLine("Enter drone's status:(Available = 0, Maintenance = 1, Shipping = 2)");
             temp = int.Parse(Console.ReadLine());
-            DAL.IDAL.DO.StatusDrone status = (DAL.IDAL.DO.StatusDrone)temp;
+            //DAL.IDAL.DO.StatusDrone status = (DAL.IDAL.DO.StatusDrone)temp;
             Console.WriteLine("Enter drone's battery:");
-            double battery = double.Parse(Console.ReadLine());
-            DAL.IDAL.DO.Drone d = new DAL.IDAL.DO.Drone(id, model, MAX_weight, status, battery);
-            DAL.DalObject.DalObject.AddDrone(d);
+            //double battery = double.Parse(Console.ReadLine());
+            DAL.IDAL.DO.Drone d = new DAL.IDAL.DO.Drone(id, model, MAX_weight/*, status, battery*/);
+            D.AddDrone(d);
         
         }
         /// <summary>
@@ -227,7 +229,7 @@ Enter your selection:
             Console.WriteLine("Enter customer's latitude:");
             double latitude = double.Parse(Console.ReadLine());
             DAL.IDAL.DO.Customer c = new DAL.IDAL.DO.Customer(id, Name, Telephon, longitude, latitude);
-            DAL.DalObject.DalObject.AddCustomer(c);
+            D.AddCustomer(c);
         }
         /// <summary>
         /// קליטת נתונים של חבילה
@@ -258,7 +260,7 @@ Enter your selection:
             DateTime Delivered = DateTime.Parse(Console.ReadLine());
             DAL.IDAL.DO.Parcel p= new DAL.IDAL.DO.Parcel(id, IdSender, IdTarget, MAX_weight, 
                 priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered);
-           DAL.DalObject.DalObject.AddParcel(p);//DalObjectקריאה לפונקציה שנמצאת ב
+           D.AddParcel(p);//DalObjectקריאה לפונקציה שנמצאת ב
 
         }
 
@@ -272,7 +274,7 @@ Enter your selection:
             int idParcel = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.UpdateDroneToParcel(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            D.UpdateDroneToParcel(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
         }
         /// <summary>
         /// קליטת נתונים
@@ -284,7 +286,7 @@ Enter your selection:
             int idParcel = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.CollectionParcelFromDrone(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            D.CollectionParcelFromDrone(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
         }
         /// <summary>
         /// קליטת נתונים של
@@ -296,7 +298,7 @@ Enter your selection:
             int idParcel = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Customer's Id:");
             int idCustomer = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.DeliveryParcelForCustomer(idCustomer, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            D.DeliveryParcelForCustomer(idCustomer, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
         }
 
         /// <summary>
@@ -310,7 +312,7 @@ Enter your selection:
             ViewAvailableChargingStationslListPrint();
             Console.WriteLine("Enter Station's Id:");
             int idStation = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.SendingDroneForCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            D.SendingDroneForCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
         }
         /// <summary>
         /// קליטת נתונים של
@@ -322,7 +324,7 @@ Enter your selection:
             int idDrone = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Station's Id:");
             int idStation = int.Parse(Console.ReadLine());
-            DAL.DalObject.DalObject.ReleaseDroneFromCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            D.ReleaseDroneFromCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
         }
         /// <summary>
         /// קליטת והדפסת נתונים של רשומת  תחנה
@@ -331,7 +333,7 @@ Enter your selection:
         {
             Console.WriteLine("Enter Station's Id:");
             int idStation = int.Parse(Console.ReadLine());
-            DAL.IDAL.DO.Station s= DAL.DalObject.DalObject.ViewStation(idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            DAL.IDAL.DO.Station s= D.ViewStation(idStation);//DalObjectקריאה לפונקציה שנמצאת ב
             Console.WriteLine(s);
         }
         /// <summary>
@@ -341,7 +343,7 @@ Enter your selection:
         {
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            DAL.IDAL.DO.Drone d = DAL.DalObject.DalObject.ViewDrone(idDrone);//DalObjectקריאה לפונקציה שנמצאת ב
+            DAL.IDAL.DO.Drone d = D.ViewDrone(idDrone);//DalObjectקריאה לפונקציה שנמצאת ב
             Console.WriteLine(d);
         }
         /// <summary>
@@ -352,7 +354,7 @@ Enter your selection:
         {
             Console.WriteLine("Enter Customer's Id:");
             int idCustomer = int.Parse(Console.ReadLine());
-            DAL.IDAL.DO.Customer c = DAL.DalObject.DalObject.ViewCustomer(idCustomer);//DalObjectקריאה לפונקציה שנמצאת ב
+            DAL.IDAL.DO.Customer c = D.ViewCustomer(idCustomer);//DalObjectקריאה לפונקציה שנמצאת ב
             Console.WriteLine(c);
         }
         /// <summary>
@@ -363,7 +365,7 @@ Enter your selection:
         { 
             Console.WriteLine("Enter Parcel's Id:");
             int idParcel = int.Parse(Console.ReadLine());
-            DAL.IDAL.DO.Parcel p = DAL.DalObject.DalObject.ViewParcel(idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            DAL.IDAL.DO.Parcel p = D.ViewParcel(idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
             Console.WriteLine(p);
         }
         /// <summary>
@@ -372,7 +374,7 @@ Enter your selection:
         /// </summary>
         public static void ViewStationListPrint()
         {
-             List<DAL.IDAL.DO.Station> s = DAL.DalObject.DalObject.ViewStationList();//DalObjectקריאה לפונקציה שנמצאת ב
+             List<DAL.IDAL.DO.Station> s = (List<DAL.IDAL.DO.Station>)D.ViewStationList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Station item in s)
               {
                  Console.WriteLine(item) ;
@@ -384,7 +386,7 @@ Enter your selection:
         /// </summary>
         public static void ViewDroneListPrint()
         {
-            List<DAL.IDAL.DO.Drone> d = DAL.DalObject.DalObject.ViewDroneList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<DAL.IDAL.DO.Drone> d = (List<DAL.IDAL.DO.Drone>)D.ViewDroneList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Drone item in d)
             {
                 Console.WriteLine(item);
@@ -395,7 +397,7 @@ Enter your selection:
         /// </summary>
         public static void ViewCustomerListPrint()
         {
-            List<DAL.IDAL.DO.Customer> c = DAL.DalObject.DalObject.ViewCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<DAL.IDAL.DO.Customer> c = (List<DAL.IDAL.DO.Customer>)D.ViewCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Customer item in c)
             {
                 Console.WriteLine(item);
@@ -406,7 +408,7 @@ Enter your selection:
         /// </summary>
         public static void ViewParcelListPrint()
         {
-            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<DAL.IDAL.DO.Parcel> p = (List<DAL.IDAL.DO.Parcel>)D.ViewParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Parcel item in p)
             {
                 Console.WriteLine(item);
@@ -418,7 +420,7 @@ Enter your selection:
         /// </summary>
         public static void ViewParcelNoDronelListPrint()
         {
-            List<DAL.IDAL.DO.Parcel> p = DAL.DalObject.DalObject.ViewParcelNoDronelList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<DAL.IDAL.DO.Parcel> p = (List<DAL.IDAL.DO.Parcel>)D.ViewParcelNoDronelList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Parcel item in p)
             {
                 Console.WriteLine(item);
@@ -431,7 +433,7 @@ Enter your selection:
         /// </summary>
         public static void ViewAvailableChargingStationslListPrint()
         {
-            List<DAL.IDAL.DO.Station> s = DAL.DalObject.DalObject.ViewAvailableChargingStationslList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<DAL.IDAL.DO.Station> s = (List<DAL.IDAL.DO.Station>)D.ViewAvailableChargingStationslList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (DAL.IDAL.DO.Station item in s)
             {
                 Console.WriteLine(item);
