@@ -12,7 +12,7 @@ namespace ConsoleUI
 
     class Program
     {
-        static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
+        public static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
             //D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
