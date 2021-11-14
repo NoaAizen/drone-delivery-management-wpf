@@ -11,9 +11,11 @@ namespace DAL
     namespace DalObject
     {
         public class DalObject : IDal
-        {/// <summary>
-         /// בנאי
-         /// </summary>
+        {
+
+            /// <summary>
+            /// בנאי
+            /// </summary>
             public DalObject()
             {
                 DataSource.Config.Initialize();

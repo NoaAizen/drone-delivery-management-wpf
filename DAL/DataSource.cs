@@ -9,7 +9,7 @@ namespace DAL
 {
     namespace DalObject
     {
-        class DataSource
+      internal  class DataSource
         {/// <summary>
         /// הגדרת הרשימות
         /// </summary>

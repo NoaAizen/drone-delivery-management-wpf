@@ -12,6 +12,7 @@ namespace BL
         {
             class Station
             {
+            
                 public int Id { get; set; }// מספר מזהה
                 public int Name { get; set; }// שם תחנה
                 public int AvailableStations { get; set; }// מספר עמודות הטענה

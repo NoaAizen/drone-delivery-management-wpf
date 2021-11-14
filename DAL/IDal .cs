@@ -8,7 +8,7 @@ namespace DAL
 {
     namespace IDAL
     {
-        interface IDal
+       public interface IDal
         {
             /// <summary>
             /// פונקצית  הוספת רחפן לרשימת הרחפנים הקיימים 

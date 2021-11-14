@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BL
     {
         interface IBL
         {
-            
+            public Station AddStation(int id, int name, Location location, int AvailableStations);
         }
     }
 }
