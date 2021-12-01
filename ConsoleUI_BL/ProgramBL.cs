@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConsoleUI
+namespace ConsoleUI_BL
 {
-//הגדרה של enum 
-    public enum Choice {ADD=1, UPDATE, VIEW, VIEWLIST, EXIT};
-    public enum Add {STATION=1, DRONE, CUSTOMER, PARCEL};
-    public enum Update {ASSING=1, COLLECTION, DELIVERY, CHARGING, RELEASE };
+    //הגדרה של enum 
+    public enum Choice { ADD = 1, UPDATE, VIEW, VIEWLIST, EXIT };
+    public enum Add { STATION = 1, DRONE, CUSTOMER, PARCEL };
+    public enum Update { DRONE = 1, STATION, CUSTOMERS, CHARGING, RELEASE, ASSIGN, COLLECTION, DELIVERY };
     public enum View { STATION = 1, DRONE, CUSTOMER, PARCEL };
     public enum ViewList { STATIONS = 1, DRONES, CUSTOMERS, PARCELS, NODRONE, AVAILABLE };
 
-    class Program
+    class ProgramBL
     {
         //public static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
         static IDAL.IDal D = new DalObject.DalObject();//קריאה לבנאי שמתאחל
+        static IBL.IBL bl= new BL.BL();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
             Choice choice = 0;
@@ -31,7 +32,7 @@ Enter your choice:
 4: for list view
 5: for exit");
                 choice = (Choice)int.Parse(Console.ReadLine());
-                switch(choice)
+                switch (choice)
                 {
                     case Choice.ADD:
                         Console.WriteLine(@"
@@ -42,11 +43,11 @@ Enter your selection:
 3: for add a customer
 4: for add a parcel");
                         add = (Add)int.Parse(Console.ReadLine());
-                        switch(add) //אוופציות של הוספה
+                        switch (add) //אופציות של הוספה
                         {
                             case Add.STATION://הוספת תחנה
-                                AddStationData();
-                                break;
+                                    AddStationData();
+                                    break;
                             case Add.DRONE://הוספת רחפן
                                 AddDroneData();
                                 break;
@@ -66,31 +67,44 @@ Enter your selection:
                         Console.WriteLine(@"
 What update would you like to make? 
 Enter your selection:
-1: for assign a parcel to a drone
-2: for collection a parcel by a drone
-3: for delivery a parcel for a customer
+1: for update a drone model
+2: for update a station
+3: for update a customer
 4: for sending a drone for charging
-5: for release a drone from charging");
+5: for release a drone from charging
+6: for assign a parcel to a drone
+7: for collection a parcel by a drone
+8: for delivery a parcel by a drone");
                         update = (Update)int.Parse(Console.ReadLine());
-                        switch(update)//עדכון
+                        switch (update)//עדכון
                         {
-                            case Update.ASSING://שיוך חבילה לרחפן 
-                                UpdateDroneToParcelData();
+                            //{ DRONE=1, STATION, CUSTOMERS, CHARGING, RELEASE, ASSING , COLLECTION, DELIVERY };
+                            case Update.DRONE://עדכון מודל רחפן 
+                                UpdateDroneModelData();
                                 break;
-                            case Update.COLLECTION:// איסוף חבילה ע"י רחפ ן 
-                                CollectionParcelFromDroneData();
+                            case Update.STATION://עדכון תחנה 
+                                UpdateStationData();
                                 break;
-                            case Update.DELIVERY:// אספקת חבילה ל-לקוח 
-                                DeliveryParcelForCustomerData();
+                            case Update.CUSTOMERS://עדכון לקוח 
+                                UpdateCustomerData();
                                 break;
                             case Update.CHARGING:// שליחת רחפן לטעינה בתחנת -בסיס 
-                                SendingDroneForChargingData();
+                                //SendingDroneForChargingData();
                                 break;
                             case Update.RELEASE:// שחרור רחפן מטעינה בתחנת -בסיס 
-                                ReleaseDroneFromChargingData();
+                                //ReleaseDroneFromChargingData();
+                                break;
+                            case Update.ASSIGN://שיוך חבילה לרחפן 
+                                //UpdateDroneToParcelData();
+                                break;
+                            case Update.COLLECTION:// איסוף חבילה ע"י רחפן 
+                                //CollectionParcelFromDroneData();
+                                break;
+                            case Update.DELIVERY:// אספקת חבילה ע"י רחפן 
+                                //DeliveryParcelForCustomerData();
                                 break;
                             default:
-                                Console.WriteLine("Enter a number between 1 to 5");
+                                Console.WriteLine("Enter a number between 1 to 8");
                                 break;
                         };
                         break;
@@ -110,7 +124,7 @@ Enter your selection:
                                 ViewStationPrint();
                                 break;
                             case View.DRONE:// תצוגת רחפן 
-                                ViewDronePrint();
+                                //ViewDronePrint();
                                 break;
                             case View.CUSTOMER:// תצוגת לקוח 
                                 ViewCustomerPrint();
@@ -150,10 +164,10 @@ Enter your selection:
                                 ViewParcelListPrint();
                                 break;
                             case ViewList.NODRONE:// הצגת רשימת חבילות שעוד לא שויכו לרחפן 
-                                ViewParcelNoDronelListPrint();
+                                //ViewParcelNoDronelListPrint();
                                 break;
                             case ViewList.AVAILABLE://הצגת תחנות-בסיס עם עמדות טעינה פנויות 
-                                ViewAvailableChargingStationslListPrint();
+                                //ViewAvailableChargingStationslListPrint();
                                 break;
                             default:
                                 Console.WriteLine("Enter a number between 1 to 6");
@@ -165,15 +179,15 @@ Enter your selection:
                         break;
 
                     default:
-                        Console.WriteLine("Enter a number between 1 to 5" );
+                        Console.WriteLine("Enter a number between 1 to 5");
                         break;
                 };
             }
-           
+
         }
-       static int temp = 0;
-       //static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();
-        //קליטת והדפסת נותנים
+
+        //קליטת והדפסת נותנים        
+        static int temp;
         /// <summary>
         /// קליטה נתונים של תחנה
         /// </summary>
@@ -182,15 +196,17 @@ Enter your selection:
             Console.WriteLine("Enter station's Id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's name:");
-            string Name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Enter Number of charging stations available:");
-            int ChargeSlots = int.Parse(Console.ReadLine());
+            int chargeSlots = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's longitude:");
             double longitude = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's latitude:");
             double latitude = double.Parse(Console.ReadLine());
-            IDAL.DO.Station s = new IDAL.DO.Station(id, Name, ChargeSlots, longitude, latitude);
-            D.AddStation(s);
+            IBL.BO.Location location = new() { Longitude = longitude, Latitude = latitude };
+            IBL.BO.Station s = new()
+            { Id = id, Name = name, AvailableStations = chargeSlots, Location = location, DroneInChargingsList = null };
+            bl.AddStation(s);
         }
         /// <summary>
         /// קליטת נתונים של רחפן
@@ -200,18 +216,14 @@ Enter your selection:
             Console.WriteLine("Enter drone's Id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter drone's model:");
-            string model = (Console.ReadLine());
+            string model = Console.ReadLine();
             Console.WriteLine("Enter drone's weight categories(Light = 0, Intermediate = 1, Heavy = 2):");
             temp = int.Parse(Console.ReadLine());
-            IDAL.DO.WeightCategories MAX_weight = (IDAL.DO.WeightCategories)temp;
-            Console.WriteLine("Enter drone's status:(Available = 0, Maintenance = 1, Shipping = 2)");
-            temp = int.Parse(Console.ReadLine());
-            //DAL.IDAL.DO.StatusDrone status = (DAL.IDAL.DO.StatusDrone)temp;
-            Console.WriteLine("Enter drone's battery:");
-            //double battery = double.Parse(Console.ReadLine());
-            IDAL.DO.Drone d = new IDAL.DO.Drone(id, model, MAX_weight/*, status, battery*/);
-            D.AddDrone(d);
-        
+            IBL.BO.WeightCategories maxWeight = (IBL.BO.WeightCategories)temp;
+            Console.WriteLine("Enter charging station's number:");
+            int stationNumber = int.Parse(Console.ReadLine());
+            IBL.BO.DroneToList d = new() { Id= id, Model= model, MaxWeight= maxWeight };
+            bl.AddDrone(d,stationNumber);
         }
         /// <summary>
         /// קליטת נתונים של לקוח
@@ -221,87 +233,78 @@ Enter your selection:
             Console.WriteLine("Enter customer's Id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter customer's name:");
-            string Name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Enter customer's phone number:");
-            string Telephon = Console.ReadLine();
+            string telephon = Console.ReadLine();
             Console.WriteLine("Enter customer's longitude:");
             double longitude = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter customer's latitude:");
             double latitude = double.Parse(Console.ReadLine());
-            IDAL.DO.Customer c = new IDAL.DO.Customer(id, Name, Telephon, longitude, latitude);
-            D.AddCustomer(c);
+            IBL.BO.Location location = new() { Longitude = longitude, Latitude = latitude };
+            IBL.BO.Customer c = new() { Id= id, Name= name, Phone= telephon, Location= location };
+            bl.AddCustomer(c);
         }
         /// <summary>
         /// קליטת נתונים של חבילה
         /// </summary>
         public static void AddParcelData()
         {
-            //Console.WriteLine("Enter Parcel's Id:");
-            //int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Id of sender:");
             int IdSender = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Id of target:");
             int IdTarget = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter Parcel's weight categories(Light = 0, Intermediate = 1, Heavy = 2):");
             temp = int.Parse(Console.ReadLine());
-            IDAL.DO.WeightCategories maxWeight = (IDAL.DO.WeightCategories)temp;
+            IBL.BO.WeightCategories maxWeight = (IBL.BO.WeightCategories)temp;
             Console.WriteLine("Enter Parcel's priority(Normal = 0, Fast = 1, Emergency = 2):");
             temp = int.Parse(Console.ReadLine());
-            IDAL.DO.Priorities priorities = (IDAL.DO.Priorities)temp;
-            //Console.WriteLine("Enter Id of Drone:");
-            //int IdDrone = int.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter Parcel's Requsted time:");
-            //DateTime Requsted = DateTime.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter Parcel's Schduled time:");
-            //DateTime Schduled = DateTime.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter Parcel's PickedUp time:");
-            //DateTime PickedUp = DateTime.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter Parcel's Delivered time:");
-            //DateTime Delivered = DateTime.Parse(Console.ReadLine());
-            IDAL.DO.Parcel p= new() 
-            { SenderId = IdSender, TargetId = IdTarget, Weight = maxWeight, Priority = priorities };
-           int parcelId= D.AddParcel(p);//DalObjectקריאה לפונקציה שנמצאת ב
-            Console.WriteLine("Parcel's Id: {0}",parcelId);
-
-        }
-
-        /// <summary>
-        /// קליטת נתונים של
-        /// עדכון נתונים של שיוך של רחפו ללקוח
-        /// </summary>
-        public static void UpdateDroneToParcelData()
-        {
-            Console.WriteLine("Enter Parcel's Id:");
-            int idParcel = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Drone's Id:");
-            int idDrone = int.Parse(Console.ReadLine());
-            D.UpdateDroneToParcel(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            IBL.BO.Priorities priorities = (IBL.BO.Priorities)temp;
+            IBL.BO.CustomerInParcel sender = new() { Id = IdSender };
+            IBL.BO.CustomerInParcel recipient = new() { Id = IdTarget };
+            IBL.BO.Parcel p = new()
+            {
+                CustomerInParcelSender = sender,
+                CustomerInParcelRecipient = recipient,
+                Weight = maxWeight,
+                Priority = priorities
+            };
+            int parcelId = bl.AddParcel(p);
+            Console.WriteLine("Parcel's Id: {0}", parcelId);
         }
         /// <summary>
-        /// קליטת נתונים
-        /// של  איסוף חבילה ע"י רחפ ן 
+        /// עדכון מודל רחפן
         /// </summary>
-        public static void CollectionParcelFromDroneData()
+        public static void UpdateDroneModelData()
         {
-            Console.WriteLine("Enter Parcel's Id:");
-            int idParcel = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Drone's Id:");
-            int idDrone = int.Parse(Console.ReadLine());
-            D.CollectionParcelFromDrone(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            Console.WriteLine("Enter drone's Id:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter new model:");
+            string model = Console.ReadLine();
+            bl.UpdateDroneModel(id, model);
+        }
+        public static void UpdateStationData()
+        {
+            Console.WriteLine("Enter station's Id:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter station's name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter Number of charging stations:");
+            int chargeSlots = int.Parse(Console.ReadLine());
+            bl.UpdateStation(id, name, chargeSlots);
         }
         /// <summary>
-        /// קליטת נתונים של
-        ///  אספקת חבילה ל-לקוח 
+        /// עדכון נתוני לקוח
         /// </summary>
-        public static void DeliveryParcelForCustomerData()
+        public static void UpdateCustomerData()
         {
-            Console.WriteLine("Enter Parcel's Id:");
-            int idParcel = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Customer's Id:");
-            int idCustomer = int.Parse(Console.ReadLine());
-            D.DeliveryParcelForCustomer(idCustomer, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            Console.WriteLine("Enter customer's Id:");
+            int id = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter customer's name:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter customer's phone number:");
+            string telephon = Console.ReadLine();
+            bl.UpdateCustomer(id, name, telephon);
         }
-
         /// <summary>
         /// קליטת נתונים של
         /// שליחת רחפן לטעינה בתחנת -בסיס 
@@ -310,10 +313,7 @@ Enter your selection:
         {
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            ViewAvailableChargingStationslListPrint();
-            Console.WriteLine("Enter Station's Id:");
-            int idStation = int.Parse(Console.ReadLine());
-            D.SendingDroneForCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            bl.SendingDroneForCharging(idDrone);
         }
         /// <summary>
         /// קליטת נתונים של
@@ -323,67 +323,82 @@ Enter your selection:
         {
             Console.WriteLine("Enter Drone's Id:");
             int idDrone = int.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Station's Id:");
-            int idStation = int.Parse(Console.ReadLine());
-            D.ReleaseDroneFromCharging(idDrone, idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            Console.WriteLine("Enter charging time period:");
+            TimeSpan chargingTime = TimeSpan.Parse(Console.ReadLine());
+            bl.ReleaseDroneFromCharging(idDrone, chargingTime);
+        }
+        ///// <summary>
+        ///// קליטת נתונים של
+        ///// עדכון נתונים של שיוך של רחפו ללקוח
+        ///// </summary>
+        //public static void UpdateDroneToParcelData()
+        //{
+        //    Console.WriteLine("Enter Parcel's Id:");
+        //    int idParcel = int.Parse(Console.ReadLine());
+        //    Console.WriteLine("Enter Drone's Id:");
+        //    int idDrone = int.Parse(Console.ReadLine());
+        //    D.UpdateDroneToParcel(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+        //}
+        /// <summary>
+        /// קליטת נתונים
+        /// של  איסוף חבילה ע"י רחפן 
+        /// </summary>
+        public static void CollectionParcelFromDroneData()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            bl.CollectionParcelFromDrone(idDrone);
         }
         /// <summary>
-        /// קליטת והדפסת נתונים של רשומת  תחנה
+        /// קליטת נתונים של
+        ///  אספקת חבילה ל-לקוח 
+        /// </summary>
+        public static void DeliveryParcelForCustomerData()
+        {
+            Console.WriteLine("Enter Parcel's Id:");
+            int idParcel = int.Parse(Console.ReadLine());
+            bl.DeliveryParcelByDrone(idParcel);
+        }
+        /// <summary>
+        /// הדפסת נתונים של תחנה
         /// </summary>
         public static void ViewStationPrint()
         {
             Console.WriteLine("Enter Station's Id:");
             int idStation = int.Parse(Console.ReadLine());
-            IDAL.DO.Station s= D.ViewStation(idStation);//DalObjectקריאה לפונקציה שנמצאת ב
+            IBL.BO.Station s = bl.GetStation(idStation);
             Console.WriteLine(s);
         }
-        /// <summary>
-        ///         /// קליטת והדפסת נתונים של רשומת  רחפן
-        /// </summary>
-        public static void ViewDronePrint()
-        {
-            Console.WriteLine("Enter Drone's Id:");
-            int idDrone = int.Parse(Console.ReadLine());
-            IDAL.DO.Drone d = D.ViewDrone(idDrone);//DalObjectקריאה לפונקציה שנמצאת ב
-            Console.WriteLine(d);
-        }
-        /// <summary>
-        ///          קליטת והדפסת נתונים של רשומת לקןח 
-
-        /// </summary>
         public static void ViewCustomerPrint()
         {
             Console.WriteLine("Enter Customer's Id:");
             int idCustomer = int.Parse(Console.ReadLine());
-            IDAL.DO.Customer c = D.ViewCustomer(idCustomer);//DalObjectקריאה לפונקציה שנמצאת ב
+            IBL.BO.Customer c = bl.GetCustomer(idCustomer);
             Console.WriteLine(c);
         }
         /// <summary>
-        ///          קליטת והדפסת נתונים של רשומת של חבילה
-
+        ///הדפסת נתונים של חבילה
         /// </summary>
         public static void ViewParcelPrint()
-        { 
+        {
             Console.WriteLine("Enter Parcel's Id:");
             int idParcel = int.Parse(Console.ReadLine());
-            IDAL.DO.Parcel p = D.ViewParcel(idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
+            IBL.BO.Parcel p = bl.GetParcel(idParcel);
             Console.WriteLine(p);
         }
         /// <summary>
-        ///           והדפסת נתונים של רשימת תחנות
-
+        ///הדפסת נתונים של רשימת תחנות
         /// </summary>
         public static void ViewStationListPrint()
         {
-             List<IDAL.DO.Station> s = (List<IDAL.DO.Station>)D.ViewStationList();//DalObjectקריאה לפונקציה שנמצאת ב
+            List<IDAL.DO.Station> s = (List<IDAL.DO.Station>)D.ViewStationList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (IDAL.DO.Station item in s)
-              {
-                 Console.WriteLine(item) ;
-              }
+            {
+                Console.WriteLine(item);
+            }
         }
-
         /// <summary>
-        ///                   הדפסת נתונים של רשימת רחפנים
+        ///הדפסת נתונים של רשימת רחפנים
         /// </summary>
         public static void ViewDroneListPrint()
         {
@@ -394,7 +409,7 @@ Enter your selection:
             }
         }
         /// <summary>
-        ///   הדפסת נתונים של רשימת לקוחות
+        ///הדפסת נתונים של רשימת לקוחות
         /// </summary>
         public static void ViewCustomerListPrint()
         {
@@ -405,7 +420,7 @@ Enter your selection:
             }
         }
         /// <summary>
-        ///   הדפסת נתונים של רשימת חבילות
+        ///הדפסת נתונים של רשימת חבילות
         /// </summary>
         public static void ViewParcelListPrint()
         {
@@ -414,28 +429,7 @@ Enter your selection:
             {
                 Console.WriteLine(item);
             }
-        }
-        /// <summary>
-        ///            הדפסת נתונים של רשימת חבילות
-        ///שעוד לא שויכו לרחפן 
-        /// </summary>
-        public static void ViewParcelNoDronelListPrint()
-        {
-            List<IDAL.DO.Parcel> p = (List<IDAL.DO.Parcel>)D.ViewParcelNoDroneList();//DalObjectקריאה לפונקציה שנמצאת ב
-            foreach (IDAL.DO.Parcel item in p)
-            {
-                Console.WriteLine(item);
-            }
-        }
-        /// <summary>
-        ///  הדפסת נתונים של רשימת תחנות בסיס
-        ///  עם עמדות טעינה פנויות 
-        /// 
-        /// </summary>
-        public static void ViewAvailableChargingStationslListPrint()
-        {
-            List<IDAL.DO.Station> s = (List<IDAL.DO.Station>)D.ViewAvailableChargingStationsList();//DalObjectקריאה לפונקציה שנמצאת ב
-            foreach (IDAL.DO.Station item in s)
+            foreach(var item in bl.GetParcelList())
             {
                 Console.WriteLine(item);
             }

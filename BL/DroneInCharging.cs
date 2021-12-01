@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+
+
+namespace IBL
 {
-    namespace IBL
+    namespace BO
     {
-        namespace BO
+        public class DroneInCharging//רחפן בטעינה
         {
-            class DroneInCharging//רחפן בטעינה
-            {
-                public int Id { get; set; }// מספר מזהה
-                public double Battery { get; set; } // מצב סוללה
-            }
+            public int Id { get; set; }// מספר מזהה
+            public double Battery { get; set; } // מצב סוללה
         }
     }
 }

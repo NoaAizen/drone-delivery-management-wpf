@@ -4,17 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
-{
 
-    namespace IBL
+namespace IBL
+{
+    namespace BO
     {
-        namespace BO
+        public class Location
         {
-            class Location
+            public double Longitude { get; set; }// קו אורך
+            public double Latitude { get; set; } // קו רוחב
+
+            public override string ToString()
             {
-                public double Longitude { get; set; }// קו אורך
-                public double Latitude { get; set; } // קו רוחב
+                return this.ToStringProperty();
             }
         }
     }
