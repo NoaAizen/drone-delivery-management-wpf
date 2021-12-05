@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BL;
+using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace PL
 {
     /// <summary>
@@ -19,13 +22,17 @@ namespace PL
     /// </summary>
     public partial class DroneLists : Window
     {
-        public DroneLists()
+        private IBL.IBL bl;
+
+        public DroneLists(IBL.IBL b)//בנאי שמקל פרמטר ,עשינו כך בשביל שלא יהיה קריאה נוספת לבנאי של BL
         {
             InitializeComponent();
-        }
-        public DroneLists(IBL.IBL bl)//בנאי שמקל פרמטר ,עשינו כך בשביל שלא יהיה קריאה נוספת לבנאי של BL
-        {
+            bl = b;
+            DroneListsView.ItemsSource = bl.GetStationList();//צריל לשנות GETDRONE
+            InitializeComponent();
 
         }
     }
 }
+
+
