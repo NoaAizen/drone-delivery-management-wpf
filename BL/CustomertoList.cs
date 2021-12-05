@@ -19,6 +19,11 @@ namespace IBL
             public int NumberOfParcelReceived { get; set; }//מספר חבילות שקיבל
             public int NumberOfParcelOnTheWayToTheCustomer { get; set; }//מספר חבילות שבדרך אל הלקוח
 
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
+
 
         }
     }

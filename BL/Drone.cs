@@ -19,6 +19,11 @@ namespace IBL
             public double Battery { get; set; } // מצב סוללה
             public ParcelInTransfer ParcelInTransfer { get; set; }//חבילה בהעברה
             public Location CurrentLocation { get; set; }//מיקום נוכחי
+
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
     }
 }

@@ -124,7 +124,7 @@ Enter your selection:
                                 ViewStationPrint();
                                 break;
                             case View.DRONE:// תצוגת רחפן 
-                                //ViewDronePrint();
+                                ViewDronePrint();
                                 break;
                             case View.CUSTOMER:// תצוגת לקוח 
                                 ViewCustomerPrint();
@@ -377,6 +377,26 @@ Enter your selection:
             Console.WriteLine(c);
         }
         /// <summary>
+        ///הדפסת נתונים של רחפן
+        /// </summary>
+        public static void ViewDronePrint()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            IBL.BO.Drone d = bl.GetDrone(idDrone);
+            Console.WriteLine(d);
+        }
+        ///// <summary>
+        ////הדפסת נתונים של לקוח 
+        ///// </summary>
+        //public static void ViewCustomerPrint()
+        //{
+        //    Console.WriteLine("Enter Customer's Id:");
+        //    int idCustomer = int.Parse(Console.ReadLine());
+        //    IDAL.DO.Customer c = D.ViewCustomer(idCustomer);//DalObjectקריאה לפונקציה שנמצאת ב
+        //    Console.WriteLine(c);
+        //}
+        /// <summary>
         ///הדפסת נתונים של חבילה
         /// </summary>
         public static void ViewParcelPrint()
@@ -393,6 +413,10 @@ Enter your selection:
         {
             List<IDAL.DO.Station> s = (List<IDAL.DO.Station>)D.ViewStationList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (IDAL.DO.Station item in s)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in bl.GetStationList())
             {
                 Console.WriteLine(item);
             }
@@ -415,6 +439,10 @@ Enter your selection:
         {
             List<IDAL.DO.Customer> c = (List<IDAL.DO.Customer>)D.ViewCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
             foreach (IDAL.DO.Customer item in c)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (var item in bl.GetCustomerList())
             {
                 Console.WriteLine(item);
             }

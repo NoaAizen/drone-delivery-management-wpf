@@ -169,7 +169,7 @@ namespace IDAL
         /// </summary>
         /// <param name="targetId">מזהה לקוח</param>
         /// <returns>רשימת החבילות שקיבל</returns>
-        IEnumerable<Parcel> GetTargetrParcels(int targetId);
+        IEnumerable<Parcel> GetTargetParcels(int targetId);
         /// <summary>
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>

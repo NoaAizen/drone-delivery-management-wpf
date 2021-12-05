@@ -514,7 +514,7 @@ namespace DalObject
         /// </summary>
         /// <param name="targetId">מזהה לקוח</param>
         /// <returns>רשימת החבילות שקיבל</returns>
-        public IEnumerable<Parcel> GetTargetrParcels(int targetId)
+        public IEnumerable<Parcel> GetTargetParcels(int targetId)
         {
             return (from item in DataSource.listParcels
                     where item.TargetId == targetId

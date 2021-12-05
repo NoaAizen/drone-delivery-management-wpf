@@ -84,7 +84,12 @@ namespace IBL
         /// <param name="id">מזהה תחנה</param>
         /// <returns>ישות לוגית של תחנה</returns>
         public Station GetStation(int id);
-        //public Drone GetDrone(int id);
+        /// <summary>
+        /// תצוגת רחפן
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <returns>ישות לוגית של רחפן</returns>
+        public Drone GetDrone(int id);
         /// <summary>
         /// תצוגת לקוח
         /// </summary>
@@ -98,11 +103,11 @@ namespace IBL
         /// <returns>ישות לוגית של חבילה</returns>
         public Parcel GetParcel(int id);
 
-        ///// <summary>
-        ///// פונקציית הדפסת כל התחנות
-        ///// </summary>
-        ///// <returns></returns>
-        //IEnumerable<StationToList> GetStationList();
+        /// <summary>
+        /// פונקציית תצוגת כל התחנות
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<StationToList> GetStationList();
 
         ///// <summary>
         ///// פונקציית הדפסת כל הרחפנים
@@ -110,11 +115,11 @@ namespace IBL
         ///// <returns></returns>
         //IEnumerable<DroneToList> GetDroneList();
 
-        ///// <summary>
-        ///// פונקציית הדפסת כל הלקוחות
-        ///// </summary>
-        ///// <returns></returns>
-        //IEnumerable<CustomertoList> GetCustomerList();
+        /// <summary>
+        /// פונקציית תצוגת כל הלקוחות
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CustomertoList> GetCustomerList();
 
         /// <summary>
         /// פונקציית תצוגת רשימת החבילות
@@ -122,17 +127,17 @@ namespace IBL
         /// <returns>רשימת כל החבילות</returns>
         IEnumerable<ParcelToList> GetParcelList();
 
-        ///// <summary>
-        ///// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
-        ///// </summary>
-        ///// <returns></returns>
-        //IEnumerable<ParcelToList> ViewParcelNoDroneList();
+        /// <summary>
+        /// פונקציית תצוגת חבילות שעוד לא שויכו לרחפן 
+        /// </summary>
+        /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
+        IEnumerable<ParcelToList> ViewParcelNoDroneList();
 
-        ///// <summary>
-        ///// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
-        ///// </summary>
-        ///// <returns></returns>
-        //IEnumerable<StationToList> GetAvailableChargingStationsList();
+        /// <summary>
+        /// פונקציית תצוגת תחנות עם עמדות טעינה פנויות
+        /// </summary>
+        /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
+        IEnumerable<StationToList> GetAvailableChargingStationsList();
 
     }
 }
