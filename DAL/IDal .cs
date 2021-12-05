@@ -89,52 +89,52 @@ namespace IDAL
         /// </summary>
         /// <param name="idStation"></param>
         /// <returns></returns>
-        DO.Station ViewStation(int idStation);//
+        DO.Station GetStation(int idStation);
 
         /// <summary>
         /// פונקציית להדפסת רחפן אחת
         /// </summary>
         /// <param name="idDrone"></param>
         /// <returns></returns>
-        DO.Drone ViewDrone(int idDrone);
+        DO.Drone GetDrone(int idDrone);
 
         /// <summary>
         /// פונקציית הדפסת לקוח אחד
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <returns></returns>
-        DO.Customer ViewCustomer(int idCustomer);
+        DO.Customer GetCustomer(int idCustomer);
 
         /// <summary>
         /// הדפסת חבילה אחת
         /// </summary>
         /// <param name="idParcel"></param>
         /// <returns></returns>
-        DO.Parcel ViewParcel(int idParcel);//הדפסת חבילה
+        DO.Parcel GetParcel(int idParcel);//הדפסת חבילה
 
         /// <summary>
         /// פונקציית הדפסת כל התחנות
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Station> ViewStationList();
+        IEnumerable<DO.Station> GetStationList();
 
         /// <summary>
         /// פונקציית הדפסת כל הרחפנים
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Drone> ViewDroneList();
+        IEnumerable<DO.Drone> GetDroneList();
 
         /// <summary>
         /// פונקציית הדפסת כל לקוחות
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Customer> ViewCustomerList();
+        IEnumerable<DO.Customer> GetCustomerList();
 
         /// <summary>
         /// פונקציית הדפסת כל חבילות
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Parcel> ViewParcelList();
+        IEnumerable<DO.Parcel> GetParcelList();
         /// <summary>
         /// תצוגת רשימת רחפנים בטעינה
         /// </summary>
@@ -144,14 +144,14 @@ namespace IDAL
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Parcel> ViewParcelNoDroneList();
+        IEnumerable<DO.Parcel> GetParcelNoDroneList();
 
 
         /// <summary>
         /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
         /// </summary>
         /// <returns></returns>
-        IEnumerable<DO.Station> ViewAvailableChargingStationsList();
+        IEnumerable<DO.Station> GetAvailableChargingStationsList();
         /// <summary>
         /// פונקצייה המחזירה רשימת מספרים מזהים של רחפנים הנמצאים בתחנה כלשהי
         /// </summary>

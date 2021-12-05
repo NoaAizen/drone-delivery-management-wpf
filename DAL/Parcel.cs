@@ -31,7 +31,7 @@ namespace IDAL
                 TargetId = idTarget;
                 Weight = mAX_weight;
                 Priority = priorities;
-                DroneId = 0;
+                DroneId = idDrone;
                 Requested = requsted;
                 Scheduled = schduled;
                 PickedUp = pickedUp;

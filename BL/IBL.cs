@@ -109,11 +109,11 @@ namespace IBL
         /// <returns></returns>
         IEnumerable<StationToList> GetStationList();
 
-        ///// <summary>
-        ///// פונקציית הדפסת כל הרחפנים
-        ///// </summary>
-        ///// <returns></returns>
-        //IEnumerable<DroneToList> GetDroneList();
+        /// <summary>
+        /// פונקציית תצוגת כל הרחפנים
+        /// </summary>
+        /// <returns>רשימת כל הרחפנים</returns>
+        IEnumerable<DroneToList> GetDroneList();
 
         /// <summary>
         /// פונקציית תצוגת כל הלקוחות
@@ -131,7 +131,7 @@ namespace IBL
         /// פונקציית תצוגת חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
-        IEnumerable<ParcelToList> ViewParcelNoDroneList();
+        IEnumerable<ParcelToList> GetParcelNoDroneList();
 
         /// <summary>
         /// פונקציית תצוגת תחנות עם עמדות טעינה פנויות

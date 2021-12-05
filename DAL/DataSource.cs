@@ -57,9 +57,9 @@ namespace DalObject
                     listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
                 }
                 //אתחול של רחפנים 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    Id = i;
+                    Id = i+1;
                     temp = r.Next(1, 10000);
                     modle = "FF" + temp;
                     MAX_weight = (WeightCategories)r.Next(0, 3);
@@ -80,19 +80,53 @@ namespace DalObject
                     listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
                 }
 
-                ///אתחול של חבילות
-                for (int i = 0; i < 10; i++)
+                ///אתחול של חבילות במשלוח וסופקו
+                for (int i = 0; i < 2; i++)
                 {
                     Id = i;
-                    IdSender = r.Next(100000000, 1000000000);
-                    IdTarget = r.Next(100000000, 1000000000);
+                    IdSender = i;
+                    IdTarget = i+1;
                     MAX_weight = (WeightCategories)r.Next(0, 3);
                     priorities = (Priorities)r.Next(0, 3);
-                    IdDrone = r.Next(1000, 10000);
+                    IdDrone = i+1;
                     Requsted = RandomDay();
                     Schduled = Requsted.AddHours(1);
                     PickedUp = Schduled.AddHours(1);
                     Delivered = PickedUp.AddHours(1);
+                    CounterForParcels++;
+                    listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                }
+
+                ///אתחול של חבילות במשלוח ולא סופקו
+                for (int i = 2; i < 5; i++)
+                {
+                    Id = i;
+                    IdSender = i;
+                    IdTarget = i + 1;
+                    MAX_weight = (WeightCategories)r.Next(0, 3);
+                    priorities = (Priorities)r.Next(0, 3);
+                    IdDrone = i + 1;
+                    Requsted = RandomDay();
+                    Schduled = Requsted.AddHours(1);
+                    PickedUp = Schduled.AddHours(1);
+                    Delivered = DateTime.MinValue;
+                    CounterForParcels++;
+                    listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                }
+
+                ///אתחול של חבילות לא במשלוח
+                for (int i = 5; i < 10; i++)
+                {
+                    Id = i;
+                    IdSender = 8;
+                    IdTarget = 9;
+                    MAX_weight = (WeightCategories)r.Next(0, 3);
+                    priorities = (Priorities)r.Next(0, 3);
+                    IdDrone = 0;
+                    Requsted = RandomDay();
+                    Schduled = DateTime.MinValue;
+                    PickedUp = DateTime.MinValue;
+                    Delivered = DateTime.MinValue;
                     CounterForParcels++;
                     listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }

@@ -28,7 +28,7 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            DroneListsView.ItemsSource = bl.GetStationList();//צריל לשנות GETDRONE
+            DroneListsView.ItemsSource = bl.GetDroneList();//צריל לשנות GETDRONE
             InitializeComponent();
 
         }

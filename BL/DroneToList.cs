@@ -20,6 +20,11 @@ namespace IBL
             public ParcelInTransfer ParcelInTransfer { get; set; }//חבילה בהעברה
             public Location CurrentLocation { get; set; }//מיקום נוכחי
             public int ParcelTransferredNumber { get; set; }// מספר חבילה מועברת (אם יש
+
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
     }
 }

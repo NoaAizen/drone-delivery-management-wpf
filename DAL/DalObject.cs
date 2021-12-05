@@ -298,7 +298,7 @@ namespace DalObject
         /// </summary>
         /// <param name="idStation"></param>
         /// <returns></returns>
-        public IDAL.DO.Station ViewStation(int idStation)//
+        public IDAL.DO.Station GetStation(int idStation)//
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))
                 throw new DoesntExistException("This station doesn't exist");
@@ -320,7 +320,7 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <returns></returns>
-        public IDAL.DO.Drone ViewDrone(int idDrone)
+        public IDAL.DO.Drone GetDrone(int idDrone)
         {
             if (!DataSource.listDrones.Exists(x => x.Id == idDrone))
                 throw new DoesntExistException("This drone doesn't exist");
@@ -342,7 +342,7 @@ namespace DalObject
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <returns></returns>
-        public IDAL.DO.Customer ViewCustomer(int idCustomer)//
+        public IDAL.DO.Customer GetCustomer(int idCustomer)//
         {
             if (!DataSource.listCustomers.Exists(x => x.Id == idCustomer))
                 throw new DoesntExistException("This customer doesn't exist");
@@ -362,7 +362,7 @@ namespace DalObject
         /// </summary>
         /// <param name="idParcel"></param>
         /// <returns></returns>
-        public IDAL.DO.Parcel ViewParcel(int idParcel)//הדפסת חבילה
+        public IDAL.DO.Parcel GetParcel(int idParcel)//הדפסת חבילה
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
                 throw new DoesntExistException("This parcel doesn't exist");
@@ -382,7 +382,7 @@ namespace DalObject
         /// פונמיתת הדפסת כל התחנות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Station> ViewStationList()//
+        public IEnumerable<IDAL.DO.Station> GetStationList()//
         {
             return (from item in DataSource.listStations
                     select item).ToList();
@@ -399,7 +399,7 @@ namespace DalObject
         /// פונקציית הדפסת כל הרפנים
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Drone> ViewDroneList()
+        public IEnumerable<IDAL.DO.Drone> GetDroneList()
         {
             List<IDAL.DO.Drone> temp = new List<IDAL.DO.Drone>();
 
@@ -414,7 +414,7 @@ namespace DalObject
         /// פונקציית הדפסת כל לקוחות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Customer> ViewCustomerList()
+        public IEnumerable<IDAL.DO.Customer> GetCustomerList()
         {
             List<IDAL.DO.Customer> temp = new List<IDAL.DO.Customer>();
 
@@ -429,7 +429,7 @@ namespace DalObject
         /// פונקציית הדפסת כל חבילות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Parcel> ViewParcelList()
+        public IEnumerable<IDAL.DO.Parcel> GetParcelList()
         {
             List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
@@ -453,7 +453,7 @@ namespace DalObject
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Parcel> ViewParcelNoDroneList()
+        public IEnumerable<IDAL.DO.Parcel> GetParcelNoDroneList()
         {
             List<IDAL.DO.Parcel> temp = new List<IDAL.DO.Parcel>();
 
@@ -473,7 +473,7 @@ namespace DalObject
         /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IDAL.DO.Station> ViewAvailableChargingStationsList()
+        public IEnumerable<IDAL.DO.Station> GetAvailableChargingStationsList()
         {
             List<IDAL.DO.Station> temp = new List<IDAL.DO.Station>();
 
