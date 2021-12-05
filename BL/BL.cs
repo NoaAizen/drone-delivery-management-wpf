@@ -71,7 +71,7 @@ namespace BL
                     Model = drone.Model,
                     MaxWeight = (WeightCategories)drone.MaxWeight,
                     //Status = status,  למה לא עובד?
-                    //Battery = battery,
+                   // Battery = battery,
                     //ParcelInTransfer
                     //CurrentLocation =location,
                     //ParcelTransferredNumber=...
