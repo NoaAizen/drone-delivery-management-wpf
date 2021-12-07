@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions >
-                <ComboBox Name="StatusSelector" Grid.Column="1" HorizontalAlignment="Stretch" Margin="35,18,0,0" VerticalAlignment="Stretch" Width="120"/>
+                <ComboBox Name="StatusSelector" Grid.Column="1" HorizontalAlignment="Stretch" Margin="35,18,0,0" VerticalAlignment="Stretch" Width="120" SelectionChanged="StatusSelector_SelectionChanged"/>
                 <Label Content="Label" Grid.Column="0" HorizontalAlignment="Left" Margin="96,0,0,0" VerticalAlignment="Center"/>
             </Grid>
             <ListView Grid.Row="1" x:Name="DroneListsView">

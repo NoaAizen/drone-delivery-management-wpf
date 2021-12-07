@@ -28,9 +28,24 @@ namespace PL
         {
             InitializeComponent();
             bl = b;
-            DroneListsView.ItemsSource = bl.GetDroneList();//צריל לשנות GETDRONE
+            DroneListsView.ItemsSource = bl.GetDroneList();//
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(StatusDrone));
             InitializeComponent();
 
+        }
+
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StatusSelector.SelectedItem == null)
+            {
+                DroneListsView.ItemsSource = bl.GetDroneList();
+            }
+            else
+            {
+                StatusDrone status = (StatusDrone)StatusSelector.SelectedItem;
+                DroneListsView.ItemsSource = bl.GetDroneList(Drone =>Drone.status == status);
+
+            }
         }
     }
 }

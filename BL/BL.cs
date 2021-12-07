@@ -778,6 +778,12 @@ namespace BL
         }
         #endregion
 
+        public  IEnumerable<DroneToList> GetDroneList (Predicate<T> predicate)
+        {
+            return null;
+        }
+
+  
 
 
         //-----------------------------------HELP-METHODS-----------------------------------

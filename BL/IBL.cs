@@ -1,5 +1,6 @@
 ﻿using IBL.BO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,7 @@ namespace IBL
         /// <param name="id">מזהה הרחפן לעדכון</param>
         /// <param name="model">שם המודל חדש</param>
         public void UpdateDroneModel(int id, string model);
+
         /// <summary>
         /// עדכון נתוני תחנה
         /// </summary>
@@ -138,6 +140,8 @@ namespace IBL
         /// </summary>
         /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         IEnumerable<StationToList> GetAvailableChargingStationsList();
+        IEnumerable GetDroneList(Predicate<T> P);
+
 
     }
 }
