@@ -781,7 +781,7 @@ namespace BL
 
         public  IEnumerable<DroneToList> GetDroneList (Predicate<T> predicate)
         {
-            return 0;
+            return null;
         }
 
   
