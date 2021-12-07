@@ -530,7 +530,12 @@ namespace DalObject
                     DataSource.Config.mediumWeight, DataSource.Config.heavyWeight, DataSource.Config.chargingRate};
             return arr;
         }
-
+        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p)
+        {
+            return( from item in DataSource.listDrones
+                    where p(item)
+                    select item).ToList();
+        }
     }
 }
 

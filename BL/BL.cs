@@ -779,12 +779,15 @@ namespace BL
         }
         #endregion
 
-        public  IEnumerable<DroneToList> GetDroneList (Predicate<T> predicate)
+        public  IEnumerable<DroneToList> GetDroneList(Predicate<DroneToList> p)
         {
-            return null;
+
+            return (from item in GetDroneList()
+                    where p(item)
+                    select item).ToList();
         }
 
-  
+
 
 
         //-----------------------------------HELP-METHODS-----------------------------------

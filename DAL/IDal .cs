@@ -174,7 +174,16 @@ namespace IDAL
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
-        double[] PowerRequestToDrone(); 
+        double[] PowerRequestToDrone();
+
+
+
+
+
+
+
+
+        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p);
     }
 }
 
