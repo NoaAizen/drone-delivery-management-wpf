@@ -11,6 +11,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
                 <RowDefinition Height="400*"/>
+                <RowDefinition Height="60*"/>
             </Grid.RowDefinitions>
             <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="6,0,-6,0">
                 <Grid.ColumnDefinitions>
@@ -24,13 +25,14 @@
                 <ComboBox x:Name="WeightSelector" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
                 <Label Content="Label" Grid.Column="2" Grid.ColumnSpan="2" Margin="37,0,163,-1" FontSize="40"/>
             </Grid>
-            <ListView Grid.Row="1" x:Name="DroneListsView">
+            <ListView x:Name="DroneListsView"  Margin="0,8,0,10" Grid.Row="1">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Button x:Name="AddDrone" Content="Add new drone" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch" Click="ShowAddDroneWindow" />
         </Grid>
     </Grid>
 </Window>

@@ -63,6 +63,11 @@ namespace PL
 
             }
         }
+
+        private void ShowAddDroneWindow(object sender, RoutedEventArgs e)
+        {
+            new AddDrone(bl).Show();
+        }
     }
 }
 
