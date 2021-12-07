@@ -30,11 +30,13 @@ namespace PL
             bl = b;
             DroneListsView.ItemsSource = bl.GetDroneList();//
             StatusSelector.ItemsSource = Enum.GetValues(typeof(StatusDrone));
+            WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             InitializeComponent();
+
 
         }
 
-        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)//פונקציית פקד של סטוטוס
         {
             if (StatusSelector.SelectedItem == null)
             {
@@ -43,7 +45,21 @@ namespace PL
             else
             {
                 StatusDrone status = (StatusDrone)StatusSelector.SelectedItem;
-                DroneListsView.ItemsSource = bl.GetDroneList(Drone =>Drone.status == status);
+                DroneListsView.ItemsSource = bl.GetPartOfDroneList(x =>x.Status == status);
+                
+            }
+        }
+
+        private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)//פונקציית פקד של משקל
+        {
+            if (WeightSelector.SelectedItem == null)
+            {
+                DroneListsView.ItemsSource = bl.GetDroneList();
+            }
+            else
+            {
+                WeightCategories weight = (WeightCategories)WeightSelector.SelectedItem;
+                DroneListsView.ItemsSource = bl.GetPartOfDroneList(x => x.MaxWeight == weight);
 
             }
         }

@@ -778,8 +778,12 @@ namespace BL
             return stations;
         }
         #endregion
-
-        public  IEnumerable<DroneToList> GetDroneList(Predicate<DroneToList> p)
+        /// <summary>
+        /// פונקצית תצוגת רשימת רחפנים לפי תנאי
+        /// </summary>
+        /// <param name="p">פרדיקט</param>
+        /// <returns>רשימת רחפנים לפי תנאי</returns>
+        public IEnumerable<DroneToList> GetPartOfDroneList(Predicate<DroneToList> p)
         {
 
             return (from item in GetDroneList()
