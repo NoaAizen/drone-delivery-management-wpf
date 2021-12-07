@@ -140,6 +140,7 @@ namespace IBL
         /// </summary>
         /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         IEnumerable<StationToList> GetAvailableChargingStationsList();
+        //
         IEnumerable GetDroneList(Predicate<T> P);
 
 
