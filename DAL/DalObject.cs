@@ -57,9 +57,9 @@ namespace DalObject
         {
             p.Id = DataSource.Config.CounterForParcels;
             p.Requested = DateTime.Now;
-            p.Scheduled = DateTime.MinValue;
-            p.PickedUp = DateTime.MinValue;
-            p.Delivered = DateTime.MinValue;
+            p.Scheduled = null;
+            p.PickedUp = null;
+            p.Delivered = null;
             p.DroneId = 0;
             if (DataSource.listParcels.Exists(x => x.Id == p.Id))
                 throw new AlreadyExistException("The parcels already exist");

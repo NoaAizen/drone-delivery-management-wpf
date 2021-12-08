@@ -66,12 +66,13 @@ namespace PL
 
         private void ShowAddDroneWindow(object sender, RoutedEventArgs e)
         {
-            new AddDrone(bl).Show();
+            new Drone(bl).Show();
         }
 
         private void GetDrone(object sender, MouseButtonEventArgs e)
         {
-            new Drone(bl).Show();
+            //new Drone(bl).Show();
+            new Drone(bl,(DroneToList)DroneListsView.SelectedItem).Show();
         }
     }
 }

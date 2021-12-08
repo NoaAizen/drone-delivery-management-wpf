@@ -24,7 +24,7 @@ namespace IDAL
             /// <param name="pickedUp"></param>
             /// <param name="delivered"></param>
 
-            public Parcel(int id, int idSender, int idTarget, WeightCategories mAX_weight, Priorities priorities, int idDrone, DateTime requsted, DateTime schduled, DateTime pickedUp, DateTime delivered)
+            public Parcel(int id, int idSender, int idTarget, WeightCategories mAX_weight, Priorities priorities, int idDrone, DateTime? requsted, DateTime? schduled, DateTime? pickedUp, DateTime? delivered)
             {
                 Id = id;
                 SenderId = idSender;
@@ -45,11 +45,11 @@ namespace IDAL
             public int TargetId { get; set; }// מזהה לוקח מקבל
             public WeightCategories Weight { get; set; }// קטגורית משקל
             public Priorities Priority { get; set; } // עדיפות
-            public DateTime Requested { get; set; } // זמן יצירת חבילה למשלוח 
+            public DateTime? Requested { get; set; } // זמן יצירת חבילה למשלוח 
             public int DroneId { get; set; } // מזהה רחפן מבצע
-            public DateTime Scheduled { get; set; } // זמן שיוך החבילה לרחפן 
-            public DateTime PickedUp { get; set; } // זמן איסוף חבילה מהשולח 
-            public DateTime Delivered { get; set; } // זמן הגעת החבילה למקבל 
+            public DateTime? Scheduled { get; set; } // זמן שיוך החבילה לרחפן 
+            public DateTime? PickedUp { get; set; } // זמן איסוף חבילה מהשולח 
+            public DateTime? Delivered { get; set; } // זמן הגעת החבילה למקבל 
 
             /// <summary>
             /// פונקצית טוסטרניג(Tostring)- בשביל הדפסה

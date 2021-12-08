@@ -18,10 +18,10 @@ namespace IBL
             public WeightCategories Weight { get; set; }// קטגורית משקל
             public Priorities Priority { get; set; } // עדיפות
             public DroneInParcel DroneInParcel { get; set; }// רחפן בחבילה
-            public DateTime Requested { get; set; } // זמן יצירת חבילה למשלוח 
-            public DateTime Scheduled { get; set; } // זמן שיוך החבילה לרחפן 
-            public DateTime PickedUp { get; set; } // זמן איסוף חבילה מהשולח 
-            public DateTime Delivered { get; set; } // זמן הגעת החבילה למקבל
+            public DateTime? Requested { get; set; } // זמן יצירת חבילה למשלוח 
+            public DateTime? Scheduled { get; set; } // זמן שיוך החבילה לרחפן 
+            public DateTime? PickedUp { get; set; } // זמן איסוף חבילה מהשולח 
+            public DateTime? Delivered { get; set; } // זמן הגעת החבילה למקבל
 
             public override string ToString()
             {

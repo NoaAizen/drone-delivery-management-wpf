@@ -35,10 +35,10 @@ namespace BL
                               where item.DroneId == drone.Id
                               select item).FirstOrDefault();
                     //לברר איך אפשר לעשות את הבדיקה
-                    if (/*parcel!=null &&*/ parcel.Scheduled != DateTime.MinValue && parcel.Delivered == DateTime.MinValue)//חבילה שעוד לא סופקה אך הרחפן כבר שויך
+                    if (/*parcel!=null &&*/ parcel.Scheduled != null && parcel.Delivered == null)//חבילה שעוד לא סופקה אך הרחפן כבר שויך
                     {
                         status = (StatusDrone)2;
-                        if (parcel.PickedUp == DateTime.MinValue)//החבילה שויכה אך לא נאספה
+                        if (parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
                         {
                             stationId = findClosestStationToCustomer(parcel.SenderId);
                             location = /*GetStation(stationId).Location*/ findStationLocation(stationId);
@@ -365,7 +365,7 @@ namespace BL
                 IDAL.DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone
                                          select item).FirstOrDefault();
-                if (parcel.Scheduled != DateTime.MinValue && parcel.PickedUp == DateTime.MinValue)//החבילה שויכה אך לא נאספה
+                if (parcel.Scheduled != null && parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
                 {
                     try
                     {
@@ -402,7 +402,7 @@ namespace BL
                 IDAL.DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone
                                          select item).FirstOrDefault();
-                if (parcel.PickedUp != DateTime.MinValue && parcel.Delivered == DateTime.MinValue)//החבילה נאספה אך לא סופקה
+                if (parcel.PickedUp != null && parcel.Delivered == null)//החבילה נאספה אך לא סופקה
                 {
                     try
                     {
@@ -578,7 +578,7 @@ namespace BL
                 Weight = (WeightCategories)dalParcel.Weight,
                 Priority = (Priorities)dalParcel.Priority
             };
-            if (dalParcel.Scheduled != DateTime.MinValue)
+            if (dalParcel.Scheduled != null)
             {
                 blParcel.DroneInParcel = new()
                 {
@@ -958,11 +958,11 @@ namespace BL
         private StatusParcel checkParcelStatus(IDAL.DO.Parcel parcel)
         {
             StatusParcel status;
-            if (parcel.Scheduled == DateTime.MinValue)
+            if (parcel.Scheduled == null)
                 status = StatusParcel.Defined;
-            else if (parcel.PickedUp == DateTime.MinValue)
+            else if (parcel.PickedUp == null)
                 status = StatusParcel.Associated;
-            else if (parcel.Delivered == DateTime.MinValue)
+            else if (parcel.Delivered == null)
                 status = StatusParcel.Collected;
             else
                 status = StatusParcel.Supplied;
@@ -978,7 +978,7 @@ namespace BL
         /// <returns>מספר החבילות ששלח וסופקו</returns>
         private int findNumberOfParcelSentAndDelivered(int id)
         {
-            return dalObj.GetSenderParcels(id).Where(x => x.Delivered != DateTime.MinValue).Count();
+            return dalObj.GetSenderParcels(id).Where(x => x.Delivered != null).Count();
         }
         #endregion
 
@@ -990,7 +990,7 @@ namespace BL
         /// <returns>מספר החבילות שקיבל</returns>
         private int findNumberOfParcelReceived(int id)
         {
-            return dalObj.GetTargetParcels(id).Where(x => x.Delivered != DateTime.MinValue).Count();
+            return dalObj.GetTargetParcels(id).Where(x => x.Delivered != null).Count();
         }
         #endregion
 
@@ -1024,7 +1024,7 @@ namespace BL
             StatusDrone status;
             if (dalObj.GetDroneChargesList().ToList().Exists(x => x.DroneId == id))
                 status = StatusDrone.Maintenance;
-            else if (dalObj.GetParcelList().ToList().Exists(x => x.DroneId == id && x.Delivered == DateTime.MinValue))
+            else if (dalObj.GetParcelList().ToList().Exists(x => x.DroneId == id && x.Delivered == null))
                 status = StatusDrone.Delivery;
             else
                 status = StatusDrone.Available;

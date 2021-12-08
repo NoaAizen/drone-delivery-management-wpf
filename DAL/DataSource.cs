@@ -41,7 +41,8 @@ namespace DalObject
                                                                                                                                 //  StatusDrone status;
                 WeightCategories MAX_weight;
                 Priorities priorities;
-                DateTime Requsted, Schduled, PickedUp, Delivered;
+                DateTime? Requsted, Schduled, PickedUp, Delivered;
+                TimeSpan time = new TimeSpan(1, 0, 0);
                 int Id, ChargeSlots, temp, IdSender, IdTarget, IdDrone;
                 double longitude, latitude; //battery;
                 string modle, Name, Name_Customers, Telephon;
@@ -90,9 +91,9 @@ namespace DalObject
                     priorities = (Priorities)r.Next(0, 3);
                     IdDrone = i+1;
                     Requsted = RandomDay();
-                    Schduled = Requsted.AddHours(1);
-                    PickedUp = Schduled.AddHours(1);
-                    Delivered = PickedUp.AddHours(1);
+                    Schduled = Requsted + time;
+                    PickedUp = Schduled + time;
+                    Delivered = PickedUp + time;
                     CounterForParcels++;
                     listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
@@ -107,8 +108,8 @@ namespace DalObject
                     priorities = (Priorities)r.Next(0, 3);
                     IdDrone = i + 1;
                     Requsted = RandomDay();
-                    Schduled = Requsted.AddHours(1);
-                    PickedUp = Schduled.AddHours(1);
+                    Schduled = Requsted + time;
+                    PickedUp = Schduled + time;
                     Delivered = DateTime.MinValue;
                     CounterForParcels++;
                     listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
