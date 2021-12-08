@@ -64,14 +64,13 @@ namespace PL
             }
         }
 
-        private void ShowAddDroneWindow(object sender, RoutedEventArgs e)
+        private void ShowAddDroneWindow(object sender, RoutedEventArgs e)//כפתור של הוספת רחפן
         {
             new Drone(bl).Show();
         }
 
-        private void GetDrone(object sender, MouseButtonEventArgs e)
+        private void GetDrone(object sender, MouseButtonEventArgs e)//לחיצה להגיע לפעולות
         {
-            //new Drone(bl).Show();
             new Drone(bl,(DroneToList)DroneListsView.SelectedItem).Show();
         }
     }

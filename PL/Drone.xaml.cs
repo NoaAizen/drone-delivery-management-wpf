@@ -21,7 +21,7 @@ namespace PL
     public partial class Drone : Window
     {
         private IBL.IBL bl;
-        private object selectedItem;
+       private DroneToList selectedItem;
 
         public Drone(IBL.IBL bl)
         {
