@@ -39,6 +39,23 @@ namespace PL
             InitializeComponent();
             Actions.IsEnabled = true;
             Actions.Visibility =Visibility.Visible;
+            DronePO drone = new();
+            drone.Battery = selectedItem.Battery;
+            drone.Id = selectedItem.Id;
+            drone.Status = selectedItem.Status;
+            drone.MaxWeight = selectedItem.MaxWeight;
+            drone.Model = selectedItem.Model;
+            drone.Longitude = selectedItem.CurrentLocation.Longitude;
+            drone.Latitude = selectedItem.CurrentLocation.Latitude;
+            drone.ParcelTransferredNumber = selectedItem.ParcelTransferredNumber;
+            statusText.DataContext = drone;
+            idText.DataContext = drone;
+            parcelNumberText.DataContext = drone;
+            modelText.DataContext = drone;
+            batteryText.DataContext = drone;
+            maxWeightText.DataContext = drone;
+            latitudeText.DataContext = drone;
+            longitudeText.DataContext = drone;
         }
 
         private void AddNewDroneClick(object sender, RoutedEventArgs e)
