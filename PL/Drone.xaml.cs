@@ -23,19 +23,22 @@ namespace PL
         private IBL.IBL bl;
        private DroneToList selectedItem;
 
-        public Drone(IBL.IBL bl)
+        public Drone(IBL.IBL bl)//הוספה
         {
             this.bl = bl;
             InitializeComponent();
+            AddDroneGrid.IsEnabled = true;
+            AddDroneGrid.Visibility = Visibility.Visible;
+
         }
 
-        public Drone(IBL.IBL bl, DroneToList selectedItem)
+        public Drone(IBL.IBL bl, DroneToList selectedItem)//פעולות
         {
             this.bl = bl;
             this.selectedItem = selectedItem;
             InitializeComponent();
-            AddDroneGrid.IsEnabled = false;
-            AddDroneGrid.Visibility =Visibility.Collapsed;
+            Actions.IsEnabled = true;
+            Actions.Visibility =Visibility.Visible;
         }
 
         private void AddNewDroneClick(object sender, RoutedEventArgs e)

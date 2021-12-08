@@ -6,34 +6,36 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
-    <Grid x:Name="AddDroneGrid" d:IsLocked="True" d:IsHidden="True">
-        <Label Content="Enter the details of the new drone:" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="272" FontSize="16" d:IsHidden="True" d:IsLocked="True"/>
-        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="454,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" d:IsHidden="True" d:IsLocked="True"/>
-        <TextBox x:Name="model" HorizontalAlignment="Left" Margin="454,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" d:IsHidden="True" d:IsLocked="True"/>
-        <TextBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="454,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" d:IsHidden="True" d:IsLocked="True"/>
-        <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="572,328,0,0" VerticalAlignment="Top" Height="49" Width="94" Click="AddNewDroneClick" d:IsHidden="True" d:IsLocked="True"/>
-        <Button x:Name="temp" Content="View the drones list" HorizontalAlignment="Left" Margin="249,328,0,0" VerticalAlignment="Top" Height="49" Width="123" Click="main" d:IsHidden="True" d:IsLocked="True"/>
-        <Label Content="Id:" HorizontalAlignment="Left" Margin="240,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="104" Height="28" d:IsHidden="True" d:IsLocked="True"/>
-        <Label Content="Model:" HorizontalAlignment="Left" Margin="240,178,0,0" VerticalAlignment="Top" Width="90" Height="27" d:IsHidden="True" d:IsLocked="True"/>
-        <Label Content="Max weight:" HorizontalAlignment="Left" Margin="240,217,0,0" VerticalAlignment="Top" Width="104" Height="27" d:IsHidden="True" d:IsLocked="True"/>
-        <TextBox x:Name="stationId" HorizontalAlignment="Left" Margin="454,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" d:IsHidden="True" d:IsLocked="True"/>
-        <Label Content="Station id:" HorizontalAlignment="Left" Margin="239,260,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" d:IsHidden="True" d:IsLocked="True">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="1.366"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.309"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <Grid  x:Name="Actions" d:IsHidden="False" d:IsLocked="False"/>
-        <Grid.RowDefinitions>
-        <RowDefinition Height="50*"/>
-        <RowDefinition Height="400*"/>
-        <RowDefinition Height="60*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="MainGrid">
+        <Grid x:Name="AddDroneGrid" Visibility="Hidden" >
+        <Label Content="Enter the details of the new drone:" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="272" FontSize="16"/>
+        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="454,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="model" HorizontalAlignment="Left" Margin="454,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="454,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="572,328,0,0" VerticalAlignment="Top" Height="49" Width="94" Click="AddNewDroneClick"/>
+        <Button x:Name="temp" Content="View the drones list" HorizontalAlignment="Left" Margin="249,328,0,0" VerticalAlignment="Top" Height="49" Width="123" Click="main"/>
+        <Label Content="Id:" HorizontalAlignment="Left" Margin="240,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="104" Height="28" />
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="240,178,0,0" VerticalAlignment="Top" Width="90" Height="27" />
+        <Label Content="Max weight:" HorizontalAlignment="Left" Margin="240,217,0,0" VerticalAlignment="Top" Width="104" Height="27"/>
+        <TextBox x:Name="stationId" HorizontalAlignment="Left" Margin="454,260,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Station id:" HorizontalAlignment="Left" Margin="239,260,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" />
+    </Grid>
+        <Grid x:Name="Actions" Visibility="Hidden">
+        </Grid>
     </Grid>
 
 
+    <!--<Grid x:Name="AddDroneGrid" >
+        <Label Content="Enter the details of the new drone:" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="272" FontSize="16"/>
+        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="454,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="model" HorizontalAlignment="Left" Margin="454,178,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="454,217,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="572,328,0,0" VerticalAlignment="Top" Height="49" Width="94" Click="AddNewDroneClick"/>
+        <Button x:Name="temp" Content="View the drones list" HorizontalAlignment="Left" Margin="249,328,0,0" VerticalAlignment="Top" Height="49" Width="123" Click="main"/>
+        <Label Content="Id:" HorizontalAlignment="Left" Margin="240,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="104" Height="28" />
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="240,178,0,0" VerticalAlignment="Top" Width="90" Height="27" />
+        <Label Content="Max weight:" HorizontalAlignment="Left" Margin="240,217,0,0" VerticalAlignment="Top" Width="104" Height="27"/>
+        <TextBox x:Name="stationId" HorizontalAlignment="Left" Margin="454,260,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Station id:" HorizontalAlignment="Left" Margin="239,260,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" />
+    </Grid>-->
 </Window>
