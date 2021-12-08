@@ -8,14 +8,15 @@
         Title="AddDrone" Height="450" Width="800">
     <Grid>
         <Label Content="Label" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="224"/>
-        <TextBox HorizontalAlignment="Left" Margin="454,134,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="454,178,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="454,217,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="572,328,0,0" VerticalAlignment="Top" Height="49" Width="94"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="254,328,0,0" VerticalAlignment="Top" Height="49" Width="104"/>
+        <TextBox x:Name="id" HorizontalAlignment="Left" Margin="454,134,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="model" HorizontalAlignment="Left" Margin="454,178,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="454,217,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddNewDrone" Content="Button" HorizontalAlignment="Left" Margin="572,328,0,0" VerticalAlignment="Top" Height="49" Width="94" Click="AddNewDroneClick"/>
+        <Button x:Name="temp" Content="Button" HorizontalAlignment="Left" Margin="254,328,0,0" VerticalAlignment="Top" Height="49" Width="104" Click="main"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="254,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="104" Height="22"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="254,161,0,0" VerticalAlignment="Top" Width="90"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="254,209,0,0" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name="stationId" HorizontalAlignment="Left" Margin="454,260,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
     </Grid>

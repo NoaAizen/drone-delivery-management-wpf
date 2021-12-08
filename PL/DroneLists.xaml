@@ -25,7 +25,7 @@
                 <ComboBox x:Name="WeightSelector" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
                 <Label Content="Label" Grid.Column="2" Grid.ColumnSpan="2" Margin="37,0,163,-1" FontSize="40"/>
             </Grid>
-            <ListView x:Name="DroneListsView"  Margin="0,8,0,10" Grid.Row="1">
+            <ListView x:Name="DroneListsView"  Margin="0,8,0,10" Grid.Row="1" MouseDoubleClick="GetDrone">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>

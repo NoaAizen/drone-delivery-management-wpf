@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{777F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI_BL", "ConsoleUI_BL\ConsoleUI_BL.csproj", "{F1F6D624-85EB-40BD-B66E-1E8AEA17FB57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{3BD2D351-C175-4BDF-AEB9-F1962818D181}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{3BD2D351-C175-4BDF-AEB9-F1962818D181}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "help", "help\help.csproj", "{CEB707A7-512E-4E76-9905-3C12FEE12001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{3BD2D351-C175-4BDF-AEB9-F1962818D181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BD2D351-C175-4BDF-AEB9-F1962818D181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BD2D351-C175-4BDF-AEB9-F1962818D181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB707A7-512E-4E76-9905-3C12FEE12001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB707A7-512E-4E76-9905-3C12FEE12001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB707A7-512E-4E76-9905-3C12FEE12001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB707A7-512E-4E76-9905-3C12FEE12001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

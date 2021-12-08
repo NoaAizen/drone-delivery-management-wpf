@@ -68,6 +68,11 @@ namespace PL
         {
             new AddDrone(bl).Show();
         }
+
+        private void GetDrone(object sender, MouseButtonEventArgs e)
+        {
+            new Drone(bl).Show();
+        }
     }
 }
 
