@@ -110,7 +110,7 @@ namespace DalObject
                     Requsted = RandomDay();
                     Schduled = Requsted + time;
                     PickedUp = Schduled + time;
-                    Delivered = DateTime.MinValue;
+                    Delivered = null;
                     CounterForParcels++;
                     listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
@@ -125,9 +125,9 @@ namespace DalObject
                     priorities = (Priorities)r.Next(0, 3);
                     IdDrone = 0;
                     Requsted = RandomDay();
-                    Schduled = DateTime.MinValue;
-                    PickedUp = DateTime.MinValue;
-                    Delivered = DateTime.MinValue;
+                    Schduled = null;
+                    PickedUp = null;
+                    Delivered = null;
                     CounterForParcels++;
                     listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
