@@ -58,6 +58,9 @@
             <Button x:Name="UpdateModel" Content="Updat model" Grid.Column="3" HorizontalAlignment="Left" Margin="82,24,0,0" Grid.Row="9" VerticalAlignment="Top" Click="UpdateModelClick"/>
             <Button Content="Button" HorizontalAlignment="Left" Margin="2,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.08,-0.078" Click="Button_Click"/>
             <Button x:Name="charging" Content="Charging" Grid.Column="2" HorizontalAlignment="Left" Margin="173,24,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="53" Click="ChargingClick"/>
+            <Button x:Name="Release" Content="Release" Grid.Column="2" HorizontalAlignment="Left" Margin="78,25,0,0" Grid.Row="9" VerticalAlignment="Top" Click="ReleaseClick"/>
+            <Button x:Name="Collection" Content="Collection" Grid.Column="1" HorizontalAlignment="Left" Margin="175,26,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CollectionClick"/>
+            <Button x:Name="Delivery" Content="Delivery" Grid.Column="1" HorizontalAlignment="Left" Margin="90,29,0,0" Grid.Row="9" VerticalAlignment="Top" Click="DeliveryClick"/>
         </Grid>
     </Grid>
 </Window>

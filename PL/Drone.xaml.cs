@@ -23,7 +23,7 @@ namespace PL
         private DronePO drone;
         private IBL.IBL bl;
        private DroneToList selectedItem;
-
+         TimeSpan t;
         public Drone(IBL.IBL bl)//הוספה
         {
             this.bl = bl;
@@ -92,7 +92,42 @@ namespace PL
 
         private void ChargingClick(object sender, RoutedEventArgs e)//שליחת רחפן לטעינה
         {
-            bl.SendingDroneForCharging(drone.Id);          
+            bl.SendingDroneForCharging(drone.Id);
+            convertToPo(drone, bl.GetDrone(drone.Id));
+
         }
+
+        private void ReleaseClick(object sender, RoutedEventArgs e)//שחרור רחפן מטעינה
+        {
+            bl.ReleaseDroneFromCharging(drone.Id, t);
+            convertToPo(drone, bl.GetDrone(drone.Id));
+
+        }
+
+        private void CollectionClick(object sender, RoutedEventArgs e)//איסוף חבילה
+        {
+            bl.CollectionParcelFromDrone(drone.Id);
+            convertToPo(drone, bl.GetDrone(drone.Id));
+
+        }
+        private void DeliveryClick(object sender, RoutedEventArgs e)//אספקת חבילה
+        {
+            bl.DeliveryParcelByDrone(drone.Id);
+            convertToPo(drone, bl.GetDrone(drone.Id));
+
+        }
+        public void convertToPo(DronePO dronePo, IBL.BO.Drone d)//פונקציה שעושה המרה בשביל הזרימת מידע
+        {
+            dronePo.Battery = d.Battery;
+            dronePo.Id = d.Id;
+            dronePo.Status = d.Status;
+            dronePo.MaxWeight = d.MaxWeight;
+            dronePo.Model = d.Model;
+            //dronePo.ParcelTransferredNumber = d.ParcelInTransfer.Id;
+            dronePo.Latitude = d.CurrentLocation.Latitude;
+            dronePo.Longitude =d.CurrentLocation.Longitude;
+        }
+
+      
     }
 }
