@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
-    <!--<Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid">
         <Grid x:Name="AddDroneGrid" Visibility="Hidden" >
             <Label Content="Enter the details of the new drone:" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="272" FontSize="16"/>
             <TextBox x:Name="id" HorizontalAlignment="Left" Margin="454,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -62,5 +62,5 @@
             <Button x:Name="Collection" Content="Collection" Grid.Column="1" HorizontalAlignment="Left" Margin="175,26,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="CollectionClick"/>
             <Button x:Name="Delivery" Content="Delivery" Grid.Column="1" HorizontalAlignment="Left" Margin="90,29,0,0" Grid.Row="9" VerticalAlignment="Top" Click="DeliveryClick"/>
         </Grid>
-    </Grid>-->
+    </Grid>
 </Window>
