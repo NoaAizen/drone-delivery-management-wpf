@@ -23,7 +23,6 @@ namespace PL
     public partial class DroneLists : Window
     {
         private IBL.IBL bl;
-
         public DroneLists(IBL.IBL b)//בנאי שמקל פרמטר ,עשינו כך בשביל שלא יהיה קריאה נוספת לבנאי של BL
         {
             InitializeComponent();
@@ -66,12 +65,43 @@ namespace PL
 
         private void ShowAddDroneWindow(object sender, RoutedEventArgs e)//כפתור של הוספת רחפן
         {
-            new Drone(bl).Show();
+            Drone ADD= new Drone(bl);
+            ADD.RefreshEvent += Refresh;
+            ADD.Show();
         }
 
-        private void GetDrone(object sender, MouseButtonEventArgs e)//לחיצה להגיע לפעולות
+        private void GetActions(object sender, MouseButtonEventArgs e)//לחיצה להגיע לפעולות
         {
-            new Drone(bl,(DroneToList)DroneListsView.SelectedItem).Show();
+     
+            Drone win= new Drone(bl,(DroneToList)DroneListsView.SelectedItem);
+            win.RefreshEvent += Refresh;
+            win.Show();
+        }
+
+        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        {
+            DroneListsView.ItemsSource = bl.GetDroneList();
+            if (StatusSelector.SelectedItem == null)
+            {
+                DroneListsView.ItemsSource = bl.GetDroneList();
+            }
+
+            else
+            {
+                StatusDrone status = (StatusDrone)StatusSelector.SelectedItem;
+                DroneListsView.ItemsSource = bl.GetPartOfDroneList(x => x.Status == status);
+
+            }
+            if (WeightSelector.SelectedItem == null)
+            {
+                DroneListsView.ItemsSource = bl.GetDroneList();
+            }
+            else
+            {
+                WeightCategories weight = (WeightCategories)WeightSelector.SelectedItem;
+                DroneListsView.ItemsSource = bl.GetPartOfDroneList(x => x.MaxWeight == weight);
+
+            }
         }
     }
 }

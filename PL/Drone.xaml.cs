@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using IBL.BO;
 
+
+
+
+
+
 namespace PL
 {
     /// <summary>
@@ -20,6 +25,8 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
+        public event EventHandler RefreshEvent; 
+        public PL.DroneLists d;
         private DronePO drone;
         private IBL.IBL bl;
         private DroneToList selectedItem;
@@ -57,6 +64,7 @@ namespace PL
             maxWeightText.DataContext = drone;
             latitudeText.DataContext = drone;
             longitudeText.DataContext = drone;
+            
         }
 
         private void AddNewDroneClick(object sender, RoutedEventArgs e)
@@ -82,18 +90,22 @@ namespace PL
         {
             drone.Model = modelText.Text;
             bl.UpdateDroneModel(drone.Id, drone.Model);
-
+            convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)//רשימה
         {
             new DroneLists(bl).Show();
+            convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
         }
 
         private void ChargingClick(object sender, RoutedEventArgs e)//שליחת רחפן לטעינה
         {
             bl.SendingDroneForCharging(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
 
         }
 
@@ -101,6 +113,7 @@ namespace PL
         {
             bl.ReleaseDroneFromCharging(drone.Id, t);
             convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
 
         }
 
@@ -108,12 +121,14 @@ namespace PL
         {
             bl.CollectionParcelFromDrone(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
 
         }
         private void DeliveryClick(object sender, RoutedEventArgs e)//אספקת חבילה
         {
             bl.DeliveryParcelByDrone(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
+            RefreshEvent(this, EventArgs.Empty);
 
         }
         public void convertToPo(DronePO dronePo, IBL.BO.Drone d)//פונקציה שעושה המרה בשביל הזרימת מידע
@@ -128,6 +143,6 @@ namespace PL
             dronePo.Longitude = d.CurrentLocation.Longitude;
         }
 
-
+      
     }
 }
