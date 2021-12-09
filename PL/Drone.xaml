@@ -55,6 +55,9 @@
             <TextBox x:Name="parcelNumberText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" />
             <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
             <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
+            <Button x:Name="UpdateModel" Content="Updat model" Grid.Column="3" HorizontalAlignment="Left" Margin="82,24,0,0" Grid.Row="9" VerticalAlignment="Top" Click="UpdateModelClick"/>
+            <Button Content="Button" HorizontalAlignment="Left" Margin="2,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.08,-0.078" Click="Button_Click"/>
+            <Button x:Name="charging" Content="Charging" Grid.Column="2" HorizontalAlignment="Left" Margin="173,24,0,0" Grid.Row="9" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="53" Click="ChargingClick"/>
         </Grid>
     </Grid>
 </Window>

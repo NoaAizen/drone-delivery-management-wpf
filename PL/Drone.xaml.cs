@@ -20,6 +20,7 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
+        private DronePO drone;
         private IBL.IBL bl;
        private DroneToList selectedItem;
 
@@ -39,7 +40,7 @@ namespace PL
             InitializeComponent();
             Actions.IsEnabled = true;
             Actions.Visibility =Visibility.Visible;
-            DronePO drone = new();
+            drone = new();
             drone.Battery = selectedItem.Battery;
             drone.Id = selectedItem.Id;
             drone.Status = selectedItem.Status;
@@ -71,9 +72,27 @@ namespace PL
             bl.AddDrone(drone,stationNumber);
         }
 
+
         private void main(object sender, RoutedEventArgs e)
         {
             new DroneLists(bl).Show();
+        }
+
+        private void UpdateModelClick(object sender, RoutedEventArgs e)//עדכון מודל
+        {
+            drone.Model = modelText.Text;
+            bl.UpdateDroneModel(drone.Id, drone.Model);
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)//רשימה
+        {
+            new DroneLists(bl).Show();
+        }
+
+        private void ChargingClick(object sender, RoutedEventArgs e)//שליחת רחפן לטעינה
+        {
+            bl.SendingDroneForCharging(drone.Id);          
         }
     }
 }
