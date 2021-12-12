@@ -33,10 +33,11 @@ namespace PL
         TimeSpan t;
         public Drone(IBL.IBL bl)//הוספה
         {
-            this.bl = bl;
             InitializeComponent();
+            this.bl = bl;
             AddDroneGrid.IsEnabled = true;
             AddDroneGrid.Visibility = Visibility.Visible;
+            maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
         }
 
@@ -64,71 +65,127 @@ namespace PL
             maxWeightText.DataContext = drone;
             latitudeText.DataContext = drone;
             longitudeText.DataContext = drone;
-            
+            statusText.ItemsSource = Enum.GetValues(typeof(StatusDrone));
+            maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            notEnablFildes();
+
+
         }
 
-        private void AddNewDroneClick(object sender, RoutedEventArgs e)
+        private void AddNewDroneClick(object sender, RoutedEventArgs e)//פונקציית הוספת חרפן
         {
             int stationNumber = int.Parse(stationId.Text);
-            int temp = int.Parse(maxWeight.Text);
-            DroneToList drone = new()
+            DroneToList drone = new DroneToList()
             {
                 Id = int.Parse(id.Text),
                 Model = model.Text,
-                MaxWeight = (WeightCategories)temp
+                MaxWeight= (WeightCategories)maxWeight.SelectedItem
             };
-            bl.AddDrone(drone, stationNumber);
-        }
-
-
-        private void main(object sender, RoutedEventArgs e)
-        {
-            new DroneLists(bl).Show();
+            try
+            {
+                bl.AddDrone(drone, stationNumber);
+                MessageBox.Show("sucssesed");
+                this.Close();
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateModelClick(object sender, RoutedEventArgs e)//עדכון מודל
         {
+            notEnablFildes();
+            modelText.IsEnabled = true;
             drone.Model = modelText.Text;
-            bl.UpdateDroneModel(drone.Id, drone.Model);
-            convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
+            try
+            {
+                bl.UpdateDroneModel(drone.Id, drone.Model);
+                convertToPo(drone, bl.GetDrone(drone.Id));
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)//רשימה
         {
-            new DroneLists(bl).Show();
-            convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
+            this.Close();
         }
 
         private void ChargingClick(object sender, RoutedEventArgs e)//שליחת רחפן לטעינה
         {
+            try { 
             bl.SendingDroneForCharging(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
         private void ReleaseClick(object sender, RoutedEventArgs e)//שחרור רחפן מטעינה
         {
+           try{
             bl.ReleaseDroneFromCharging(drone.Id, t);
             convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
-
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void CollectionClick(object sender, RoutedEventArgs e)//איסוף חבילה
         {
+           try{
             bl.CollectionParcelFromDrone(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
-
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void AssignmentClick(object sender, RoutedEventArgs e)//פונקציית איסוף חבילה
+        {
+            try
+            {
+                bl.UpdateDroneToParcel(drone.Id);
+                convertToPo(drone, bl.GetDrone(drone.Id));
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void DeliveryClick(object sender, RoutedEventArgs e)//אספקת חבילה
         {
+          try{
             bl.DeliveryParcelByDrone(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
-            RefreshEvent(this, EventArgs.Empty);
+                MessageBox.Show("sucssesed");
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
         public void convertToPo(DronePO dronePo, IBL.BO.Drone d)//פונקציה שעושה המרה בשביל הזרימת מידע
@@ -143,6 +200,23 @@ namespace PL
             dronePo.Longitude = d.CurrentLocation.Longitude;
         }
 
-      
+      public void notEnablFildes()//בלי עדכון מודל
+        {
+            idText.IsEnabled = false;
+            statusText.IsEnabled = false;
+            parcelNumberText.IsEnabled = false;
+            batteryText.IsEnabled = false;
+            maxWeightText.IsEnabled = false;
+            longitudeText.IsEnabled = false;
+            latitudeText.IsEnabled = false;
+
+        }
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+       
     }
 }

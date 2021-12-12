@@ -103,6 +103,11 @@ namespace PL
 
             }
         }
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

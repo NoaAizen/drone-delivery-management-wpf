@@ -8,8 +8,7 @@ using System.ComponentModel;
 
 namespace PL
 {
-    public class DronePO : INotifyPropertyChanged
-    //PL drone- enable binding
+    public class DronePO : INotifyPropertyChanged//(מחלקת עזר להזרמת מידע (נלמד בשיעור)
     {
         private int _Id;
         public int Id

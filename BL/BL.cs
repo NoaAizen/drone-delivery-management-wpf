@@ -319,7 +319,7 @@ namespace BL
             DroneToList drone = DronesList.Find(x => x.Id == id);
             if (drone == null || drone.Status != StatusDrone.Maintenance)
                 //לשנות חריגה
-                throw new Exception("לשנות");
+                throw new Exception("Error");
             int stationId = dalObj.GetDroneChargesList().ToList().Find(x => x.DroneId == id).StationId;
             try
             {
@@ -346,7 +346,7 @@ namespace BL
             DroneToList drone = DronesList.Find(x => x.Id == idDrone);
             if (drone == null || drone.Status != StatusDrone.Available)
                 //לשנות חריגה
-                throw new Exception("לשנות");
+                throw new Exception("Error");
 
         }
         #endregion
