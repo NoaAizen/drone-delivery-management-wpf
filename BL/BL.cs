@@ -13,20 +13,20 @@ namespace BL
     {
         static readonly BL instance = new BL();//שדה פרטי סטטי 
         internal static BL Instance { get => instance; }
-        public List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
+        private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         IDal dalObj;
         public static Random r = new Random();
 
-        BL() { }
-        static BL()
+        static BL() { }
+        
+        BL() 
         {
-
-            dalObj = DalFactory.GetDal();
+            dalObj = DalFactory.GetDal("1");
             DO.Parcel parcel = new();
             StatusDrone status = 0;
             Location location = new();
             double battery = 0;
-            int stationId;
+            int stationId=0;
             List<DO.Drone> drones = (List<DO.Drone>)dalObj.GetDroneList();
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             foreach (var drone in drones)
@@ -91,14 +91,12 @@ namespace BL
                     Status = status,
                     Battery = battery,
                     //ParcelInTransfer
-                    CurrentLocation =location,
+                    CurrentLocation = location,
                     //ParcelTransferredNumber=...
                 };
                 DronesList.Add(blDrone);
             }
         }
-
-        
 
 
         //-----------------------------------ADD-----------------------------------

@@ -8,10 +8,20 @@ namespace DalApi
 {
     public static class DalFactory
     {
-        public static IDal GetDal()
+        public static IDal GetDal(string type)
         {
-
-            return new DalObject.DalObject();
+            switch(type)
+            {
+                case "1":
+                    return DalObject.DalObject.Instance;
+                    //return new DalObject.DalObject();
+                case "2":
+                //return new DalObject.DalObject2();
+                default:
+                    //throw new...
+                    return DalObject.DalObject.Instance;
+            }
+            
         }
 
     }

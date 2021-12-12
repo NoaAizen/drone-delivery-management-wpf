@@ -13,11 +13,12 @@ namespace DalObject
     {
         static readonly DalObject instance = new DalObject();//שדה פרטי סטטי שלsealed   
         internal static DalObject Instance { get => instance; }
-        static DalObject()
+        static DalObject() { }
+        
+        DalObject() 
         {
             DataSource.Config.Initialize();
         }
-        DalObject() { }
 
         /// <summary>
         /// בנאי

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi.BO;
+using BO;
 
 
 
@@ -229,7 +229,7 @@ namespace PL
         /// </summary>
         /// <param name="dronePo">רחפן של PL</param>
         /// <param name="d">רחפן של BO</param>
-        public void convertToPo(DronePO dronePo, BlApi.BO.Drone d)
+        public void convertToPo(DronePO dronePo, BO.Drone d)
         {
             dronePo.Battery = d.Battery;
             dronePo.Id = d.Id;
