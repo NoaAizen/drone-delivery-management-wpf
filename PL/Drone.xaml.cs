@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using IBL.BO;
+using BlApi.BO;
 
 
 
@@ -27,14 +27,14 @@ namespace PL
     {
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private DronePO drone;//שדה בשביל המרת מידע 
-        private IBL.IBL bl;//שדה בשביל שימוש הנתונים בBL
+        private BlApi.IBL bl;//שדה בשביל שימוש הנתונים בBL
         private DroneToList selectedItem;//rjpi
         TimeSpan t;
         /// <summary>
         /// בנאי של הוספת חלון
         /// </summary>
         /// <param name="bl">מקבל את רחפן של BL</param>
-        public Drone(IBL.IBL bl)
+        public Drone(BlApi.IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
@@ -48,7 +48,7 @@ namespace PL
         /// </summary>
         /// <param name="bl">רחפן של IB</param>
         /// <param name="selectedItem">חלון הקודם </param>
-        public Drone(IBL.IBL bl, DroneToList selectedItem)//
+        public Drone(BlApi.IBL bl, DroneToList selectedItem)//
         {
             this.bl = bl;
             this.selectedItem = selectedItem;
@@ -229,7 +229,7 @@ namespace PL
         /// </summary>
         /// <param name="dronePo">רחפן של PL</param>
         /// <param name="d">רחפן של BO</param>
-        public void convertToPo(DronePO dronePo, IBL.BO.Drone d)
+        public void convertToPo(DronePO dronePo, BlApi.BO.Drone d)
         {
             dronePo.Battery = d.Battery;
             dronePo.Id = d.Id;

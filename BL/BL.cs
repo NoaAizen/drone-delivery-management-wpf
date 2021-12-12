@@ -1,32 +1,34 @@
 ﻿using System;
-using IBL.BO;
+using BO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL;
-
+using DalApi;
 
 
 namespace BL
 {
-    public class BL : IBL.IBL
+    internal sealed class BL : BlApi.IBL
     {
+        static readonly BL instance = new BL();//שדה פרטי סטטי 
+        internal static BL Instance { get => instance; }
         public List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         IDal dalObj;
         public static Random r = new Random();
 
-
-        public BL()
+        BL() { }
+        static BL()
         {
-            dalObj = new DalObject.DalObject();
-            IDAL.DO.Parcel parcel = new();
+
+            dalObj = DalFactory.GetDal();
+            DO.Parcel parcel = new();
             StatusDrone status = 0;
             Location location = new();
             double battery = 0;
             int stationId;
-            List<IDAL.DO.Drone> drones = (List<IDAL.DO.Drone>)dalObj.GetDroneList();
-            List<IDAL.DO.Parcel> parcels = (List<IDAL.DO.Parcel>)dalObj.GetParcelList();
+            List<DO.Drone> drones = (List<DO.Drone>)dalObj.GetDroneList();
+            List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             foreach (var drone in drones)
             {
                 if (parcels.Exists(x => x.DroneId == drone.Id))
@@ -108,7 +110,7 @@ namespace BL
         /// <param name="s">ישות לוגית של תחנה להוספה</param>
         public void AddStation(Station s)
         {
-            IDAL.DO.Station dalStation = new()//יצירת ישות נתונים של תחנה
+            DO.Station dalStation = new()//יצירת ישות נתונים של תחנה
             {
                 Id = s.Id,
                 Name = s.Name,
@@ -135,11 +137,11 @@ namespace BL
         /// <param name="stationId">מספר תחנת בסיס לטעינה ראשונית</param>
         public void AddDrone(DroneToList d, int stationId)
         {
-            IDAL.DO.Drone dalDrone = new()//יצירת ישות נתונים של רחפן
+            DO.Drone dalDrone = new()//יצירת ישות נתונים של רחפן
             {
                 Id = d.Id,
                 Model = d.Model,
-                MaxWeight = (IDAL.DO.WeightCategories)d.MaxWeight
+                MaxWeight = (DO.WeightCategories)d.MaxWeight
             };
             try
             {
@@ -165,7 +167,7 @@ namespace BL
         /// <param name="c">ישות לוגית של לקוח להוספה</param>
         public void AddCustomer(Customer c)
         {
-            IDAL.DO.Customer dalCustomer = new()//יצירת ישות נתונים של לקוח
+            DO.Customer dalCustomer = new()//יצירת ישות נתונים של לקוח
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -192,12 +194,12 @@ namespace BL
         /// <returns>מזהה חבילה</returns>
         public int AddParcel(Parcel p)
         {
-            IDAL.DO.Parcel dalParcel = new()//יצירת ישות נתונים של חבילה
+            DO.Parcel dalParcel = new()//יצירת ישות נתונים של חבילה
             {
                 SenderId = p.CustomerInParcelSender.Id,
                 TargetId = p.CustomerInParcelRecipient.Id,
-                Weight = (IDAL.DO.WeightCategories)p.Weight,
-                Priority = (IDAL.DO.Priorities)p.Priority
+                Weight = (DO.WeightCategories)p.Weight,
+                Priority = (DO.Priorities)p.Priority
             };
             try
             {
@@ -359,10 +361,10 @@ namespace BL
         public void CollectionParcelFromDrone(int idDrone)
         {
             DroneToList drone = DronesList.Find(x => x.Id == idDrone);
-            List<IDAL.DO.Parcel> parcels = (List<IDAL.DO.Parcel>)dalObj.GetParcelList();
+            List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             if (drone!=null && parcels.Exists(x => x.DroneId == idDrone))
             {//הרחפן במשלוח
-                IDAL.DO.Parcel parcel = (from item in parcels
+                DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone
                                          select item).FirstOrDefault();
                 if (parcel.Scheduled != null && parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
@@ -396,10 +398,10 @@ namespace BL
         public void DeliveryParcelByDrone(int idDrone)
         {
             DroneToList drone = DronesList.Find(x => x.Id == idDrone);
-            List<IDAL.DO.Parcel> parcels = (List<IDAL.DO.Parcel>)dalObj.GetParcelList();
+            List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             if (drone != null && parcels.Exists(x => x.DroneId == idDrone))
             {//הרחפן במשלוח
-                IDAL.DO.Parcel parcel = (from item in parcels
+                DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone
                                          select item).FirstOrDefault();
                 if (parcel.PickedUp != null && parcel.Delivered == null)//החבילה נאספה אך לא סופקה
@@ -432,7 +434,7 @@ namespace BL
         /// <returns>ישות לוגית של תחנה</returns>
         public Station GetStation(int id)
         {
-            IDAL.DO.Station dalStation;
+            DO.Station dalStation;
             try
             {
                 dalStation = dalObj.GetStation(id);
@@ -465,7 +467,7 @@ namespace BL
         public Drone GetDrone(int id)
         {
             DroneToList drone = DronesList.Find(x => x.Id == id);
-            IDAL.DO.Drone dalDrone;
+            DO.Drone dalDrone;
             try
             {
                 dalDrone = dalObj.GetDrone(id);
@@ -485,7 +487,7 @@ namespace BL
             };
             if(blDrone.Status == StatusDrone.Delivery)
             {
-                IDAL.DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id);
+                DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id);
                 Parcel parcel = GetParcel(dalParcel.Id);
                 blDrone.ParcelInTransfer = new()
                 {
@@ -513,7 +515,7 @@ namespace BL
         /// <returns>ישות לוגית של לקוח</returns>
         public Customer GetCustomer(int id)
         {
-            IDAL.DO.Customer dalCustomer;
+            DO.Customer dalCustomer;
             try
             {
                 dalCustomer = dalObj.GetCustomer(id);
@@ -561,7 +563,7 @@ namespace BL
         /// <returns>ישות לוגית של חבילה</returns>
         public Parcel GetParcel(int id)
         {
-            IDAL.DO.Parcel dalParcel;
+            DO.Parcel dalParcel;
             try
             {
                 dalParcel = dalObj.GetParcel(id);
@@ -627,7 +629,7 @@ namespace BL
         /// <returns></returns>
         public IEnumerable<DroneToList> GetDroneList()
         {
-            IDAL.DO.Parcel dalParcel;
+            DO.Parcel dalParcel;
             DroneToList droneInList;
             List<DroneToList> drones = new();
             foreach (var drone in dalObj.GetDroneList())
@@ -848,7 +850,7 @@ namespace BL
         {
             double distance;
             Location droneLocation = getDroneLocation(droneId);
-            List<IDAL.DO.Station> stations = (List<IDAL.DO.Station>)dalObj.GetStationList();
+            List<DO.Station> stations = (List<DO.Station>)dalObj.GetStationList();
             Location stationLocation=new() { Longitude = stations[0].Longitude, Latitude= stations[0].Latitude };
             int stationId= stations[0].Id;
             double minDistance = getDistance(droneLocation, stationLocation);
@@ -878,7 +880,7 @@ namespace BL
         {
             double distance;
             Location customerLocation = findCustomerLocation(id);
-            List<IDAL.DO.Station> stations = (List<IDAL.DO.Station>)dalObj.GetStationList();
+            List<DO.Station> stations = (List<DO.Station>)dalObj.GetStationList();
             Location stationLocation = new() { Longitude = stations[0].Longitude, Latitude = stations[0].Latitude };
             int stationId = stations[0].Id;
             double minDistance = getDistance(customerLocation, stationLocation);
@@ -929,7 +931,7 @@ namespace BL
         /// <returns>מיקום הלקוח</returns>
         private Location findCustomerLocation(int id)
         {
-            IDAL.DO.Customer customer = dalObj.GetCustomer(id);
+            DO.Customer customer = dalObj.GetCustomer(id);
             Location location = new() { Longitude = customer.Longitude, Latitude = customer.Latitude };
             return location;
         }
@@ -942,8 +944,8 @@ namespace BL
         /// <returns>מיקום של תחנה רנדומלית</returns>
         private Location getRandomStationLocation()
         {
-            List<IDAL.DO.Station> stations = dalObj.GetStationList().ToList();
-            IDAL.DO.Station rndStation = stations[r.Next(stations.Count)];
+            List<DO.Station> stations = dalObj.GetStationList().ToList();
+            DO.Station rndStation = stations[r.Next(stations.Count)];
             Location location = new() { Longitude = rndStation.Longitude, Latitude = rndStation.Latitude };
             return location;
         }
@@ -955,7 +957,7 @@ namespace BL
         /// </summary>
         /// <param name="parcel">חבילה</param>
         /// <returns>סטטוס החבילה</returns>
-        private StatusParcel checkParcelStatus(IDAL.DO.Parcel parcel)
+        private StatusParcel checkParcelStatus(DO.Parcel parcel)
         {
             StatusParcel status;
             if (parcel.Scheduled == null)
@@ -996,7 +998,7 @@ namespace BL
 
         private Location findStationLocation(int stationId)
         {
-            IDAL.DO.Station station = dalObj.GetStation(stationId);
+            DO.Station station = dalObj.GetStation(stationId);
             Location location = new() { Longitude = station.Longitude, Latitude = station.Latitude };
             return location;
         }

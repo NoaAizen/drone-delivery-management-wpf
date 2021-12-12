@@ -5,21 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace IBL
+namespace BO
 {
-    namespace BO
+    public class DroneInParcel//רחפן בחבילה
     {
-        public class DroneInParcel//רחפן בחבילה
-        {
-            public int Id { get; set; }// מספר מזהה
-            public double Battery { get; set; } // מצב סוללה
-            public Location CurrentLocation { get; set; }//מיקום נוכחי
+        public int Id { get; set; }// מספר מזהה
+        public double Battery { get; set; } // מצב סוללה
+        public Location CurrentLocation { get; set; }//מיקום נוכחי
 
-            public override string ToString()
-            {
-                return this.ToStringProperty();
-            }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
         }
     }
-
 }
+
+

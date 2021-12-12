@@ -36,8 +36,8 @@ namespace PL
                 }
             }
         }
-        private IBL.BO.WeightCategories _MaxWeight;
-        public IBL.BO.WeightCategories MaxWeight
+        private BlApi.BO.WeightCategories _MaxWeight;
+        public BlApi.BO.WeightCategories MaxWeight
         {
             get { return _MaxWeight; }
             set
@@ -88,8 +88,8 @@ namespace PL
                 }
             }
         }
-        private IBL.BO.StatusDrone _Status;
-        public IBL.BO.StatusDrone Status
+        private BlApi.BO.StatusDrone _Status;
+        public BlApi.BO.StatusDrone Status
         {
             get { return _Status; }
             set
@@ -116,9 +116,9 @@ namespace PL
             }
         }
 
-        public IBL.BO.ParcelInTransfer _ParcelInTransfer;
+        public BlApi.BO.ParcelInTransfer _ParcelInTransfer;
 
-        public IBL.BO.ParcelInTransfer ParcelInTransfer
+        public BlApi.BO.ParcelInTransfer ParcelInTransfer
         {
             get { return _ParcelInTransfer; }
             set

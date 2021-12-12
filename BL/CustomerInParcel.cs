@@ -5,22 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace IBL
+
+
+namespace BO
 {
-    namespace BO
+
+    public class CustomerInParcel//לקוח ברשימה
     {
+        public int Id { get; set; }// מספר מזהה
+        public string Name { get; set; }// שם לקוח
 
-        public class CustomerInParcel//לקוח ברשימה
+        public override string ToString()
         {
-            public int Id { get; set; }// מספר מזהה
-            public string Name { get; set; }// שם לקוח
-
-            public override string ToString()
-            {
-                return this.ToStringProperty();
-            }
+            return this.ToStringProperty();
         }
-
     }
+
 }
+
 

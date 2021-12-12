@@ -1,5 +1,5 @@
 ﻿using BL;
-using IBL.BO;
+using BlApi.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +22,12 @@ namespace PL
     /// </summary>
     public partial class DroneLists : Window
     {
-        private IBL.IBL bl;//שדה בשביל גישה לBL
+        private BlApi.IBL bl;//שדה בשביל גישה לBL
        /// <summary>
        /// בנאי בשביל חלון של הרשימה
        /// </summary>
        /// <param name="b">רחפן של BL</param>
-        public DroneLists(IBL.IBL b)//
+        public DroneLists(BlApi.IBL b)//
         {
             InitializeComponent();
             bl = b;

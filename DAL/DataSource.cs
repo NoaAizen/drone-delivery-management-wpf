@@ -1,4 +1,4 @@
-﻿using IDAL.DO;
+﻿using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    internal class DataSource
+    internal static class DataSource
     {/// <summary>
      /// הגדרת הרשימות
      /// </summary>
-        internal static List<IDAL.DO.Drone> listDrones = new List<IDAL.DO.Drone>();
-        internal static List<IDAL.DO.Station> listStations = new List<IDAL.DO.Station>();
-        internal static List<IDAL.DO.Customer> listCustomers = new List<IDAL.DO.Customer>();
-        internal static List<IDAL.DO.Parcel> listParcels = new List<IDAL.DO.Parcel>();
-        internal static List<IDAL.DO.DroneCharge> listDroneCharges = new List<IDAL.DO.DroneCharge>();
+        internal static List<DO.Drone> listDrones = new List<DO.Drone>();
+        internal static List<DO.Station> listStations = new List<DO.Station>();
+        internal static List<DO.Customer> listCustomers = new List<DO.Customer>();
+        internal static List<DO.Parcel> listParcels = new List<DO.Parcel>();
+        internal static List<DO.DroneCharge> listDroneCharges = new List<DO.DroneCharge>();
 
-
+        
         internal class Config
         {
             //שדות
@@ -55,7 +55,7 @@ namespace DalObject
                     ChargeSlots = r.Next(1, 100);
                     longitude = r.NextDouble() * (180 + 180) - 180;//NextDouble() * (maximum - minimum) + minimum;
                     latitude = r.NextDouble() * (90 + 90) - 90;
-                    listStations.Add(new IDAL.DO.Station(Id, Name, ChargeSlots, longitude, latitude));
+                    listStations.Add(new DO.Station(Id, Name, ChargeSlots, longitude, latitude));
                 }
                 //אתחול של רחפנים 
                 for (int i = 0; i < 10; i++)
@@ -66,7 +66,7 @@ namespace DalObject
                     MAX_weight = (WeightCategories)r.Next(0, 3);
                     //status = (StatusDrone)r.Next(0, 3);
                     //battery = r.NextDouble() * (100) ;
-                    listDrones.Add(new IDAL.DO.Drone(Id, modle, MAX_weight)); //, status, battery));
+                    listDrones.Add(new DO.Drone(Id, modle, MAX_weight)); //, status, battery));
                 }
 
                 //אתחול של לוקחות
@@ -78,7 +78,7 @@ namespace DalObject
                     Telephon = temp.ToString();
                     longitude = r.NextDouble() * (180 + 180) - 180;
                     latitude = r.NextDouble() * (90 + 90) - 90;
-                    listCustomers.Add(new IDAL.DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
+                    listCustomers.Add(new DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
                 }
 
                 ///אתחול של חבילות במשלוח וסופקו
@@ -95,7 +95,7 @@ namespace DalObject
                     PickedUp = Schduled + time;
                     Delivered = PickedUp + time;
                     CounterForParcels++;
-                    listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
 
                 ///אתחול של חבילות במשלוח ולא סופקו
@@ -112,7 +112,7 @@ namespace DalObject
                     PickedUp = Schduled + time;
                     Delivered = null;
                     CounterForParcels++;
-                    listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
 
                 ///אתחול של חבילות לא במשלוח
@@ -129,7 +129,7 @@ namespace DalObject
                     PickedUp = null;
                     Delivered = null;
                     CounterForParcels++;
-                    listParcels.Add(new IDAL.DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
                 }
 
             }

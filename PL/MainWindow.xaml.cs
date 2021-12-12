@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL.IBL bl = new BL.BL();//שדה בשביח להגיע לאחפנים שבBL
+        BlApi.IBL bl = new BL.BL();//שדה בשביח להגיע לאחפנים שבBL
         /// <summary>
         /// בנאי
         /// </summary>
