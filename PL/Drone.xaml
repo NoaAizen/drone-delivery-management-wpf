@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Icon="/2.jpeg"
+        Icon="image/2.jpeg"
         
        Title="Drone" Height="450" Width="800" >
     <Window.Background>
-        <ImageBrush ImageSource="/1.jpg" />
+        <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
 
     <Grid x:Name="MainGrid">

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Icon="/2.jpeg"
+        Icon="image/2.jpeg"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Color x:Key="SolidColorBrushColor1">#FFAA0D0D</Color>
         <Color x:Key="SolidColorBrushColor2">#FFF00A0A</Color>
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="/1.jpg" />
+        <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid>
         <Button Content="View the drones list" HorizontalAlignment="Left" Margin="235,142,0,0" VerticalAlignment="Top" Click="ShowDronesButton_Click" Height="121" FontSize="28" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold" Width="304">

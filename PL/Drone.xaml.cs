@@ -25,13 +25,16 @@ namespace PL
     /// </summary>
     public partial class Drone : Window
     {
-        public event EventHandler RefreshEvent; 
-        public PL.DroneLists d;
-        private DronePO drone;
-        private IBL.IBL bl;
-        private DroneToList selectedItem;
+        public event EventHandler RefreshEvent; //שדה בשביל הרענון
+        private DronePO drone;//שדה בשביל המרת מידע 
+        private IBL.IBL bl;//שדה בשביל שימוש הנתונים בBL
+        private DroneToList selectedItem;//rjpi
         TimeSpan t;
-        public Drone(IBL.IBL bl)//הוספה
+        /// <summary>
+        /// בנאי של הוספת חלון
+        /// </summary>
+        /// <param name="bl">מקבל את רחפן של BL</param>
+        public Drone(IBL.IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
@@ -40,8 +43,12 @@ namespace PL
             maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
         }
-
-        public Drone(IBL.IBL bl, DroneToList selectedItem)//פעולות
+        /// <summary>
+        /// בנאי של פעולות
+        /// </summary>
+        /// <param name="bl">רחפן של IB</param>
+        /// <param name="selectedItem">חלון הקודם </param>
+        public Drone(IBL.IBL bl, DroneToList selectedItem)//
         {
             this.bl = bl;
             this.selectedItem = selectedItem;
@@ -71,8 +78,12 @@ namespace PL
 
 
         }
-
-        private void AddNewDroneClick(object sender, RoutedEventArgs e)//פונקציית הוספת חרפן
+        /// <summary>
+        /// פונקציית הוספת חרפן
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void AddNewDroneClick(object sender, RoutedEventArgs e)//
         {
             int stationNumber = int.Parse(stationId.Text);
             DroneToList drone = new DroneToList()
@@ -94,10 +105,16 @@ namespace PL
             }
         }
 
-        private void UpdateModelClick(object sender, RoutedEventArgs e)//עדכון מודל
+        //////פונקציות בשביל הפעולות על הרחפן
+        /// <summary>
+        /// פונקמיה בשביל כפתור לעדכון מודל
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void UpdateModelClick(object sender, RoutedEventArgs e)
         {
             notEnablFildes();
-            modelText.IsEnabled = true;
+            modelText.IsEnabled = true;//עדכון של זמינות המודל
             drone.Model = modelText.Text;
             try
             {
@@ -113,12 +130,13 @@ namespace PL
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)//רשימה
-        {
-            this.Close();
-        }
-
-        private void ChargingClick(object sender, RoutedEventArgs e)//שליחת רחפן לטעינה
+       
+        /// <summary>
+        /// פונקציב בשביל כפתור לשליחת רחפן לטעינה
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e"></param>
+        private void ChargingClick(object sender, RoutedEventArgs e)
         {
             try { 
             bl.SendingDroneForCharging(drone.Id);
@@ -132,8 +150,12 @@ namespace PL
             }
 
         }
-
-        private void ReleaseClick(object sender, RoutedEventArgs e)//שחרור רחפן מטעינה
+        /// <summary>
+        ///פונקציית בשביל כפתור לשחרור רחפן מטעינה
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void ReleaseClick(object sender, RoutedEventArgs e)//
         {
            try{
             bl.ReleaseDroneFromCharging(drone.Id, t);
@@ -146,8 +168,12 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void CollectionClick(object sender, RoutedEventArgs e)//איסוף חבילה
+        /// <summary>
+        /// פונקציה בשביל כפתור של איסוף חבילה
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void CollectionClick(object sender, RoutedEventArgs e)//
         {
            try{
             bl.CollectionParcelFromDrone(drone.Id);
@@ -160,7 +186,12 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-        private void AssignmentClick(object sender, RoutedEventArgs e)//פונקציית איסוף חבילה
+        /// <summary>
+        /// פונקציית בשביל כפתור לשיוך חבילה
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void AssignmentClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -174,7 +205,12 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-        private void DeliveryClick(object sender, RoutedEventArgs e)//אספקת חבילה
+        /// <summary>
+        ///פונקצית בשביל כפתור אספקת חבילה
+        /// </summary>
+        /// <param name="sender">חלון המתאים</param>
+        /// <param name="e">אירוע</param>
+        private void DeliveryClick(object sender, RoutedEventArgs e)
         {
           try{
             bl.DeliveryParcelByDrone(drone.Id);
@@ -188,7 +224,12 @@ namespace PL
             }
 
         }
-        public void convertToPo(DronePO dronePo, IBL.BO.Drone d)//פונקציה שעושה המרה בשביל הזרימת מידע
+        /// <summary>
+        /// /פונקציה שעושה המרה בשביל הזרימת מידע
+        /// </summary>
+        /// <param name="dronePo">רחפן של PL</param>
+        /// <param name="d">רחפן של BO</param>
+        public void convertToPo(DronePO dronePo, IBL.BO.Drone d)
         {
             dronePo.Battery = d.Battery;
             dronePo.Id = d.Id;
@@ -199,8 +240,10 @@ namespace PL
             dronePo.Latitude = d.CurrentLocation.Latitude;
             dronePo.Longitude = d.CurrentLocation.Longitude;
         }
-
-      public void notEnablFildes()//בלי עדכון מודל
+        /// <summary>
+        /// פונקציה להפעלת שדות להיות לא זמינים 
+        /// </summary>
+      public void notEnablFildes()//
         {
             idText.IsEnabled = false;
             statusText.IsEnabled = false;
@@ -211,12 +254,23 @@ namespace PL
             latitudeText.IsEnabled = false;
 
         }
-
+        /// <summary>
+        /// פונקציה לסגירת חלון הוספה
+        /// </summary>
+        /// <param name="sender" >חלון</param>
+        /// <param name="e">אירוע</param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-       
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

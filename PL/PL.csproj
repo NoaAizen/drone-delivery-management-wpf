@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="image\1.jpg" />
+    <None Remove="image\2.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="imge\" />
+    <Resource Include="image\1.jpg" />
+    <Resource Include="image\2.jpeg" />
   </ItemGroup>
 
 </Project>
