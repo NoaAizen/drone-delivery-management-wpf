@@ -253,7 +253,7 @@ namespace DalObject
                     break;
                 }
             }
-            DO.DroneCharge dc = new DO.DroneCharge(idDrone, idStation);
+            DO.DroneCharge dc = new() { DroneId = idDrone, StationId = idStation };
             DataSource.listDroneCharges.Add(dc);
         }
 

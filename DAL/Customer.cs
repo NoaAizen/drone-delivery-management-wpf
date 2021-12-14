@@ -7,37 +7,36 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// מידע על הלקוח
+    /// </summary>
     public struct Customer
     {
-
         /// <summary>
-        /// בנאי 
+        /// מספר מזהה
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="name_Customers"></param>
-        /// <param name="telephon"></param>
-        /// <param name="longitude"></param>
-        /// <param name="latitude"></param>
-        public Customer(int id, string name_Customers, string telephon, double longitude, double latitude) : this()
-        {
-            Id = id;
-            Name = name_Customers;
-            Phone = telephon;
-            Longitude = longitude;
-            Latitude = latitude;
-        }
+        public int Id { get; set; }
         /// <summary>
-        /// שדות
+        /// שם לקוח
         /// </summary>
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם לקוח
-        public string Phone { get; set; }// מספר טלפון
-        public double Latitude { get; set; } // קו רוחב
-        public double Longitude { get; set; }// קו אורך
+        public string Name { get; set; }
         /// <summary>
-        ///                 /// פונקצית טוסטרניג(Tostring)- בשביל הדפסה
+        /// מספר טלפון
         /// </summary>
-        /// <returns></returns>
+        public string Phone { get; set; }
+        /// <summary>
+        /// קו רוחב
+        /// </summary>
+        public double Latitude { get; set; }
+        /// <summary>
+        /// קו אורך
+        /// </summary>
+        public double Longitude { get; set; }
+        
+        /// <summary>
+        /// פונקצית טוסטרניג(Tostring)- בשביל הדפסה
+        /// </summary>
+        /// <returns>מחרוזת עם שדות הלקוח</returns>
         public override string ToString()
         {
             return String.Format("Customer- Id: {0}, Name: {1}, Longitude: {2}, Latitude: {3}, Phone: {4}"

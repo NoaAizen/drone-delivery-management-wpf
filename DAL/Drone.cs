@@ -7,38 +7,28 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// מידע על הרחפן
+    /// </summary>
     public struct Drone
     {
-
         /// <summary>
-        /// בנאי
+        /// מספר מזהה
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="modle"></param>
-        /// <param name="MAX_weight"></param>
-        /// <param name="status"></param>
-        /// <param name="battery"></param>
-        public Drone(int id, string modle, WeightCategories MAX_weight)//, StatusDrone status, double battery) 
-        {
-            Id = id;
-            Model = modle;
-            MaxWeight = MAX_weight;
-            //Status = status;
-            //Battery = battery;
-        }
+        public int Id { get; set; }
         /// <summary>
-        /// שדות
+        /// מודל רחפן
         /// </summary>
-        public int Id { get; set; }// מספר מזהה
-        public string Model { get; set; }// מודל רחפן
-        public WeightCategories MaxWeight { get; set; }// קטגוריית משקל
-                                                       //public StatusDrone Status  { get; set; }// מצב רחפן
-                                                       // public double Battery { get; set; } // מצב סוללה
+        public string Model { get; set; }
+        /// <summary>
+        /// קטגוריית משקל
+        /// </summary>
+        public WeightCategories MaxWeight { get; set; }
 
         /// <summary>
         /// פונקצית טוסטרניג(Tostring)- בשביל הדפסה
         /// </summary>
-        /// <returns></returns>
+        /// <returns>מחרוזת עם שדות הרחפן</returns>
         public override string ToString()
         {
             return String.Format("Drone- Id: {0}, Model: {1}, Max Weight: {2}"

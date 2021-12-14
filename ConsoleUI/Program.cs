@@ -189,14 +189,15 @@ Enter your selection:
             Console.WriteLine("Enter station's Id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's name:");
-            string Name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Enter Number of charging stations available:");
-            int ChargeSlots = int.Parse(Console.ReadLine());
+            int chargeSlots = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's longitude:");
             double longitude = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter station's latitude:");
             double latitude = double.Parse(Console.ReadLine());
-            DO.Station s = new DO.Station(id, Name, ChargeSlots, longitude, latitude);
+            DO.Station s = new()
+            { Id = id, Name = name, AvailableStations = chargeSlots, Longitude = longitude, Latitude = latitude };
             D.AddStation(s);
         }
         /// <summary>
@@ -210,13 +211,13 @@ Enter your selection:
             string model = (Console.ReadLine());
             Console.WriteLine("Enter drone's weight categories(Light = 0, Intermediate = 1, Heavy = 2):");
             temp = int.Parse(Console.ReadLine());
-            DO.WeightCategories MAX_weight = (DO.WeightCategories)temp;
+            DO.WeightCategories maxWeight = (DO.WeightCategories)temp;
             Console.WriteLine("Enter drone's status:(Available = 0, Maintenance = 1, Shipping = 2)");
             temp = int.Parse(Console.ReadLine());
             //DAL.DalApi.DO.StatusDrone status = (DAL.DalApi.DO.StatusDrone)temp;
             Console.WriteLine("Enter drone's battery:");
             //double battery = double.Parse(Console.ReadLine());
-            DO.Drone d = new DO.Drone(id, model, MAX_weight/*, status, battery*/);
+            DO.Drone d = new() { Id = id, Model = model, MaxWeight = maxWeight };/*, status, battery*/
             D.AddDrone(d);
 
         }
@@ -228,14 +229,15 @@ Enter your selection:
             Console.WriteLine("Enter customer's Id:");
             int id = int.Parse(Console.ReadLine());
             Console.WriteLine("Enter customer's name:");
-            string Name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Enter customer's phone number:");
-            string Telephon = Console.ReadLine();
+            string phone = Console.ReadLine();
             Console.WriteLine("Enter customer's longitude:");
             double longitude = double.Parse(Console.ReadLine());
             Console.WriteLine("Enter customer's latitude:");
             double latitude = double.Parse(Console.ReadLine());
-            DO.Customer c = new DO.Customer(id, Name, Telephon, longitude, latitude);
+            DO.Customer c = new()
+            { Id = id, Name = name, Phone = phone, Longitude = longitude, Latitude = latitude };
             D.AddCustomer(c);
         }
         /// <summary>

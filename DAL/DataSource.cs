@@ -39,97 +39,135 @@ namespace DalObject
                 //משתני עזר
                 string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel", "tamar", "ben", "gad", "dan", "moshe" };//מערך שמות של הלקוח
                                                                                                                                 //  StatusDrone status;
-                WeightCategories MAX_weight;
-                Priorities priorities;
-                DateTime? Requsted, Schduled, PickedUp, Delivered;
+                WeightCategories maxWeight;
+                Priorities priority;
+                DateTime? requsted, schduled, pickedUp, delivered;
                 TimeSpan time = new TimeSpan(1, 0, 0);
-                int Id, ChargeSlots, temp, IdSender, IdTarget, IdDrone;
+                int id, chargeSlots, temp, senderId, targetId, droneId;
                 double longitude, latitude; //battery;
-                string modle, Name, Name_Customers, Telephon;
+                string model, name, phone;
                 //אתחול של תחנות
                 for (int i = 0; i < 2; i++)
                 {
-                    Id = i;
+                    id = i;
                     temp = r.Next(1000, 10000);
-                    Name = "st" + temp;
-                    ChargeSlots = r.Next(1, 100);
+                    name = "st" + temp;
+                    chargeSlots = r.Next(1, 100);
                     longitude = r.NextDouble() * (180 + 180) - 180;//NextDouble() * (maximum - minimum) + minimum;
                     latitude = r.NextDouble() * (90 + 90) - 90;
-                    listStations.Add(new DO.Station(Id, Name, ChargeSlots, longitude, latitude));
+                    listStations.Add( new() 
+                    { Id = id, Name = name, AvailableStations = chargeSlots, Longitude = longitude, Latitude = latitude });
                 }
                 //אתחול של רחפנים 
                 for (int i = 0; i < 10; i++)
                 {
-                    Id = i+1;
+                    id = i+1;
                     temp = r.Next(1, 10000);
-                    modle = "FF" + temp;
-                    MAX_weight = (WeightCategories)r.Next(0, 3);
+                    model = "FF" + temp;
+                    maxWeight = (WeightCategories)r.Next(0, 3);
                     //status = (StatusDrone)r.Next(0, 3);
                     //battery = r.NextDouble() * (100) ;
-                    listDrones.Add(new DO.Drone(Id, modle, MAX_weight)); //, status, battery));
+                    listDrones.Add(new() { Id = id, Model = model, MaxWeight = maxWeight }); //, status, battery));
                 }
 
                 //אתחול של לוקחות
                 for (int i = 0; i < 10; i++)
                 {
-                    Id = i;
-                    Name_Customers = Arr[i];
+                    id = i;
+                    name = Arr[i];
                     temp = r.Next(1000000, 10000000);
-                    Telephon = temp.ToString();
+                    phone = temp.ToString();
                     longitude = r.NextDouble() * (180 + 180) - 180;
                     latitude = r.NextDouble() * (90 + 90) - 90;
-                    listCustomers.Add(new DO.Customer(Id, Name_Customers, Telephon, longitude, latitude));
+                    listCustomers.Add(new() 
+                    { Id = id, Name = name, Phone = phone, Longitude = longitude, Latitude = latitude });
                 }
 
                 ///אתחול של חבילות במשלוח וסופקו
                 for (int i = 0; i < 2; i++)
                 {
-                    Id = i;
-                    IdSender = i;
-                    IdTarget = i+1;
-                    MAX_weight = (WeightCategories)r.Next(0, 3);
-                    priorities = (Priorities)r.Next(0, 3);
-                    IdDrone = i+1;
-                    Requsted = RandomDay();
-                    Schduled = Requsted + time;
-                    PickedUp = Schduled + time;
-                    Delivered = PickedUp + time;
+                    id = i;
+                    senderId = i;
+                    targetId = i+1;
+                    maxWeight = (WeightCategories)r.Next(0, 3);
+                    priority = (Priorities)r.Next(0, 3);
+                    droneId = i+1;
+                    requsted = RandomDay();
+                    schduled = requsted + time;
+                    pickedUp = schduled + time;
+                    delivered = pickedUp + time;
                     CounterForParcels++;
-                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new()
+                    {
+                        Id = id,
+                        SenderId = senderId,
+                        TargetId = targetId,
+                        Weight = maxWeight,
+                        Priority = priority,
+                        DroneId = droneId,
+                        Requested = requsted,
+                        Scheduled = schduled,
+                        PickedUp = pickedUp,
+                        Delivered = delivered
+                    });
                 }
 
                 ///אתחול של חבילות במשלוח ולא סופקו
                 for (int i = 2; i < 5; i++)
                 {
-                    Id = i;
-                    IdSender = i;
-                    IdTarget = i + 1;
-                    MAX_weight = (WeightCategories)r.Next(0, 3);
-                    priorities = (Priorities)r.Next(0, 3);
-                    IdDrone = i + 1;
-                    Requsted = RandomDay();
-                    Schduled = Requsted + time;
-                    PickedUp = Schduled + time;
-                    Delivered = null;
+                    id = i;
+                    senderId = i;
+                    targetId = i + 1;
+                    maxWeight = (WeightCategories)r.Next(0, 3);
+                    priority = (Priorities)r.Next(0, 3);
+                    droneId = i + 1;
+                    requsted = RandomDay();
+                    schduled = requsted + time;
+                    pickedUp = schduled + time;
+                    delivered = null;
                     CounterForParcels++;
-                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new()
+                    {
+                        Id = id,
+                        SenderId = senderId,
+                        TargetId = targetId,
+                        Weight = maxWeight,
+                        Priority = priority,
+                        DroneId = droneId,
+                        Requested = requsted,
+                        Scheduled = schduled,
+                        PickedUp = pickedUp,
+                        Delivered = delivered
+                    });
                 }
 
                 ///אתחול של חבילות לא במשלוח
                 for (int i = 5; i < 10; i++)
                 {
-                    Id = i;
-                    IdSender = 8;
-                    IdTarget = 9;
-                    MAX_weight = (WeightCategories)r.Next(0, 3);
-                    priorities = (Priorities)r.Next(0, 3);
-                    IdDrone = 0;
-                    Requsted = RandomDay();
-                    Schduled = null;
-                    PickedUp = null;
-                    Delivered = null;
+                    id = i;
+                    senderId = 8;
+                    targetId = 9;
+                    maxWeight = (WeightCategories)r.Next(0, 3);
+                    priority = (Priorities)r.Next(0, 3);
+                    droneId = 0;
+                    requsted = RandomDay();
+                    schduled = null;
+                    pickedUp = null;
+                    delivered = null;
                     CounterForParcels++;
-                    listParcels.Add(new DO.Parcel(Id, IdSender, IdTarget, MAX_weight, priorities, IdDrone, Requsted, Schduled, PickedUp, Delivered));
+                    listParcels.Add(new()
+                    {
+                        Id = id,
+                        SenderId = senderId,
+                        TargetId = targetId,
+                        Weight = maxWeight,
+                        Priority = priority,
+                        DroneId = droneId,
+                        Requested = requsted,
+                        Scheduled = schduled,
+                        PickedUp = pickedUp,
+                        Delivered = delivered
+                    });
                 }
 
             }
