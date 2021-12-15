@@ -15,12 +15,13 @@ namespace BL
         internal static BL Instance { get => instance; }
         private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         IDal dalObj;
-        public static Random r = new Random();
+        public static Random r;
 
         static BL() { }
         
         BL() 
         {
+            r = new Random();
             dalObj = DalFactory.GetDal("1");
             DO.Parcel parcel = new();
             StatusDrone status = 0;
