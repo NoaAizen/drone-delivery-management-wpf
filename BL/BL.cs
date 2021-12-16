@@ -319,8 +319,7 @@ namespace BL
         {
             DroneToList drone = DronesList.Find(x => x.Id == id);
             if (drone == null || drone.Status != StatusDrone.Maintenance)
-                //לשנות חריגה
-                throw new Exception("Error");
+                throw new ActionProblemException("Can't release drone from charging");
             int stationId = dalObj.GetDroneChargesList().ToList().Find(x => x.DroneId == id).StationId;
             try
             {
