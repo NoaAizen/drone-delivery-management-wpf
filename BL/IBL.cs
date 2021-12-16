@@ -146,6 +146,7 @@ namespace BlApi
         /// <param name="p">פרדיקט</param>
         /// <returns>רשימת רחפנים לפי תנאי</returns>
         public IEnumerable<DroneToList> GetPartOfDroneList(Predicate<DroneToList> p);
+        public IEnumerable<DO.DroneCharge> GetDroneChargesList();
 
 
     }

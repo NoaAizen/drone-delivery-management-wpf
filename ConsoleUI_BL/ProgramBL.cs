@@ -8,7 +8,7 @@ namespace ConsoleUI_BL
     public enum Add { STATION = 1, DRONE, CUSTOMER, PARCEL };
     public enum Update { DRONE = 1, STATION, CUSTOMERS, CHARGING, RELEASE, ASSIGN, COLLECTION, DELIVERY };
     public enum View { STATION = 1, DRONE, CUSTOMER, PARCEL };
-    public enum ViewList { STATIONS = 1, DRONES, CUSTOMERS, PARCELS, NODRONE, AVAILABLE };
+    public enum ViewList { STATIONS = 1, DRONES, CUSTOMERS, PARCELS, NODRONE, AVAILABLE, DRONECHARGES };
 
     class ProgramBL
     {
@@ -171,6 +171,9 @@ Enter your selection:
                                 case ViewList.AVAILABLE://הצגת תחנות-בסיס עם עמדות טעינה פנויות 
                                     ViewAvailableChargingStationslListPrint();
                                     break;
+                                case ViewList.DRONECHARGES://הצגת תחנות-בסיס עם עמדות טעינה פנויות 
+                                    GetDroneChargesListPrint();
+                                    break;
                                 default:
                                     Console.WriteLine("Enter a number between 1 to 6");
                                     break;
@@ -192,6 +195,7 @@ Enter your selection:
             }
 
         }
+
 
         //קליטת והדפסת נותנים        
         static int temp;
@@ -502,6 +506,14 @@ Enter your selection:
             //    Console.WriteLine(item);
             //}
             foreach (var item in bl.GetAvailableChargingStationsList())
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public static void GetDroneChargesListPrint()
+        {
+            foreach (var item in bl.GetDroneChargesList())
             {
                 Console.WriteLine(item);
             }

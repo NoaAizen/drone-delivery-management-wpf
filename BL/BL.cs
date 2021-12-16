@@ -791,7 +791,11 @@ namespace BL
                     select item).ToList();
         }
 
-
+        public IEnumerable<DO.DroneCharge> GetDroneChargesList()
+        {
+            return (from item in  dalObj.GetDroneChargesList()
+                   select item).ToList();
+        }
 
 
         //-----------------------------------HELP-METHODS-----------------------------------
@@ -1030,7 +1034,7 @@ namespace BL
                 status = StatusDrone.Available;
             return status;
         }
-
+       
 
         //--------------------------------------- לממש!!!
 
