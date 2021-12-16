@@ -304,8 +304,8 @@ namespace BL
                     }
                 }
             }
-            //else
-            //    throw new...
+            else
+                throw new ActionProblemException("Can't sending drone to charging");
         }
         #endregion
 

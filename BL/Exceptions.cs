@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 
 namespace BO
 {
+    /// <summary>
+    /// חריגת כבר קיים
+    /// </summary>
     [Serializable]
     public class AlreadyExistException : Exception
     {
@@ -15,7 +18,9 @@ namespace BO
         public AlreadyExistException(string message, Exception inner) : base(message, inner) { }
         protected AlreadyExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
-
+    /// <summary>
+    /// חריגת לא קיים
+    /// </summary>
     [Serializable]
     public class DoesntExistException : Exception
     {
@@ -23,6 +28,18 @@ namespace BO
         public DoesntExistException(string message) : base(message) { }
         public DoesntExistException(string message, Exception inner) : base(message, inner) { }
         protected DoesntExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+
+    }
+    /// <summary>
+    /// חריגת בעייה בביצוע פעולה
+    /// </summary>
+    [Serializable]
+    public class ActionProblemException : Exception
+    {
+        public ActionProblemException() : base() { }
+        public ActionProblemException(string message) : base(message) { }
+        public ActionProblemException(string message, Exception inner) : base(message, inner) { }
+        protected ActionProblemException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
     }
 }
