@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
     class ProgramBL
     {
         //public static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
-        //static DalApi.IDal D = new DalObject.DalObject();//קריאה לבנאי שמתאחל
+        static DalApi.IDal D = DalApi.DalFactory.GetDal("1");//קריאה לבנאי שמתאחל
         static BlApi.IBL bl = BlApi.BlFactory.GetBl();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
@@ -467,11 +467,11 @@ Enter your selection:
         /// </summary>
         public static void ViewParcelListPrint()
         {
-            //List<DalApi.DO.Parcel> p = (List<DalApi.DO.Parcel>)D.GetParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Parcel item in p)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            List<DO.Parcel> p = (List<DO.Parcel>)D.GetParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
+            foreach (DO.Parcel item in p)
+            {
+                Console.WriteLine(item);
+            }
             foreach (var item in bl.GetParcelList())
             {
                 Console.WriteLine(item);

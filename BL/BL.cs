@@ -380,11 +380,12 @@ namespace BL
                     drone.CurrentLocation=findCustomerLocation(parcel.SenderId);
                     DronesList.Add(drone);
                 }
-                //else
-                //    throw new.... לא יכול לבצע פעולה
+                else
+                    throw new ActionProblemException("Can't collection parcel");
+
             }
-            //else
-            //    throw new.... לא קיים
+            else
+                throw new DoesntExistException("Doesnt exist");
         }
         #endregion
 
