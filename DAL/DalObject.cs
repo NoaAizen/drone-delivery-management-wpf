@@ -470,7 +470,7 @@ namespace DalObject
                 if (DataSource.listParcels[i].DroneId == 0)
                 {
                     temp.Add(DataSource.listParcels[i]);
-                    break;
+                    
 
                 }
 
@@ -490,7 +490,7 @@ namespace DalObject
                 if (DataSource.listStations[i].AvailableStations > 0)
                 {
                     temp.Add(DataSource.listStations[i]);
-                    break;
+                    
                 }
             }
             return temp;

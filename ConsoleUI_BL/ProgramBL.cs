@@ -452,11 +452,11 @@ Enter your selection:
         /// </summary>
         public static void ViewCustomerListPrint()
         {
-            //List<DalApi.DO.Customer> c = (List<DalApi.DO.Customer>)D.GetCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Customer item in c)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            List<DO.Customer> c = (List<DO.Customer>)D.GetCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
+            foreach (DO.Customer item in c)
+            {
+                Console.WriteLine(item);
+            }
             foreach (var item in bl.GetCustomerList())
             {
                 Console.WriteLine(item);

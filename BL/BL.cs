@@ -452,8 +452,6 @@ namespace BL
                 Name = dalStation.Name,
                 AvailableStations = dalStation.AvailableStations,
                 Location = new() { Longitude = dalStation.Longitude, Latitude = dalStation.Latitude },
-                //DroneInChargingsList = null
-                ////יש פה שגיאה בזמן ריצה
                 DroneInChargingsList = dalObj.GetDronesInStationId(id)
                      .Select(droneId => new DroneInCharging() { Id = droneId, Battery = getDroneBattery(droneId) }).ToList()
             };
