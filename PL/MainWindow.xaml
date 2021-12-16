@@ -10,14 +10,15 @@
     <Window.Resources>
         <Color x:Key="SolidColorBrushColor1">#FFAA0D0D</Color>
         <Color x:Key="SolidColorBrushColor2">#FFF00A0A</Color>
+        <Color x:Key="SolidColorBrushColor3">#FF684564</Color>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid>
-        <Button Content="View the drones list" HorizontalAlignment="Left" Margin="235,142,0,0" VerticalAlignment="Top" Click="ShowDronesButton_Click" Height="121" FontSize="28" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold" Width="304">
+        <Button Content="View the drones list" Margin="38,353,570,24" Click="ShowDronesButton_Click" FontSize="18" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold">
             <Button.Foreground>
-                <SolidColorBrush Color="{DynamicResource SolidColorBrushColor2}"/>
+                <SolidColorBrush Color="{DynamicResource SolidColorBrushColor3}"/>
             </Button.Foreground>
         </Button>
     </Grid>
