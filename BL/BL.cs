@@ -15,7 +15,7 @@ namespace BL
         internal static BL Instance { get => instance; }
         private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         IDal dalObj;
-        public static Random r;
+        private static Random r;
 
         static BL() { }
         
