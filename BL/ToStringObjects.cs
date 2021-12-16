@@ -17,8 +17,11 @@ namespace BO
             {
                 var value = prop.GetValue(t, null);
                 if (value is IEnumerable && !(value is string))
+                {
+                    str += prop.Name + ": " + "\n";
                     foreach (var item in (IEnumerable)value)
                         str += item.ToStringProperty("   ");
+                }
                 else
                     str += "\n" + suffix + prop.Name + ": " + value;
             }

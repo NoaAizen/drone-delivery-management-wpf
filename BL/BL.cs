@@ -419,7 +419,11 @@ namespace BL
                     drone.Status = 0;
                     DronesList.Add(drone);
                 }
+                else
+                    throw new ActionProblemException("Can't collection parcel");
             }
+            else
+                throw new DoesntExistException("Doesnt exist");
         }
         #endregion
 

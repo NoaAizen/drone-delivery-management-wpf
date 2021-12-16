@@ -366,7 +366,7 @@ Enter your selection:
         /// </summary>
         public static void DeliveryParcelForCustomerData()
         {
-            Console.WriteLine("Enter Parcel's Id:");
+            Console.WriteLine("Enter Drone's Id:");
             int idParcel = int.Parse(Console.ReadLine());
             bl.DeliveryParcelByDrone(idParcel);
         }
@@ -422,11 +422,11 @@ Enter your selection:
         /// </summary>
         public static void ViewStationListPrint()
         {
-            //List<DalApi.DO.Station> s = (List<DalApi.DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Station item in s)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            List<DO.Station> s = (List<DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
+            foreach (DO.Station item in s)
+            {
+                Console.WriteLine(item);
+            }
             foreach (var item in bl.GetStationList())
             {
                 Console.WriteLine(item);
@@ -500,8 +500,8 @@ Enter your selection:
         /// </summary>
         public static void ViewAvailableChargingStationslListPrint()
         {
-            //List<DalApi.DO.Station> s = (List<DalApi.DO.Station>)D.GetAvailableChargingStationsList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Station item in s)
+            //List<DO.Station> s = (List<DO.Station>)D.GetAvailableChargingStationsList();//DalObjectקריאה לפונקציה שנמצאת ב
+            //foreach (DO.Station item in s)
             //{
             //    Console.WriteLine(item);
             //}
