@@ -67,5 +67,10 @@ namespace PL
             PriorityText.IsEnabled = false;
             ParcelStatusText.IsEnabled = false;
         }
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

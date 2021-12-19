@@ -8,6 +8,9 @@
         Icon="image/2.jpeg"
         
        Title="Drone" Height="450" Width="800" >
+    <Window.Resources>
+        <Color x:Key="SolidColorBrushColor1">#FFE68A76</Color>
+    </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -69,7 +72,11 @@
             <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
             <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Left" Margin="82,39,0,0" Grid.Row="9" VerticalAlignment="Top" Click="ParcelInTransferClick"/>
+            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>
+                </Button.Background>
+            </Button>
         </Grid>
     </Grid>
 </Window>

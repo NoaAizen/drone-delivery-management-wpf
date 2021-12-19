@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:DronePO}"
         mc:Ignorable="d"
+        Icon="image/2.jpeg"
+
         Title="ParcelInTransfer" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="image/1.jpg" />
+    </Window.Background>
     <Grid>
         <Grid x:Name="Actions" Visibility="Visible">
             <Grid.RowDefinitions>
@@ -61,6 +66,7 @@
             <ComboBox x:Name="maxWeightText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
             <ComboBox x:Name="PriorityText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
             <CheckBox x:Name="ParcelStatusText" Content="On the way to the destination"  Grid.Row="8" Grid.ColumnSpan="3" Margin="145,0,35,2" />
+            <Button x:Name="close" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick"/>
         </Grid>
 
     </Grid>
