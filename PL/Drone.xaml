@@ -26,7 +26,7 @@
             <Label Content="Station id:" HorizontalAlignment="Left" Margin="179,264,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" />
             <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Left" Margin="259,319,0,0" VerticalAlignment="Top" Click="CloseClick" Height="40" Width="121"/>
         </Grid>
-        <Grid x:Name="Actions" Visibility="Hidden">
+        <Grid x:Name="Actions" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>
@@ -70,6 +70,7 @@
             <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
             <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
+            <Button x:Name="Parcel_in_transfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Left" Margin="82,39,0,0" Grid.Row="9" VerticalAlignment="Top" Click="ParcelInTransferClick"/>
         </Grid>
     </Grid>
 </Window>
