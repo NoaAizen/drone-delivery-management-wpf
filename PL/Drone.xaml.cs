@@ -41,10 +41,8 @@ namespace PL
             AddDroneGrid.IsEnabled = true;
             AddDroneGrid.Visibility = Visibility.Visible;
             maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
-                AddNewDrone.IsEnabled = true;
-            else
-                AddNewDrone.IsEnabled = false;
+            AddNewDrone.IsEnabled = false;
+
 
 
         }
@@ -290,6 +288,40 @@ namespace PL
         private void ParcelInTransferClick(object sender, RoutedEventArgs e)
         {
             new ParcelInTransferWindow(bl,drone).Show();
+        }
+
+        private void IdClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+                AddNewDrone.IsEnabled = true;
+            else
+                AddNewDrone.IsEnabled = false;
+        }
+
+        private void modelClick(object sender, TextChangedEventArgs e)
+        {
+
+            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+                AddNewDrone.IsEnabled = true;
+            else
+                AddNewDrone.IsEnabled = false;
+        }
+
+        private void maxclick(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+                AddNewDrone.IsEnabled = true;
+            else
+                AddNewDrone.IsEnabled = false;
+        }
+
+        private void stationidclick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+                AddNewDrone.IsEnabled = true;
+            else
+                AddNewDrone.IsEnabled = false;
         }
     }
 }
