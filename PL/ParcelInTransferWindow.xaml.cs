@@ -26,7 +26,31 @@ namespace PL
         {
             InitializeComponent();
             this.bl = bl;
-            
+           
+            idText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
+            recipientIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
+
+            senderNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
+            recipientNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
+
+            TransportDistanceText.DataContext = drone.ParcelInTransfer;
+            senderLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+            recipientLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+            senderLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+            recipientLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+            senderIdText.DataContext = drone.ParcelInTransfer;
+
         }
     }
 }

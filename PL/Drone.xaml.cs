@@ -57,6 +57,7 @@ namespace PL
             drone = new();
             drone.Battery = selectedItem.Battery;
             drone.Id = selectedItem.Id;
+            drone.ParcelInTransfer = selectedItem.ParcelInTransfer;
             drone.Status = selectedItem.Status;
             drone.MaxWeight = selectedItem.MaxWeight;
             drone.Model = selectedItem.Model;
@@ -79,7 +80,7 @@ namespace PL
                 ParcelTransfer.IsEnabled = true;
             }
             
-
+            
 
         }
         /// <summary>
