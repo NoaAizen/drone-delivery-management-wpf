@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,21 +37,30 @@ namespace PL
 
             TransportDistanceText.DataContext = drone.ParcelInTransfer;
             senderLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
-            recipientLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+            recipientLongitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
             senderLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
-            recipientLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+            recipientLatitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
+            PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
+            maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            ParcelStatus.IsChecked = drone.ParcelInTransfer.ParcelStatus;
+            maxWeightText.DataContext =drone.ParcelInTransfer;
+            PriorityText.DataContext = drone.ParcelInTransfer;
+            notEnablFildes();
+        }
 
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer;
-
+        /// <summary>
+        /// פונקציה להפעלת שדות להיות לא זמינים 
+        /// </summary>
+        public void notEnablFildes()//
+        {
+            idText.IsEnabled = false;
+            statusText.IsEnabled = false;
+            parcelNumberText.IsEnabled = false;
+            batteryText.IsEnabled = false;
+            maxWeightText.IsEnabled = false;
+            longitudeText.IsEnabled = false;
+            latitudeText.IsEnabled = false;
+            ParcelTransfer.IsEnabled = false;
         }
     }
 }

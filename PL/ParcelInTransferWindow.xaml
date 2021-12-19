@@ -49,19 +49,19 @@
             <TextBox x:Name="idText" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
             <TextBox x:Name="senderIdText" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
             <TextBox x:Name="recipientIdText" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="senderNameText" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="recipientNameText" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
+            <TextBox x:Name="senderNameText" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Name}" />
+            <TextBox x:Name="recipientNameText" Grid.Column="5" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Name}" />
 
-            <TextBox x:Name="TransportDistanceText" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
+            <TextBox x:Name="TransportDistanceText" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=TransportDistance}"/>
             <TextBox x:Name="senderLongitudeText" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
             <TextBox x:Name="recipientLongitudeText" Grid.Column="5" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
             <TextBox x:Name="senderLatitudeText" Grid.Column="5" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
             <TextBox x:Name="recipientLatitudeText" Grid.Column="5" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
-           
-            <ComboBox x:Name="maxWeightText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
-            <ComboBox x:Name="PriorityText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
-            <CheckBox Content="CheckBox" Grid.Column="1" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch"/>
+
+            <ComboBox x:Name="maxWeightText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
+            <ComboBox x:Name="PriorityText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
+            <CheckBox x:Name="ParcelStatus" Content="On the way to the destination"  Grid.Row="8" Grid.ColumnSpan="3" Margin="145,0,35,2" />
         </Grid>
-        
+
     </Grid>
 </Window>
