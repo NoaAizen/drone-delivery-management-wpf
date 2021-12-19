@@ -21,5 +21,6 @@
                 <SolidColorBrush Color="{DynamicResource SolidColorBrushColor3}"/>
             </Button.Foreground>
         </Button>
+        <Button Content="View the stations list" HorizontalAlignment="Left" Margin="415,353,0,0" VerticalAlignment="Top" Height="43" Width="123" Click="ShowStationsListClick"/>
     </Grid>
 </Window>

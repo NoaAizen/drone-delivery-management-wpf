@@ -38,5 +38,10 @@ namespace PL
         {
             new DroneLists(bl).Show();
         }
+
+        private void ShowStationsListClick(object sender, RoutedEventArgs e)
+        {
+            new StationsList(bl).Show();
+        }
     }
 }
