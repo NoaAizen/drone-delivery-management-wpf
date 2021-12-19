@@ -10,18 +10,51 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית של חבילה
+    /// </summary>
     public class Parcel
     {
-        public int Id { get; set; }// מספר מזהה חבילה
-        public CustomerInParcel CustomerInParcelSender { get; set; }//לקוח בחבילה- השולח
-        public CustomerInParcel CustomerInParcelRecipient { get; set; }//לקוח בחבילה -המקבל
-        public WeightCategories Weight { get; set; }// קטגורית משקל
-        public Priorities Priority { get; set; } // עדיפות
-        public DroneInParcel DroneInParcel { get; set; }// רחפן בחבילה
-        public DateTime? Requested { get; set; } // זמן יצירת חבילה למשלוח 
-        public DateTime? Scheduled { get; set; } // זמן שיוך החבילה לרחפן 
-        public DateTime? PickedUp { get; set; } // זמן איסוף חבילה מהשולח 
-        public DateTime? Delivered { get; set; } // זמן הגעת החבילה למקבל
+        /// <summary>
+        /// מספר מזהה חבילה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// לקוח בחבילה- השולח
+        /// </summary>
+        public CustomerInParcel CustomerInParcelSender { get; set; }
+        /// <summary>
+        /// לקוח בחבילה -המקבל
+        /// </summary>
+        public CustomerInParcel CustomerInParcelRecipient { get; set; }
+        /// <summary>
+        /// קטגורית משקל
+        /// </summary>
+        public WeightCategories Weight { get; set; }
+        /// <summary>
+        /// עדיפות
+        /// </summary>
+        public Priorities Priority { get; set; }
+        /// <summary>
+        /// רחפן בחבילה
+        /// </summary>
+        public DroneInParcel DroneInParcel { get; set; }
+        /// <summary>
+        /// זמן יצירת חבילה למשלוח
+        /// </summary>
+        public DateTime? Requested { get; set; }
+        /// <summary>
+        /// זמן שיוך החבילה לרחפן
+        /// </summary>
+        public DateTime? Scheduled { get; set; }
+        /// <summary>
+        /// זמן איסוף חבילה מהשולח
+        /// </summary>
+        public DateTime? PickedUp { get; set; }
+        /// <summary>
+        /// זמן הגעת החבילה למקבל
+        /// </summary>
+        public DateTime? Delivered { get; set; } 
 
         public override string ToString()
         {

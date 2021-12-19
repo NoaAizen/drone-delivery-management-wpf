@@ -9,10 +9,19 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית של מיקום
+    /// </summary>
     public class Location
     {
-        public double Longitude { get; set; }// קו אורך
-        public double Latitude { get; set; } // קו רוחב
+        /// <summary>
+        /// קו אורך
+        /// </summary>
+        public double Longitude { get; set; }
+        /// <summary>
+        /// קו רוחב
+        /// </summary>
+        public double Latitude { get; set; } 
 
         public override string ToString()
         {

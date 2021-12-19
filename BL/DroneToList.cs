@@ -9,16 +9,43 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DroneToList//רחפן ברשימה
+    /// <summary>
+    /// ישות לוגית רחפן לרשימה
+    /// </summary>
+    public class DroneToList
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Model { get; set; }// מודל רחפן
-        public WeightCategories MaxWeight { get; set; }// קטגוריית משקל
-        public StatusDrone Status { get; set; }// מצב רחפן
-        public double Battery { get; set; } // מצב סוללה
-        public ParcelInTransfer ParcelInTransfer { get; set; }//חבילה בהעברה
-        public Location CurrentLocation { get; set; }//מיקום נוכחי
-        public int ParcelTransferredNumber { get; set; }// מספר חבילה מועברת (אם יש
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// מודל רחפן
+        /// </summary>
+        public string Model { get; set; }
+        /// <summary>
+        /// קטגוריית משקל
+        /// </summary>
+        public WeightCategories MaxWeight { get; set; }
+        /// <summary>
+        /// מצב רחפן
+        /// </summary>
+        public StatusDrone Status { get; set; }
+        /// <summary>
+        /// מצב סוללה
+        /// </summary>
+        public double Battery { get; set; }
+        /// <summary>
+        /// חבילה בהעברה
+        /// </summary>
+        public ParcelInTransfer ParcelInTransfer { get; set; }
+        /// <summary>
+        /// מיקום נוכחי
+        /// </summary>
+        public Location CurrentLocation { get; set; }
+        /// <summary>
+        /// מספר חבילה מועברת - אם יש
+        /// </summary>
+        public int ParcelTransferredNumber { get; set; }
 
         public override string ToString()
         {

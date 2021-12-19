@@ -10,10 +10,19 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DroneInCharging//רחפן בטעינה
+    /// <summary>
+    /// ישות לוגית רחפן בטעינה
+    /// </summary>
+    public class DroneInCharging
     {
-        public int Id { get; set; }// מספר מזהה
-        public double Battery { get; set; } // מצב סוללה
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// מצב סוללה
+        /// </summary>
+        public double Battery { get; set; } 
     }
 }
 
