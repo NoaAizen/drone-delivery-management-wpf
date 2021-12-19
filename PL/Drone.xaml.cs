@@ -41,7 +41,6 @@ namespace PL
             AddDroneGrid.IsEnabled = true;
             AddDroneGrid.Visibility = Visibility.Visible;
             maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-
         }
         /// <summary>
         /// בנאי של פעולות
