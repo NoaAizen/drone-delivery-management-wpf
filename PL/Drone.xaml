@@ -41,7 +41,6 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -70,7 +69,7 @@
             <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
             <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="Parcel_in_transfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Left" Margin="82,39,0,0" Grid.Row="9" VerticalAlignment="Top" Click="ParcelInTransferClick"/>
+            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Left" Margin="82,39,0,0" Grid.Row="9" VerticalAlignment="Top" Click="ParcelInTransferClick"/>
         </Grid>
     </Grid>
 </Window>

@@ -74,6 +74,11 @@ namespace PL
             statusText.ItemsSource = Enum.GetValues(typeof(StatusDrone));
             maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             notEnablFildes();
+            if (drone.Status==StatusDrone.Delivery)
+            {
+                ParcelTransfer.IsEnabled = true;
+            }
+            
 
 
         }
@@ -251,7 +256,7 @@ namespace PL
             maxWeightText.IsEnabled = false;
             longitudeText.IsEnabled = false;
             latitudeText.IsEnabled = false;
-
+            ParcelTransfer.IsEnabled = false;
         }
         /// <summary>
         /// פונקציה לסגירת חלון הוספה
@@ -276,7 +281,7 @@ namespace PL
 
         private void ParcelInTransferClick(object sender, RoutedEventArgs e)
         {
-            
+            new ParcelInTransferWindow(bl,drone).Show();
         }
     }
 }
