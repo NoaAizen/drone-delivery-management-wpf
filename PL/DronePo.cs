@@ -97,7 +97,7 @@ namespace PL
                 _Status = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("State"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("Status"));
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace PL
                 _ParcelTransferredNumber = value;
                 if (PropertyChanged != null)
                 {
-                    PropertyChanged(this, new PropertyChangedEventArgs("NumberOfParcel"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("ParcelTransferredNumber"));
                 }
             }
         }

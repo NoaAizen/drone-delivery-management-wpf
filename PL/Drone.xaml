@@ -62,7 +62,7 @@
             <TextBox x:Name="batteryText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
             <TextBox x:Name="longitudeText" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
             <TextBox x:Name="latitudeText" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
-            <TextBox x:Name="parcelNumberText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" />
+            <TextBox x:Name="parcelNumberText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=ParcelTransferredNumber}" />
             <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
             <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
             <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
