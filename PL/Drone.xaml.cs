@@ -284,12 +284,16 @@ namespace PL
         }
 
      
-
+        /// <summary>
+        /// מעבר לחלון של חבילה בהעברה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParcelInTransferClick(object sender, RoutedEventArgs e)
         {
             new ParcelInTransferWindow(bl,drone).Show();
         }
-
+     
         private void IdClick(object sender, TextChangedEventArgs e)
         {
             if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
