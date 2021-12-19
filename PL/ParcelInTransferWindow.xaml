@@ -60,7 +60,7 @@
 
             <ComboBox x:Name="maxWeightText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
             <ComboBox x:Name="PriorityText" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
-            <CheckBox x:Name="ParcelStatus" Content="On the way to the destination"  Grid.Row="8" Grid.ColumnSpan="3" Margin="145,0,35,2" />
+            <CheckBox x:Name="ParcelStatusText" Content="On the way to the destination"  Grid.Row="8" Grid.ColumnSpan="3" Margin="145,0,35,2" />
         </Grid>
 
     </Grid>

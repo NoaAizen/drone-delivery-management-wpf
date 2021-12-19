@@ -42,7 +42,7 @@ namespace PL
             recipientLatitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
             PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
             maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-            ParcelStatus.IsChecked = drone.ParcelInTransfer.ParcelStatus;
+            ParcelStatusText.IsChecked = drone.ParcelInTransfer.ParcelStatus;
             maxWeightText.DataContext =drone.ParcelInTransfer;
             PriorityText.DataContext = drone.ParcelInTransfer;
             notEnablFildes();
@@ -54,13 +54,18 @@ namespace PL
         public void notEnablFildes()//
         {
             idText.IsEnabled = false;
-            statusText.IsEnabled = false;
-            parcelNumberText.IsEnabled = false;
-            batteryText.IsEnabled = false;
+            senderIdText.IsEnabled = false;
+            recipientIdText.IsEnabled = false;
+            senderNameText.IsEnabled = false;
+            recipientNameText.IsEnabled = false;
+            TransportDistanceText.IsEnabled = false;
+            senderLongitudeText.IsEnabled = false;
             maxWeightText.IsEnabled = false;
-            longitudeText.IsEnabled = false;
-            latitudeText.IsEnabled = false;
-            ParcelTransfer.IsEnabled = false;
+            recipientLongitudeText.IsEnabled = false;
+            senderLatitudeText.IsEnabled = false;
+            recipientLatitudeText.IsEnabled = false;
+            PriorityText.IsEnabled = false;
+            ParcelStatusText.IsEnabled = false;
         }
     }
 }
