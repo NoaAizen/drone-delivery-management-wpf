@@ -41,6 +41,12 @@ namespace PL
             AddDroneGrid.IsEnabled = true;
             AddDroneGrid.Visibility = Visibility.Visible;
             maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+                AddNewDrone.IsEnabled = true;
+            else
+                AddNewDrone.IsEnabled = false;
+
+
         }
         /// <summary>
         /// בנאי של פעולות
@@ -90,6 +96,7 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void AddNewDroneClick(object sender, RoutedEventArgs e)//
         {
+           
             int stationNumber = int.Parse(stationId.Text);
             DroneToList drone = new DroneToList()
             {
