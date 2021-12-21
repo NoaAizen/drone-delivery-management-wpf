@@ -343,12 +343,13 @@ namespace DalObject
 
         //-----------------------------------REQUEST-----------------------------------
 
+        #region Station
         /// <summary>
-        /// פונקציית להדפסה תחנה אחת
+        /// תצוגת תחנה
         /// </summary>
-        /// <param name="idStation"></param>
-        /// <returns></returns>
-        public DO.Station GetStation(int idStation)//
+        /// <param name="idStation">מזהה תחנה</param>
+        /// <returns>תחנה</returns>
+        public DO.Station GetStation(int idStation)
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))
                 throw new DoesntExistException("This station doesn't exist");
@@ -365,11 +366,14 @@ namespace DalObject
             }
             return s;
         }
+        #endregion
+
+        #region Drone
         /// <summary>
-        /// פונקציית להדפסת רחפן אחת
+        /// תצוגת רחפן
         /// </summary>
-        /// <param name="idDrone"></param>
-        /// <returns></returns>
+        /// <param name="idDrone">מזהה רחפן</param>
+        /// <returns>רחפן</returns>
         public DO.Drone GetDrone(int idDrone)
         {
             if (!DataSource.listDrones.Exists(x => x.Id == idDrone))
@@ -387,12 +391,15 @@ namespace DalObject
             }
             return d;
         }
+        #endregion
+
+        #region Customer
         /// <summary>
-        /// פונקציית הדפסת לקוח אחד
+        /// תצוגת לקוח
         /// </summary>
-        /// <param name="idCustomer"></param>
-        /// <returns></returns>
-        public DO.Customer GetCustomer(int idCustomer)//
+        /// <param name="idCustomer">מזהה לקוח</param>
+        /// <returns>לקוח</returns>
+        public DO.Customer GetCustomer(int idCustomer)
         {
             if (!DataSource.listCustomers.Exists(x => x.Id == idCustomer))
                 throw new DoesntExistException("This customer doesn't exist");
@@ -407,11 +414,14 @@ namespace DalObject
             }
             return c;
         }
+        #endregion
+
+        #region Parcel
         /// <summary>
-        /// הדפסת חבילה אחת
+        /// תצוגת חבילה
         /// </summary>
-        /// <param name="idParcel"></param>
-        /// <returns></returns>
+        /// <param name="idParcel">מזהה חבילה</param>
+        /// <returns>חבילה</returns>
         public DO.Parcel GetParcel(int idParcel)//הדפסת חבילה
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -428,11 +438,16 @@ namespace DalObject
             }
             return p;
         }
+        #endregion
+
+        //-----------------------------------LIST-REQUEST-----------------------------------
+
+        #region Stations
         /// <summary>
-        /// פונמיתת הדפסת כל התחנות
+        /// תצוגת כל התחנות
         /// </summary>
-        /// <returns></returns>
-        public IEnumerable<DO.Station> GetStationList()//
+        /// <returns>רשימת כל התחנות</returns>
+        public IEnumerable<DO.Station> GetStationList()
         {
             return (from item in DataSource.listStations
                     select item).ToList();
@@ -445,10 +460,13 @@ namespace DalObject
             //}
             //return temp;
         }
+        #endregion
+
+        #region Drones
         /// <summary>
-        /// פונקציית הדפסת כל הרפנים
+        /// פונקציית תצוגת כל הרחפנים
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת כל הרחפנים</returns>
         public IEnumerable<DO.Drone> GetDroneList()
         {
             List<DO.Drone> temp = new List<DO.Drone>();
@@ -460,10 +478,13 @@ namespace DalObject
             }
             return temp;
         }
+        #endregion
+
+        #region Customers
         /// <summary>
-        /// פונקציית הדפסת כל לקוחות
+        /// פונקציית תצוגת כל הלקוחות
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת כל הלקוחות</returns>
         public IEnumerable<DO.Customer> GetCustomerList()
         {
             List<DO.Customer> temp = new List<DO.Customer>();
@@ -475,10 +496,13 @@ namespace DalObject
             }
             return temp;
         }
+        #endregion
+
+        #region Parcels
         /// <summary>
-        /// פונקציית הדפסת כל חבילות
+        /// פונקציית תצוגת כל החבילות
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת כל החבילות</returns>
         public IEnumerable<DO.Parcel> GetParcelList()
         {
             List<DO.Parcel> temp = new List<DO.Parcel>();
@@ -490,19 +514,25 @@ namespace DalObject
             }
             return temp;
         }
+        #endregion
+
+        #region DroneCharges
         /// <summary>
         /// תצוגת רשימת רחפנים בטעינה
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת רחפנים בטעינה</returns>
         public IEnumerable<DroneCharge> GetDroneChargesList()
         {
             return (from item in DataSource.listDroneCharges
                     select item).ToList();
         }
+        #endregion
+
+        #region Parcels no drone
         /// <summary>
-        /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
+        /// פונקציית תצוגת חבילות שעוד לא שויכו לרחפן 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
         public IEnumerable<DO.Parcel> GetParcelNoDroneList()
         {
             List<DO.Parcel> temp = new List<DO.Parcel>();
@@ -512,17 +542,18 @@ namespace DalObject
                 if (DataSource.listParcels[i].DroneId == 0)
                 {
                     temp.Add(DataSource.listParcels[i]);
-                    
-
                 }
 
             }
             return temp;
         }
+        #endregion
+
+        #region Available charging stations
         /// <summary>
-        /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
+        /// פונקציית תצוגת תחנות עם עמדות טעינה פנויות
         /// </summary>
-        /// <returns></returns>
+        /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         public IEnumerable<DO.Station> GetAvailableChargingStationsList()
         {
             List<DO.Station> temp = new List<DO.Station>();
@@ -537,6 +568,10 @@ namespace DalObject
             }
             return temp;
         }
+        #endregion
+
+
+
         /// <summary>
         /// פונקצייה המחזירה רשימת מספרים מזהים של רחפנים הנמצאים בתחנה כלשהי
         /// </summary>
