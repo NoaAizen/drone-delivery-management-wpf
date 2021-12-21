@@ -9,11 +9,19 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-
-    public class CustomerInParcel//לקוח ברשימה
+    /// <summary>
+    /// ישות לוגית לקוח בחבילה
+    /// </summary>
+    public class CustomerInParcel
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם לקוח
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם לקוח
+        /// </summary>
+        public string Name { get; set; }
 
         public override string ToString()
         {

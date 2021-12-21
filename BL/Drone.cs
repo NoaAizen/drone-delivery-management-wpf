@@ -8,15 +8,39 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית של רחפן
+    /// </summary>
     public class Drone
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Model { get; set; }// מודל רחפן
-        public WeightCategories MaxWeight { get; set; }// קטגוריית משקל
-        public StatusDrone Status { get; set; }// מצב רחפן
-        public double Battery { get; set; } // מצב סוללה
-        public ParcelInTransfer ParcelInTransfer { get; set; }//חבילה בהעברה
-        public Location CurrentLocation { get; set; }//מיקום נוכחי
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// מודל רחפן
+        /// </summary>
+        public string Model { get; set; }
+        /// <summary>
+        /// קטגוריית משקל
+        /// </summary>
+        public WeightCategories MaxWeight { get; set; }
+        /// <summary>
+        /// מצב רחפן
+        /// </summary>
+        public StatusDrone Status { get; set; }
+        /// <summary>
+        /// מצב סוללה
+        /// </summary>
+        public double Battery { get; set; }
+        /// <summary>
+        /// חבילה בהעברה
+        /// </summary>
+        public ParcelInTransfer ParcelInTransfer { get; set; }
+        /// <summary>
+        /// מיקום נוכחי
+        /// </summary>
+        public Location CurrentLocation { get; set; }
 
         public override string ToString()
         {

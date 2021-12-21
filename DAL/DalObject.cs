@@ -27,8 +27,13 @@ namespace DalObject
         //{
         //    DataSource.Config.Initialize();
         //}
+
+
+        //-----------------------------------ADD-----------------------------------
+
+        #region Station
         /// <summary>
-        /// פונקצית  הוספת רחפן לרשימת הרחפנים הקיימים 
+        //פונקצית הוספת תחנת בסיס לרשימת התחנות הקיימות 
         /// </summary>
         /// <param name="s"></param>
         public void AddStation(DO.Station s)
@@ -37,6 +42,9 @@ namespace DalObject
                 throw new AlreadyExistException("The station already exist");
             DataSource.listStations.Add(s);
         }
+        #endregion
+
+        #region Drone
         /// <summary>
         /// פונקצית הוספת רחפן לרשימת רחפנים 
         /// </summary>
@@ -47,6 +55,9 @@ namespace DalObject
                 throw new AlreadyExistException("The drone already exist");
             DataSource.listDrones.Add(d);
         }
+        #endregion
+
+        #region Customer
         /// <summary>
         ///  פונקציית קליטת לקוח חדש לרשימת הלקוחות 
         /// </summary>
@@ -57,6 +68,9 @@ namespace DalObject
                 throw new AlreadyExistException("The customers already exist");
             DataSource.listCustomers.Add(c);
         }
+        #endregion
+
+        #region Parcel
         /// <summary>
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
@@ -75,6 +89,11 @@ namespace DalObject
             DataSource.listParcels.Add(p);
             return p.Id;
         }
+        #endregion
+
+        //-----------------------------------UPDATE-----------------------------------
+
+        #region Drone
         /// <summary>
         /// עדכון מודל רחפן
         /// </summary>
@@ -89,6 +108,9 @@ namespace DalObject
             d.Model = model;
             DataSource.listDrones.Add(d);
         }
+        #endregion
+
+        #region Station
         /// <summary>
         /// עדכון נתוני תחנה
         /// </summary>
@@ -107,6 +129,9 @@ namespace DalObject
                 s.AvailableStations = totalChargingStations - GetDronesInStationId(id).Count();
             DataSource.listStations.Add(s);
         }
+        #endregion
+
+        #region Customer
         /// <summary>
         /// עדכון נתוני לקוח
         /// </summary>
@@ -125,6 +150,9 @@ namespace DalObject
                 c.Phone = phone;
             DataSource.listCustomers.Add(c);
         }
+        #endregion
+
+        #region Assignment
         /// <summary>
         /// פונקצית שיוך חבילה לרחפן 
         /// </summary>
@@ -150,6 +178,9 @@ namespace DalObject
                 }
             }
         }
+        #endregion
+
+        #region Collection
         /// <summary>
         /// פונקציית איסוף חבילה ע"י רחפן 
         /// </summary>
@@ -185,6 +216,9 @@ namespace DalObject
             //    }
             //}
         }
+        #endregion
+
+        #region Delivery
         /// <summary>
         /// פונקציית אספקת חבילה ללקוח 
         /// </summary>
@@ -222,6 +256,9 @@ namespace DalObject
                 }
             }
         }
+        #endregion
+
+        #region Charging
         /// <summary>
         /// פונקציית שליחת רחפן לטעינה בתחנת בסיס
         /// </summary>
@@ -256,7 +293,9 @@ namespace DalObject
             DO.DroneCharge dc = new() { DroneId = idDrone, StationId = idStation };
             DataSource.listDroneCharges.Add(dc);
         }
+        #endregion
 
+        #region Release
         /// <summary>
         /// פונקציית שחרור רחפן מטעינה בתחנת בסיס
         /// </summary>
@@ -300,6 +339,9 @@ namespace DalObject
                 }
             }
         }
+        #endregion
+
+        //-----------------------------------REQUEST-----------------------------------
 
         /// <summary>
         /// פונקציית להדפסה תחנה אחת

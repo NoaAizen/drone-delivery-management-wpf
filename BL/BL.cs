@@ -677,12 +677,12 @@ namespace BL
         /// פונקציית תצוגת כל הלקוחות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CustomertoList> GetCustomerList()
+        public IEnumerable<CustomerToList> GetCustomerList()
         {
-            List<CustomertoList> customers = new();
+            List<CustomerToList> customers = new();
             foreach(var customer in dalObj.GetCustomerList())
             {
-                CustomertoList blCustomer = new()
+                CustomerToList blCustomer = new()
                 {
                     Id = customer.Id,
                     Name = customer.Name,

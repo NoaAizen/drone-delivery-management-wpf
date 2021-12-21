@@ -8,17 +8,47 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class ParcelInTransfer//חבילה בהעברה
+    /// <summary>
+    /// ישות לוגית חבילה בהעברה
+    /// </summary>
+    public class ParcelInTransfer
     {
-        public int Id { get; set; }// מספר מזהה חבילה
-        public WeightCategories Weight { get; set; }// קטגורית משקל
-        public Priorities Priority { get; set; } // עדיפות
-        public bool ParcelStatus { get; set; }//מצב משלוח חבילה- ממתין לאיסוף \ בדרך ליעד
-        public CustomerInParcel CustomerInParcelSender { get; set; }//לקוח בחבילה- השולח
-        public CustomerInParcel CustomerInParcelRecipient { get; set; }//לקוח בחבילה -המקבל
-        public Location CollectionLocation { get; set; }// מיקום איסוף
-        public Location DeliveryDestinationLocation { get; set; }// מיקום יעד אספקה
-        public double TransportDistance { get; set; }//מרחק הובלה
+        /// <summary>
+        /// מספר מזהה חבילה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// קטגורית משקל
+        /// </summary>
+        public WeightCategories Weight { get; set; }
+        /// <summary>
+        /// עדיפות
+        /// </summary>
+        public Priorities Priority { get; set; }
+        /// <summary>
+        /// מצב משלוח חבילה- ממתין לאיסוף \ בדרך ליעד
+        /// </summary>
+        public bool ParcelStatus { get; set; }
+        /// <summary>
+        /// לקוח בחבילה- השולח
+        /// </summary>
+        public CustomerInParcel CustomerInParcelSender { get; set; }
+        /// <summary>
+        /// לקוח בחבילה -המקבל
+        /// </summary>
+        public CustomerInParcel CustomerInParcelRecipient { get; set; }
+        /// <summary>
+        /// מיקום איסוף
+        /// </summary>
+        public Location CollectionLocation { get; set; }
+        /// <summary>
+        /// מיקום יעד אספקה
+        /// </summary>
+        public Location DeliveryDestinationLocation { get; set; }
+        /// <summary>
+        /// מרחק הובלה
+        /// </summary>
+        public double TransportDistance { get; set; }
 
         public override string ToString()
         {

@@ -8,15 +8,39 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class CustomertoList//לקוח לרשימה
+    /// <summary>
+    /// ישות לוגית לקוח לרשימה
+    /// </summary>
+    public class CustomerToList
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם לקוח
-        public string Phone { get; set; }// מספר טלפון
-        public int NumberOfParcelSentAndDelivered { get; set; }//מספר חבילות ששלח וסופקו
-        public int NumberOfParcelSentButNotYetDelivered { get; set; }//מספר חבילות ששלח אך עוד לא סופקו
-        public int NumberOfParcelReceived { get; set; }//מספר חבילות שקיבל
-        public int NumberOfParcelOnTheWayToTheCustomer { get; set; }//מספר חבילות שבדרך אל הלקוח
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם לקוח
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// מספר טלפון
+        /// </summary>
+        public string Phone { get; set; }
+        /// <summary>
+        /// מספר חבילות ששלח וסופקו
+        /// </summary>
+        public int NumberOfParcelSentAndDelivered { get; set; }
+        /// <summary>
+        /// מספר חבילות ששלח אך עוד לא סופקו
+        /// </summary>
+        public int NumberOfParcelSentButNotYetDelivered { get; set; }
+        /// <summary>
+        /// מספר חבילות שקיבל
+        /// </summary>
+        public int NumberOfParcelReceived { get; set; }
+        /// <summary>
+        /// מספר חבילות שבדרך אל הלקוח
+        /// </summary>
+        public int NumberOfParcelOnTheWayToTheCustomer { get; set; }
 
         public override string ToString()
         {

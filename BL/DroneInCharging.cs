@@ -22,7 +22,12 @@ namespace BO
         /// <summary>
         /// מצב סוללה
         /// </summary>
-        public double Battery { get; set; } 
+        public double Battery { get; set; }
+
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }
 

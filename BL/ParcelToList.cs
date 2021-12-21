@@ -9,14 +9,35 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class ParcelToList//חבילה לרשימה
+    /// <summary>
+    /// ישות לוגית חבילה לרשימה
+    /// </summary>
+    public class ParcelToList
     {
-        public int Id { get; set; }// מספר מזהה חבילה
-        public string SenderName { get; set; }//שם לקוח שולח
-        public string RecipientName { get; set; }//שם לקוח מקבל
-        public WeightCategories Weight { get; set; }// קטגורית משקל
-        public Priorities Priority { get; set; } // עדיפות
-        public StatusParcel StatusParcel { get; set; } //מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
+        /// <summary>
+        /// מספר מזהה חבילה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם לקוח שולח
+        /// </summary>
+        public string SenderName { get; set; }
+        /// <summary>
+        /// שם לקוח מקבל
+        /// </summary>
+        public string RecipientName { get; set; }
+        /// <summary>
+        /// קטגורית משקל
+        /// </summary>
+        public WeightCategories Weight { get; set; }
+        /// <summary>
+        /// עדיפות
+        /// </summary>
+        public Priorities Priority { get; set; }
+        /// <summary>
+        /// מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
+        /// </summary>
+        public StatusParcel StatusParcel { get; set; } 
 
         public override string ToString()
         {

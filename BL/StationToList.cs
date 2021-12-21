@@ -9,12 +9,27 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית תחנה לרשימה
+    /// </summary>
     public class StationToList//תחנה לרשימה
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם תחנה
-        public int AvailableStations { get; set; }// מספר עמדות טעינה פנויות
-        public int NotAvailableStations { get; set; }// מספר עמדות טעינה תפוסות
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם תחנה
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// מספר עמדות טעינה פנויות
+        /// </summary>
+        public int AvailableStations { get; set; }
+        /// <summary>
+        /// מספר עמדות טעינה תפוסות
+        /// </summary>
+        public int NotAvailableStations { get; set; } 
 
         public override string ToString()
         {

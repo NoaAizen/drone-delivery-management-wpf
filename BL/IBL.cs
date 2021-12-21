@@ -121,7 +121,7 @@ namespace BlApi
         /// פונקציית תצוגת כל הלקוחות
         /// </summary>
         /// <returns></returns>
-        IEnumerable<CustomertoList> GetCustomerList();
+        IEnumerable<CustomerToList> GetCustomerList();
 
         /// <summary>
         /// פונקציית תצוגת רשימת החבילות

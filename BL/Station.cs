@@ -9,18 +9,31 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית של תחנה
+    /// </summary>
     public class Station
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם תחנה
-        public int AvailableStations { get; set; }// מספר עמודות הטענה
-        public Location Location { get; set; }//מיקום
-        public List<DroneInCharging> DroneInChargingsList { get; set; }//רשימת רחפנים בטעינה
-                                                                       //public override string ToString()
-                                                                       //{
-                                                                       //    return String.Format("Station- Id: {0}, Name: {1}, AvailableStations: {2}, Location: {3}"
-                                                                       //        , Id, Name, AvailableStations, Location);
-                                                                       //}
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם תחנה
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// מספר עמודות הטענה
+        /// </summary>
+        public int AvailableStations { get; set; }
+        /// <summary>
+        /// מיקום
+        /// </summary>
+        public Location Location { get; set; }
+        /// <summary>
+        /// רשימת רחפנים בטעינה
+        /// </summary>
+        public List<DroneInCharging> DroneInChargingsList { get; set; }
 
         public override string ToString()
         {

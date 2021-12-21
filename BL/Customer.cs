@@ -9,14 +9,35 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// ישות לוגית של לקוח
+    /// </summary>
     public class Customer
     {
-        public int Id { get; set; }// מספר מזהה
-        public string Name { get; set; }// שם לקוח
-        public string Phone { get; set; }// מספר טלפון
-        public Location Location { get; set; }//מיקום
-        public List<ParcelAtCustomer> ParcelAtCustomerFromCustomer { get; set; }//רשימת חבילות אצל לקוח מהלקוח
-        public List<ParcelAtCustomer> ParcelAtCustomerToCustomer { get; set; }//רשימת חבילות אצל לקוח אל הלקוח
+        /// <summary>
+        /// מספר מזהה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// שם לקוח
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// מספר טלפון
+        /// </summary>
+        public string Phone { get; set; }
+        /// <summary>
+        /// מיקום
+        /// </summary>
+        public Location Location { get; set; }
+        /// <summary>
+        /// רשימת חבילות אצל לקוח מהלקוח
+        /// </summary>
+        public List<ParcelAtCustomer> ParcelAtCustomerFromCustomer { get; set; }
+        /// <summary>
+        /// רשימת חבילות אצל לקוח אל הלקוח
+        /// </summary>
+        public List<ParcelAtCustomer> ParcelAtCustomerToCustomer { get; set; }
 
         public override string ToString()
         {

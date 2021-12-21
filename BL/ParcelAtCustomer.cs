@@ -9,13 +9,31 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class ParcelAtCustomer//חבילה אצל לקוח
+    /// <summary>
+    /// ישות לוגית חבילה אצל לקוח
+    /// </summary>
+    public class ParcelAtCustomer
     {
-        public int Id { get; set; }// מספר מזהה חבילה
-        public WeightCategories Weight { get; set; }// קטגורית משקל
-        public Priorities Priority { get; set; } // עדיפות
-        public StatusParcel StatusParcel { get; set; } //מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
-        public CustomerInParcel CustomerInParcel { get; set; }// לקוח בחבילה - המקור\היעד (הצד השני של המשלוחחבילה - המקבל עבור השולח והשולח עבור המקבל)
+        /// <summary>
+        /// מספר מזהה חבילה
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// קטגורית משקל
+        /// </summary>
+        public WeightCategories Weight { get; set; }
+        /// <summary>
+        /// עדיפות
+        /// </summary>
+        public Priorities Priority { get; set; }
+        /// <summary>
+        /// מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
+        /// </summary>
+        public StatusParcel StatusParcel { get; set; }
+        /// <summary>
+        ///  לקוח בחבילה - המקור\היעד : הצד השני של המשלוח - המקבל עבור השולח והשולח עבור המקבל
+        /// </summary>
+        public CustomerInParcel CustomerInParcel { get; set; }
 
         public override string ToString()
         {
