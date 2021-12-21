@@ -293,7 +293,11 @@ namespace PL
         {
             new ParcelInTransferWindow(bl,drone).Show();
         }
-     
+     /// <summary>
+     /// פונקציה של נעילה אירוע תעודת זהות בשביל הסופת נתונים
+     /// </summary>
+     /// <param name="sender"></param>
+     /// <param name="e"></param>
         private void IdClick(object sender, TextChangedEventArgs e)
         {
             if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
@@ -301,7 +305,11 @@ namespace PL
             else
                 AddNewDrone.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה של נעילה אירוע מודל בשביל הסופת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modelClick(object sender, TextChangedEventArgs e)
         {
 
@@ -310,7 +318,11 @@ namespace PL
             else
                 AddNewDrone.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה של נעילה אירוע משקל בשביל הסופת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void maxclick(object sender, SelectionChangedEventArgs e)
         {
 
@@ -319,7 +331,11 @@ namespace PL
             else
                 AddNewDrone.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה של נעילה אירוע תחנה בשביל הסופת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void stationidclick(object sender, TextChangedEventArgs e)
         {
             if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")

@@ -35,22 +35,22 @@
                 <ColumnDefinition Width="145*"/>
             </Grid.ColumnDefinitions >
             <Label Content="Id:" Grid.Column="0" Grid.Row="1" FontWeight="Bold" FontSize="14"/>
-            <Label Content="Id:" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Margin="48,0,145,0"/>
-            <Label Content="Id:" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3" Margin="48,38,145,38" Grid.RowSpan="3"/>
-            <Label Content="Name:" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Margin="48,37,145,0" Grid.RowSpan="2"/>
-            <Label Content="Name:" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="3" Margin="48,0,145,37" Grid.RowSpan="2"/>
+            <Label Content="Id:" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Margin="48,0,145,0" FontWeight="Bold"/>
+            <Label Content="Id:" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3" Margin="48,38,145,38" Grid.RowSpan="3" FontWeight="Bold"/>
+            <Label Content="Name:" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Margin="48,37,145,0" Grid.RowSpan="2" FontWeight="Bold"/>
+            <Label Content="Name:" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="3" Margin="48,0,145,37" Grid.RowSpan="2" FontWeight="Bold"/>
             <Label Content="Parcel status:" Grid.Column="0" Grid.Row="8" Margin="0,0,0,75" Grid.RowSpan="2" FontWeight="Bold" FontSize="14"/>
             <Label Content="Max weight:" Grid.Column="0" Grid.Row="2" Margin="0,38,0,38" Grid.RowSpan="3" FontSize="14" FontWeight="Bold"/>
             <Label Content="Priority:" Grid.Column="0" Grid.Row="5" FontSize="14" FontWeight="Bold"/>
             <Label Content="Transport distance:" Grid.Column="0" Grid.Row="6" Margin="0,38,0,38" Grid.RowSpan="3" FontSize="14" FontWeight="Bold"/>
-            <Label Content="Longitude:" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Margin="48,0,145,0"/>
-            <Label Content="Longitude:" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="3" Margin="48,38,145,38" Grid.RowSpan="3"/>
-            <Label Content="Latitude:" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Margin="48,37,145,0" Grid.RowSpan="2"/>
-            <Label Content="Latitude:" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="3" Margin="48,0,145,75" Grid.RowSpan="2"/>
-            <Label Content="Sender:" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"/>
-            <Label Content="Recipient:" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,38,0,38" Grid.RowSpan="3"/>
-            <Label Content="Collection location:" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2"/>
-            <Label Content="Target location:" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,38,0,38" Grid.RowSpan="3"/>
+            <Label Content="Longitude:" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Margin="48,0,145,0" FontWeight="Bold"/>
+            <Label Content="Longitude:" Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="3" Margin="48,38,145,0" Grid.RowSpan="3" FontWeight="Bold" Height="38" VerticalAlignment="Top"/>
+            <Label Content="Latitude:" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Margin="48,37,145,0" Grid.RowSpan="2" FontStyle="Italic" FontWeight="Bold"/>
+            <Label Content="Latitude:" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="3" Margin="48,0,145,75" Grid.RowSpan="2" FontWeight="Bold"/>
+            <Label Content="Sender:" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <Label Content="Recipient:" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,38,0,38" Grid.RowSpan="3" FontWeight="Bold"/>
+            <Label Content="Collection location:" Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="2" FontWeight="Bold"/>
+            <Label Content="Target location:" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,38,0,38" Grid.RowSpan="3" FontWeight="Bold"/>
 
             <TextBox x:Name="idText" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=Id}" Grid.ColumnSpan="3" Margin="145,0,73,0" />
             <TextBox x:Name="senderIdText" Grid.Column="6" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Path=Id}" />

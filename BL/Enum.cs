@@ -12,13 +12,26 @@ namespace BO
     /// <summary>
     /// enums
     /// </summary>
-    public enum WeightCategories { Light, Medium, Heavy }; // קטגוריית משקל- קל, ביניים, כבד
+    /// 
+    ///
 
-    public enum StatusDrone { Available, Maintenance, Delivery }; // מצב רחפן- פנוי, תחזוקה, משלוח
+    /// <summary>
+    ///   קטגוריית משקל- קל, ביניים, כבד
+    /// </summary
+    public enum WeightCategories { Light, Medium, Heavy }; // 
 
-    public enum Priorities { Normal, Fast, Emergency }; // עדיפות- רגיל, מהיר, חירום
-
-    public enum StatusParcel { Defined, Associated, Collected, Supplied }; // מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
+    /// <summary>
+    /// מצב רחפן- פנוי, תחזוקה, משלוח
+    /// </summary>
+    public enum StatusDrone { Available, Maintenance, Delivery }; // 
+    /// <summary>
+    /// עדיפות- רגיל, מהיר, חירום
+    /// </summary>
+    public enum Priorities { Normal, Fast, Emergency }; // 
+    /// <summary>
+    /// מצב חבילה -הוגדרה, שויכה, נאספה, סופקה
+    /// </summary>
+    public enum StatusParcel { Defined, Associated, Collected, Supplied }; 
 
 }
 

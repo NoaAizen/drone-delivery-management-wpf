@@ -8,6 +8,9 @@ using System.Runtime.Serialization;
 
 namespace DO
 {
+    /// <summary>
+    /// חריגת כבר קיים
+    /// </summary>
     [Serializable]
     public class AlreadyExistException : Exception
     {
@@ -17,6 +20,9 @@ namespace DO
         protected AlreadyExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 
+    /// <summary>
+    /// חריגה לא קיימת
+    /// </summary>
     [Serializable]
     public class DoesntExistException : Exception
     {

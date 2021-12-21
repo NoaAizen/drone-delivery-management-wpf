@@ -353,18 +353,24 @@ namespace DalObject
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))
                 throw new DoesntExistException("This station doesn't exist");
-            DO.Station s = new DO.Station();
-            for (int i = 0; i < DataSource.listStations.Count; i++)
-            {
-                if (DataSource.listStations[i].Id == idStation)
-                {
-                    s = DataSource.listStations[i];
-                    return s;
+              
+            return (from item in DataSource.listStations
+                   where item.Id==idStation
+                    select item).FirstOrDefault();
+            
+            
+            //DO.Station s = new DO.Station();
+            //for (int i = 0; i < DataSource.listStations.Count; i++)
+            //{
+            //    if (DataSource.listStations[i].Id == idStation)
+            //    {
+            //        s = DataSource.listStations[i];
+            //        return s;
 
-                }
+            //    }
 
-            }
-            return s;
+            //}
+            //return s;
         }
         #endregion
 
@@ -378,18 +384,25 @@ namespace DalObject
         {
             if (!DataSource.listDrones.Exists(x => x.Id == idDrone))
                 throw new DoesntExistException("This drone doesn't exist");
-            DO.Drone d = new DO.Drone();
-            for (int i = 0; i < DataSource.listDrones.Count; i++)
-            {
-                if (DataSource.listDrones[i].Id == idDrone)
-                {
-                    d = DataSource.listDrones[i];
-                    return d;
+           
+            return (from item in DataSource.listDrones
+                    where item.Id == idDrone
+                    select item).FirstOrDefault();
 
-                }
 
-            }
-            return d;
+
+            //DO.Drone d = new DO.Drone();
+            //for (int i = 0; i < DataSource.listDrones.Count; i++)
+            //{
+            //    if (DataSource.listDrones[i].Id == idDrone)
+            //    {
+            //        d = DataSource.listDrones[i];
+            //        return d;
+
+            //    }
+
+            //}
+            //return d;
         }
         #endregion
 
@@ -403,16 +416,21 @@ namespace DalObject
         {
             if (!DataSource.listCustomers.Exists(x => x.Id == idCustomer))
                 throw new DoesntExistException("This customer doesn't exist");
-            DO.Customer c = new DO.Customer();
-            for (int i = 0; i < DataSource.listCustomers.Count; i++)
-            {
-                if (DataSource.listCustomers[i].Id == idCustomer)
-                {
-                    c = DataSource.listCustomers[i];
-                    return c;
-                }
-            }
-            return c;
+            return (from item in DataSource.listCustomers
+                    where item.Id == idCustomer
+                    select item).FirstOrDefault();
+            
+            
+            //DO.Customer c = new DO.Customer();
+            //for (int i = 0; i < DataSource.listCustomers.Count; i++)
+            //{
+            //    if (DataSource.listCustomers[i].Id == idCustomer)
+            //    {
+            //        c = DataSource.listCustomers[i];
+            //        return c;
+            //    }
+            //}
+            //return c;
         }
         #endregion
 
@@ -426,17 +444,21 @@ namespace DalObject
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
                 throw new DoesntExistException("This parcel doesn't exist");
-            DO.Parcel p = new DO.Parcel();
-            for (int i = 0; i < DataSource.listParcels.Count; i++)
-            {
-                if (DataSource.listParcels[i].Id == idParcel)
-                {
-                    p = DataSource.listParcels[i];
-                    return p;
+            return (from item in DataSource.listParcels
+                    where item.Id == idParcel
+                    select item).FirstOrDefault();
 
-                }
-            }
-            return p;
+            //DO.Parcel p = new DO.Parcel();
+            //for (int i = 0; i < DataSource.listParcels.Count; i++)
+            //{
+            //    if (DataSource.listParcels[i].Id == idParcel)
+            //    {
+            //        p = DataSource.listParcels[i];
+            //        return p;
+
+            //    }
+            //}
+            //return p;
         }
         #endregion
 
@@ -469,14 +491,18 @@ namespace DalObject
         /// <returns>רשימת כל הרחפנים</returns>
         public IEnumerable<DO.Drone> GetDroneList()
         {
-            List<DO.Drone> temp = new List<DO.Drone>();
 
-            for (int i = 0; i < DataSource.listDrones.Count; i++)
-            {
+            return (from item in DataSource.listDrones
+                    select item).ToList();
 
-                temp.Add(DataSource.listDrones[i]);
-            }
-            return temp;
+            //List<DO.Drone> temp = new List<DO.Drone>();
+
+            //for (int i = 0; i < DataSource.listDrones.Count; i++)
+            //{
+
+            //    temp.Add(DataSource.listDrones[i]);
+            //}
+            //return temp;
         }
         #endregion
 
@@ -487,14 +513,16 @@ namespace DalObject
         /// <returns>רשימת כל הלקוחות</returns>
         public IEnumerable<DO.Customer> GetCustomerList()
         {
-            List<DO.Customer> temp = new List<DO.Customer>();
+            return (from item in DataSource.listCustomers
+                    select item).ToList();
+            //List<DO.Customer> temp = new List<DO.Customer>();
 
-            for (int i = 0; i < DataSource.listCustomers.Count; i++)
-            {
+            //for (int i = 0; i < DataSource.listCustomers.Count; i++)
+            //{
 
-                temp.Add(DataSource.listCustomers[i]);
-            }
-            return temp;
+            //    temp.Add(DataSource.listCustomers[i]);
+            //}
+            //return temp;
         }
         #endregion
 
@@ -505,14 +533,16 @@ namespace DalObject
         /// <returns>רשימת כל החבילות</returns>
         public IEnumerable<DO.Parcel> GetParcelList()
         {
-            List<DO.Parcel> temp = new List<DO.Parcel>();
+            return (from item in DataSource.listParcels
+                    select item).ToList();
+            //List<DO.Parcel> temp = new List<DO.Parcel>();
 
-            for (int i = 0; i < DataSource.listParcels.Count; i++)
-            {
+            //for (int i = 0; i < DataSource.listParcels.Count; i++)
+            //{
 
-                temp.Add(DataSource.listParcels[i]);
-            }
-            return temp;
+            //    temp.Add(DataSource.listParcels[i]);
+            //}
+            //return temp;
         }
         #endregion
 
@@ -535,17 +565,22 @@ namespace DalObject
         /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
         public IEnumerable<DO.Parcel> GetParcelNoDroneList()
         {
-            List<DO.Parcel> temp = new List<DO.Parcel>();
+            //List<DO.Parcel> temp = new List<DO.Parcel>();
 
-            for (int i = 0; i < DataSource.listParcels.Count; i++)
-            {
-                if (DataSource.listParcels[i].DroneId == 0)
-                {
-                    temp.Add(DataSource.listParcels[i]);
-                }
+            return (from item in DataSource.listParcels
+                    where item.DroneId==0
+                    select item).ToList();
 
-            }
-            return temp;
+
+            //for (int i = 0; i < DataSource.listParcels.Count; i++)
+            //{
+            //    if (DataSource.listParcels[i].DroneId == 0)
+            //    {
+            //        temp.Add(DataSource.listParcels[i]);
+            //    }
+
+            //}
+            //return temp;
         }
         #endregion
 
@@ -556,22 +591,26 @@ namespace DalObject
         /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         public IEnumerable<DO.Station> GetAvailableChargingStationsList()
         {
-            List<DO.Station> temp = new List<DO.Station>();
+            //List<DO.Station> temp = new List<DO.Station>();
 
-            for (int i = 0; i < DataSource.listStations.Count; i++)
-            {
-                if (DataSource.listStations[i].AvailableStations > 0)
-                {
-                    temp.Add(DataSource.listStations[i]);
-                    
-                }
-            }
-            return temp;
+            //for (int i = 0; i < DataSource.listStations.Count; i++)
+            //{
+            //    if (DataSource.listStations[i].AvailableStations > 0)
+            //    {
+            //        temp.Add(DataSource.listStations[i]);
+
+            //    }
+            //}
+            //return temp;
+            return (from item in DataSource.listStations
+                    where item.AvailableStations >0
+                    select item).ToList();
         }
         #endregion
 
+        //-----------------------------------HELP-METHODS-----------------------------------
 
-
+        #region GetDronesInStationId
         /// <summary>
         /// פונקצייה המחזירה רשימת מספרים מזהים של רחפנים הנמצאים בתחנה כלשהי
         /// </summary>
@@ -583,6 +622,9 @@ namespace DalObject
                     where item.StationId == stationId
                     select item.DroneId).ToList();
         }
+        #endregion
+
+        #region GetSenderParcels
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל החבילות שלקוח שלח
         /// </summary>
@@ -594,6 +636,9 @@ namespace DalObject
                     where item.SenderId == senderId
                     select item).ToList();
         }
+        #endregion
+
+        #region GetTargetParcels
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל החבילות שלקוח קיבל
         /// </summary>
@@ -605,6 +650,9 @@ namespace DalObject
                     where item.TargetId == targetId
                     select item).ToList();
         }
+        #endregion
+
+        #region PowerRequestToDrone
         /// <summary>
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>
@@ -615,13 +663,16 @@ namespace DalObject
                     DataSource.Config.mediumWeight, DataSource.Config.heavyWeight, DataSource.Config.chargingRate};
             return arr;
         }
+        #endregion
+
+        #region GetDroneList
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p)
         {
             return( from item in DataSource.listDrones
                     where p(item)
                     select item).ToList();
         }
-
+        #endregion
     }
 }
 

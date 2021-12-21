@@ -19,7 +19,7 @@ namespace BO
         protected AlreadyExistException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
     /// <summary>
-    /// חריגת לא קיים
+    /// חריגה לא קיימת
     /// </summary>
     [Serializable]
     public class DoesntExistException : Exception
