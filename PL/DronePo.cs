@@ -101,8 +101,7 @@ namespace PL
                 }
             }
         }
-        public int _ParcelTransferredNumber;
-
+        private int _ParcelTransferredNumber;
         public int ParcelTransferredNumber
         {
             get { return _ParcelTransferredNumber; }
@@ -115,9 +114,7 @@ namespace PL
                 }
             }
         }
-
-        public BO.ParcelInTransfer _ParcelInTransfer;
-
+        private BO.ParcelInTransfer _ParcelInTransfer;
         public BO.ParcelInTransfer ParcelInTransfer
         {
             get { return _ParcelInTransfer; }

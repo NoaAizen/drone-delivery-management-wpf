@@ -24,6 +24,7 @@ namespace PL
         private IBL bl;
         private StationToList selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
+        private StationPo stationPo;//שדה בשביל המרת מידע
 
         public Station(BlApi.IBL bl)
         {
@@ -40,6 +41,17 @@ namespace PL
             this.selectedItem = selectedItem;
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
+            BO.Station station = bl.GetStation(selectedItem.Id);
+            stationPo = new()
+            {
+                Id = station.Id,
+                Name = station.Name,
+                AvailableStations = station.AvailableStations,
+                Longitude = station.Location.Longitude,
+                Latitude = station.Location.Latitude
+            };
+            Actions.DataContext = stationPo;
+            
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)
