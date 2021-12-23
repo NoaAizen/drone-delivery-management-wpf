@@ -22,5 +22,6 @@
             </Button.Foreground>
         </Button>
         <Button Content="View the stations list" HorizontalAlignment="Left" Margin="415,353,0,0" VerticalAlignment="Top" Height="43" Width="123" Click="ShowStationsListClick"/>
+        <Button Content="customer" HorizontalAlignment="Left" Margin="139,241,0,0" VerticalAlignment="Top" Height="100" Width="254" Click="CustomerListClick"/>
     </Grid>
 </Window>
