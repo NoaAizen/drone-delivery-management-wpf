@@ -12,19 +12,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 namespace PL
 {
     /// <summary>
     /// Interaction logic for StationsList.xaml
     /// </summary>
     public partial class StationsList : Window
-    {//noa
+    {
         private IBL bl;
-
-        public StationsList(IBL bl)
+        private ObservableCollection<BO.StationToList> stations = new () ;
+       
+            public StationsList(IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
+            foreach(var item in bl.GetStationList())
+            {
+                stations.Add(item);
+            }
+            list.DataContext = stations;
         }
 
     }
