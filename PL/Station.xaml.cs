@@ -83,5 +83,24 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void UpdateClick(object sender, RoutedEventArgs e)
+        {
+            //notEnablFildes();
+            //modelText.IsEnabled = true;//עדכון של זמינות המודל
+            //drone.Model = modelText.Text;
+            //try
+            //{
+            //    bl.UpdateDroneModel(drone.Id, drone.Model);
+            //    convertToPo(drone, bl.GetDrone(drone.Id));
+            //    MessageBox.Show("sucssesed");
+            //    RefreshEvent(this, EventArgs.Empty);
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+        }
     }
 }

@@ -9,7 +9,7 @@
     <Grid x:Name="MainGrid">
 
         <Grid x:Name="AddStationGrid" Visibility="Hidden">
-        <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -78,6 +78,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Button x:Name="Update" Content="Update" Grid.Column="3" HorizontalAlignment="Center" Margin="0,22,0,0" Grid.Row="9" VerticalAlignment="Top" Height="43" Width="110" Click="UpdateClick"/>
 
             <!--<Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
