@@ -44,9 +44,9 @@ namespace PL
             new StationsList(bl).Show();
         }
 
-        private void CustomerListClicl(object sender, RoutedEventArgs e)
+        private void CustomerListClick(object sender, RoutedEventArgs e)
         {
-
+            new CustomerList(bl).Show();//noa
         }
     }
 }

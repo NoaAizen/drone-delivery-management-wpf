@@ -22,14 +22,12 @@ namespace PL
     {
         private IBL bl;
 
-        public CustomerList()
-        {
-            InitializeComponent();
-        }
 
         public CustomerList(IBL bl)
         {
             this.bl = bl;
+            InitializeComponent();
+
         }
     }
 }

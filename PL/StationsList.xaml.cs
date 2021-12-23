@@ -21,25 +21,25 @@ namespace PL
     /// </summary>
     public partial class StationsList : Window
     {
-        private IBL bl;
-        private ObservableCollection<StationToList> stations = new();
+        //private IBL bl;
+        //private ObservableCollection<StationToList> stations = new();
 
-        public StationsList(IBL bl)
-        {
-            InitializeComponent();
-            this.bl = bl;
-            foreach (var item in bl.GetStationList())
-            {
-                stations.Add(item);
-            }
-            stationsList.DataContext = stations;
-        }
+        //public StationsList(IBL bl)
+        //{
+        //    InitializeComponent();
+        //    this.bl = bl;
+        //    foreach (var item in bl.GetStationList())
+        //    {
+        //        stations.Add(item);
+        //    }
+        //    stationsList.DataContext = stations;
+        //}
 
-        private void GetActions(object sender, MouseButtonEventArgs e)
-        {
-            Station win = new Station(bl, (StationToList)stationsList.SelectedItem);
-            //win.RefreshEvent += Refresh;
-            win.Show();
-        }
+        //private void GetActions(object sender, MouseButtonEventArgs e)
+        //{
+        //    Station win = new Station(bl, (StationToList)stationsList.SelectedItem);
+        //    //win.RefreshEvent += Refresh;
+        //    win.Show();
+        //}
     }
 }
