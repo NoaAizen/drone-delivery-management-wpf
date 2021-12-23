@@ -1,0 +1,79 @@
+﻿<Window x:Class="PL.Customer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance}"
+        mc:Ignorable="d"
+        Title="Customer" Height="450" Width="800">
+    <Grid x:Name="MainGrid">
+        <Grid x:Name="Actions" Visibility="Hidden"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions >
+            <Label Content="Id:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Name:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Phone:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Longitude:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Latitude:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <TextBox x:Name="idText" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
+            <TextBox x:Name="NameText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Model}" />
+            <TextBox x:Name="PhoneText" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
+            <TextBox x:Name="longitudeText" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
+            <TextBox x:Name="latitudeText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
+            
+        </Grid>
+        <Grid x:Name="AddCustomerGrid" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions > 
+            <Label Content="Enter the details of the new customer:" HorizontalAlignment="Left" Margin="0,20,0,19" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
+                <Label Content="Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                <Label Content="Name:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                <Label Content="Phone:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                <Label Content="Longitude:" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                <TextBox x:Name="idteaxt" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextChanged="IdClick" />
+               <TextBox x:Name="nameteaxt" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3 " TextChanged="NameClick" />
+                <TextBox x:Name="latitudeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="5" TextChanged="LatitudetClick"/>
+              <TextBox x:Name="phoneeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" TextChanged="PhoneClick"/>
+               <TextBox x:Name="longitudetext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="6" TextChanged="LongitudClick"/>
+                <Button x:Name="AddNewCustomer" Content="Add customer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewCustomerClick"/>
+                <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
+        
+        </Grid>
+        </Grid>
+</Window>

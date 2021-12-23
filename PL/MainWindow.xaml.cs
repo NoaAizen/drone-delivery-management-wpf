@@ -46,7 +46,9 @@ namespace PL
 
         private void CustomerListClick(object sender, RoutedEventArgs e)
         {
-            new CustomerList(bl).Show();
+            new CustomerListsShow(bl).Show();
         }
+
+       
     }
 }

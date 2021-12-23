@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,7 @@ namespace BO
         /// רשימת חבילות אצל לקוח אל הלקוח
         /// </summary>
         public List<ParcelAtCustomer> ParcelAtCustomerToCustomer { get; set; }
+        public double Latitude { get; set; }
 
         public override string ToString()
         {

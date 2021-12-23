@@ -1,0 +1,148 @@
+﻿using BlApi;
+using BO;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+namespace PL
+{
+    /// <summary>
+    /// Interaction logic for Customer.xaml
+    /// </summary>
+    public partial class Customer : Window
+    {
+        public event EventHandler RefreshEvent;
+        private IBL bl;
+        private CustomerToList selectedItem;
+        BO.Customer c=new();
+        BO.Location L=new();
+        /// <summary>
+        ///פתיחה חלון של עדכון (על ידי רשימות).
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="selectedItem"></param>
+        public Customer(IBL bl, CustomerToList selectedItem)
+        {
+            InitializeComponent();
+            this.bl = bl;
+            this.selectedItem = selectedItem;
+            c = bl.GetCustomer(selectedItem.Id);
+            Actions.IsEnabled = true;
+            Actions.Visibility = Visibility.Visible;
+            //c.Id = selectedItem.Id;
+            //c.Name = selectedItem.Name;
+            //c.Phone = selectedItem.Phone;
+            ////c.Latitude = selectedItem.Location.Latitude;
+            latitudeText.DataContext = c;
+            //latitudeText.DataContext = c;
+            //latitudeText.DataContext = c;
+            //latitudeText.DataContext = c;
+
+        }
+        /// <summary>
+        /// פונקציה של פתחית חלון הוספה
+        /// </summary>
+        /// <param name="bl"></param>
+        public Customer(IBL bl)
+        {
+            InitializeComponent();
+            this.bl = bl;
+            AddCustomerGrid.Visibility = Visibility.Visible;
+            AddNewCustomer.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// הוספת נתונים ללקוח (הוספה נתונים)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddNewCustomerClick(object sender, RoutedEventArgs e)
+        {
+            int tempid = int.Parse(idteaxt.Text);
+            L.Latitude = double.Parse(longitudetext.Text);
+            L.Longitude = double.Parse(latitudeteaxt.Text);
+            c = new BO.Customer
+            {
+                Id = tempid,
+                Name = nameteaxt.Text,
+                Phone = phoneeteaxt.Text,
+                Location=L,
+            };
+            try
+            {
+                bl.AddCustomer(c);
+                MessageBox.Show("sucssesed");
+                this.Close();
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// לא לקבל נתונים בהוספת לקוח
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void IdClick(object sender, TextChangedEventArgs e)
+        {
+            if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
+                AddNewCustomer.IsEnabled = true;
+            else
+                AddNewCustomer.IsEnabled = false;
+        }
+
+        private void NameClick(object sender, TextChangedEventArgs e)
+        {
+            if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
+                AddNewCustomer.IsEnabled = true;
+            else
+                AddNewCustomer.IsEnabled = false;
+        }
+
+        private void LatitudetClick(object sender, TextChangedEventArgs e)
+        {
+
+            if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
+                AddNewCustomer.IsEnabled = true;
+            else
+                AddNewCustomer.IsEnabled = false;
+        }
+
+        private void PhoneClick(object sender, TextChangedEventArgs e)
+        {
+
+            if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
+                AddNewCustomer.IsEnabled = true;
+            else
+                AddNewCustomer.IsEnabled = false;
+        }
+
+        private void LongitudClick(object sender, TextChangedEventArgs e)
+        {
+            if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
+                AddNewCustomer.IsEnabled = true;
+            else
+                AddNewCustomer.IsEnabled = false;
+        }
+
+
+    }
+}

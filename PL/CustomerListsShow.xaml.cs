@@ -1,0 +1,56 @@
+﻿using BlApi;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+namespace PL
+{
+    /// <summary>
+    /// Interaction logic for CustomerListsShow.xaml
+    /// </summary>
+    public partial class CustomerListsShow : Window
+    {
+        private IBL bl;
+        private ObservableCollection<BO.CustomerToList> customers = new();
+        
+        public CustomerListsShow(IBL bl)
+        {
+            InitializeComponent();
+            this.bl = bl;
+            foreach (var item in bl.GetCustomerList())
+            {
+                customers.Add(item);
+            }
+            customerlist.DataContext = customers;
+        }
+
+        private void GetActionsCustomer(object sender, MouseButtonEventArgs e)
+        {
+            Customer win = new(bl, (BO.CustomerToList)customerlist.SelectedItem);
+            win.RefreshEvent += Refresh;
+            win.Show();
+        }
+        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        {
+            customerlist.ItemsSource = bl.GetCustomerList();
+
+        }
+
+        private void AddCustomerClick(object sender, RoutedEventArgs e)
+        {
+            Customer ADD = new Customer(bl);
+            ADD.RefreshEvent += Refresh;
+            ADD.Show();
+        }
+    }
+}
