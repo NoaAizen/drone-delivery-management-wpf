@@ -16,7 +16,7 @@
     </Window.Background>
 
     <Grid x:Name="MainGrid">
-        <Grid x:Name="AddDroneGrid" Visibility="ve"  >
+        <Grid x:Name="AddDroneGrid" Visibility="Hidden"  >
             <Label Content="Enter the details of the new drone:" HorizontalAlignment="Left" Margin="189,70,0,0" VerticalAlignment="Top" Width="425" FontSize="25" FontWeight="Bold"/>
             <TextBox x:Name="id" HorizontalAlignment="Left" Margin="317,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="IdClick"/>
             <TextBox x:Name="model" HorizontalAlignment="Left" Margin="314,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="modelClick" />
