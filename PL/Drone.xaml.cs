@@ -83,8 +83,6 @@ namespace PL
             {
                 ParcelTransfer.IsEnabled = true;
             }
-            
-            
 
         }
         /// <summary>

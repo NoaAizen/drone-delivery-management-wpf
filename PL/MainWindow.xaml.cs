@@ -43,5 +43,10 @@ namespace PL
         {
             new StationsList(bl).Show();
         }
+
+        private void CustomerListClicl(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
