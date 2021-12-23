@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance}"
+        xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:CustomerPo}"
         mc:Ignorable="d"
         Title="Customer" Height="450" Width="800">
     <Grid x:Name="MainGrid">
-        <Grid x:Name="Actions" Visibility="Hidden"  >
+        <Grid x:Name="Actions" Visibility="Visible"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>
@@ -27,53 +27,76 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions >
-            <Label Content="Id:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Name:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Phone:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Longitude:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Latitude:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Id:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Phone:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Longitude:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <TextBox x:Name="idText" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="NameText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Model}" />
-            <TextBox x:Name="PhoneText" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
+            <TextBox x:Name="NameText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Name}" />
+            <TextBox x:Name="PhoneText" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Phone}"/>
             <TextBox x:Name="longitudeText" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
             <TextBox x:Name="latitudeText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
-            
+            <Label Content="Longitude:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="parcels from customer:" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="parcels to customer:" Grid.Row= "6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1"/>
+            <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="9,56,4,37" Grid.RowSpan="5" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick">
+                <ListView.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.751"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-1.487"/>
+                    </TransformGroup>
+                </ListView.RenderTransform>
+            </ListView>
+            <ListView x:Name="ParcelAtCustomerToCustomer" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="1,9,1,2" ItemsSource="{Binding Path=ParcelAtCustomerToCustomer}" MouseDoubleClick="ParcelAtCustomerToCustomerClick">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button x:Name="Updat" Content="Update" Grid.Column="6" HorizontalAlignment="Left" Margin="2,15,0,0" Grid.Row="9" VerticalAlignment="Top" Height="41" Width="102" Click="UpdatClick"/>
+
         </Grid>
         <Grid x:Name="AddCustomerGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions > 
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
             <Label Content="Enter the details of the new customer:" HorizontalAlignment="Left" Margin="0,20,0,19" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
-                <Label Content="Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                <Label Content="Name:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                <Label Content="Phone:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                <Label Content="Longitude:" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                <TextBox x:Name="idteaxt" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextChanged="IdClick" />
-               <TextBox x:Name="nameteaxt" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3 " TextChanged="NameClick" />
-                <TextBox x:Name="latitudeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="5" TextChanged="LatitudetClick"/>
-              <TextBox x:Name="phoneeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" TextChanged="PhoneClick"/>
-               <TextBox x:Name="longitudetext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="6" TextChanged="LongitudClick"/>
-                <Button x:Name="AddNewCustomer" Content="Add customer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewCustomerClick"/>
-                <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
-        
+            <Label Content="Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Name:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Phone:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Longitude:" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <TextBox x:Name="idteaxt" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextChanged="IdClick" />
+            <TextBox x:Name="nameteaxt" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3 " TextChanged="NameClick" />
+            <TextBox x:Name="latitudeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="5" TextChanged="LatitudetClick"/>
+            <TextBox x:Name="phoneeteaxt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="4" TextChanged="PhoneClick"/>
+            <TextBox x:Name="longitudetext" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="6" TextChanged="LongitudClick"/>
+            <Button x:Name="AddNewCustomer" Content="Add customer" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewCustomerClick"/>
+            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
+
         </Grid>
-        </Grid>
+    </Grid>
 </Window>
