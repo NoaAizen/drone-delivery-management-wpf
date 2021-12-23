@@ -29,26 +29,26 @@ namespace PL
 
         public ParcelAtCustomerFromCustomer(IBL bl,CustomerPo customerpo)
         {
-            this.bl = bl;
-            InitializeComponent();
+        //    this.bl = bl;
+        //    InitializeComponent();
 
-            idText.DataContext = drone.ParcelInTransfer;
-            senderIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
-            recipientIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
+        //    idText.DataContext = drone.ParcelInTransfer;
+        //    senderIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
+        //    recipientIdText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
 
-            senderNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
-            recipientNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
+        //    senderNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelSender;
+        //    recipientNameText.DataContext = drone.ParcelInTransfer.CustomerInParcelRecipient;
 
-            TransportDistanceText.DataContext = drone.ParcelInTransfer;
-            senderLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
-            recipientLongitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
-            senderLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
-            recipientLatitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
-            PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
-            maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-            ParcelStatusText.IsChecked = drone.ParcelInTransfer.ParcelStatus;
-            maxWeightText.DataContext = drone.ParcelInTransfer;
-            PriorityText.DataContext = drone.ParcelInTransfer;
-        }
+        //    TransportDistanceText.DataContext = drone.ParcelInTransfer;
+        //    senderLongitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+        //    recipientLongitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
+        //    senderLatitudeText.DataContext = drone.ParcelInTransfer.CollectionLocation;
+        //    recipientLatitudeText.DataContext = drone.ParcelInTransfer.DeliveryDestinationLocation;
+        //    PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
+        //    maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+        //    ParcelStatusText.IsChecked = drone.ParcelInTransfer.ParcelStatus;
+        //    maxWeightText.DataContext = drone.ParcelInTransfer;
+        //    PriorityText.DataContext = drone.ParcelInTransfer;
+        //}
     }
 }
