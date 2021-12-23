@@ -74,6 +74,19 @@ namespace PL
                 }
             }
         }
+        private List<BO.DroneInCharging> droneInChargingsList;
+        public List<BO.DroneInCharging> DroneInChargingsList
+        {
+            get { return droneInChargingsList; }
+            set
+            {
+                droneInChargingsList = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("DroneInChargingsList"));
+                }
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
     

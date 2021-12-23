@@ -48,7 +48,8 @@ namespace PL
                 Name = station.Name,
                 AvailableStations = station.AvailableStations,
                 Longitude = station.Location.Longitude,
-                Latitude = station.Location.Latitude
+                Latitude = station.Location.Latitude,
+                DroneInChargingsList=station.DroneInChargingsList
             };
             Actions.DataContext = stationPo;
             
