@@ -38,8 +38,19 @@ namespace PL
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
             Station win = new Station(bl, (StationToList)stationsList.SelectedItem);
-            //win.RefreshEvent += Refresh;
+            win.RefreshEvent += Refresh;
             win.Show();
+        }
+
+        private void ShowAddStationWindow(object sender, RoutedEventArgs e)
+        {
+            Station win = new Station(bl);
+            win.RefreshEvent += Refresh;
+            win.Show();
+        }
+        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        {
+            stationsList.ItemsSource = bl.GetStationList();
         }
     }
 }

@@ -92,7 +92,6 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void AddNewDroneClick(object sender, RoutedEventArgs e)//
         {
-           
             int stationNumber = int.Parse(stationId.Text);
             DroneToList drone = new DroneToList()
             {

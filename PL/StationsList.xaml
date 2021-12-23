@@ -7,13 +7,32 @@
         mc:Ignorable="d"
         Title="StationsList" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="stationsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions"> 
-            <ListView.View> 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions >
+        <ListView x:Name="stationsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4">
+            <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="addStation" Content="Add new station" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow"/>
 
     </Grid>
 </Window>
