@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +22,24 @@ namespace PL
     public partial class StationsList : Window
     {
         private IBL bl;
-        private ObservableCollection<BO.StationToList> stations = new () ;
-       
-            public StationsList(IBL bl)
+        private ObservableCollection<StationToList> stations = new();
+
+        public StationsList(IBL bl)
         {
             InitializeComponent();
             this.bl = bl;
-            foreach(var item in bl.GetStationList())
+            foreach (var item in bl.GetStationList())
             {
                 stations.Add(item);
             }
-            list.DataContext = stations;
+            stationsList.DataContext = stations;
         }
 
+        private void GetActions(object sender, MouseButtonEventArgs e)
+        {
+            Station win = new Station(bl, (StationToList)stationsList.SelectedItem);
+            //win.RefreshEvent += Refresh;
+            win.Show();
+        }
     }
 }
