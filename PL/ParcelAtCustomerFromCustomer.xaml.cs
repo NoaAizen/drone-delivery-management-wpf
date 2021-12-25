@@ -35,13 +35,23 @@ namespace PL
             StatusParcelText.DataContext = Customerpo.ParcelAtCustomerFromCustomer;
             maxWeightText.DataContext = Customerpo.ParcelAtCustomerFromCustomer;
             PriorityText.DataContext = Customerpo.ParcelAtCustomerFromCustomer;
-            
-            
+
+            close.IsEnabled = true;
+            StatusParcelText.IsEnabled = false;
+            maxWeightText.IsEnabled = false;
+            idText.IsEnabled = false;
+            PriorityText.IsEnabled = false;
+            preclIdText.IsEnabled = false;
+            preclnameText.IsEnabled = false;
             
             //preclIdText.DataContext =bl.GetCustomer(Customerpo c)
             //    ;//לראות איך עושים את זה!
 
-            //  notEnablFildes();
+        }
+
+        private void CcloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
     }

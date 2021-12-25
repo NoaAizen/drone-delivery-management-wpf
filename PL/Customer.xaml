@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:CustomerPo}"
         mc:Ignorable="d"
         Title="Customer" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="image/1.jpg" />
+    </Window.Background>
     <Grid x:Name="MainGrid">
         <Grid x:Name="Actions" Visibility="Visible"  >
             <Grid.RowDefinitions>

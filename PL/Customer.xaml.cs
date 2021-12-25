@@ -42,11 +42,7 @@ namespace PL
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
 
-            foreach (var item in Customerpo.ParcelAtCustomerFromCustomer)
-            {
-                idtemp = item.CustomerInParcel.Id;
-            }
-
+            
 
 
 

@@ -52,5 +52,10 @@ namespace PL
             ADD.RefreshEvent += Refresh;
             ADD.Show();
         }
+
+        private void closeclick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using System;
+using BO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BO;
+
 namespace PL
 {
     /// <summary>
@@ -22,14 +23,35 @@ namespace PL
     {
         private IBL bl;
 
-        public ParcelAtCustomerToCustomer()
+       
+
+        public ParcelAtCustomerToCustomer(IBL bl, CustomerPo customerpo)
         {
             InitializeComponent();
+            this.bl = bl;
+            PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
+            StatusParcelText.ItemsSource = Enum.GetValues(typeof(StatusParcel));
+            maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            ParcelAtCustomerTOCustomers.DataContext = customerpo;
+            StatusParcelText.DataContext = customerpo.ParcelAtCustomerToCustomer;
+            maxWeightText.DataContext = customerpo.ParcelAtCustomerToCustomer;
+            PriorityText.DataContext = customerpo.ParcelAtCustomerToCustomer;
+            close.IsEnabled = true;
+            StatusParcelText.IsEnabled = false;
+            maxWeightText.IsEnabled = false;
+            idText.IsEnabled = false;
+            PriorityText.IsEnabled = false;
+            preclIdText.IsEnabled = false;
+            preclnameText.IsEnabled = false;
+            //preclIdText.DataContext =bl.GetCustomer(Customerpo c)
+            //    ;//לראות איך עושים את זה!
+
+
         }
 
-        public ParcelAtCustomerToCustomer(IBL bl, object customerpo)
+        private void CcloseClick(object sender, RoutedEventArgs e)
         {
-            this.bl = bl;
+            this.Close();
         }
     }
 }
