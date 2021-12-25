@@ -27,6 +27,11 @@ namespace BO
         {
             return this.ToStringProperty();
         }
+
+        public static explicit operator CustomerInParcel(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

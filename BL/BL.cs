@@ -1037,8 +1037,7 @@ namespace BL
                 status = StatusDrone.Available;
             return status;
         }
-       
-
+      
         //--------------------------------------- לממש!!!
 
         //לעדכון:

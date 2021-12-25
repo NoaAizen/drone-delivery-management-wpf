@@ -24,8 +24,8 @@ namespace PL
         public event EventHandler RefreshEvent;
         private IBL bl;
         private CustomerToList selectedItem;
-        BO.Customer c=new();
-        BO.Location L=new();
+        BO.Customer c = new();
+        BO.Location L = new();
         private CustomerPo Customerpo;
         /// <summary>
         ///פתיחה חלון של עדכון (על ידי רשימות).
@@ -35,13 +35,22 @@ namespace PL
         public Customer(IBL bl, CustomerToList selectedItem)
         {
             InitializeComponent();
-     
+
             this.bl = bl;
             this.selectedItem = selectedItem;
             c = bl.GetCustomer(selectedItem.Id);
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
-             Customerpo = new()
+
+            foreach (var item in Customerpo.ParcelAtCustomerFromCustomer)
+            {
+                idtemp = item.CustomerInParcel.Id;
+            }
+
+
+
+
+            Customerpo = new()
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -51,6 +60,7 @@ namespace PL
                 ParcelAtCustomerFromCustomer = c.ParcelAtCustomerFromCustomer,
                 ParcelAtCustomerToCustomer = c.ParcelAtCustomerToCustomer,
             };
+            
             Actions.DataContext = Customerpo;
             notEnablFildes();
             NameText.IsEnabled = true;//עדכון של זמינות המודל
@@ -68,6 +78,10 @@ namespace PL
             AddNewCustomer.IsEnabled = false;
         }
 
+        public Customer()
+        {
+        }
+
         /// <summary>
         /// הוספת נתונים ללקוח (הוספה נתונים)
         /// </summary>
@@ -83,7 +97,7 @@ namespace PL
                 Id = tempid,
                 Name = nameteaxt.Text,
                 Phone = phoneeteaxt.Text,
-                Location=L,
+                Location = L,
             };
             try
             {
@@ -166,8 +180,8 @@ namespace PL
 
             try
             {
-                bl.UpdateCustomer(Customerpo.Id,Customerpo.Name, Customerpo.Phone = PhoneText.Text);//האם מותר  לשנות ID
-            //    convertToPo(drone, bl.GetDrone(drone.Id));
+                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone = PhoneText.Text);//האם מותר  לשנות ID
+                                                                                                     //    convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");
                 RefreshEvent(this, EventArgs.Empty);
 
@@ -186,29 +200,13 @@ namespace PL
 
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {
-            new ParcelAtCustomerToCustomer(bl).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+            new ParcelAtCustomerToCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
         }
 
         private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
-            new ParcelAtCustomerFromCustomer(bl).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+            new ParcelAtCustomerFromCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+
         }
     }
-
-    /// <summary>
-    /// /פונקציה שעושה המרה בשביל הזרימת מידע
-    /// </summary>
-    /// <param name="dronePo">רחפן של PL</param>
-    /// <param name="d">רחפן של BO</param>
-    //public void convertToPo(DronePO dronePo, BO.Drone d)
-    //{
-    //    dronePo.Battery = d.Battery;
-    //    dronePo.Id = d.Id;
-    //    dronePo.Status = d.Status;
-    //    dronePo.MaxWeight = d.MaxWeight;
-    //    dronePo.Model = d.Model;
-    //    //dronePo.ParcelTransferredNumber = d.ParcelInTransfer.Id;
-    //    dronePo.Latitude = d.CurrentLocation.Latitude;
-    //    dronePo.Longitude = d.CurrentLocation.Longitude;
-    //}
 }

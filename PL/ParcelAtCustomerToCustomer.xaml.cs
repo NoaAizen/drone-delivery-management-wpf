@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BO;
 namespace PL
 {
     /// <summary>
@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
         }
 
-        public ParcelAtCustomerToCustomer(IBL bl)
+        public ParcelAtCustomerToCustomer(IBL bl, object customerpo)
         {
             this.bl = bl;
         }

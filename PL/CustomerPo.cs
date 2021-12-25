@@ -87,6 +87,7 @@ namespace PL
                 }
             }
         }
+
         private List<BO.ParcelAtCustomer> parcelAtCustomerToCustomer;
         public List<BO.ParcelAtCustomer> ParcelAtCustomerToCustomer
         {
