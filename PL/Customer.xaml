@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Grid x:Name="Actions" Visibility="Visible"  >
+        <Grid x:Name="Actions" Visibility="Hidden"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>

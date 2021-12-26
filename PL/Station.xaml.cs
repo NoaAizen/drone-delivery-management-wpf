@@ -41,6 +41,7 @@ namespace PL
             this.selectedItem = selectedItem;
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
+            notEnablFildes();
             BO.Station station = bl.GetStation(selectedItem.Id);
             stationPo = new()
             {
@@ -86,21 +87,41 @@ namespace PL
 
         private void UpdateClick(object sender, RoutedEventArgs e)
         {
-            //notEnablFildes();
-            //modelText.IsEnabled = true;//עדכון של זמינות המודל
-            //drone.Model = modelText.Text;
-            //try
-            //{
-            //    bl.UpdateDroneModel(drone.Id, drone.Model);
-            //    convertToPo(drone, bl.GetDrone(drone.Id));
-            //    MessageBox.Show("sucssesed");
-            //    RefreshEvent(this, EventArgs.Empty);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
+            stationPo.Name = nameText.Text;
+            int chargeSlots = int.Parse(chargeSlotsText.Text);
+            try
+            {
+                bl.UpdateStation(stationPo.Id, stationPo.Name, chargeSlots);
+                RefreshEvent(this, EventArgs.Empty);
+                convertToPo(stationPo, bl.GetStation(stationPo.Id));
+                MessageBox.Show("sucssesed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        /// <summary>
+        /// פונקציה להפעלת שדות להיות לא זמינים 
+        /// </summary>
+        public void notEnablFildes()//
+        {
+            idText.IsEnabled = false;
+            longitude.IsEnabled = false;
+            latitude.IsEnabled = false;
+        }
+        /// <summary>
+        /// /פונקציה שעושה המרה בשביל הזרימת מידע
+        /// </summary>
+        /// <param name="dronePo">רחפן של PL</param>
+        /// <param name="d">רחפן של BO</param>
+        public void convertToPo(StationPo stationPo, BO.Station s)
+        {
+            stationPo.Id = s.Id;
+            stationPo.Name = s.Name;
+            stationPo.AvailableStations = s.AvailableStations;
+            stationPo.Latitude = s.Location.Latitude;
+            stationPo.Longitude = s.Location.Longitude;
         }
     }
 }

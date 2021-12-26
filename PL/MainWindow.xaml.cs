@@ -49,6 +49,9 @@ namespace PL
             new CustomerListsShow(bl).Show();
         }
 
-       
+        private void ShowParcelsListClick(object sender, RoutedEventArgs e)
+        {
+            new ParcelsList(bl).Show();
+        }
     }
 }
