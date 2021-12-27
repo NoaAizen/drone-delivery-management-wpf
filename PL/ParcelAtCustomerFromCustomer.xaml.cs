@@ -43,9 +43,9 @@ namespace PL
             PriorityText.IsEnabled = false;
             preclIdText.IsEnabled = false;
             preclnameText.IsEnabled = false;
-            
-            //preclIdText.DataContext =bl.GetCustomer(Customerpo c)
-            //    ;//לראות איך עושים את זה!
+
+            //preclIdText.DataContext = Customerpo.ParcelAtCustomerToCustomer.
+            ////    ;//לראות איך עושים את זה!
 
         }
 

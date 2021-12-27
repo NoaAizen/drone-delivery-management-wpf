@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Icon="image/2.jpeg"
+        Icon="image/2.jpeg "
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Color x:Key="SolidColorBrushColor1">#FFAA0D0D</Color>
@@ -13,7 +13,7 @@
         <Color x:Key="SolidColorBrushColor3">#FF684564</Color>
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="image/1.jpg" />
+        <ImageBrush ImageSource="image/1.jpg"  />
     </Window.Background>
     <Grid>
         <Button Content="View the drones list" Margin="38,353,570,24" Click="ShowDronesButton_Click" FontSize="18" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold">
@@ -22,7 +22,21 @@
             </Button.Foreground>
         </Button>
         <Button Content="View the stations list" HorizontalAlignment="Left" Margin="415,353,0,0" VerticalAlignment="Top" Height="43" Width="123" Click="ShowStationsListClick"/>
-        <Button Content="customer" HorizontalAlignment="Left" Margin="266,241,0,0" VerticalAlignment="Top" Height="64" Width="127" Click="CustomerListClick"/>
-        <Button Content="View the parcels list" HorizontalAlignment="Left" Margin="266,118,0,0" VerticalAlignment="Top" Height="99" Width="272" Click="ShowParcelsListClick"/>
+        <Button Content="customer" HorizontalAlignment="Left" Margin="237,354,0,0" VerticalAlignment="Top" Height="64" Width="127" Click="CustomerListClick"/>
+        <Button Content="View the parcels list" HorizontalAlignment="Left" Margin="36,273,0,0" VerticalAlignment="Top" Height="60" Width="188" Click="ShowParcelsListClick"/>
+        <Image Margin="549,-13,32,216" Stretch="Fill" Source="image/4.png"/>
+        <Image Margin="12,22,268,402" Stretch="Fill" Source="/5.png"/>
+        <Image Margin="615,250,-116,178" Stretch="Fill" Source="/5.png" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.122"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+
     </Grid>
 </Window>
