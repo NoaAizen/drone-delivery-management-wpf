@@ -1,11 +1,11 @@
-﻿<Window x:Name="close" x:Class="PL.CustomerListsShow"
+﻿<Window x:Name="CustomerListsShow1" x:Class="PL.CustomerListsShow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CustomerListsShow" Height="450" Width="800" Activated="closeclick">
+        Title="CustomerListsShow" Height="450" Width="800"  >
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -25,8 +25,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Add " HorizontalAlignment="Left" Margin="17,1,0,0" Grid.Row="2" VerticalAlignment="Top" Height="37" Width="162" Click="AddCustomerClick"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="71,13,0,0" VerticalAlignment="Top"/>
+        <Button Content="Add a new customer" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch"  Click="AddCustomerClick"/>
+        <Button x:Name="Close" Content="Close" HorizontalAlignment="Left" Margin="-3,-2,0,0" VerticalAlignment="Top" Height="41" Width="95" Click="CloseClick"/>
 
     </Grid>
 

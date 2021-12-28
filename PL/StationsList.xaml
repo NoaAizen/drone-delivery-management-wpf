@@ -31,8 +31,18 @@
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Path=name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
         <Button x:Name="addStation" Content="Add new station" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Center" Height="47" Width="149" Click="hhh"/>
 
     </Grid>
 </Window>

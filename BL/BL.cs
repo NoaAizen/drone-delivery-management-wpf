@@ -793,7 +793,7 @@ namespace BL
                     where p(item)
                     select item).ToList();
         }
-
+    
         public IEnumerable<DO.DroneCharge> GetDroneChargesList()
         {
             return (from item in  dalObj.GetDroneChargesList()

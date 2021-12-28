@@ -53,9 +53,11 @@ namespace PL
             ADD.Show();
         }
 
-        private void closeclick(object sender, EventArgs e)
+      
+        private void CloseClick(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
+
         }
     }
 }

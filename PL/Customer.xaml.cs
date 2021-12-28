@@ -70,10 +70,7 @@ namespace PL
             AddNewCustomer.IsEnabled = false;
         }
 
-        public Customer()
-        {
-        }
-
+       
         /// <summary>
         /// הוספת נתונים ללקוח (הוספה נתונים)
         /// </summary>
@@ -194,6 +191,12 @@ namespace PL
         {
             BO.Parcel p = bl.GetParcel(selectedItem.Id);
             new Parcel(bl,p).Show();
+        }
+
+        private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.Parcel p = bl.GetParcel(selectedItem.Id);
+            new Parcel(bl, p).Show();
         }
     }
 }

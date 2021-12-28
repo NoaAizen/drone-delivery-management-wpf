@@ -23,6 +23,7 @@ namespace PL
     {
         private IBL bl;
         private ObservableCollection<StationToList> stations = new();
+        private CollectionView view;
 
         public StationsList(IBL bl)
         {
@@ -52,5 +53,12 @@ namespace PL
         {
             stationsList.ItemsSource = bl.GetStationList();
         }
+
+        //private void hhh(object sender, RoutedEventArgs e)
+        //{
+        //    view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
+        //    PropertyGroupDescription groupDescription = new PropertyGroupDescription(" FreeChargeSlots");
+        //    view.GroupDescriptions.Add(groupDescription);
+        //}
     }
 }

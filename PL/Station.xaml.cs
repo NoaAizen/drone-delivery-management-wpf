@@ -32,6 +32,7 @@ namespace PL
             this.bl = bl;
             AddStationGrid.IsEnabled = true;
             AddStationGrid.Visibility = Visibility.Visible;
+            AddNewStation.IsEnabled = false;
         }
 
         public Station(IBL bl, StationToList selectedItem)
@@ -50,10 +51,10 @@ namespace PL
                 AvailableStations = station.AvailableStations,
                 Longitude = station.Location.Longitude,
                 Latitude = station.Location.Latitude,
-                DroneInChargingsList=station.DroneInChargingsList
+                DroneInChargingsList = station.DroneInChargingsList
             };
             Actions.DataContext = stationPo;
-            
+
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)
@@ -122,6 +123,45 @@ namespace PL
             stationPo.AvailableStations = s.AvailableStations;
             stationPo.Latitude = s.Location.Latitude;
             stationPo.Longitude = s.Location.Longitude;
+        }
+        private void IdClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
+                AddNewStation.IsEnabled = true;
+            else
+                AddNewStation.IsEnabled = false;
+        }
+
+        private void NameClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
+                AddNewStation.IsEnabled = true;
+            else
+                AddNewStation.IsEnabled = false;
+        }
+
+        private void longitudeTextClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
+                AddNewStation.IsEnabled = true;
+            else
+                AddNewStation.IsEnabled = false;
+        }
+
+        private void latitudeTextClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
+                AddNewStation.IsEnabled = true;
+            else
+                AddNewStation.IsEnabled = false;
+        }
+
+        private void ChargeSlotsClick(object sender, TextChangedEventArgs e)
+        {
+            if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
+                AddNewStation.IsEnabled = true;
+            else
+                AddNewStation.IsEnabled = false;
         }
     }
 }
