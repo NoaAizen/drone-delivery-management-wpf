@@ -57,8 +57,9 @@ namespace PL
         private void hhh(object sender, RoutedEventArgs e)
         {
             view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Name");
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("NotAvailableStations");
             view.GroupDescriptions.Add(groupDescription);
+
         }
     }
 }

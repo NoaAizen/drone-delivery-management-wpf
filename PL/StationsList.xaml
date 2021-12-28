@@ -28,7 +28,10 @@
         <ListView x:Name="stationsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="AvailableStations" DisplayMemberBinding="{Binding AvailableStations}"/>
+                    <GridViewColumn Header="NotAvailableStations" DisplayMemberBinding="{Binding NotAvailableStations}"/>
                 </GridView>
             </ListView.View>
             <ListView.GroupStyle>

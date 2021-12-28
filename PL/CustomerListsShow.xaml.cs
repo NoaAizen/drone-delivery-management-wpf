@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Globalization;
 namespace PL
 {
     /// <summary>
@@ -22,7 +23,8 @@ namespace PL
     {
         private IBL bl;
         private ObservableCollection<BO.CustomerToList> customers = new();
-        
+        private CollectionView view;
+
         public CustomerListsShow(IBL bl)
         {
             InitializeComponent();
@@ -58,6 +60,26 @@ namespace PL
         {
             this.Close();
 
+        }
+
+        private void group(object sender, RoutedEventArgs e)
+        {
+            view = (CollectionView)CollectionViewSource.GetDefaultView(customerlist.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("NumberOfParcelReceived");
+            view.GroupDescriptions.Add(groupDescription);
+        }
+    }
+
+    public class convertToInt : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return 1; //int.Parse(value);
         }
     }
 }
