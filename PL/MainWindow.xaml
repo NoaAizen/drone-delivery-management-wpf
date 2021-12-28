@@ -13,7 +13,7 @@
     </Window.Resources>
 
     <Grid>
-        <Button Content="View the drones list" Margin="38,353,570,24" Click="ShowDronesButton_Click" FontSize="18" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+        <Button Content="View the drones list" Margin="250,276,358,101" Click="ShowDronesButton_Click" FontSize="18" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -26,8 +26,8 @@
                 <SolidColorBrush Color="{DynamicResource SolidColorBrushColor3}"/>
             </Button.Foreground>
         </Button>
-        <Button Content="View the stations list" HorizontalAlignment="Left" Margin="649,376,0,0" VerticalAlignment="Top" Height="43" Width="123" Click="ShowStationsListClick"/>
-        <Button Content="customer" HorizontalAlignment="Left" Margin="237,354,0,0" VerticalAlignment="Top" Height="64" Width="127" Click="CustomerListClick"/>
+        <Button Content="View the stations list" HorizontalAlignment="Left" Margin="617,262,0,0" VerticalAlignment="Top" Height="59" Width="144" Click="ShowStationsListClick"/>
+        <Button Content="View the customer list" HorizontalAlignment="Left" Margin="460,266,0,0" VerticalAlignment="Top" Height="64" Width="127" Click="CustomerListClick" RenderTransformOrigin="2.085,-0.758"/>
         <Button Content="View the parcels list" HorizontalAlignment="Left" Margin="36,273,0,0" VerticalAlignment="Top" Height="60" Width="188" Click="ShowParcelsListClick"/>
         <!--<Image Margin="205,11,217,1" Stretch="Fill" Source="image/4.png"/>-->
 

@@ -54,11 +54,11 @@ namespace PL
             stationsList.ItemsSource = bl.GetStationList();
         }
 
-        //private void hhh(object sender, RoutedEventArgs e)
-        //{
-        //    view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
-        //    PropertyGroupDescription groupDescription = new PropertyGroupDescription(" FreeChargeSlots");
-        //    view.GroupDescriptions.Add(groupDescription);
-        //}
+        private void hhh(object sender, RoutedEventArgs e)
+        {
+            view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Name");
+            view.GroupDescriptions.Add(groupDescription);
+        }
     }
 }
