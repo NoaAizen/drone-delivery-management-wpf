@@ -45,7 +45,7 @@
             </ListView.GroupStyle>
         </ListView>
         <Button x:Name="addStation" Content="Add new station" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Center" Height="47" Width="149" Click="hhh"/>
+        <Button x:Name="Grouping" Content="Grouping for Available Stations" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Center" Height="47" Width="224" Click="GroupingClick" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

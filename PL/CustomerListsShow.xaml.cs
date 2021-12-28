@@ -63,24 +63,8 @@ namespace PL
 
         }
 
-        private void group(object sender, RoutedEventArgs e)
-        {
-            view = (CollectionView)CollectionViewSource.GetDefaultView(customerlist.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("NumberOfParcelReceived");
-            view.GroupDescriptions.Add(groupDescription);
-        }
+      
     }
 
-    public class convertToInt : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value.ToString();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return 1; //int.Parse(value);
-        }
-    }
+   
 }

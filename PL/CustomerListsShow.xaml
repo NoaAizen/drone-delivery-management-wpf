@@ -24,22 +24,12 @@
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
-            <ListView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock FontWeight="Bold" FontSize="14" Text="{Binding NumberOfParcelSentAndDelivered}"/>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </ListView.GroupStyle>
+            
         </ListView>
         <Button Content="Add a new customer" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch"  Click="AddCustomerClick"/>
         <Button x:Name="Close" Content="Close" HorizontalAlignment="Left" Margin="-3,-2,0,0" VerticalAlignment="Top" Height="41" Width="95" Click="CloseClick"/>
         
-        <Button Content="Button"
-                Click="group" HorizontalAlignment="Left" Margin="364,1,0,0" VerticalAlignment="Top" Height="33"/>
-
+       
     </Grid>
 
 </Window>

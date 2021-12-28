@@ -47,6 +47,7 @@ namespace PL
         {
             Station win = new Station(bl);
             win.RefreshEvent += Refresh;
+            Grouping.IsEnabled = true;
             win.Show();
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
@@ -54,12 +55,17 @@ namespace PL
             stationsList.ItemsSource = bl.GetStationList();
         }
 
-        private void hhh(object sender, RoutedEventArgs e)
+        private void GroupingClick(object sender, RoutedEventArgs e)
         {
             view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("NotAvailableStations");
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("AvailableStations");
             view.GroupDescriptions.Add(groupDescription);
+            if (view.GroupDescriptions.Count == 1)
+            {
+                Grouping.IsEnabled = false;
+            }
 
         }
+
     }
 }
