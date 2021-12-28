@@ -23,6 +23,8 @@ namespace PL
     {
         private IBL bl;
         private ParcelToList selectedItem;
+        private BO.Parcel selectedItem1;
+
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         //private ParcelPo parcelPo;//שדה בשביל המרת מידע
 
@@ -41,6 +43,11 @@ namespace PL
             InitializeComponent();
             this.bl = bl;
             this.selectedItem = selectedItem;
+        }
+
+        public Parcel(IBL bl, BO.Parcel selectedItem1) : this(bl)
+        {
+            this.selectedItem1 = selectedItem1;
         }
 
         private void CloseClick(object sender, RoutedEventArgs e)

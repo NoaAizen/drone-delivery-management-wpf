@@ -192,7 +192,8 @@ namespace PL
 
         private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
-            new par
+            BO.Parcel p = bl.GetParcel(selectedItem.Id);
+            new Parcel(bl,p).Show();
         }
     }
 }
