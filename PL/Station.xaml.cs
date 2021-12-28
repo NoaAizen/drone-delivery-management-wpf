@@ -22,7 +22,7 @@ namespace PL
     public partial class Station : Window
     {
         private IBL bl;
-        private StationToList selectedItem;
+        private BO.Station selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private StationPo stationPo;//שדה בשביל המרת מידע
 
@@ -35,15 +35,16 @@ namespace PL
             AddNewStation.IsEnabled = false;
         }
 
-        public Station(IBL bl, StationToList selectedItem)
+        public Station(IBL bl, BO.Station station)
         {
+            
             InitializeComponent();
             this.bl = bl;
-            this.selectedItem = selectedItem;
+            this.selectedItem = station;
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
             notEnablFildes();
-            BO.Station station = bl.GetStation(selectedItem.Id);
+            //BO.Station station = bl.GetStation(selectedItem.Id);
             stationPo = new()
             {
                 Id = station.Id,
@@ -54,6 +55,7 @@ namespace PL
                 DroneInChargingsList = station.DroneInChargingsList
             };
             Actions.DataContext = stationPo;
+           
 
         }
 
@@ -162,6 +164,24 @@ namespace PL
                 AddNewStation.IsEnabled = true;
             else
                 AddNewStation.IsEnabled = false;
+        }
+
+        private void DroneChageClick(object sender, MouseButtonEventArgs e)
+        {
+            int id =((BO.DroneInCharging)DroneCharge.SelectedItem).Id;
+            BO.Drone drone = bl.GetDrone(id);
+            DroneToList droneToList = new()
+            {
+                Id = drone.Id,
+                Model = drone.Model,
+                MaxWeight = drone.MaxWeight,
+                Status = drone.Status,
+                Battery = drone.Battery,
+                ParcelInTransfer = drone.ParcelInTransfer,
+                CurrentLocation = drone.CurrentLocation,
+                //ParcelTransferredNumber = drone.ParcelInTransfer.Id
+            };
+            new Drone(bl, droneToList).Show();
         }
     }
 }

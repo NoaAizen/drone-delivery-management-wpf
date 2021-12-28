@@ -38,7 +38,8 @@ namespace PL
 
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
-            Station win = new Station(bl, (StationToList)stationsList.SelectedItem);
+            BO.Station station=bl.GetStation(((StationToList)stationsList.SelectedItem).Id);
+            Station win = new Station(bl, station);
             win.RefreshEvent += Refresh;
             win.Show();
         }
