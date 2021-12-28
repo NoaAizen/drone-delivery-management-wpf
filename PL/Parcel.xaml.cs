@@ -62,6 +62,10 @@ namespace PL
             PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             Actions.DataContext = parcelPo;
+            if (parcel.Scheduled == null || parcel.Delivered != null)
+                viewDrone.IsEnabled = false;
+            if (parcel.Scheduled != null)
+                Delete.IsEnabled = false;
         }
 
         //public Parcel(IBL bl, ParcelToList selectedItem)
@@ -141,9 +145,15 @@ namespace PL
 
         }
 
-        private void ViewCustomerClick(object sender, RoutedEventArgs e)
+        private void ViewSenderClick(object sender, RoutedEventArgs e)
         {
             BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelSender.Id);
+            new Customer(bl, customer).Show();
+        }
+
+        private void ViewRecipientClick(object sender, RoutedEventArgs e)
+        {
+            BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelRecipient.Id);
             new Customer(bl, customer).Show();
         }
 
@@ -161,7 +171,9 @@ namespace PL
                 CurrentLocation = drone.CurrentLocation,
                 ParcelTransferredNumber = drone.ParcelInTransfer.Id
             };
-            //new Drone()
+            new Drone(bl, droneToList).Show();
         }
+
+        
     }
 }

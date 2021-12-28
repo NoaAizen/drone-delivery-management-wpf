@@ -75,8 +75,9 @@
             <!--<Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />-->
             <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick" Grid.Column="0" Grid.Row="0"/>
             <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="DeleteClick" Grid.Column="4"/>
-            <Button x:Name="viewCustomer" Content="View customer" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ViewCustomerClick" Grid.Column="4"/>
-            <Button x:Name="viewDrone" Content="View drone" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="ViewDroneClick" Grid.Column="4"/>
+            <Button x:Name="viewSender" Content="View sender" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ViewSenderClick" Grid.Column="4"/>
+            <Button x:Name="viewRecipient" Content="View recipient" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Click="ViewRecipientClick" Grid.Column="4"/>
+            <Button x:Name="viewDrone" Content="View drone" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="ViewDroneClick" Grid.Column="4"/>
             <!--<Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
             <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">-->   
