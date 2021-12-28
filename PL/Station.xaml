@@ -74,7 +74,7 @@
             <TextBox x:Name="longitude" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3" Text="{Binding Path=Longitude}"/>
             <TextBox x:Name="latitude" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="4" Text="{Binding Path=Latitude}"/>
             <TextBox x:Name="chargeSlotsText" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="5" Text="{Binding Path=AvailableStations}"/>
-            <ListView Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,38,0,10" Grid.RowSpan="4" ItemsSource="{Binding Path=DroneInChargingsList}">
+            <ListView  x:Name="DroneCharge"   Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Margin="0,38,0,10" Grid.RowSpan="4" ItemsSource="{Binding Path=DroneInChargingsList}" MouseDoubleClick="DroneChageClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
