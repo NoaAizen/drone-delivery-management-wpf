@@ -673,6 +673,14 @@ namespace DalObject
                     select item).ToList();
         }
         #endregion
+        /// <summary>
+        /// מחיקת חבילה 
+        /// </summary>
+        /// <param name="parcel">חבילה למחיקה</param>
+        public void DeleteParcel(Parcel parcel)
+        {
+            DataSource.listParcels.Remove(parcel);
+        }
     }
 }
 

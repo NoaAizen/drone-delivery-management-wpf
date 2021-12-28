@@ -176,7 +176,11 @@ namespace DalApi
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
         double[] PowerRequestToDrone();
 
-
+        /// <summary>
+        /// מחיקת חבילה 
+        /// </summary>
+        /// <param name="parcel">חבילה למחיקה</param>
+        public void DeleteParcel(Parcel parcel);
 
 
 

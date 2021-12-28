@@ -148,7 +148,11 @@ namespace BlApi
         public IEnumerable<DroneToList> GetPartOfDroneList(Predicate<DroneToList> p);
         public IEnumerable<DO.DroneCharge> GetDroneChargesList();
 
-
+        /// <summary>
+        /// מחיקת חבילה 
+        /// </summary>
+        /// <param name="parcel">חבילה למחיקה</param>
+        public void DeleteParcel(Parcel parcel);
     }
 }
 

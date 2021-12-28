@@ -142,7 +142,10 @@ namespace PL
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-
+            bl.DeleteParcel(selectedItem);
+            RefreshEvent(this, EventArgs.Empty);
+            MessageBox.Show("sucssesed");
+            this.Close();
         }
 
         private void ViewSenderClick(object sender, RoutedEventArgs e)

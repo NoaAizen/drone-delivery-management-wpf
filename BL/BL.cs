@@ -1037,7 +1037,17 @@ namespace BL
                 status = StatusDrone.Available;
             return status;
         }
-      
+
+        /// <summary>
+        /// מחיקת חבילה 
+        /// </summary>
+        /// <param name="parcel">חבילה למחיקה</param>
+        public void DeleteParcel(Parcel parcel)
+        {
+            DO.Parcel dalParcel=dalObj.GetParcel(parcel.Id);
+            dalObj.DeleteParcel(dalParcel);
+        }
+
         //--------------------------------------- לממש!!!
 
         //לעדכון:
@@ -1047,5 +1057,6 @@ namespace BL
         //    DataSource.listDrones.Add(d);
     }
 
+    
 
 }
