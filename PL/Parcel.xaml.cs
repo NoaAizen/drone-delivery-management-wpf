@@ -22,11 +22,11 @@ namespace PL
     public partial class Parcel : Window
     {
         private IBL bl;
-        private ParcelToList selectedItem;
-        private BO.Parcel selectedItem1;
+        //private ParcelToList selectedItem;
+        private BO.Parcel selectedItem;
 
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
-        //private ParcelPo parcelPo;//שדה בשביל המרת מידע
+        private ParcelPo parcelPo;//שדה בשביל המרת מידע
 
         public Parcel(IBL bl)
         {
@@ -37,18 +37,64 @@ namespace PL
             priority.ItemsSource = Enum.GetValues(typeof(Priorities));
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
         }
-
-        public Parcel(IBL bl, ParcelToList selectedItem)
+        public Parcel(IBL bl, BO.Parcel parcel)
         {
             InitializeComponent();
             this.bl = bl;
-            this.selectedItem = selectedItem;
+            this.selectedItem = parcel;
+            Actions.IsEnabled = true;
+            Actions.Visibility = Visibility.Visible;
+            notEnablFildes();
+            //BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
+            parcelPo = new()
+            {
+                Id = parcel.Id,
+                CustomerInParcelSender = parcel.CustomerInParcelSender,
+                CustomerInParcelRecipient = parcel.CustomerInParcelRecipient,
+                Weight = parcel.Weight,
+                Priority = parcel.Priority,
+                DroneInParcel = parcel.DroneInParcel,
+                Requested = parcel.Requested,
+                Scheduled = parcel.Scheduled,
+                PickedUp = parcel.PickedUp,
+                Delivered = parcel.Delivered
+            };
+            PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
+            weightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            Actions.DataContext = parcelPo;
         }
 
-        public Parcel(IBL bl, BO.Parcel selectedItem1) : this(bl)
-        {
-            this.selectedItem1 = selectedItem1;
-        }
+        //public Parcel(IBL bl, ParcelToList selectedItem)
+        //{
+        //    InitializeComponent();
+        //    this.bl = bl;
+        //    this.selectedItem = selectedItem;
+        //    Actions.IsEnabled = true;
+        //    Actions.Visibility = Visibility.Visible;
+        //    notEnablFildes();
+        //    BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
+        //    parcelPo = new()
+        //    {
+        //        Id = parcel.Id,
+        //        CustomerInParcelSender = parcel.CustomerInParcelSender,
+        //        CustomerInParcelRecipient = parcel.CustomerInParcelRecipient,
+        //        Weight = parcel.Weight,
+        //        Priority = parcel.Priority,
+        //        DroneInParcel = parcel.DroneInParcel,
+        //        Requested = parcel.Requested,
+        //        Scheduled = parcel.Scheduled,
+        //        PickedUp = parcel.PickedUp,
+        //        Delivered = parcel.Delivered
+        //    };
+        //    PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
+        //    weightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+        //    Actions.DataContext = parcelPo;
+        //}
+
+        //public Parcel(IBL bl, BO.Parcel selectedItem1) : this(bl)
+        //{
+        //    this.selectedItem1 = selectedItem1;
+        //}
 
         private void CloseClick(object sender, RoutedEventArgs e)
         {
@@ -75,6 +121,47 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        /// <summary>
+        /// פונקציה להפעלת שדות להיות לא זמינים 
+        /// </summary>
+        public void notEnablFildes()//
+        {
+            idText.IsEnabled = false;
+            requestedText.IsEnabled = false;
+            scheduledText.IsEnabled = false;
+            pickedUpText.IsEnabled = false;
+            weightText.IsEnabled = false;
+            deliveredText.IsEnabled = false;
+            PriorityText.IsEnabled = false;
+        }
+
+        private void DeleteClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ViewCustomerClick(object sender, RoutedEventArgs e)
+        {
+            BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelSender.Id);
+            new Customer(bl, customer).Show();
+        }
+
+        private void ViewDroneClick(object sender, RoutedEventArgs e)
+        {
+            BO.Drone drone = bl.GetDrone(selectedItem.DroneInParcel.Id);
+            DroneToList droneToList = new()
+            {
+                Id = drone.Id,
+                Model = drone.Model,
+                MaxWeight = drone.MaxWeight,
+                Status = drone.Status,
+                Battery = drone.Battery,
+                ParcelInTransfer = drone.ParcelInTransfer,
+                CurrentLocation = drone.CurrentLocation,
+                ParcelTransferredNumber = drone.ParcelInTransfer.Id
+            };
+            //new Drone()
         }
     }
 }

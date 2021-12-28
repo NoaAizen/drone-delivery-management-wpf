@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL"
+        xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:ParcelPo}"
         mc:Ignorable="d"
         Title="Parcel" Height="450" Width="800">
     <Grid>
@@ -66,21 +66,20 @@
             <Label Content="PickedUp:" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Delivered:" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <TextBox x:Name="idText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="requestedText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
-            <TextBox x:Name="scheduledText" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
-            <TextBox x:Name="pickedUpText" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
-            <TextBox x:Name="deliveredText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=ParcelTransferredNumber}" />
-            <ComboBox x:Name="weightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
-            <ComboBox x:Name="PriorityText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
-            <!--<Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
-            <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
-            <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4"/>
-            <Button x:Name="Release" Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4"/>
-            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
-            <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
+            <TextBox x:Name="requestedText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Requested}"/>
+            <TextBox x:Name="scheduledText" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Scheduled}" />
+            <TextBox x:Name="pickedUpText" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=PickedUp}"/>
+            <TextBox x:Name="deliveredText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Delivered}" />
+            <ComboBox x:Name="weightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
+            <ComboBox x:Name="PriorityText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
+            <!--<Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />-->
+            <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick" Grid.Column="0" Grid.Row="0"/>
+            <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="DeleteClick" Grid.Column="4"/>
+            <Button x:Name="viewCustomer" Content="View customer" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ViewCustomerClick" Grid.Column="4"/>
+            <Button x:Name="viewDrone" Content="View drone" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="ViewDroneClick" Grid.Column="4"/>
+            <!--<Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">-->
-                
+            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">-->   
             <!--</Button>-->
         </Grid>
     </Grid>

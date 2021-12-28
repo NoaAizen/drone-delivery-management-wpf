@@ -23,22 +23,53 @@ namespace PL
     {
         public event EventHandler RefreshEvent;
         private IBL bl;
-        private CustomerToList selectedItem;
+        private BO.Customer selectedItem;
         BO.Customer c = new();
         BO.Location L = new();
         private CustomerPo Customerpo;
+        ///// <summary>
+        /////פתיחה חלון של עדכון (על ידי רשימות).
+        ///// </summary>
+        ///// <param name="bl"></param>
+        ///// <param name="selectedItem"></param>
+        //public Customer(IBL bl, CustomerToList selectedItem)
+        //{
+        //    InitializeComponent();
+
+        //    this.bl = bl;
+        //    this.selectedItem = selectedItem;
+        //    c = bl.GetCustomer(selectedItem.Id);
+        //    Actions.IsEnabled = true;
+        //    Actions.Visibility = Visibility.Visible;
+
+        //    Customerpo = new()
+        //    {
+        //        Id = c.Id,
+        //        Name = c.Name,
+        //        Phone = c.Phone,
+        //        Latitude = c.Location.Latitude,
+        //        Longitude = c.Location.Longitude,
+        //        ParcelAtCustomerFromCustomer = c.ParcelAtCustomerFromCustomer,
+        //        ParcelAtCustomerToCustomer = c.ParcelAtCustomerToCustomer,
+        //    };
+            
+        //    Actions.DataContext = Customerpo;
+        //    notEnablFildes();
+        //    NameText.IsEnabled = true;//עדכון של זמינות המודל
+        //    PhoneText.IsEnabled = true;
+        //}
         /// <summary>
         ///פתיחה חלון של עדכון (על ידי רשימות).
         /// </summary>
         /// <param name="bl"></param>
         /// <param name="selectedItem"></param>
-        public Customer(IBL bl, CustomerToList selectedItem)
+        public Customer(IBL bl, BO.Customer c)
         {
             InitializeComponent();
 
             this.bl = bl;
-            this.selectedItem = selectedItem;
-            c = bl.GetCustomer(selectedItem.Id);
+            this.selectedItem = c;
+            //c = bl.GetCustomer(selectedItem.Id);
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
 
@@ -52,7 +83,7 @@ namespace PL
                 ParcelAtCustomerFromCustomer = c.ParcelAtCustomerFromCustomer,
                 ParcelAtCustomerToCustomer = c.ParcelAtCustomerToCustomer,
             };
-            
+
             Actions.DataContext = Customerpo;
             notEnablFildes();
             NameText.IsEnabled = true;//עדכון של זמינות המודל

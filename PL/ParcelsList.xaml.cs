@@ -45,7 +45,8 @@ namespace PL
 
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
-            Parcel win = new Parcel(bl, (ParcelToList)parcelsList.SelectedItem);
+            BO.Parcel parcel = bl.GetParcel(((ParcelToList)parcelsList.SelectedItem).Id);
+            Parcel win = new Parcel(bl, parcel);
             win.RefreshEvent += Refresh;
             win.Show();
         }

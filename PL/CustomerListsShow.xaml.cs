@@ -38,7 +38,8 @@ namespace PL
 
         private void GetActionsCustomer(object sender, MouseButtonEventArgs e)
         {
-            Customer win = new(bl, (BO.CustomerToList)customerlist.SelectedItem);
+            BO.Customer customer = bl.GetCustomer(((BO.CustomerToList)customerlist.SelectedItem).Id);
+            Customer win = new(bl, customer);
             win.RefreshEvent += Refresh;
             win.Show();
         }
