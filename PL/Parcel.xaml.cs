@@ -171,7 +171,7 @@ namespace PL
                 CurrentLocation = drone.CurrentLocation,
                 ParcelTransferredNumber = drone.ParcelInTransfer.Id
             };
-            new Drone(bl, droneToList).Show();
+            new Drone(bl, droneToList).Show();//חג שמח
         }
 
         
