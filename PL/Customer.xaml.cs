@@ -190,18 +190,9 @@ namespace PL
             latitudeText.IsEnabled = false;
         }
 
-        //private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    new ParcelAtCustomerToCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
-        //}
-
-        private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)//לשלוח את תעודת זהות של החבילה שיצרנו
+        private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
-         int id=Customer.
-            new ParcelAtCustomerFromCustomer(bl, id).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
-
-
-
+            new par
         }
     }
 }

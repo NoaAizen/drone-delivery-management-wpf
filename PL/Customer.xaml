@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Grid x:Name="Actions" Visibility="Hidden"  >
+        <Grid x:Name="Actions" Visibility="Visible"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>
@@ -47,7 +47,7 @@
             <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="parcels from customer:" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="parcels to customer:" Grid.Row= "6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1"/>
-            <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="9,56,4,12" Grid.RowSpan="6" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick">
+            <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="9,56,4,12" Grid.RowSpan="6" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick"  >
                 <ListView.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -57,7 +57,7 @@
                     </TransformGroup>
                 </ListView.RenderTransform>
             </ListView>
-            <ListView x:Name="ParcelAtCustomerToCustomer" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="1,9,1,21" ItemsSource="{Binding Path=ParcelAtCustomerToCustomer}" MouseDoubleClick="ParcelAtCustomerToCustomerClick">
+            <ListView x:Name="ParcelAtCustomerToCustomer" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="1,9,1,21" ItemsSource="{Binding Path=ParcelAtCustomerToCustomer}" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
