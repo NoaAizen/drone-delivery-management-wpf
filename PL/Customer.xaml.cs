@@ -42,10 +42,6 @@ namespace PL
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
 
-            
-
-
-
             Customerpo = new()
             {
                 Id = c.Id,
@@ -194,14 +190,17 @@ namespace PL
             latitudeText.IsEnabled = false;
         }
 
-        private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
-        {
-            new ParcelAtCustomerToCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
-        }
+        //private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    new ParcelAtCustomerToCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+        //}
 
-        private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
+        private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)//לשלוח את תעודת זהות של החבילה שיצרנו
         {
-            new ParcelAtCustomerFromCustomer(bl, Customerpo).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+         int id=Customer.
+            new ParcelAtCustomerFromCustomer(bl, id).Show();//מה לעשות שאין נתונים ואז זה עדייו נותן לללחוץ
+
+
 
         }
     }

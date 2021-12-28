@@ -280,7 +280,7 @@ namespace BL
         public void SendingDroneForCharging(int id)
         {
             DroneToList drone = DronesList.Find(x => x.Id == id);
-            if (drone.Status == 0 && drone.Battery >= 20)//אם הרחפן פנוי ויש מספיק סוללה
+            if (drone.Status == 0 && drone.Battery >= 20)//אם הרחפן פנוי ויש מספיק סוללה-
             {
                 int stationId = findClosestStationWithAvailableChargeSlots(id);
                 try
@@ -330,7 +330,7 @@ namespace BL
                 throw new DoesntExistException(ex.Message, ex);
             }
             DronesList.Remove(drone);
-            drone.Battery = 100;
+            drone.Battery = 100;//בטרי קודם +קצב טעינה*זמן טעינה
             drone.Status = 0;
             DronesList.Add(drone);
         }

@@ -44,7 +44,7 @@ namespace PL
             preclIdText.IsEnabled = false;
             preclnameText.IsEnabled = false;
 
-            //preclIdText.DataContext = Customerpo.ParcelAtCustomerToCustomer.
+        //    preclIdText.DataContext = Customerpo.ParcelAtCustomerToCustomer.
             ////    ;//לראות איך עושים את זה!
 
         }
