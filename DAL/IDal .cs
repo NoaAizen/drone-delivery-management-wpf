@@ -188,6 +188,7 @@ namespace DalApi
 
 
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p);
+        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate);
     }
 }
 

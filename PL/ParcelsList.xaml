@@ -29,6 +29,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions >
+        <ComboBox x:Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelectorSelectionChanged" RenderTransformOrigin="-0.268,0.01" Grid.ColumnSpan="2" Margin="8,0,52,0"/>
+        <Label Content="Parcel status:" Grid.Column="0" FontSize="20" Margin="33,12,10,10" FontWeight="Bold"/>
         <ListView x:Name="parcelsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4">
             <ListView.View>
                 <GridView>

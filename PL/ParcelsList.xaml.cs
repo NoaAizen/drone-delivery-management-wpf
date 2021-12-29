@@ -34,6 +34,7 @@ namespace PL
                 parcels.Add(item);
             }
             parcelsList.DataContext = parcels;
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(StatusParcel));
         }
 
         private void ShowAddParcelWindow(object sender, RoutedEventArgs e)
@@ -53,6 +54,20 @@ namespace PL
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
             parcelsList.ItemsSource = bl.GetParcelList();
+        }
+
+        private void StatusSelectorSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StatusSelector.SelectedItem == null)
+            {
+                parcelsList.ItemsSource = bl.GetParcelList();
+            }
+            else
+            {
+                StatusParcel status = (StatusParcel)StatusSelector.SelectedItem;
+                parcelsList.ItemsSource = bl.GetParcelList(x => x.StatusParcel == status);
+            }
+
         }
     }
 }

@@ -711,6 +711,15 @@ namespace BL
         public IEnumerable<ParcelToList> GetParcelList()
         {
             List<ParcelToList> parcels = new();
+            //List<Parcel> dalParcels = new();
+            //if(predicate==null)
+            //{
+            //    dalParcels = (List<Parcel>)dalObj.GetParcelList();
+            //}
+            //else
+            //{
+            //    dalParcels= (List<Parcel>)dalObj.GetParcelList(predicate);
+            //}
             int senderId, targetId;
             foreach (var item in dalObj.GetParcelList())
             {
@@ -793,7 +802,14 @@ namespace BL
                     where p(item)
                     select item).ToList();
         }
-    
+        public IEnumerable<ParcelToList> GetParcelList(Predicate<ParcelToList> predicate)
+        {
+            return (from item in GetParcelList()
+                    where predicate(item)
+                    select item).ToList();
+        }
+
+
         public IEnumerable<DO.DroneCharge> GetDroneChargesList()
         {
             return (from item in  dalObj.GetDroneChargesList()

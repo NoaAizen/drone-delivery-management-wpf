@@ -672,6 +672,12 @@ namespace DalObject
                     where p(item)
                     select item).ToList();
         }
+        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate)
+        {
+            return (from item in DataSource.listParcels
+                    where predicate(item)
+                    select item).ToList();
+        }
         #endregion
         /// <summary>
         /// מחיקת חבילה 
