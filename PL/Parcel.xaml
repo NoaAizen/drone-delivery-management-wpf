@@ -35,14 +35,14 @@
             <Label Content="Recipient Id:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Weight:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Priority:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <TextBox x:Name="senderId" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
-            <TextBox x:Name="recipientId" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3" />
-            <ComboBox x:Name="weight" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="4" />
-            <ComboBox x:Name="priority" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="5" />
+            <TextBox x:Name="senderId" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextChanged="SenderIdClick" />
+            <TextBox x:Name="recipientId" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3" TextChanged="recipientIdClick" />
+            <ComboBox x:Name="weight" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="4" SelectionChanged="WeightClick" />
+            <ComboBox x:Name="priority" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="5" SelectionChanged="PriorityClick"  />
             <Button x:Name="AddNewParcel" Content="Add parcel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewParcelClick"/>
             <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
         </Grid>
-        <Grid x:Name="Actions" Visibility="Visible">
+        <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>

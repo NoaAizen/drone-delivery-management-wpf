@@ -29,7 +29,7 @@
             <Label Content="Station id:" HorizontalAlignment="Left" Margin="179,264,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" />
             <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Left" Margin="259,319,0,0" VerticalAlignment="Top" Click="CloseClick" Height="40" Width="121" FontWeight="Heavy"/>
         </Grid>
-        <Grid x:Name="Actions" Visibility="Visible">
+        <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>

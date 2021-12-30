@@ -24,20 +24,31 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions >
-        <ComboBox x:Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelectorSelectionChanged" RenderTransformOrigin="-0.268,0.01" Grid.ColumnSpan="2" Margin="8,0,52,0"/>
-        <Label Content="Parcel status:" Grid.Column="0" FontSize="20" Margin="33,12,10,10" FontWeight="Bold"/>
+        <ComboBox x:Name="StatusSelector" Grid.Column="2"  SelectionChanged="StatusSelectorSelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="163,9,51,37" Grid.ColumnSpan="2"/>
+        <Label Grid.Column="0" FontSize="20" Margin="33,12,10,10" FontWeight="Bold">
+            <Button x:Name="Grouping" Content="Grouping for Sender Id" Click="GroupingClick" Height="47" Width="243" />
+        </Label>
         <ListView x:Name="parcelsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="Name" FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
         </ListView>
-        <Button x:Name="addParcel" Content="Add new parcel" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddParcelWindow"/>
+        <Button x:Name="addParcel" Content="Add new parcel" Grid.Row="9" Grid.ColumnSpan="4" FontSize="20" FontWeight="Bold" Click="ShowAddParcelWindow"/>
     </Grid>
 </Window>

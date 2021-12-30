@@ -22,6 +22,7 @@ namespace PL
     public partial class Customer : Window
     {
         public event EventHandler RefreshEvent;
+        public event EventHandler RefreshEventWin;
         private IBL bl;
         private BO.Customer selectedItem;
         BO.Customer c = new();
@@ -101,7 +102,11 @@ namespace PL
             AddNewCustomer.IsEnabled = false;
         }
 
-       
+        public Customer()
+        {
+        }
+
+
         /// <summary>
         /// הוספת נתונים ללקוח (הוספה נתונים)
         /// </summary>
@@ -203,7 +208,7 @@ namespace PL
                 bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID
                                                                                                      //    convertToPo(drone, bl.GetDrone(drone.Id));
                MessageBox.Show("sucssesed");
-              RefreshEvent(this, EventArgs.Empty);//יש בבעיה אחרי הרבה הרצות
+              RefreshEvent(this, EventArgs.Empty);//יש בבעיה אחרי כניסה מחבילה
 
             }
             catch (Exception ex)
@@ -221,9 +226,16 @@ namespace PL
         private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
             BO.Parcel p = bl.GetParcel(selectedItem.Id);
-            new Parcel(bl,p).Show();
+            Parcel win = new Parcel(bl,p);
+            win.RefreshEvent += Refresh;
+            win.Show();
         }
 
+        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        {
+            int a = 0;
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl,a);
+        }
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {
             BO.Parcel p = bl.GetParcel(selectedItem.Id);

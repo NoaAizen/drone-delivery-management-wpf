@@ -24,7 +24,6 @@ namespace PL
         private IBL bl;
         //private ParcelToList selectedItem;
         private BO.Parcel selectedItem;
-
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private ParcelPo parcelPo;//שדה בשביל המרת מידע
 
@@ -36,6 +35,7 @@ namespace PL
             AddParcelGrid.Visibility = Visibility.Visible;
             priority.ItemsSource = Enum.GetValues(typeof(Priorities));
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            AddNewParcel.IsEnabled = false;
         }
         public Parcel(IBL bl, BO.Parcel parcel)
         {
@@ -150,8 +150,17 @@ namespace PL
 
         private void ViewSenderClick(object sender, RoutedEventArgs e)
         {
+
             BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelSender.Id);
-            new Customer(bl, customer).Show();
+            Customer win = new Customer(bl, customer);
+            win.RefreshEvent += Refresh;
+            win.Show();
+        }
+
+        private void Refresh(object sender, EventArgs e)
+        {
+            int a = 0;
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl, a);
         }
 
         private void ViewRecipientClick(object sender, RoutedEventArgs e)
@@ -177,6 +186,54 @@ namespace PL
             new Drone(bl, droneToList).Show();//חג שמח
         }
 
-        
+        /// <summary>
+        /// פונקציה של נעילה אירוע תעודת זהות בשביל הוספת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SenderIdClick(object sender, TextChangedEventArgs e)
+        {
+            if (senderId.Text != "" && recipientId.Text != "" && weight.SelectedItem != null && priority.SelectedItem != "")
+                AddNewParcel.IsEnabled = true;
+            else
+                AddNewParcel.IsEnabled = false;
+        }
+        /// <summary>
+        /// פונקציה של נעילה אירוע תעודת זהות בשביל הוספת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void recipientIdClick(object sender, TextChangedEventArgs e)
+        {
+            if (senderId.Text != "" && recipientId.Text != "" && weight.SelectedItem != null && priority.SelectedItem != "")
+                AddNewParcel.IsEnabled = true;
+            else
+                AddNewParcel.IsEnabled = false;
+        }
+
+        /// <summary>
+        /// פונקציה של נעילה אירוע משקל בשביל הוספת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeightClick(object sender, SelectionChangedEventArgs e)
+        {
+            if (senderId.Text != "" && recipientId.Text != "" && weight.SelectedItem != null && priority.SelectedItem != "")
+                AddNewParcel.IsEnabled = true;
+            else
+                AddNewParcel.IsEnabled = false;
+        }
+        /// <summary>
+        /// פונקציה של נעילה אירוע עדיפות בשביל הוספת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PriorityClick(object sender, SelectionChangedEventArgs e)
+        {
+            if (senderId.Text != "" && recipientId.Text != "" && weight.SelectedItem != null && priority.SelectedItem != "")
+                AddNewParcel.IsEnabled = true;
+            else
+                AddNewParcel.IsEnabled = false;
+        }
     }
 }

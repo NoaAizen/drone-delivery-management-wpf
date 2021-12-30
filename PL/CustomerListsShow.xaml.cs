@@ -24,6 +24,8 @@ namespace PL
         private IBL bl;
         private ObservableCollection<BO.CustomerToList> customers = new();
 
+        public int A { get; }
+
         public CustomerListsShow(IBL bl)
         {
             InitializeComponent();
@@ -35,13 +37,19 @@ namespace PL
             customerlist.DataContext = customers;
         }
 
+        public CustomerListsShow(IBL bl, int a) : this(bl)
+        {
+            A = a;
+            Customer win = new Customer(); 
+            win.RefreshEvent += Refresh;
+        }
+
         private void GetActionsCustomer(object sender, MouseButtonEventArgs e)
         {
             BO.Customer customer = bl.GetCustomer(((BO.CustomerToList)customerlist.SelectedItem).Id);
             Customer win = new(bl, customer);
             win.RefreshEvent += Refresh;
             win.Show();
-        //    win.RefreshEvent -= Refresh;
 
         }
    
@@ -51,8 +59,6 @@ namespace PL
             Customer ADD = new Customer(bl);
             ADD.RefreshEvent += Refresh;
             ADD.Show();
-        //    ADD.RefreshEvent-= Refresh;
-
         }
 
 

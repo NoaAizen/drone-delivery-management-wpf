@@ -22,6 +22,7 @@ namespace PL
     /// </summary>
     public partial class ParcelsList : Window
     {
+        private CollectionView view;
         private IBL bl;
         private ObservableCollection<ParcelToList> parcels = new();
 
@@ -41,6 +42,7 @@ namespace PL
         {
             Parcel win = new Parcel(bl);
             win.RefreshEvent += Refresh;
+            Grouping.IsEnabled = true;
             win.Show();
         }
 
@@ -66,6 +68,17 @@ namespace PL
             {
                 StatusParcel status = (StatusParcel)StatusSelector.SelectedItem;
                 parcelsList.ItemsSource = bl.GetParcelList(x => x.StatusParcel == status);
+            }
+
+        }
+        private void GroupingClick(object sender, RoutedEventArgs e)
+        {
+            view = (CollectionView)CollectionViewSource.GetDefaultView(parcelsList.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("SenderName");
+            view.GroupDescriptions.Add(groupDescription);
+            if (view.GroupDescriptions.Count == 1)
+            {
+                Grouping.IsEnabled = false;
             }
 
         }
