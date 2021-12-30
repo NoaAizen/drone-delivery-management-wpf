@@ -200,10 +200,10 @@ namespace PL
 
             try
             {
-                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone = PhoneText.Text);//האם מותר  לשנות ID
+                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID
                                                                                                      //    convertToPo(drone, bl.GetDrone(drone.Id));
-                MessageBox.Show("sucssesed");
-                RefreshEvent(this, EventArgs.Empty);
+               MessageBox.Show("sucssesed");
+              RefreshEvent(this, EventArgs.Empty);//יש בבעיה אחרי הרבה הרצות
 
             }
             catch (Exception ex)

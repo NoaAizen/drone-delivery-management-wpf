@@ -23,7 +23,6 @@ namespace PL
     {
         private IBL bl;
         private ObservableCollection<BO.CustomerToList> customers = new();
-        private CollectionView view;
 
         public CustomerListsShow(IBL bl)
         {
@@ -42,6 +41,25 @@ namespace PL
             Customer win = new(bl, customer);
             win.RefreshEvent += Refresh;
             win.Show();
+        //    win.RefreshEvent -= Refresh;
+
+        }
+   
+
+        private void AddCustomerClick(object sender, RoutedEventArgs e)
+        {
+            Customer ADD = new Customer(bl);
+            ADD.RefreshEvent += Refresh;
+            ADD.Show();
+        //    ADD.RefreshEvent-= Refresh;
+
+        }
+
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
@@ -49,21 +67,6 @@ namespace PL
 
         }
 
-        private void AddCustomerClick(object sender, RoutedEventArgs e)
-        {
-            Customer ADD = new Customer(bl);
-            ADD.RefreshEvent += Refresh;
-            ADD.Show();
-        }
-
-      
-        private void CloseClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-
-        }
-
-      
     }
 
    
