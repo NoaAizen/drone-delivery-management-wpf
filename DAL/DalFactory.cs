@@ -16,7 +16,7 @@ namespace DalApi
                     return DalObject.DalObject.Instance;
                     //return new DalObject.DalObject();
                 case "2":
-                //return new DalObject.DalObject2();
+                    return DalXml.DalXml.Instance;
                 default:
                     //throw new...
                     return DalObject.DalObject.Instance;

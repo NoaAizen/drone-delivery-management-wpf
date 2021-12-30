@@ -384,7 +384,9 @@ Enter your selection:
         /// </summary>
         public static void ViewStationListPrint()
         {
+
             List<DO.Station> s = (List<DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
+            DAL.StationToXml.SaveStationList(s);
             foreach (DO.Station item in s)
             {
                 Console.WriteLine(item);
