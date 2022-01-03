@@ -16,19 +16,25 @@
     </Window.Background>
 
     <Grid x:Name="MainGrid">
-        <Grid x:Name="AddDroneGrid" Visibility="Hidden"  >
-            <Label Content="Enter the details of the new drone:" HorizontalAlignment="Left" Margin="189,70,0,0" VerticalAlignment="Top" Width="425" FontSize="25" FontWeight="Bold"/>
-            <TextBox x:Name="id" HorizontalAlignment="Left" Margin="317,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="IdClick"/>
-            <TextBox x:Name="model" HorizontalAlignment="Left" Margin="314,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="modelClick" />
-            <ComboBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="313,222,0,0"  VerticalAlignment="Top" Width="120" SelectionChanged="maxclick" />
-            <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="441,320,0,0" VerticalAlignment="Top" Height="41" Width="116" Click="AddNewDroneClick" FontWeight="Heavy"/>
-            <Label Content="Id:" HorizontalAlignment="Left" Margin="184,134,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="104" Height="28" FontWeight="Bold" />
-            <Label Content="Model:" HorizontalAlignment="Left" Margin="181,180,0,0" VerticalAlignment="Top" Width="90" Height="27" FontWeight="Bold" />
-            <Label Content="Max weight:" HorizontalAlignment="Left" Margin="182,216,0,0" VerticalAlignment="Top" Width="104" Height="27" FontWeight="Bold"/>
-            <TextBox x:Name="stationId" HorizontalAlignment="Left" Margin="316,273,0,0" VerticalAlignment="Top" Width="120" TextChanged="stationidclick"/>
-            <Label Content="Station id:" HorizontalAlignment="Left" Margin="179,264,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" />
-            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Left" Margin="259,319,0,0" VerticalAlignment="Top" Click="CloseClick" Height="40" Width="121" FontWeight="Heavy"/>
+        <Grid x:Name="AddDroneGrid" Visibility="Visible"  >
+            <Label Content="Enter the details of the new drone:" HorizontalAlignment="Left" Margin="223,70,0,0" VerticalAlignment="Top" Width="425" FontSize="25" FontWeight="Bold"/>
+            <TextBox x:Name="id" Margin="391,129,262,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="IdClick" Height="30"/>
+
+            <TextBox x:Name="model" HorizontalAlignment="Left" Margin="391,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextChanged="modelClick" Height="30" />
+            <ComboBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="391,195,0,0"  VerticalAlignment="Top" Width="147" SelectionChanged="maxclick" Height="33" />
+            <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="440,322,0,0" VerticalAlignment="Top" Height="41" Width="116" Click="AddNewDroneClick"  FontFamily="Segoe UI" FontSize="20" FontWeight="Bold"/>
+            <Label Content="Id:" HorizontalAlignment="Left" Margin="275,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="37" Height="28" FontWeight="Bold" FontSize="15" />
+            <Label Content="Model:" HorizontalAlignment="Left" Margin="273,164,0,0" VerticalAlignment="Top" Width="59" Height="27" FontWeight="Bold" FontSize="15" />
+            <Label Content="Max weight:" HorizontalAlignment="Left" Margin="273,197,0,0" VerticalAlignment="Top" Width="104" Height="32" FontWeight="Bold" FontSize="15"/>
+            <TextBox x:Name="stationId" Margin="392,232,262,0" VerticalAlignment="Top" TextChanged="stationidclick" Height="30"/>
+            <Label Content="Station id:" HorizontalAlignment="Left" Margin="274,232,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontSize="15" />
+            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Left" Margin="296,322,0,0" VerticalAlignment="Top" Click="CloseClick" Height="40" Width="121" FontWeight="Bold" FontSize="20" FontFamily="Segoe UI"/>
+            <Image Stretch="Fill" Source="image/לוגו קטן בלי רקע (2).png" Margin="36,-28,455,269"/>
+            <Image Margin="96,-36,426,333" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png"/>
+            <Image Margin="-8,25,578,286" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png"/>
         </Grid>
+
+
         <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>

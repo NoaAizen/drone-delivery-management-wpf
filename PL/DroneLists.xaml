@@ -33,19 +33,27 @@
                     <ColumnDefinition Width="137*"/>
                     <ColumnDefinition Width="200*"/>
                 </Grid.ColumnDefinitions >
-                <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" RenderTransformOrigin="-0.268,0.01" Grid.ColumnSpan="2" Margin="8,0,52,0"/>
-                <Label Content="Drone &#xD;&#xA;status:" Grid.Column="0" FontSize="20" Margin="109,-5,3,-19" FontWeight="Bold"/>
-                <ComboBox x:Name="WeightSelector" Grid.Column="4" SelectionChanged="WeightSelector_SelectionChanged" Grid.ColumnSpan="2" Margin="127,0,10,0"/>
-                <Label Content="Drone max &#xD;&#xA;weight:" Grid.Column="4"  FontSize="16" FontWeight="Bold" Margin="23,0,197,0" Grid.ColumnSpan="2"/>
-                <Button x:Name="close" Content="Close" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="59" Width="77" FontStyle="Normal" FontWeight="Bold"/>
+                <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="34,35,25,5"/>
+                <Label Content="Drone status:" FontSize="20" Margin="96,23,155,3" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="WeightSelector" Grid.Column="4" SelectionChanged="WeightSelector_SelectionChanged" Margin="112,35,69,5" Grid.ColumnSpan="2"/>
+                <Label Content="Drone max weight:" Grid.Column="1"  FontSize="20" FontWeight="Bold" Margin="181,26,29,-1" Grid.ColumnSpan="4"/>
+                <Button x:Name="close" Content="Close" HorizontalAlignment="Left" Margin="-6,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
             </Grid>
-            <ListView x:Name="DroneListsView"  Margin="0,8,0,10" Grid.Row="1" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2" FontWeight="Bold">
+            <ListView x:Name="DroneListsView"  Margin="0,25,0,10" Grid.Row="1" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2" FontWeight="Bold">
                 <ListView.Foreground>
                     <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>
                 </ListView.Foreground>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn/>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Model}"/>
+                        <GridViewColumn Header="MaxWeight" DisplayMemberBinding="{Binding MaxWeight}"/>
+                        <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
+                        <GridViewColumn Header="Battery" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Parcel In Transfer" DisplayMemberBinding="{Binding ParcelInTransfer}"/>
+                        <GridViewColumn Header="CurrentLocation" DisplayMemberBinding="{Binding CurrentLocation}"/>
+                        <GridViewColumn Header="ParcelTransferredNumber" DisplayMemberBinding="{Binding ParcelTransferredNumber}"/>
+
                     </GridView>
                 </ListView.View>
             </ListView>

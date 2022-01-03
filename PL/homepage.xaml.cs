@@ -11,47 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlApi;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for homepage.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class homepage : Window
+    public partial class HomePage : Window
     {
-
-        public homepage()
+        public HomePage()
         {
             InitializeComponent();
         }
-        IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
-     
-        /// <summary>
-        /// פונקציה בשביל לבגיע לכפתור של הרשימות
-        /// </summary>
-        /// <param name="sender">חלון</param>
-        /// <param name="e">אירוע</param>
-        private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
-        {
-            new DroneLists(bl).Show();
-        }
-
-        private void ShowStationsListClick(object sender, RoutedEventArgs e)
-        {
-            new StationsList(bl).Show();
-        }
-
-        private void CustomerListClick(object sender, RoutedEventArgs e)
-        {
-            new CustomerListsShow(bl).Show();
-        }
-
-        private void ShowParcelsListClick(object sender, RoutedEventArgs e)
-        {
-            new ParcelsList(bl).Show();
-        }
     }
 }
-    
-

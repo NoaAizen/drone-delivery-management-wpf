@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
+        //IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
         /// <summary>
         /// בנאי
         /// </summary>
@@ -29,29 +29,47 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void ManagerClick(object sender, RoutedEventArgs e)
+        {
+             new Password().Show();
+
+        }
+
+
+        private void ClientClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NewClicentClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// פונקציה בשביל לבגיע לכפתור של הרשימות
         /// </summary>
         /// <param name="sender">חלון</param>
         /// <param name="e">אירוע</param>
-        private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
-        {
-            new DroneLists(bl).Show();
-        }
+        //private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    new DroneLists(bl).Show();
+        //}
 
-        private void ShowStationsListClick(object sender, RoutedEventArgs e)
-        {
-            new StationsList(bl).Show();
-        }
+        //private void ShowStationsListClick(object sender, RoutedEventArgs e)
+        //{
+        //    new StationsList(bl).Show();
+        //}
 
-        private void CustomerListClick(object sender, RoutedEventArgs e)
-        {
-            new CustomerListsShow(bl).Show();
-        }
+        //private void CustomerListClick(object sender, RoutedEventArgs e)
+        //{
+        //    new CustomerListsShow(bl).Show();
+        //}
 
-        private void ShowParcelsListClick(object sender, RoutedEventArgs e)
-        {
-            new ParcelsList(bl).Show();
-        }
+        //private void ShowParcelsListClick(object sender, RoutedEventArgs e)
+        //{
+        //    new ParcelsList(bl).Show();
+        //}
     }
 }

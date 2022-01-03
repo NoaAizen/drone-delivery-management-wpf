@@ -22,7 +22,6 @@ namespace PL
     public partial class Customer : Window
     {
         public event EventHandler RefreshEvent;
-        public event EventHandler RefreshEventWin;
         private IBL bl;
         private BO.Customer selectedItem;
         BO.Customer c = new();

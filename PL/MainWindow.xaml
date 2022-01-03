@@ -6,31 +6,20 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <Color x:Key="SolidColorBrushColor1">#FFAA0D0D</Color>
-        <Color x:Key="SolidColorBrushColor2">#FFF00A0A</Color>
-        <Color x:Key="SolidColorBrushColor3">#FF684564</Color>
-    </Window.Resources>
+   
+    
+    
+    <Window.Background>
+        <ImageBrush ImageSource="image/רקע.png" />
+    </Window.Background>
 
     <Grid>
-        <Button Content="View the drones list" Margin="250,276,358,101" Click="ShowDronesButton_Click" FontSize="18" FontStretch="SemiExpanded" BorderBrush="{x:Null}" BorderThickness="1,0,1,1" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="5.185"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-2.588"/>
-                </TransformGroup>
-            </Button.RenderTransform>
-            <Button.Foreground>
-                <SolidColorBrush Color="{DynamicResource SolidColorBrushColor3}"/>
-            </Button.Foreground>
+        <Button Content="Manager" HorizontalAlignment="Left" Margin="176,275,0,0" VerticalAlignment="Top" Height="78" Width="150" FontWeight="Bold" FontFamily="Segoe UI Black" BorderThickness="0,0,0,0" Background="#FFD8B8E2" FontSize="20" Click="ManagerClick" >
         </Button>
-        <Button Content="View the stations list" HorizontalAlignment="Left" Margin="617,262,0,0" VerticalAlignment="Top" Height="59" Width="144" Click="ShowStationsListClick"/>
-        <Button Content="View the customer list" HorizontalAlignment="Left" Margin="460,266,0,0" VerticalAlignment="Top" Height="64" Width="127" Click="CustomerListClick" RenderTransformOrigin="2.085,-0.758"/>
-        <Button Content="View the parcels list" HorizontalAlignment="Left" Margin="36,273,0,0" VerticalAlignment="Top" Height="60" Width="188" Click="ShowParcelsListClick"/>
-        <!--<Image Margin="205,11,217,1" Stretch="Fill" Source="image/4.png"/>-->
-
-
+        <Button Content="Client" HorizontalAlignment="Left" Margin="334,276,0,0" VerticalAlignment="Top" Height="75" Width="150" FontWeight="Bold" FontFamily="Segoe UI Black" BorderThickness="0,0,0,0" Background="#FFD8B8E2" FontSize="20" Click="ClientClick">
+        </Button>
+        <Button Content="New Client" HorizontalAlignment="Left" Margin="491,277,0,0" VerticalAlignment="Top" Height="75" Width="150" FontWeight="Bold" FontFamily="Segoe UI Black" BorderThickness="0,0,0,0" Background="#FFD8B8E2" FontSize="20" Click="NewClicentClick">
+        </Button>
+        <Image Source="image/לוגו עם מסגרת.png" Margin="234,8,224,141"  />
     </Grid>
 </Window>
