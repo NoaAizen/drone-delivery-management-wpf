@@ -46,7 +46,8 @@ namespace DalObject
                 XElement mediumWeight = new XElement("mediumWeight", DataSource.Config.mediumWeight);
                 XElement heavyWeight = new XElement("heavyWeight", DataSource.Config.heavyWeight);
                 XElement chargingRate = new XElement("chargingRate", DataSource.Config.chargingRate);
-                 configRoot.Save(configPath);
+                configRoot.Add(CounterForParcels, available, lightWeight, mediumWeight, heavyWeight, chargingRate);
+                configRoot.Save(configPath);
 
                 XMLTools.SaveListToXMLSerializer(DataSource.listCustomers, customerPath);
                 XMLTools.SaveListToXMLSerializer(DataSource.listDrones, dronePath);

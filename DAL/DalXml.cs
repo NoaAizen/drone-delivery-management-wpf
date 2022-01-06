@@ -94,7 +94,7 @@ namespace DalXml
                 throw new AlreadyExistException("This parcel already exist");
             parcels.Add(p);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
-            return CounterForParcels;
+            return 0;
 
 
         }

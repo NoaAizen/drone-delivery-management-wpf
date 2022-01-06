@@ -1,4 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Config>
-	<CounterForParcels>0</CounterForParcels>
-</Config>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Confing>
+  <CounterForParcels>10</CounterForParcels>
+  <available>2</available>
+  <lightWeight>5</lightWeight>
+  <mediumWeight>7</mediumWeight>
+  <heavyWeight>10</heavyWeight>
+  <chargingRate>30</chargingRate>
+</Confing>
