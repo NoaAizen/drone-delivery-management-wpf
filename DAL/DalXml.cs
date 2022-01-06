@@ -90,18 +90,20 @@ namespace DalXml
         public int AddParcel(DO.Parcel p) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
-            if (parcels.Exists(x => x.Id == p.Id))
-                throw new AlreadyExistException("This parcel already exist");
+            XElement cofingRoot = XMLTools.LoadListFromXMLElement(configPath);
+            p.Id = Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value);
             p.Requested = DateTime.Now;
             p.Scheduled = null;
             p.PickedUp = null;
             p.Delivered = null;
             p.DroneId = 0;
+            if (parcels.Exists(x => x.Id == p.Id))
+                throw new AlreadyExistException("This parcel already exist");
             parcels.Add(p);
+            cofingRoot.Element("CounterForParcels").Value = (Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value)+1).ToString();//הגדלה של מספר רץ ב-1 וטעינה לקובץ שמקבל רק STRING
+            XMLTools.SaveListToXMLElement(cofingRoot, configPath);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
-            XElement cofingRoot = XMLTools.LoadListFromXMLElement(configPath);
-            cofingRoot.Element("CounterForParcels").Value= (Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value) + 1).ToString();//הגדלה של מספר רץ ב-1 וטעינה לקובץ שמקבל רק STRING
-            return Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value);
+            return p.Id;
         }
 
         //-----------------------------------UPDATE-----------------------------------
