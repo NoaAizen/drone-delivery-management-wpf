@@ -33,7 +33,6 @@ namespace DalObject
                     XElement latitude = new XElement("Latitude", item.Latitude);
                     XElement availableStations = new XElement("AvailableStations", item.AvailableStations);
                     XElement station = new XElement("Station", id, name, longitude, latitude, availableStations);
-
                     stationRoot.Add(station);
                 }
                 stationRoot.Save(stationPath);
@@ -41,7 +40,7 @@ namespace DalObject
                 XMLTools.SaveListToXMLSerializer(DataSource.listCustomers, customerPath);
                 XMLTools.SaveListToXMLSerializer(DataSource.listDrones, dronePath);
                 XMLTools.SaveListToXMLSerializer(DataSource.listDroneCharges, droneChargePath);
-                XMLTools.SaveListToXMLSerializer(DataSource.listParcels, parcelPath);
+                                XMLTools.SaveListToXMLSerializer(DataSource.listDroneCharges, droneChargePath);
 
             }
         }
