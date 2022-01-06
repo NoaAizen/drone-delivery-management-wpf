@@ -92,11 +92,16 @@ namespace DalXml
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
             if (parcels.Exists(x => x.Id == p.Id))
                 throw new AlreadyExistException("This parcel already exist");
+            p.Requested = DateTime.Now;
+            p.Scheduled = null;
+            p.PickedUp = null;
+            p.Delivered = null;
+            p.DroneId = 0;
             parcels.Add(p);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
-            return 0;
-
-
+            XElement cofingRoot = XMLTools.LoadListFromXMLElement(configPath);
+            cofingRoot.Element("CounterForParcels").Value= (Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value) + 1).ToString();//הגדלה של מספר רץ ב-1 וטעינה לקובץ שמקבל רק STRING
+            return Convert.ToInt32(cofingRoot.Element("CounterForParcels").Value);
         }
 
         //-----------------------------------UPDATE-----------------------------------
