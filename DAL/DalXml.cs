@@ -21,57 +21,141 @@ namespace DalXml
         {
             XmlSource.Config.Initialize();
         }
-        
-        string stetionsPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\Station.xml";
-        
+
+        //string stetionsPath = @"DAL\xml\Station.xml";
+        string stationPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Station.xml";
+        string customerPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Customer.xml";
+        string dronePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Drone.xml";
+        string droneChargePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\DroneCharge.xml";
+
+        //-----------------------------------ADD-----------------------------------
+
+        #region Station
         public void AddStation(Station station)
         {
-            XElement stationRoot= XMLTools.LoadListFromXMLElement(stetionsPath);
-            XElement id = new XElement("id", station.Id);
-            XElement name = new XElement("name", station.Name);
-            XElement longitude = new XElement("longitude", station.Longitude);
-            XElement latitude = new XElement("latitude", station.Latitude);
-            XElement availableStations = new XElement("availableStations", station.AvailableStations);
-            stationRoot.Add(new XElement("student", id, name, longitude, latitude, availableStations));
-            stationRoot.Save(stetionsPath);
-            XMLTools.SaveListToXMLElement(stationRoot, stetionsPath);
+            XElement stationRoot= XMLTools.LoadListFromXMLElement(stationPath);
+
+            XElement stat = (from s in stationRoot.Elements()
+                                where int.Parse(s.Element("Id").Value) == station.Id
+                                select s).FirstOrDefault();
+            if (stat != null)
+                throw new AlreadyExistException("This station already exist");
+            XElement id = new XElement("Id", station.Id);
+            XElement name = new XElement("Name", station.Name);
+            XElement longitude = new XElement("Longitude", station.Longitude);
+            XElement latitude = new XElement("Latitude", station.Latitude);
+            XElement availableStations = new XElement("AvailableStations", station.AvailableStations);
+            stationRoot.Add(new XElement("Station", id, name, longitude, latitude, availableStations));
+            stationRoot.Save(stationPath);
+            XMLTools.SaveListToXMLElement(stationRoot, stationPath);
         }
-        
+        #endregion
+
+        #region Drone
         /// <summary>
         /// פונקצית הוספת רחפן לרשימת רחפנים 
         /// </summary>
         /// <param name="d"></param>
-        public void AddDrone(DO.Drone d) { }
+        public void AddDrone(DO.Drone d) 
+        {
+            List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (drones.Exists(x => x.Id == d.Id))
+                throw new AlreadyExistException("This drone already exist");
+            drones.Add(d);
+            XMLTools.SaveListToXMLSerializer(drones, dronePath);
+        }
+        #endregion
+
+        #region Customer
         /// <summary>
         ///  פונקציית קליטת לקוח חדש לרשימת הלקוחות 
         /// </summary>
         /// <param name="c"></param>
-        public void AddCustomer(DO.Customer c) { }
+        public void AddCustomer(DO.Customer c) 
+        {
+            List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
+            if (customers.Exists(x => x.Id == c.Id))
+                throw new AlreadyExistException("This customer already exist");
+            customers.Add(c);
+            XMLTools.SaveListToXMLSerializer(customers, customerPath);
+        }
+        #endregion
         /// <summary>
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
         /// <param name="p"></param>
         public int AddParcel(DO.Parcel p) { return 0; }
+
+        //-----------------------------------UPDATE-----------------------------------
+
+        #region Drone
         /// <summary>
         /// עדכון מודל רחפן
         /// </summary>
         /// <param name="id">מזהה הרחפן לעדכון</param>
         /// <param name="model">שם המודל חדש</param>
-        public void UpdateDroneModel(int id, string model) { }
+        public void UpdateDroneModel(int id, string model) 
+        {
+            var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!drones.Exists(x => x.Id == id))
+                throw new DoesntExistException("This drone doesn't exist");
+            Drone drone = drones.Find(x => x.Id == id);
+            drones.Remove(drone);
+            drone.Model = model;
+            drones.Add(drone);
+            XMLTools.SaveListToXMLSerializer(drones, dronePath);
+        }
+        #endregion
+
+        #region Station
         /// <summary>
         /// עדכון נתוני תחנה
         /// </summary>
         /// <param name="id">מזהה תחנה</param>
         /// <param name="name">שם חדש</param>
         /// <param name="totalChargingStations">כמות עמדות טעינה כוללת</param>
-        public void UpdateStation(int id, string name, int totalChargingStations) { }
+        public void UpdateStation(int id, string name, int totalChargingStations) 
+        {
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
+            XElement station = (from s in stationRoot.Elements()
+                            where int.Parse(s.Element("Id").Value) == id
+                                select s).FirstOrDefault();
+            if (station != null)
+            {
+                if (name != "")
+                    station.Element("Name").Value = name;
+                if (totalChargingStations != 0)
+                    station.Element("AvailableStations").Value = totalChargingStations.ToString();
+                XMLTools.SaveListToXMLElement(stationRoot, stationPath);
+            }
+            else
+                throw new DoesntExistException("This station doesn't exist");
+        }
+        #endregion
+
+        #region Customer
         /// <summary>
         /// עדכון נתוני לקוח
         /// </summary>
         /// <param name="id">מספר מזהה של הלקוח</param>
         /// <param name="name">שם חדש</param>
         /// <param name="phone">טלפון חדש</param>
-        public void UpdateCustomer(int id, string name, string phone) { }
+        public void UpdateCustomer(int id, string name, string phone)
+        {
+            List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
+            if (!customers.Exists(x => x.Id == id))
+                throw new DoesntExistException("This customer doesn't exist");
+            Customer customer = customers.Find(x => x.Id == id);
+            customers.Remove(customer);
+            if (name != "")
+                customer.Name = name;
+            if (phone != "")
+                customer.Phone = phone;
+            customers.Add(customer);
+            XMLTools.SaveListToXMLSerializer(customers, customerPath);
+        }
+        #endregion
+
         /// <summary>
         /// פונקצית שיוך חבילה לרחפן 
         /// </summary>
@@ -92,41 +176,130 @@ namespace DalXml
         /// <param name="idParcel"></param>
         public void DeliveryParcelForCustomer(int idCustomer, int idParcel) { }
 
+        #region Charging
         /// <summary>
         /// פונקציית שליחת רחפן לטעינה בתחנת בסיס
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
-        public void SendingDroneForCharging(int idDrone, int idStation) { }
+        public void SendingDroneForCharging(int idDrone, int idStation)
+        {
+            var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!drones.Exists(x => x.Id == idDrone))
+                throw new DoesntExistException("This drone doesn't exist");
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
+            XElement station = (from s in stationRoot.Elements()
+                                where int.Parse(s.Element("Id").Value) == idStation
+                                select s).FirstOrDefault();
+            if (station != null)
+            {
+                station.Element("AvailableStations").Value = 
+                    (int.Parse(station.Element("AvailableStations").Value) - 1).ToString();
+                XMLTools.SaveListToXMLElement(stationRoot, stationPath);
+            }
+            else
+                throw new DoesntExistException("This station doesn't exist");
+            var droneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
+            DroneCharge dc = new() { DroneId = idDrone, StationId = idStation };
+            droneCharges.Add(dc);
+            XMLTools.SaveListToXMLSerializer(droneCharges, droneChargePath);
+        }
+        #endregion
 
-
+        #region Release
         /// <summary>
         /// פונקציית שחרור רחפן מטעינה בתחנת בסיס
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
-        public void ReleaseDroneFromCharging(int idDrone, int idStation) { }
+        public void ReleaseDroneFromCharging(int idDrone, int idStation)
+        {
+            var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!drones.Exists(x => x.Id == idDrone))
+                throw new DoesntExistException("This drone doesn't exist");
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
+            XElement station = (from s in stationRoot.Elements()
+                                where int.Parse(s.Element("Id").Value) == idStation
+                                select s).FirstOrDefault();
+            if (station != null)
+            {
+                station.Element("AvailableStations").Value =
+                    (int.Parse(station.Element("AvailableStations").Value) + 1).ToString();
+                XMLTools.SaveListToXMLElement(stationRoot, stationPath);
+            }
+            else
+                throw new DoesntExistException("This station doesn't exist");
+            var droneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
+            DroneCharge dc = (from item in droneCharges
+                              where item.DroneId == idDrone && item.StationId == idStation
+                              select item).FirstOrDefault();
+            droneCharges.Remove(dc);
+            XMLTools.SaveListToXMLSerializer(droneCharges, droneChargePath);
+        }
+        #endregion
 
+        //-----------------------------------REQUEST-----------------------------------
+
+        #region Station
         /// <summary>
         /// פונקציית להדפסה תחנה אחת
         /// </summary>
         /// <param name="idStation"></param>
         /// <returns></returns>
-        public DO.Station GetStation(int idStation) { return new(); }
+        public DO.Station GetStation(int idStation) 
+        {
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
+            XElement stat = (from s in stationRoot.Elements()
+                             where int.Parse(s.Element("Id").Value) == idStation
+                             select s).FirstOrDefault();
+            if (stat == null)
+                throw new DoesntExistException("This station doesn't exist");
+            Station station = (from s in stationRoot.Elements()
+                        where int.Parse(s.Element("Id").Value) == idStation
+                        select new Station()
+                        {
+                            Id = Int32.Parse(s.Element("Id").Value),
+                            Name = s.Element("Name").Value,
+                            Longitude = double.Parse(s.Element("Longitude").Value),
+                            Latitude = double.Parse(s.Element("Latitude").Value),
+                            AvailableStations = Int32.Parse(s.Element("AvailableStations").Value)
+                        }).FirstOrDefault();
+            return station;
+             
+        }
+        #endregion
 
+        #region Drone
         /// <summary>
         /// פונקציית להדפסת רחפן אחת
         /// </summary>
         /// <param name="idDrone"></param>
         /// <returns></returns>
-        public DO.Drone GetDrone(int idDrone) { return new(); }
+        public DO.Drone GetDrone(int idDrone) 
+        {
+            var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!drones.Exists(x => x.Id == idDrone))
+                throw new DoesntExistException("This drone doesn't exist");
+            Drone drone = drones.Find(x => x.Id == idDrone);
+            return drone;
+        }
+        #endregion
 
+        #region Customer
         /// <summary>
         /// פונקציית הדפסת לקוח אחד
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <returns></returns>
-        public DO.Customer GetCustomer(int idCustomer) { return new(); }
+        public DO.Customer GetCustomer(int idCustomer) 
+        {
+            var customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
+            if (!customers.Exists(x => x.Id == idCustomer))
+                throw new DoesntExistException("This customer doesn't exist");
+            Customer customer = customers.Find(x => x.Id == idCustomer);
+            return customer; 
+        }
+        #endregion
 
         /// <summary>
         /// הדפסת חבילה אחת
@@ -135,46 +308,96 @@ namespace DalXml
         /// <returns></returns>
         public DO.Parcel GetParcel(int idParcel) { return new(); }//הדפסת חבילה
 
+        //-----------------------------------LIST-REQUEST-----------------------------------
+
+        #region Stations
         /// <summary>
         /// פונקציית הדפסת כל התחנות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Station> GetStationList() { return new List<Station>(); }
+        public IEnumerable<DO.Station> GetStationList()
+        {
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
 
+            return (from s in stationRoot.Elements()
+                   select new Station()
+                   {
+                       Id = Int32.Parse(s.Element("Id").Value),
+                       Name = s.Element("Name").Value,
+                       Longitude = double.Parse(s.Element("Longitude").Value),
+                       Latitude = double.Parse(s.Element("Latitude").Value),
+                       AvailableStations = Int32.Parse(s.Element("AvailableStations").Value)
+                   }).ToList();
+        }
+        #endregion
+
+        #region Drones
         /// <summary>
         /// פונקציית הדפסת כל הרחפנים
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Drone> GetDroneList() { return new List<Drone>(); }
+        public IEnumerable<DO.Drone> GetDroneList() 
+        {
+            return XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+        }
+        #endregion
 
+        #region Customer
         /// <summary>
         /// פונקציית הדפסת כל לקוחות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Customer> GetCustomerList() { return new List<Customer>(); }
+        public IEnumerable<DO.Customer> GetCustomerList() 
+        {
+            return XMLTools.LoadListFromXMLSerializer<Customer>(customerPath); 
+        }
+        #endregion
 
         /// <summary>
         /// פונקציית הדפסת כל חבילות
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DO.Parcel> GetParcelList() { return new List<Parcel>(); }
+
+        #region DroneCharges
         /// <summary>
         /// תצוגת רשימת רחפנים בטעינה
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.DroneCharge> GetDroneChargesList() { return new List<DroneCharge>(); }
+        public IEnumerable<DO.DroneCharge> GetDroneChargesList() 
+        {
+            return XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath); 
+        }
+        #endregion
+
         /// <summary>
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DO.Parcel> GetParcelNoDroneList() { return new List<Parcel>(); }
 
-
+        #region Available charging stations
         /// <summary>
         /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Station> GetAvailableChargingStationsList() { return new List<Station>(); }
+        public IEnumerable<DO.Station> GetAvailableChargingStationsList()
+        {
+            XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
+
+            return (from s in stationRoot.Elements()
+                    where int.Parse(s.Element("AvailableStations").Value) > 0
+                    select new Station()
+                    {
+                        Id = Int32.Parse(s.Element("Id").Value),
+                        Name = s.Element("Name").Value,
+                        Longitude = double.Parse(s.Element("Longitude").Value),
+                        Latitude = double.Parse(s.Element("Latitude").Value),
+                        AvailableStations = Int32.Parse(s.Element("AvailableStations").Value)
+                    }).ToList();
+        }
+        #endregion
+
         /// <summary>
         /// פונקצייה המחזירה רשימת מספרים מזהים של רחפנים הנמצאים בתחנה כלשהי
         /// </summary>

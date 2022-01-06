@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<stations>
+  <Station>
+    <Id>0</Id>
+    <Name>st5713</Name>
+    <Longitude>48.912951624446066</Longitude>
+    <Latitude>-54.556712799033484</Latitude>
+    <AvailableStations>57</AvailableStations>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>st2116</Name>
+    <Longitude>113.93170932956588</Longitude>
+    <Latitude>-35.03835054349077</Latitude>
+    <AvailableStations>35</AvailableStations>
+  </Station>
+</stations>

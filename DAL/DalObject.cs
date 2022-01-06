@@ -33,7 +33,7 @@ namespace DalObject
 
         #region Station
         /// <summary>
-        //פונקצית הוספת תחנת בסיס לרשימת התחנות הקיימות 
+        ///פונקצית הוספת תחנת בסיס לרשימת התחנות הקיימות 
         /// </summary>
         /// <param name="s"></param>
         public void AddStation(DO.Station s)
