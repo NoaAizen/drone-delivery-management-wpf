@@ -229,7 +229,6 @@ namespace DalXml
         #endregion
 
         #region Delivery
-
         /// <summary>
         /// פונקציית אספקת חבילה ללקוח 
         /// </summary>
@@ -243,6 +242,7 @@ namespace DalXml
             if (!customers.Exists(x => x.Id == idCustomer))
                 throw new DoesntExistException("This customer doesn't exist");
             Parcel parcel = parcels.Find(x => x.Id == idParcel);
+            parcels.Remove(parcel);
             parcel.Delivered = DateTime.Now;
             parcels.Add(parcel);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
