@@ -403,7 +403,13 @@ namespace DalXml
         /// </summary>
         /// <param name="stationId">מזהה תחנה</param>
         /// <returns>רשימת מזהי הרחפנים הנטענים בתחנה זו </returns>
-        public IEnumerable<int> GetDronesInStationId(int stationId) { return new List<int>(); }
+        public IEnumerable<int> GetDronesInStationId(int stationId)
+        {
+            var droneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
+            return (from item in droneCharges
+                    where item.StationId == stationId
+                    select item.DroneId).ToList();
+        }
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל החבילות שלקוח שלח
         /// </summary>

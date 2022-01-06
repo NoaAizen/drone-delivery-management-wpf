@@ -501,6 +501,12 @@ Enter your selection:
             {
                 Console.WriteLine(item);
             }
+
+            int stationId = int.Parse(Console.ReadLine());
+            foreach (var item in D.GetDronesInStationId(stationId))
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
