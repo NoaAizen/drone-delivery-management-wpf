@@ -373,13 +373,23 @@ namespace DalXml
             return customer; 
         }
         #endregion
-
+     
+        #region Parcel
         /// <summary>
         /// הדפסת חבילה אחת
         /// </summary>
         /// <param name="idParcel"></param>
         /// <returns></returns>
-        public DO.Parcel GetParcel(int idParcel) { return new(); }//הדפסת חבילה
+        public DO.Parcel GetParcel(int idParcel)
+        {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+
+            if (!parcels.Exists(x => x.Id == idParcel))
+                throw new DoesntExistException("This parcel doesn't exist");
+            Parcel parcel = parcels.Find(x => x.Id == idParcel);
+            return parcel;
+        }
+        #endregion
 
         //-----------------------------------LIST-REQUEST-----------------------------------
 
@@ -425,6 +435,8 @@ namespace DalXml
             return XMLTools.LoadListFromXMLSerializer<Customer>(customerPath); 
         }
         #endregion
+       
+        #region Parcel
 
         /// <summary>
         /// פונקציית הדפסת כל חבילות
@@ -434,6 +446,7 @@ namespace DalXml
         {
             return XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
         }
+        #endregion
 
         #region DroneCharges
         /// <summary>
@@ -445,12 +458,23 @@ namespace DalXml
             return XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath); 
         }
         #endregion
+      
+        #region Parcels no drone
 
         /// <summary>
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Parcel> GetParcelNoDroneList() { return new List<Parcel>(); }
+        public IEnumerable<DO.Parcel> GetParcelNoDroneList() 
+        {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+
+            return (from item in parcels
+                    where item.DroneId == 0
+                    select item).ToList();
+        }
+        #endregion
+
 
         #region Available charging stations
         /// <summary>
@@ -474,6 +498,9 @@ namespace DalXml
         }
         #endregion
 
+        //-----------------------------------HELP-METHODS-----------------------------------
+
+        #region GetDronesInStationId
         /// <summary>
         /// פונקצייה המחזירה רשימת מספרים מזהים של רחפנים הנמצאים בתחנה כלשהי
         /// </summary>
@@ -486,35 +513,68 @@ namespace DalXml
                     where item.StationId == stationId
                     select item.DroneId).ToList();
         }
+        #endregion
+
+        #region GetSenderParcels
+
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל החבילות שלקוח שלח
         /// </summary>
         /// <param name="senderId">מזהה לקוח</param>
         /// <returns>רשימת החבילות ששלח</returns>
-        public IEnumerable<Parcel> GetSenderParcels(int senderId) { return new List<Parcel>(); }
+        public IEnumerable<Parcel> GetSenderParcels(int senderId) 
+        {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+
+            return (from item in parcels
+                    where item.SenderId == senderId
+                    select item).ToList();
+        }
+        #endregion
+
+        #region GetTargetParcels
+
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל החבילות שלקוח קיבל
         /// </summary>
         /// <param name="targetId">מזהה לקוח</param>
         /// <returns>רשימת החבילות שקיבל</returns>
-        public IEnumerable<Parcel> GetTargetParcels(int targetId) { return new List<Parcel>(); }
+        public IEnumerable<Parcel> GetTargetParcels(int targetId) {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            return (from item in DataSource.listParcels
+                    where item.TargetId == targetId
+                    select item).ToList();
+        }
+        #endregion
+    
         /// <summary>
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
-        public double[] PowerRequestToDrone() {  double[] arr = new double[] { }; return arr; }
+        public double[] PowerRequestToDrone() 
+        {
+            double[] arr = new double[] { DataSource.Config.available, DataSource.Config.lightWeight,
+                    DataSource.Config.mediumWeight, DataSource.Config.heavyWeight, DataSource.Config.chargingRate};
+            return arr;
+        }
 
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
-        public void DeleteParcel(Parcel parcel) { }
+        public void DeleteParcel(Parcel parcel) {
+
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            parcels.Remove(parcel);
+            XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
+
+        }
 
 
 
 
 
-
+        //לעשותתתת
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
 

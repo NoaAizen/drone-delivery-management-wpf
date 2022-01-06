@@ -565,22 +565,12 @@ namespace DalObject
         /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
         public IEnumerable<DO.Parcel> GetParcelNoDroneList()
         {
-            //List<DO.Parcel> temp = new List<DO.Parcel>();
 
             return (from item in DataSource.listParcels
                     where item.DroneId==0
                     select item).ToList();
 
 
-            //for (int i = 0; i < DataSource.listParcels.Count; i++)
-            //{
-            //    if (DataSource.listParcels[i].DroneId == 0)
-            //    {
-            //        temp.Add(DataSource.listParcels[i]);
-            //    }
-
-            //}
-            //return temp;
         }
         #endregion
 
@@ -591,18 +581,7 @@ namespace DalObject
         /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         public IEnumerable<DO.Station> GetAvailableChargingStationsList()
         {
-            //List<DO.Station> temp = new List<DO.Station>();
-
-            //for (int i = 0; i < DataSource.listStations.Count; i++)
-            //{
-            //    if (DataSource.listStations[i].AvailableStations > 0)
-            //    {
-            //        temp.Add(DataSource.listStations[i]);
-
-            //    }
-            //}
-            //return temp;
-            return (from item in DataSource.listStations
+                    return (from item in DataSource.listStations
                     where item.AvailableStations >0
                     select item).ToList();
         }
