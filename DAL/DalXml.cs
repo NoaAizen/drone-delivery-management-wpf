@@ -27,6 +27,7 @@ namespace DalXml
         string customerPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Customer.xml";
         string dronePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Drone.xml";
         string droneChargePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\DroneCharge.xml";
+        string parcelPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Parcel.xml";
 
         //-----------------------------------ADD-----------------------------------
 
@@ -357,7 +358,10 @@ namespace DalXml
         /// פונקציית הדפסת כל חבילות
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<DO.Parcel> GetParcelList() { return new List<Parcel>(); }
+        public IEnumerable<DO.Parcel> GetParcelList() 
+        {
+            return XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+        }
 
         #region DroneCharges
         /// <summary>

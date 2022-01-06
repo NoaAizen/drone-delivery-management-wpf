@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Parcel>
+    <Id>0</Id>
+    <SenderId>0</SenderId>
+    <TargetId>1</TargetId>
+    <Weight>Heavy</Weight>
+    <Priority>Emergency</Priority>
+    <Requested>2012-05-17T13:55:00</Requested>
+    <DroneId>1</DroneId>
+    <Scheduled>2012-05-17T14:55:00</Scheduled>
+    <PickedUp>2012-05-17T15:55:00</PickedUp>
+    <Delivered>2012-05-17T16:55:00</Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>1</Id>
+    <SenderId>1</SenderId>
+    <TargetId>2</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Emergency</Priority>
+    <Requested>2014-02-03T10:03:00</Requested>
+    <DroneId>2</DroneId>
+    <Scheduled>2014-02-03T11:03:00</Scheduled>
+    <PickedUp>2014-02-03T12:03:00</PickedUp>
+    <Delivered>2014-02-03T13:03:00</Delivered>
+  </Parcel>
+  <Parcel>
+    <Id>2</Id>
+    <SenderId>2</SenderId>
+    <TargetId>3</TargetId>
+    <Weight>Heavy</Weight>
+    <Priority>Fast</Priority>
+    <Requested>2021-07-28T08:30:00</Requested>
+    <DroneId>3</DroneId>
+    <Scheduled>2021-07-28T09:30:00</Scheduled>
+    <PickedUp>2021-07-28T10:30:00</PickedUp>
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>3</Id>
+    <SenderId>3</SenderId>
+    <TargetId>4</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Fast</Priority>
+    <Requested>2010-10-19T13:44:00</Requested>
+    <DroneId>4</DroneId>
+    <Scheduled>2010-10-19T14:44:00</Scheduled>
+    <PickedUp>2010-10-19T15:44:00</PickedUp>
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>4</Id>
+    <SenderId>4</SenderId>
+    <TargetId>5</TargetId>
+    <Weight>Heavy</Weight>
+    <Priority>Fast</Priority>
+    <Requested>2018-10-29T09:36:00</Requested>
+    <DroneId>5</DroneId>
+    <Scheduled>2018-10-29T10:36:00</Scheduled>
+    <PickedUp>2018-10-29T11:36:00</PickedUp>
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>5</Id>
+    <SenderId>8</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Light</Weight>
+    <Priority>Fast</Priority>
+    <Requested>2017-10-03T08:39:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>6</Id>
+    <SenderId>8</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Normal</Priority>
+    <Requested>2012-10-01T13:42:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>7</Id>
+    <SenderId>8</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Normal</Priority>
+    <Requested>2017-02-23T17:46:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>8</Id>
+    <SenderId>8</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Emergency</Priority>
+    <Requested>2014-03-24T08:56:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+  <Parcel>
+    <Id>9</Id>
+    <SenderId>8</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Heavy</Weight>
+    <Priority>Emergency</Priority>
+    <Requested>2012-02-26T16:10:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Parcel>
+</ArrayOfParcel>
