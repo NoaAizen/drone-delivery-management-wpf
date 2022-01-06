@@ -20,26 +20,24 @@
                 <ColumnDefinition Width="303*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
-                <RowDefinition Height="400*"/>
-                <RowDefinition Height="60*"/>
+                <RowDefinition Height="74*"/>
+                <RowDefinition Height="477*"/>
+                <RowDefinition Height="73*"/>
             </Grid.RowDefinitions>
             <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="6,0,-6,0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200*"/>
-                    <ColumnDefinition Width="200*"/>
-                    <ColumnDefinition Width="60*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="137*"/>
-                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="256*"/>
+                    <ColumnDefinition Width="167*"/>
+                    <ColumnDefinition Width="192*"/>
+                    <ColumnDefinition Width="167*"/>
                 </Grid.ColumnDefinitions >
-                <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="34,35,25,5"/>
-                <Label Content="Drone status:" FontSize="20" Margin="96,23,155,3" FontWeight="Bold" Grid.ColumnSpan="2"/>
-                <ComboBox x:Name="WeightSelector" Grid.Column="4" SelectionChanged="WeightSelector_SelectionChanged" Margin="112,35,69,5" Grid.ColumnSpan="2"/>
-                <Label Content="Drone max weight:" Grid.Column="1"  FontSize="20" FontWeight="Bold" Margin="181,26,29,-1" Grid.ColumnSpan="4"/>
+                <ComboBox Name="StatusSelector" Grid.Column="1"  SelectionChanged="StatusSelector_SelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="2,41,3,-1"/>
+                <Label Content="Drone status:" FontSize="20" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Height="40" Margin="121,39,1,0"/>
+                <ComboBox x:Name="WeightSelector" Grid.Column="3" SelectionChanged="WeightSelector_SelectionChanged" Margin="2,39,6,1"/>
+                <Label Content="Drone max weight:" Grid.Column="2"  FontSize="20" FontWeight="Bold" Margin="4,35,2,2"/>
                 <Button x:Name="close" Content="Close" HorizontalAlignment="Left" Margin="-6,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
             </Grid>
-            <ListView x:Name="DroneListsView"  Margin="0,25,0,10" Grid.Row="1" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2" FontWeight="Bold">
+            <ListView x:Name="DroneListsView"  Margin="0,13,0,10" Grid.Row="1" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2" FontWeight="Bold">
                 <ListView.Foreground>
                     <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>
                 </ListView.Foreground>
@@ -49,7 +47,7 @@
                         <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Model}"/>
                         <GridViewColumn Header="MaxWeight" DisplayMemberBinding="{Binding MaxWeight}"/>
                         <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}"/>
-                        <GridViewColumn Header="Battery" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Battery" DisplayMemberBinding="{Binding Battery}"/>
                         <GridViewColumn Header="Parcel In Transfer" DisplayMemberBinding="{Binding ParcelInTransfer}"/>
                         <GridViewColumn Header="CurrentLocation" DisplayMemberBinding="{Binding CurrentLocation}"/>
                         <GridViewColumn Header="ParcelTransferredNumber" DisplayMemberBinding="{Binding ParcelTransferredNumber}"/>
@@ -57,7 +55,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="AddDrone" Content="Add new drone"  Grid.Row="2" Click="ShowAddDroneWindow" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" />
+            <Button x:Name="AddDrone" Content="Add new drone"  Grid.Row="2" Click="ShowAddDroneWindow" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" Margin="0,5,0,0" />
         </Grid>
     </Grid>
 </Window>

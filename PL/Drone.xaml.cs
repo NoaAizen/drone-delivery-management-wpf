@@ -40,7 +40,7 @@ namespace PL
             this.bl = bl;
             AddDroneGrid.IsEnabled = true;
             AddDroneGrid.Visibility = Visibility.Visible;
-            maxWeight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            Maxweight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             AddNewDrone.IsEnabled = false;
 
 
@@ -97,7 +97,7 @@ namespace PL
             {
                 Id = int.Parse(id.Text),
                 Model = model.Text,
-                MaxWeight= (WeightCategories)maxWeight.SelectedItem
+                MaxWeight= (WeightCategories)Maxweight.SelectedItem
             };
             try
             {
@@ -297,7 +297,7 @@ namespace PL
      /// <param name="e"></param>
         private void IdClick(object sender, TextChangedEventArgs e)
         {
-            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+            if (id.Text != "" && model.Text != "" && Maxweight.SelectedItem != null && stationId.Text != "")
                 AddNewDrone.IsEnabled = true;
             else
                 AddNewDrone.IsEnabled = false;
@@ -310,7 +310,7 @@ namespace PL
         private void modelClick(object sender, TextChangedEventArgs e)
         {
 
-            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+            if (id.Text != "" && model.Text != "" && Maxweight.SelectedItem != null && stationId.Text != "")
                 AddNewDrone.IsEnabled = true;
             else
                 AddNewDrone.IsEnabled = false;
@@ -323,7 +323,7 @@ namespace PL
         private void maxclick(object sender, SelectionChangedEventArgs e)
         {
 
-            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+            if (id.Text != "" && model.Text != "" && Maxweight.SelectedItem != null && stationId.Text != "")
                 AddNewDrone.IsEnabled = true;
             else
                 AddNewDrone.IsEnabled = false;
@@ -335,7 +335,7 @@ namespace PL
         /// <param name="e"></param>
         private void stationidclick(object sender, TextChangedEventArgs e)
         {
-            if (id.Text != "" && model.Text != "" && maxWeight.SelectedItem != null && stationId.Text != "")
+            if (id.Text != "" && model.Text != "" && Maxweight.SelectedItem != null && stationId.Text != "")
                 AddNewDrone.IsEnabled = true;
             else
                 AddNewDrone.IsEnabled = false;
