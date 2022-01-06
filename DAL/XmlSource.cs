@@ -14,15 +14,19 @@ namespace DalObject
         {
             public static void Initialize()
             {
+                string droneChargePath = @"..\..\..\..\DAL\xml\DroneCharge.xml";
+                var droneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
+                droneCharges.Clear();// ניקוי רשימת הרחפנים בטעינה ע"מ שלא יהיו בעיות
+                XMLTools.SaveListToXMLSerializer(droneCharges, droneChargePath);
+
+
                 DalApi.IDal D1 = DalApi.DalFactory.GetDal("1");//קריאה לבנאי שמתאחל
                 XElement stationRoot;
                 XElement configRoot;
 
-                //string FPath = @"DAL\xml\Station.xml";
                 string stationPath = @"..\..\..\..\DAL\xml\Station.xml";
                 string customerPath = @"..\..\..\..\DAL\xml\Customer.xml";
                 string dronePath = @"..\..\..\..\DAL\xml\Drone.xml";
-                string droneChargePath = @"..\..\..\..\DAL\xml\DroneCharge.xml";
                 string parcelPath = @"..\..\..\..\DAL\xml\Parcel.xml";
                 string configPath = @"..\..\..\..\DAL\xml\Config.xml";
 

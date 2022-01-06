@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
     class ProgramBL
     {
         //public static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
-        static DalApi.IDal D = DalApi.DalFactory.GetDal("1");//קריאה לבנאי שמתאחל
+        //static DalApi.IDal D = DalApi.DalFactory.GetDal("1");//קריאה לבנאי שמתאחל
         static BlApi.IBL bl = BlApi.BlFactory.GetBl();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
@@ -422,11 +422,11 @@ Enter your selection:
         /// </summary>
         public static void ViewStationListPrint()
         {
-            List<DO.Station> s = (List<DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
-            foreach (DO.Station item in s)
-            {
-                Console.WriteLine(item);
-            }
+            //List<DO.Station> s = (List<DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
+            //foreach (DO.Station item in s)
+            //{
+            //    Console.WriteLine(item);
+            //}
             foreach (var item in bl.GetStationList())
             {
                 Console.WriteLine(item);
@@ -452,11 +452,11 @@ Enter your selection:
         /// </summary>
         public static void ViewCustomerListPrint()
         {
-            List<DO.Customer> c = (List<DO.Customer>)D.GetCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
-            foreach (DO.Customer item in c)
-            {
-                Console.WriteLine(item);
-            }
+            //List<DO.Customer> c = (List<DO.Customer>)D.GetCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
+            //foreach (DO.Customer item in c)
+            //{
+            //    Console.WriteLine(item);
+            //}
             foreach (var item in bl.GetCustomerList())
             {
                 Console.WriteLine(item);
@@ -467,11 +467,11 @@ Enter your selection:
         /// </summary>
         public static void ViewParcelListPrint()
         {
-            List<DO.Parcel> p = (List<DO.Parcel>)D.GetParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
-            foreach (DO.Parcel item in p)
-            {
-                Console.WriteLine(item);
-            }
+            //List<DO.Parcel> p = (List<DO.Parcel>)D.GetParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
+            //foreach (DO.Parcel item in p)
+            //{
+            //    Console.WriteLine(item);
+            //}
             foreach (var item in bl.GetParcelList())
             {
                 Console.WriteLine(item);

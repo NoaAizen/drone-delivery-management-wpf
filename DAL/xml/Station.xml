@@ -2,16 +2,16 @@
 <stations>
   <Station>
     <Id>0</Id>
-    <Name>st4038</Name>
-    <Longitude>-149.91653411179618</Longitude>
-    <Latitude>-48.92433303358235</Latitude>
-    <AvailableStations>35</AvailableStations>
+    <Name>st6540</Name>
+    <Longitude>107.47256663044567</Longitude>
+    <Latitude>65.06497321420582</Latitude>
+    <AvailableStations>33</AvailableStations>
   </Station>
   <Station>
     <Id>1</Id>
-    <Name>st2796</Name>
-    <Longitude>109.99434920493252</Longitude>
-    <Latitude>-38.6052908136534</Latitude>
-    <AvailableStations>36</AvailableStations>
+    <Name>st9264</Name>
+    <Longitude>26.963394715899312</Longitude>
+    <Latitude>-18.84922725560574</Latitude>
+    <AvailableStations>54</AvailableStations>
   </Station>
 </stations>

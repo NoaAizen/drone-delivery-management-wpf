@@ -22,7 +22,7 @@ namespace BL
         BL() 
         {
             r = new Random();
-            dalObj = DalFactory.GetDal("1");
+            dalObj = DalFactory.GetDal("2");
             DO.Parcel parcel = new();
             StatusDrone status = 0;
             Location location = new();
@@ -64,7 +64,9 @@ namespace BL
                         }
                         else//הרחפן בתחזוקה
                         {
-                            location = getRandomStationLocation();
+                            stationId = getRandomStation();
+                            location = findStationLocation(stationId);
+                            dalObj.SendingDroneForCharging(drone.Id, stationId);
                             battery = r.NextDouble() * (20 - 0) + 0;
                         }
                     }
@@ -80,7 +82,9 @@ namespace BL
                     }
                     else//הרחפן בתחזוקה
                     {
-                        location = getRandomStationLocation();
+                        stationId = getRandomStation();
+                        location = findStationLocation(stationId);
+                        dalObj.SendingDroneForCharging(drone.Id, stationId);
                         battery = r.NextDouble() * (20 - 0) + 0;
                     }
                 }
@@ -962,13 +966,13 @@ namespace BL
         /// <summary>
         /// הגרלת מיקום בין התחנות הקיימות
         /// </summary>
-        /// <returns>מיקום של תחנה רנדומלית</returns>
-        private Location getRandomStationLocation()
+        /// <returns>מזהה של תחנה רנדומלית</returns>
+        private int getRandomStation()
         {
             List<DO.Station> stations = dalObj.GetStationList().ToList();
             DO.Station rndStation = stations[r.Next(stations.Count)];
-            Location location = new() { Longitude = rndStation.Longitude, Latitude = rndStation.Latitude };
-            return location;
+            //Location location = new() { Longitude = rndStation.Longitude, Latitude = rndStation.Latitude };
+            return rndStation.Id;
         }
         #endregion
 

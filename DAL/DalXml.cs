@@ -539,9 +539,10 @@ namespace DalXml
         /// </summary>
         /// <param name="targetId">מזהה לקוח</param>
         /// <returns>רשימת החבילות שקיבל</returns>
-        public IEnumerable<Parcel> GetTargetParcels(int targetId) {
+        public IEnumerable<Parcel> GetTargetParcels(int targetId) 
+        {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
-            return (from item in DataSource.listParcels
+            return (from item in parcels
                     where item.TargetId == targetId
                     select item).ToList();
         }
