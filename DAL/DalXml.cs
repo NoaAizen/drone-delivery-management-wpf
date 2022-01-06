@@ -82,11 +82,14 @@ namespace DalXml
             XMLTools.SaveListToXMLSerializer(customers, customerPath);
         }
         #endregion
+       
+        #region Parcel
+
         /// <summary>
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
         /// <param name="p"></param>
-      
+
         public int AddParcel(DO.Parcel p) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -105,6 +108,8 @@ namespace DalXml
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
             return p.Id;
         }
+        #endregion
+
 
         //-----------------------------------UPDATE-----------------------------------
 
@@ -176,25 +181,73 @@ namespace DalXml
         }
         #endregion
 
+        #region Assignment
+
         /// <summary>
         /// פונקצית שיוך חבילה לרחפן 
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
-        public void UpdateDroneToParcel(int idDrone, int idParcel) { }
+        public void UpdateDroneToParcel(int idDrone, int idParcel) {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!parcels.Exists(x => x.Id == idParcel))
+                throw new DoesntExistException("This parcel doesn't exist");
+            if (!drones.Exists(x => x.Id == idDrone))
+                throw new DoesntExistException("This drone doesn't exist");
+            Parcel parcel = parcels.Find(x => x.Id == idParcel);
+            parcels.Remove(parcel);
+            parcel.DroneId = idDrone;
+            parcel.Scheduled = DateTime.Now;
+            parcels.Add(parcel);
+            XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
+
+        }
+        #endregion
+
+        #region Collection
         /// <summary>
         /// פונקציית איסוף חבילה ע"י רחפן 
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
-        public void CollectionParcelFromDrone(int idDrone, int idParcel) { }
+        public void CollectionParcelFromDrone(int idDrone, int idParcel) {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            if (!parcels.Exists(x => x.Id == idParcel))
+                throw new DoesntExistException("This parcel doesn't exist");
+            if (!drones.Exists(x => x.Id == idDrone))
+                throw new DoesntExistException("This drone doesn't exist");
+            Parcel parcel = parcels.Find(x => x.Id == idParcel);
+            parcels.Remove(parcel);
+            parcel.DroneId = idDrone;
+            parcel.PickedUp = DateTime.Now;
+            parcels.Add(parcel);
+            XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
+
+        }
+        #endregion
+
+        #region Delivery
 
         /// <summary>
         /// פונקציית אספקת חבילה ללקוח 
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <param name="idParcel"></param>
-        public void DeliveryParcelForCustomer(int idCustomer, int idParcel) { }
+        public void DeliveryParcelForCustomer(int idCustomer, int idParcel) {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
+            if (!parcels.Exists(x => x.Id == idParcel))
+                throw new DoesntExistException("This parcel doesn't exist");
+            if (!customers.Exists(x => x.Id == idCustomer))
+                throw new DoesntExistException("This customer doesn't exist");
+            Parcel parcel = parcels.Find(x => x.Id == idParcel);
+            parcel.Delivered = DateTime.Now;
+            parcels.Add(parcel);
+            XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
+        }
+        #endregion
 
         #region Charging
         /// <summary>
