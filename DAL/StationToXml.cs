@@ -12,7 +12,7 @@ namespace DAL
     public class StationToXml
     {
         static XElement stationRoot;
-        static string FPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\Station.xml";
+        static string FPath = @"..\..\..\..\DAL\Station.xml";
 
         public static void SaveStationList(List<Station> stationList)
         {

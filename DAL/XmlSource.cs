@@ -19,12 +19,12 @@ namespace DalObject
                 XElement configRoot;
 
                 //string FPath = @"DAL\xml\Station.xml";
-                string stationPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Station.xml";
-                string customerPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Customer.xml";
-                string dronePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Drone.xml";
-                string droneChargePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\DroneCharge.xml";
-                string parcelPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Parcel.xml";
-                string configPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Config.xml";
+                string stationPath = @"..\..\..\..\DAL\xml\Station.xml";
+                string customerPath = @"..\..\..\..\DAL\xml\Customer.xml";
+                string dronePath = @"..\..\..\..\DAL\xml\Drone.xml";
+                string droneChargePath = @"..\..\..\..\DAL\xml\DroneCharge.xml";
+                string parcelPath = @"..\..\..\..\DAL\xml\Parcel.xml";
+                string configPath = @"..\..\..\..\DAL\xml\Config.xml";
 
                 stationRoot = new XElement("stations");
                 configRoot = new XElement("Confing");

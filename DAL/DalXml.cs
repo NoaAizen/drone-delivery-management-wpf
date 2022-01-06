@@ -23,12 +23,12 @@ namespace DalXml
         }
 
         //string stetionsPath = @"DAL\xml\Station.xml";
-        string stationPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Station.xml";
-        string customerPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Customer.xml";
-        string dronePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Drone.xml";
-        string droneChargePath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\DroneCharge.xml";
-        string parcelPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Parcel.xml";
-        string configPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\xml\Config.xml";
+        string stationPath = @"..\..\..\..\DAL\xml\Station.xml";
+        string customerPath = @"..\..\..\..\DAL\xml\Customer.xml";
+        string dronePath = @"..\..\..\..\DAL\xml\Drone.xml";
+        string droneChargePath = @"..\..\..\..\DAL\xml\DroneCharge.xml";
+        string parcelPath = @"..\..\..\..\DAL\xml\Parcel.xml";
+        string configPath = @"..\..\..\..\DAL\xml\Config.xml";
 
         //-----------------------------------ADD-----------------------------------
 
@@ -569,26 +569,9 @@ namespace DalXml
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
 
         }
-
-
-
-
-
         //לעשותתתת
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
-
-
-
-
-
-
-
-
-
-
-
-
 
         //public static void saveListToXML(List<Station> list, string path)
         //{
