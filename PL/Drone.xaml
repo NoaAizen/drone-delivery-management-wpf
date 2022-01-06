@@ -20,8 +20,8 @@
             <Label Content="Enter the details of the new drone:" HorizontalAlignment="Left" Margin="223,70,0,0" VerticalAlignment="Top" Width="425" FontSize="25" FontWeight="Bold"/>
             <TextBox x:Name="id" Margin="391,129,262,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="IdClick" Height="30"/>
 
-            <TextBox x:Name="model" HorizontalAlignment="Left" Margin="391,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" TextChanged="modelClick" Height="30" />
-            <ComboBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="391,195,0,0"  VerticalAlignment="Top" Width="147" SelectionChanged="maxclick" Height="33" />
+            <TextBox x:Name="model" HorizontalAlignment="Left" Margin="391,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" TextChanged="modelClick" Height="30" />
+            <ComboBox x:Name="maxWeight" HorizontalAlignment="Left" Margin="391,195,0,0"  VerticalAlignment="Top" Width="146" SelectionChanged="maxclick" Height="33" />
             <Button x:Name="AddNewDrone" Content="Add drone" HorizontalAlignment="Left" Margin="440,322,0,0" VerticalAlignment="Top" Height="41" Width="116" Click="AddNewDroneClick"  FontFamily="Segoe UI" FontSize="20" FontWeight="Bold"/>
             <Label Content="Id:" HorizontalAlignment="Left" Margin="275,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.093,1.715" Width="37" Height="28" FontWeight="Bold" FontSize="15" />
             <Label Content="Model:" HorizontalAlignment="Left" Margin="273,164,0,0" VerticalAlignment="Top" Width="59" Height="27" FontWeight="Bold" FontSize="15" />
