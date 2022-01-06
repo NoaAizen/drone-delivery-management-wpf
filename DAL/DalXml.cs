@@ -85,7 +85,18 @@ namespace DalXml
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
         /// <param name="p"></param>
-        public int AddParcel(DO.Parcel p) { return 0; }
+      
+        public int AddParcel(DO.Parcel p) 
+        {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+            if (parcels.Exists(x => x.Id == p.Id))
+                throw new AlreadyExistException("This parcel already exist");
+            parcels.Add(p);
+            XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
+            return CounterForParcels;
+
+
+        }
 
         //-----------------------------------UPDATE-----------------------------------
 
