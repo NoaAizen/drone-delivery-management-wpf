@@ -61,10 +61,10 @@ namespace BL
                         {
                             location = findCustomerLocation(parcel.SenderId);
                         }
-                        minCharge = checkDronePowerConsumption(drone.Id) * (getDistance(location, findCustomerLocation(parcel.TargetId)) + getDistance(findCustomerLocation(parcel.TargetId), findStationLocation(findClosestStationToCustomer(parcel.SenderId))));
+                        //minCharge = checkDronePowerConsumption(drone.Id) * (getDistance(location, findCustomerLocation(parcel.TargetId)) + getDistance(findCustomerLocation(parcel.TargetId), findStationLocation(findClosestStationToCustomer(parcel.SenderId))));
                         //random.NextDouble() * (maximum - minimum) + minimum
-                        //battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
-                        battery = r.NextDouble() * (100 - minCharge) + minCharge;//הגרלת סוללה בין טעינה מינימלית ל100
+                        battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
+                        //battery = r.NextDouble() * (100 - minCharge) + minCharge;//הגרלת סוללה בין טעינה מינימלית ל100
                     }
                     else
                     {//הרחפן לא במשלוח
