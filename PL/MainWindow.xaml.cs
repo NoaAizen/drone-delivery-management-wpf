@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        //IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
+        IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
         /// <summary>
         /// בנאי
         /// </summary>
@@ -32,44 +32,25 @@ namespace PL
 
         private void ManagerClick(object sender, RoutedEventArgs e)
         {
-             new Password().Show();
+           string temp = "Manager";
+            new Password(temp, bl).Show();
+            Close();
 
         }
 
 
         private void ClientClick(object sender, RoutedEventArgs e)
         {
-
+             string temp = "Client";
+             new Password(temp,bl).Show();
         }
 
         private void NewClicentClick(object sender, RoutedEventArgs e)
         {
+            //new NewClicent(bl).Show();
 
         }
 
-        /// <summary>
-        /// פונקציה בשביל לבגיע לכפתור של הרשימות
-        /// </summary>
-        /// <param name="sender">חלון</param>
-        /// <param name="e">אירוע</param>
-        //private void ShowDronesButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    new DroneLists(bl).Show();
-        //}
 
-        //private void ShowStationsListClick(object sender, RoutedEventArgs e)
-        //{
-        //    new StationsList(bl).Show();
-        //}
-
-        //private void CustomerListClick(object sender, RoutedEventArgs e)
-        //{
-        //    new CustomerListsShow(bl).Show();
-        //}
-
-        //private void ShowParcelsListClick(object sender, RoutedEventArgs e)
-        //{
-        //    new ParcelsList(bl).Show();
-        //}
     }
 }

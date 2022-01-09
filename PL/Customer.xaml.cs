@@ -232,13 +232,14 @@ namespace PL
 
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
-            int a = 0;
-            CustomerListsShow customerListsShow = new CustomerListsShow(bl,a);
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl);
         }
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {
             BO.Parcel p = bl.GetParcel(selectedItem.Id);
-            new Parcel(bl, p).Show();
+            Parcel win = new Parcel(bl, p);
+            win.RefreshEvent += Refresh;
+            win.Show();
         }
     }
 }

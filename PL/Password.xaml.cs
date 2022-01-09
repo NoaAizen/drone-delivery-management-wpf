@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,23 +20,37 @@ namespace PL
     /// </summary>
     public partial class Password : Window
     {
-        public Password()
+
+        private static int temp = 5;
+        private IBL bl;
+
+        public Password(string Name, IBL bl)
         {
             InitializeComponent();
-            PasswordManager.Visibility = Visibility.Visible;
-
+            this.bl = bl;
+            if (Name == "Manager")
+            {
+                PasswordManager.Visibility = Visibility.Visible;
+            }
+            else if(Name == "Client")
+            {
+                PasswordClient.Visibility = Visibility.Visible;
+            }
         }
-        private static int temp = 5;
+
+  
+
         //oriya+AA1234
         //noa+AA5678
         //ori+AA8989
-        private void LoginClick(object sender, RoutedEventArgs e)
+        private void LoginClickManager(object sender, RoutedEventArgs e)
         {
-
+            PasswordManager.Visibility = Visibility.Visible;
+            
             if ( (Username.Text == "oriya"&& PasswordM.Password == "AA1234") || (Username.Text == "noa" && PasswordM.Password == "AA5678" )|| (Username.Text == "ori" && PasswordM.Password == "AA8989"))
             {
                 MessageBox.Show("succeeded ");
-                new ShowLists().Show();
+                new ShowLists(bl).Show();
 
             }
             else
@@ -44,6 +59,7 @@ namespace PL
                 MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
                 if (temp == 0)
                 {
+                    temp = 0;
                     MessageBox.Show("You did not make all the attempts");
                     this.Close();
                 }
@@ -53,8 +69,36 @@ namespace PL
 
         private void ClosedClick(object sender, RoutedEventArgs e)
         {
+            new MainWindow().Show();
             this.Close();
 
+        }
+
+        private void LoginClicentClick(object sender, RoutedEventArgs e)
+        {
+            PasswordClient.Visibility = Visibility.Visible;
+
+            if ((UsernameClient.Text == "oriya" && PasswordC.Password == "123456") )
+            {
+                MessageBox.Show("succeeded ");
+                new Client(bl,IdText.Text).Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
+                if (temp == 0)
+                {
+                    MessageBox.Show("You did not make all the attempts");
+                    this.Close();
+                    temp = 5;
+                }
+                else
+                {
+                    temp--;
+
+                }
+            }
         }
     }
     }

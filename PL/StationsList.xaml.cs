@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+
 namespace PL
 {
     /// <summary>
@@ -35,6 +36,14 @@ namespace PL
             }
             stationsList.DataContext = stations;
         }
+        //private void moveWindow(object sender, MouseButtonEventArgs e)
+        //{
+        //    if (e.ChangedButton == MouseButton.Left)
+        //    {
+        //        this.DragMove();
+        //    }
+        //}
+
 
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
@@ -42,6 +51,7 @@ namespace PL
             Station win = new Station(bl, station);
             win.RefreshEvent += Refresh;
             win.Show();
+            Close();
         }
 
         private void ShowAddStationWindow(object sender, RoutedEventArgs e)
@@ -50,6 +60,8 @@ namespace PL
             win.RefreshEvent += Refresh;
             Grouping.IsEnabled = true;
             win.Show();
+            Close();
+
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
@@ -67,6 +79,9 @@ namespace PL
             }
 
         }
+       
 
     }
 }
+
+

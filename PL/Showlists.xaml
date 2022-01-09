@@ -5,21 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ShowLists" Height="450" Width="800">
+        Title="ShowLists" Height="450" Width="800" >
+
+
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="72*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="72*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="232*"/>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="160*"/>
+        </Grid.ColumnDefinitions >
+        <Button Content="Data of drones" Click="ShowDronesButton_Click" FontSize="20" Grid.Column="1" Grid.Row="4" Grid.RowSpan="3" Margin="0,36,0,0"/>
+        <Button Content="Data of stations" Click="ShowStationsListClick" FontSize="20" Grid.Column="1" Grid.Row="7" Margin="0,11,0,72" Grid.RowSpan="3" />
+        <Button Content="Data of customers" Click="CustomerListClick"  FontSize="20" Grid.Column="3" Grid.Row="4" Grid.RowSpan="3" Margin="0,36,0,0"/>
+        <Button Content="Data of parcels"  Click="ShowParcelsListClick" FontSize="20" Grid.Column="3"  Grid.Row="7" Margin="0,11,0,72" Grid.RowSpan="3" />
+        <Label Content="Welcome to the  "   HorizontalAlignment="Center"  VerticalAlignment="Stretch" FontSize="25" FontWeight="Bold" Grid.Column="1"  Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="3"/>
+        <Image Margin="164,4,67,10" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+        <Image Margin="-16,58,135,28" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
+        <Image Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.ColumnSpan="2" Grid.RowSpan="4" RenderTransformOrigin="0.418,0.609" Margin="29,19,18,17"/>
 
-        <Button Content="Data of drones" HorizontalAlignment="Left" Margin="242,221,0,0" VerticalAlignment="Top" Height="63" Width="186" Click="ShowDronesButton_Click" FontSize="20"/>
-        <Button Content="Data of stations" HorizontalAlignment="Left" Margin="242,288,0,0" VerticalAlignment="Top" Height="63" Width="186" Click="ShowStationsListClick" FontSize="20"/>
-        <Button Content="Data of customers" HorizontalAlignment="Left" Margin="435,288,0,0" VerticalAlignment="Top" Height="64" Width="185" Click="CustomerListClick" RenderTransformOrigin="2.085,-0.758" FontSize="20"/>
-        <Button Content="Data of parcels" HorizontalAlignment="Left" Margin="434,221,0,0" VerticalAlignment="Top" Height="64" Width="188" Click="ShowParcelsListClick" RenderTransformOrigin="0.723,2.391" FontSize="20"/>
-        <Label Content="Welcome to the  "   HorizontalAlignment="Left" Margin="306,109,0,0" VerticalAlignment="Top" Width="291" FontSize="30" FontWeight="Bold"/>
-        <Image Stretch="Fill" Source="image/לוגו קטן בלי רקע (2).png" Margin="36,-28,326,184"/>
-        <Image Margin="160,4,362,293" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png"/>
-        <Image Margin="-16,58,586,253" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png"/>
-        <Label Content="delivery management system" HorizontalAlignment="Left" Margin="219,148,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold"/>
+        <Label Content="delivery management system" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Grid.Column="1"  Grid.RowSpan="2" Grid.Row="3" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

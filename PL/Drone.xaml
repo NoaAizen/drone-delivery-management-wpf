@@ -16,7 +16,7 @@
     </Window.Background>
 
     <Grid x:Name="MainGrid">
-        <Grid x:Name="AddDroneGrid" Visibility="Visible"   >
+        <Grid x:Name="AddDroneGrid" Visibility="Hidden"   >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>

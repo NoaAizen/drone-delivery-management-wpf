@@ -20,12 +20,17 @@ namespace PL
     /// </summary>
     public partial class ShowLists : Window
     {
-        IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
+        // bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
+        private IBL bl;
 
-        public ShowLists()
+
+
+        public ShowLists(IBL bl)
         {
             InitializeComponent();
+            this.bl = bl;
         }
+
         /// <summary>
         /// פונקציה בשביל לבגיע לכפתור של הרשימות
         /// </summary>
