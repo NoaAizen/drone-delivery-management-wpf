@@ -89,7 +89,6 @@ namespace DalXml
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
         /// <param name="p"></param>
-
         public int AddParcel(DO.Parcel p) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -554,8 +553,16 @@ namespace DalXml
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
         public double[] PowerRequestToDrone() 
         {
-            double[] arr = new double[] { DataSource.Config.available, DataSource.Config.lightWeight,
-                    DataSource.Config.mediumWeight, DataSource.Config.heavyWeight, DataSource.Config.chargingRate};
+            XElement cofingRoot = XMLTools.LoadListFromXMLElement(configPath);
+
+            double[] arr = new double[]
+            {
+                Convert.ToDouble(cofingRoot.Element("available").Value),
+                Convert.ToDouble(cofingRoot.Element("lightWeight").Value),
+                Convert.ToDouble(cofingRoot.Element("mediumWeight").Value),
+                Convert.ToDouble(cofingRoot.Element("heavyWeight").Value),
+                Convert.ToDouble(cofingRoot.Element("chargingRate").Value),
+            };
             return arr;
         }
 
@@ -574,14 +581,7 @@ namespace DalXml
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
 
-        //public static void saveListToXML(List<Station> list, string path)
-        //{
-        //    XmlSerializer x = new XmlSerializer(list.GetType());
-        //    FileStream fs = new FileStream(path, FileMode.Create);
-        //    x.Serialize(fs, list);
-        //}
-        //XElement stationRoot;
-        //string FPath = @"C:\Users\User\source\repos\OriyaAharoni\dotNet5782_3394_8965\DAL\Station.xml";
+       
 
 
 

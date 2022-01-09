@@ -16,6 +16,11 @@ namespace BL
         private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         IDal dalObj;
         private static Random r;
+        private double available;//פנוי
+        private double lightWeight; //נושא משקל קל
+        private double mediumWeight;//נושא משקל בינוני
+        private double heavyWeight;//נושא משקל כבד
+        private double chargingRate;//קצב טעינת רחפן - % בשעה
 
         static BL() { }
         
@@ -26,8 +31,14 @@ namespace BL
             DO.Parcel parcel = new();
             StatusDrone status = 0;
             Location location = new();
-            double battery = 0;
+            double minCharge, battery = 0;
             int stationId=0;
+            double[] arr = dalObj.PowerRequestToDrone();
+            available = arr[0];
+            lightWeight = arr[1];
+            mediumWeight = arr[2];
+            heavyWeight = arr[3];
+            chargingRate = arr[4];
             List<DO.Drone> drones = (List<DO.Drone>)dalObj.GetDroneList();
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             foreach (var drone in drones)
@@ -50,8 +61,10 @@ namespace BL
                         {
                             location = findCustomerLocation(parcel.SenderId);
                         }
+                        minCharge = checkDronePowerConsumption(drone.Id) * (getDistance(location, findCustomerLocation(parcel.TargetId)) + getDistance(findCustomerLocation(parcel.TargetId), findStationLocation(findClosestStationToCustomer(parcel.SenderId))));
                         //random.NextDouble() * (maximum - minimum) + minimum
-                        battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
+                        //battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
+                        battery = r.NextDouble() * (100 - minCharge) + minCharge;//הגרלת סוללה בין טעינה מינימלית ל100
                     }
                     else
                     {//הרחפן לא במשלוח
@@ -101,6 +114,11 @@ namespace BL
                 };
                 DronesList.Add(blDrone);
             }
+        }
+
+        private double checkDronePowerConsumption(int id)
+        {
+            throw new NotImplementedException();
         }
 
 

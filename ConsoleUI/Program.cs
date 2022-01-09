@@ -410,6 +410,10 @@ Enter your selection:
             {
                 Console.WriteLine(item);
             }
+            //foreach(var item in D.PowerRequestToDrone())
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
         /// <summary>
         ///   הדפסת נתונים של רשימת לקוחות
