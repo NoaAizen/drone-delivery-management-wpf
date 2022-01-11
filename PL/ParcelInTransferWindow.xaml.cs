@@ -22,7 +22,15 @@ namespace PL
     public partial class ParcelInTransferWindow : Window
     {
         private IBL bl;
-
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         public ParcelInTransferWindow(IBL bl, DronePO drone)
         {
             InitializeComponent();
@@ -67,7 +75,13 @@ namespace PL
             PriorityText.IsEnabled = false;
             ParcelStatusText.IsEnabled = false;
         }
-
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -36,14 +36,22 @@ namespace PL
             }
             stationsList.DataContext = stations;
         }
-        //private void moveWindow(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (e.ChangedButton == MouseButton.Left)
-        //    {
-        //        this.DragMove();
-        //    }
-        //}
-
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
@@ -79,7 +87,15 @@ namespace PL
             }
 
         }
-       
+        /// <summary>
+        /// סגירת חלון של רשימה
+        /// </summary>
+        /// <param name="sender">חולן</param>
+        /// <param name="e">שדה</param>
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
     }
 }

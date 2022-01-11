@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        IBL bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
+        IBL bl = BlFactory.GetBl();//
         /// <summary>
         /// בנאי
         /// </summary>
@@ -37,7 +37,18 @@ namespace PL
             Close();
 
         }
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
 
         private void ClientClick(object sender, RoutedEventArgs e)
         {

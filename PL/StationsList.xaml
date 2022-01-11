@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationsList" Height="450" Width="800">
+        Title="StationsList" Height="450" Width="800"
+                  WindowStyle="None" MouseDown="moveWindow">
+
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -50,6 +52,7 @@
         </ListView>
         <Button x:Name="addStation" Content="Add new station" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow"/>
         <Button x:Name="Grouping" Content="Available Stations" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="GroupingClick" Grid.Column="3" Margin="31,27,0,0" Height="31" Width="121"/>
+        <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
 
     </Grid>
 </Window>

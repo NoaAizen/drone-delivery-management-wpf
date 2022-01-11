@@ -25,7 +25,13 @@ namespace PL
         private BO.Station selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private StationPo stationPo;//שדה בשביל המרת מידע
-
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         public Station(BlApi.IBL bl)
         {
             InitializeComponent();
@@ -125,6 +131,15 @@ namespace PL
             stationPo.AvailableStations = s.AvailableStations;
             stationPo.Latitude = s.Location.Latitude;
             stationPo.Longitude = s.Location.Longitude;
+        }
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
         private void IdClick(object sender, TextChangedEventArgs e)
         {

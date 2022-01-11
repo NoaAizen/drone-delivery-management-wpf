@@ -33,7 +33,13 @@ namespace PL
             ParcelAtCustomerFromCustomerID.ItemsSource = customer.ParcelAtCustomerFromCustomer;
             ParcelAtCustomerToCustomerID.ItemsSource = customer.ParcelAtCustomerToCustomer;
         }
-
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
 
         private void AddParcelClick(object sender, RoutedEventArgs e)
          {
@@ -42,10 +48,16 @@ namespace PL
 
         private void ParcelAtCustomerFromCustomerID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            BO.Parcel p = bl.GetParcel(customer.Id);
-            Parcel win = new Parcel(bl, p);
-            win.RefreshEvent += Refresh;
-            win.Show();
+
+            //new ActionsClinent().Show();
+
+
+
+
+            //BO.Parcel p = bl.GetParcel(customer.Id);
+            //Parcel win = new Parcel(bl, p);
+            //win.RefreshEvent += Refresh;
+            //win.Show();
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
@@ -62,7 +74,30 @@ namespace PL
             }); 
 
         }
-
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        /// <summary>
+        /// פונקציה בשביל כפתור של איסוף חבילה
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void CollectionClick(object sender, RoutedEventArgs e)//
+        {
+           
+            //try
+            //{
+            //    bl.CollectionParcelFromDrone(drone.Id);
+            //    convertToPo(drone, bl.GetDrone(drone.Id));
+            //    MessageBox.Show("sucssesed");
+            //    RefreshEvent(this, EventArgs.Empty);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+        }
         //מה זה אומרת-תתאפשר אישור איסוף ואישור קבלת חבילה
     }
 }

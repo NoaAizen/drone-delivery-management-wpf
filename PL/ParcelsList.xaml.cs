@@ -25,6 +25,17 @@ namespace PL
         private CollectionView view;
         private IBL bl;
         private ObservableCollection<ParcelToList> parcels = new();
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
 
         public ParcelsList(IBL bl)
         {

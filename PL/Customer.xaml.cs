@@ -89,6 +89,13 @@ namespace PL
             NameText.IsEnabled = true;//עדכון של זמינות המודל
             PhoneText.IsEnabled = true;
         }
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         /// <summary>
         /// פונקציה של פתחית חלון הוספה
         /// </summary>
@@ -136,7 +143,15 @@ namespace PL
             }
 
         }
-
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         /// <summary>
         /// לא לקבל נתונים בהוספת לקוח
         /// </summary>

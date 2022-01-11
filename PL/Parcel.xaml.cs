@@ -67,7 +67,13 @@ namespace PL
             if (parcel.Scheduled != null)
                 Delete.IsEnabled = false;
         }
-
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         //public Parcel(IBL bl, ParcelToList selectedItem)
         //{
         //    InitializeComponent();
@@ -104,7 +110,15 @@ namespace PL
         {
             this.Close();
         }
-
+        /// <summary>
+        /// פונקציה בשביל סגירת חלון פעולות
+        /// </summary>
+        /// <param name="sender">חלון</param>
+        /// <param name="e">אירוע</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
         private void AddNewParcelClick(object sender, RoutedEventArgs e)
         {
             BO.Parcel parcel = new()

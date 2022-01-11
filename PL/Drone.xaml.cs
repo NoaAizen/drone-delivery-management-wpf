@@ -46,6 +46,13 @@ namespace PL
 
 
         }
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
         /// <summary>
         /// בנאי של פעולות
         /// </summary>
@@ -183,6 +190,7 @@ namespace PL
         private void CollectionClick(object sender, RoutedEventArgs e)//
         {
            try{
+
             bl.CollectionParcelFromDrone(drone.Id);
             convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");

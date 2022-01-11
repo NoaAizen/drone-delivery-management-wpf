@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ParcelsList" Height="450" Width="800">
+        Title="ParcelsList" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -30,8 +30,9 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions >
         <ComboBox x:Name="StatusSelector" Grid.Column="2"  SelectionChanged="StatusSelectorSelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="163,9,51,37" Grid.ColumnSpan="2"/>
-        <Label Grid.Column="0" FontSize="20" Margin="33,12,10,10" FontWeight="Bold">
-            <Button x:Name="Grouping" Content="Grouping for Sender Id" Click="GroupingClick" Height="47" Width="243" />
+        <Label Grid.Column="0" FontSize="20" Margin="141,12,26,29" FontWeight="Bold">
+            <Button x:Name="Grouping" Content="Grouping for Sender Id" Click="GroupingClick"  />
+      
         </Label>
         <ListView x:Name="parcelsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4">
             <ListView.View>
@@ -50,5 +51,7 @@
             </ListView.GroupStyle>
         </ListView>
         <Button x:Name="addParcel" Content="Add new parcel" Grid.Row="9" Grid.ColumnSpan="4" FontSize="20" FontWeight="Bold" Click="ShowAddParcelWindow"/>
+        <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
+
     </Grid>
 </Window>

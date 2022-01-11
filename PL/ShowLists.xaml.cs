@@ -23,7 +23,17 @@ namespace PL
         // bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
         private IBL bl;
 
-
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
 
         public ShowLists(IBL bl)
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ShowLists" Height="450" Width="800" >
+        Title="ShowLists" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow" >
 
 
     <Window.Background>
@@ -40,6 +40,7 @@
         <Image Margin="164,4,67,10" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
         <Image Margin="-16,58,135,28" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.ColumnSpan="2" Grid.RowSpan="5"/>
         <Image Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.ColumnSpan="2" Grid.RowSpan="4" RenderTransformOrigin="0.418,0.609" Margin="29,19,18,17"/>
+        <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
 
         <Label Content="delivery management system" HorizontalAlignment="Center"  VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Grid.Column="1"  Grid.RowSpan="2" Grid.Row="3" Grid.ColumnSpan="3"/>
     </Grid>

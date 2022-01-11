@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:CustomerPo}"
         mc:Ignorable="d"
-        Title="Customer" Height="450" Width="800">
+        Title="Customer" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>

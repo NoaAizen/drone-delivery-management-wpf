@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="image/2.jpeg"
 
-        Title="ParcelInTransfer" Height="450" Width="800">
+        Title="ParcelInTransfer" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -67,7 +67,7 @@
             <ComboBox x:Name="maxWeightText" Grid.Row="2" SelectedItem="{Binding Path=Weight}" Grid.ColumnSpan="3" Margin="145,38,73,38" Grid.RowSpan="3"/>
             <ComboBox x:Name="PriorityText" Grid.Row="5" Text="{Binding Path=Priority}" Grid.ColumnSpan="3" Margin="145,0,73,0"/>
             <CheckBox x:Name="ParcelStatusText" Content="On the way to the destination"  Grid.Row="8" Grid.ColumnSpan="3" Margin="145,0,35,2" />
-            <Button x:Name="close" Content="close" Click="CloseClick" Margin="0,0,0,37" Grid.RowSpan="2"/>
+            <Button x:Name="close" Content="Close" Click="CloseClick" Margin="0,0,0,37" Grid.RowSpan="2"/>
         </Grid>
 
     </Grid>

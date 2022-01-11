@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="image/2.jpeg"
         
-       Title="Drone" Height="450" Width="800" >
+       Title="Drone" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Resources>
         <Color x:Key="SolidColorBrushColor1">#FFE68A76</Color>
     </Window.Resources>
@@ -90,7 +90,7 @@
             <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
             <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
             <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
-            <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
+            <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
             <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4"/>
             <Button x:Name="Release" Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4"/>
             <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>

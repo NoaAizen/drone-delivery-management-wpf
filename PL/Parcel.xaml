@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:ParcelPo}"
         mc:Ignorable="d"
-        Title="Parcel" Height="450" Width="800">
+        Title="Parcel" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -77,7 +77,7 @@
             <ComboBox x:Name="weightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
             <ComboBox x:Name="PriorityText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
             <!--<Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />-->
-            <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick" Grid.Column="0" Grid.Row="0"/>
+            <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick" Grid.Column="0" Grid.Row="0"/>
             <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="DeleteClick" Grid.Column="4"/>
             <Button x:Name="viewSender" Content="View sender" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ViewSenderClick" Grid.Column="4"/>
             <Button x:Name="viewRecipient" Content="View recipient" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Click="ViewRecipientClick" Grid.Column="4"/>

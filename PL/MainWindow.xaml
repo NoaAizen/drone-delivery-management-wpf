@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
 
 
 
@@ -41,5 +41,7 @@
         <Button Content="Client" HorizontalAlignment="Stretch"  FontWeight="Bold" FontFamily="Segoe UI Black" BorderThickness="0,0,0,0" Background="#FFD8B8E2" FontSize="20" Click="ClientClick" Grid.Column="3"  Grid.RowSpan="2" Grid.Row="8"/>
         <Button Content="New Client" FontWeight="Bold" FontFamily="Segoe UI Black" BorderThickness="0,0,0,0" Background="#FFD8B8E2" FontSize="20" Click="NewClicentClick" Grid.Column="5" Grid.RowSpan="2" Grid.Row="8"  />
         <Image Source="image/לוגו עם מסגרת.png" Grid.ColumnSpan="5" Grid.RowSpan="7"  Grid.Column="1" />
+        <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
+
     </Grid>
 </Window>
