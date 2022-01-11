@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Confing>
   <CounterForParcels>10</CounterForParcels>
-  <available>2</available>
-  <lightWeight>5</lightWeight>
-  <mediumWeight>7</mediumWeight>
-  <heavyWeight>10</heavyWeight>
+  <available>0.01</available>
+  <lightWeight>0.03</lightWeight>
+  <mediumWeight>0.05</mediumWeight>
+  <heavyWeight>0.07</heavyWeight>
   <chargingRate>30</chargingRate>
 </Confing>

@@ -5,19 +5,15 @@
     <StationId>1</StationId>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>2</DroneId>
+    <DroneId>7</DroneId>
     <StationId>1</StationId>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>7</DroneId>
-    <StationId>0</StationId>
-  </DroneCharge>
-  <DroneCharge>
     <DroneId>8</DroneId>
-    <StationId>0</StationId>
+    <StationId>1</StationId>
   </DroneCharge>
   <DroneCharge>
-    <DroneId>9</DroneId>
+    <DroneId>10</DroneId>
     <StationId>1</StationId>
   </DroneCharge>
 </ArrayOfDroneCharge>

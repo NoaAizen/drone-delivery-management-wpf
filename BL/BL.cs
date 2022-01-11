@@ -116,10 +116,7 @@ namespace BL
             }
         }
 
-        private double checkDronePowerConsumption(int id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
 
         //-----------------------------------ADD-----------------------------------
@@ -369,7 +366,97 @@ namespace BL
             if (drone == null || drone.Status != StatusDrone.Available)
                 //לשנות חריגה
                 throw new Exception("Error");
+            DO.Priorities priority= DO.Priorities.Emergency;
+            List<DO.Parcel> parcels = getRelevantParcels();
+            List<DO.Parcel> highPriorityParcels = getHighPriorityParcels(parcels, priority);
+            DO.WeightCategories maxWeight = (DO.WeightCategories)drone.MaxWeight;
+            List<DO.Parcel> maxWeightParcels = getMaxWeightParcels(highPriorityParcels, maxWeight);
+            while(maxWeightParcels == null && priority!= DO.Priorities.Normal)
+            {
+                priority--;
+                highPriorityParcels = getHighPriorityParcels(parcels, priority);
+                maxWeightParcels = getMaxWeightParcels(highPriorityParcels, maxWeight);
+            }
+            DO.Parcel parcel = getClosestParcel(maxWeightParcels, drone.CurrentLocation);
+            //double minCharge = getMinCharge(drone, parcel);
+            dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
+        }
 
+        private List<DO.Parcel> getRelevantParcels()
+        {
+            List<DO.Parcel> parcels = new();
+            StatusParcel status;
+            foreach (var item in dalObj.GetParcelList())
+            {
+                status = checkParcelStatus(item);
+                if (status == StatusParcel.Defined)
+                    parcels.Add(item);
+            }
+            return parcels;
+        }
+
+        private double getMinCharge(DroneToList drone, DO.Parcel parcel)
+        {
+            throw new NotImplementedException();
+        }
+
+        private double checkDronePowerConsumption(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private DO.Parcel getClosestParcel(List<DO.Parcel> parcels, Location droneLocation)
+        {
+            double distance;
+            Location parcelLocation = findCustomerLocation(parcels[0].SenderId);
+            double minDistance = getDistance(droneLocation, parcelLocation);
+            DO.Parcel parcel = parcels[0];
+            parcels.RemoveAt(0);
+            foreach(var item in parcels)
+            {
+                distance = getDistance(droneLocation, parcelLocation);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    parcel = item;
+                }
+            }
+            return parcel;
+        }
+
+        private List<DO.Parcel> getMaxWeightParcels(List<DO.Parcel> parcels, DO.WeightCategories maxWeight)
+        {
+            while(maxWeight!= DO.WeightCategories.Light)//בדיקה האם קיימת חבילה במשקל מקסימלי כמו הרחפן ואם לא אז במשקל נמוך יותר
+            {
+                if (!parcels.Exists(x => x.Weight == maxWeight))
+                    maxWeight--;
+                else
+                    break;
+            }
+            return (from item in parcels
+                    where item.Weight == maxWeight
+                    select item).ToList();
+        }
+
+        private List<DO.Parcel> getHighPriorityParcels(List<DO.Parcel> parcels, DO.Priorities priority)
+        {
+            while(priority!=DO.Priorities.Normal)
+            {
+                if (!parcels.Exists(x => x.Priority == priority))
+                    priority--;
+                else
+                    break;
+            }
+            //DO.Priorities priority = DO.Priorities.Emergency;
+            //if (!dalObj.GetParcelList().ToList().Exists(x => x.Priority == priority))
+            //{
+            //    priority = DO.Priorities.Fast;
+            //    if(!dalObj.GetParcelList().ToList().Exists(x => x.Priority == priority))
+            //        priority = DO.Priorities.Normal;
+            //}
+            return (from item in parcels
+                    where item.Priority == priority
+                    select item).ToList();
         }
         #endregion
 
@@ -382,7 +469,7 @@ namespace BL
         {
             DroneToList drone = DronesList.Find(x => x.Id == idDrone);
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
-            if (drone!=null && parcels.Exists(x => x.DroneId == idDrone))
+            if (drone!=null && parcels.Exists(x => x.DroneId == idDrone) && drone.Status==StatusDrone.Delivery)
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone
@@ -420,7 +507,7 @@ namespace BL
         {
             DroneToList drone = DronesList.Find(x => x.Id == idDrone);
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
-            if (drone != null && parcels.Exists(x => x.DroneId == idDrone))
+            if (drone != null && parcels.Exists(x => x.DroneId == idDrone) && drone.Status == StatusDrone.Delivery)
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
                                          where item.DroneId == idDrone

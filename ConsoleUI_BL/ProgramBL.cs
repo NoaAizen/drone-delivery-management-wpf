@@ -97,7 +97,7 @@ Enter your selection:
                                     ReleaseDroneFromChargingData();
                                     break;
                                 case Update.ASSIGN://שיוך חבילה לרחפן 
-                                                   //UpdateDroneToParcelData();
+                                    UpdateDroneToParcelData();
                                     break;
                                 case Update.COLLECTION:// איסוף חבילה ע"י רחפן 
                                     CollectionParcelFromDroneData();
@@ -338,18 +338,16 @@ Enter your selection:
             TimeSpan chargingTime = TimeSpan.Parse(Console.ReadLine());
             bl.ReleaseDroneFromCharging(idDrone, chargingTime);
         }
-        ///// <summary>
-        ///// קליטת נתונים של
-        ///// עדכון נתונים של שיוך של רחפו ללקוח
-        ///// </summary>
-        //public static void UpdateDroneToParcelData()
-        //{
-        //    Console.WriteLine("Enter Parcel's Id:");
-        //    int idParcel = int.Parse(Console.ReadLine());
-        //    Console.WriteLine("Enter Drone's Id:");
-        //    int idDrone = int.Parse(Console.ReadLine());
-        //    D.UpdateDroneToParcel(idDrone, idParcel);//DalObjectקריאה לפונקציה שנמצאת ב
-        //}
+        /// <summary>
+        /// קליטת נתונים של
+        /// עדכון נתונים של שיוך של חבילה לרחפן
+        /// </summary>
+        public static void UpdateDroneToParcelData()
+        {
+            Console.WriteLine("Enter Drone's Id:");
+            int idDrone = int.Parse(Console.ReadLine());
+            bl.UpdateDroneToParcel(idDrone);
+        }
         /// <summary>
         /// קליטת נתונים
         /// של  איסוף חבילה ע"י רחפן 
