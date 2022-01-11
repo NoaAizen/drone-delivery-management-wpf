@@ -25,10 +25,10 @@ namespace DalObject
             //שדות
             public static int CounterForParcels { get; set; }// מספר רץ עבור חבילות
             //תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן
-            internal static double available = 2;//פנוי
-            internal static double lightWeight = 5;//נושא משקל קל
-            internal static double mediumWeight  = 7;//נושא משקל בינוני
-            internal static double heavyWeight = 10;//נושא משקל כבד
+            internal static double available = 0.01;//פנוי
+            internal static double lightWeight = 0.03;//נושא משקל קל
+            internal static double mediumWeight  = 0.05;//נושא משקל בינוני
+            internal static double heavyWeight = 0.07;//נושא משקל כבד
             internal static double chargingRate = 30;//קצב טעינת רחפן - % בשעה
             public static Random r = new Random();
             /// <summary>
@@ -53,8 +53,8 @@ namespace DalObject
                     temp = r.Next(1000, 10000);
                     name = "st" + temp;
                     chargeSlots = r.Next(1, 100);
-                    longitude = r.NextDouble() * (180 + 180) - 180;//NextDouble() * (maximum - minimum) + minimum;
-                    latitude = r.NextDouble() * (90 + 90) - 90;
+                    longitude = r.NextDouble() * (33.5 - 29.3) + 29.3;//NextDouble() * (maximum - minimum) + minimum;
+                    latitude = r.NextDouble() * (36.3 - 33.7) + 33.7;
                     listStations.Add( new() 
                     { Id = id, Name = name, AvailableStations = chargeSlots, Longitude = longitude, Latitude = latitude });
                 }
@@ -77,8 +77,8 @@ namespace DalObject
                     name = Arr[i];
                     temp = r.Next(1000000, 10000000);
                     phone = temp.ToString();
-                    longitude = r.NextDouble() * (180 + 180) - 180;
-                    latitude = r.NextDouble() * (90 + 90) - 90;
+                    longitude = r.NextDouble() * (33.5 - 29.3) + 29.3;//NextDouble() * (maximum - minimum) + minimum;
+                    latitude = r.NextDouble() * (36.3 - 33.7) + 33.7;
                     listCustomers.Add(new() 
                     { Id = id, Name = name, Phone = phone, Longitude = longitude, Latitude = latitude });
                 }
