@@ -3,71 +3,71 @@
   <Customer>
     <Id>0</Id>
     <Name>noa</Name>
-    <Phone>4339812</Phone>
-    <Latitude>-36.39839521907195</Latitude>
-    <Longitude>-147.36425901174744</Longitude>
+    <Phone>5357533</Phone>
+    <Latitude>35.54952133924212</Latitude>
+    <Longitude>32.21824060162447</Longitude>
   </Customer>
   <Customer>
     <Id>1</Id>
     <Name>avi</Name>
-    <Phone>2634543</Phone>
-    <Latitude>-19.500761222793145</Latitude>
-    <Longitude>-142.03632019555025</Longitude>
+    <Phone>9359880</Phone>
+    <Latitude>34.272999736560976</Latitude>
+    <Longitude>31.746245748198707</Longitude>
   </Customer>
   <Customer>
     <Id>2</Id>
     <Name>oriya</Name>
-    <Phone>6972879</Phone>
-    <Latitude>-56.77040544653796</Latitude>
-    <Longitude>58.337431456119475</Longitude>
+    <Phone>4546077</Phone>
+    <Latitude>36.230534598478364</Latitude>
+    <Longitude>31.41026302897849</Longitude>
   </Customer>
   <Customer>
     <Id>3</Id>
     <Name>ori</Name>
-    <Phone>3259079</Phone>
-    <Latitude>80.0301397359139</Latitude>
-    <Longitude>46.245022186192244</Longitude>
+    <Phone>8952362</Phone>
+    <Latitude>36.20891166790803</Latitude>
+    <Longitude>29.62917780099864</Longitude>
   </Customer>
   <Customer>
     <Id>4</Id>
     <Name>rachel</Name>
-    <Phone>4167486</Phone>
-    <Latitude>34.3639701066371</Latitude>
-    <Longitude>111.83785141065613</Longitude>
+    <Phone>4243956</Phone>
+    <Latitude>33.824387886805646</Latitude>
+    <Longitude>32.94603197921349</Longitude>
   </Customer>
   <Customer>
     <Id>5</Id>
     <Name>tamar</Name>
-    <Phone>6688734</Phone>
-    <Latitude>66.51713240729512</Latitude>
-    <Longitude>76.69748241859367</Longitude>
+    <Phone>1809406</Phone>
+    <Latitude>34.92366293017923</Latitude>
+    <Longitude>32.73570172536918</Longitude>
   </Customer>
   <Customer>
     <Id>6</Id>
     <Name>ben</Name>
-    <Phone>3572674</Phone>
-    <Latitude>66.06012263151823</Latitude>
-    <Longitude>-19.499684441601715</Longitude>
+    <Phone>5174801</Phone>
+    <Latitude>35.27043330714592</Latitude>
+    <Longitude>31.848924114903866</Longitude>
   </Customer>
   <Customer>
     <Id>7</Id>
     <Name>gad</Name>
-    <Phone>3165450</Phone>
-    <Latitude>-34.91241990817358</Latitude>
-    <Longitude>59.371684714859185</Longitude>
+    <Phone>1569555</Phone>
+    <Latitude>33.86197886772546</Latitude>
+    <Longitude>32.20683260285614</Longitude>
   </Customer>
   <Customer>
     <Id>8</Id>
     <Name>dan</Name>
-    <Phone>6163183</Phone>
-    <Latitude>6.4376334363769985</Latitude>
-    <Longitude>168.13692647411347</Longitude>
+    <Phone>9983862</Phone>
+    <Latitude>34.15158196224439</Latitude>
+    <Longitude>33.041947488646</Longitude>
   </Customer>
   <Customer>
     <Id>9</Id>
     <Name>moshe</Name>
-    <Phone>3821278</Phone>
-    <Latitude>-76.03156305199096</Latitude>
-    <Longitude>-23.317387533987585</Longitude>
+    <Phone>6220403</Phone>
+    <Latitude>35.29970646332936</Latitude>
+    <Longitude>31.305376726484567</Longitude>
   </Customer>
 </ArrayOfCustomer>

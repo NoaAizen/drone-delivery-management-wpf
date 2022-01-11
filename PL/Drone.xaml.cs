@@ -12,10 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
-
-
-
-
+using System.ComponentModel;
 
 
 namespace PL
@@ -30,6 +27,8 @@ namespace PL
         private BlApi.IBL bl;//שדה בשביל שימוש הנתונים בBL
         private DroneToList selectedItem;//rjpi
         TimeSpan t;
+         BackgroundWorker worker;
+        private bool start;
         /// <summary>
         /// בנאי של הוספת חלון
         /// </summary>
@@ -348,5 +347,38 @@ namespace PL
             else
                 AddNewDrone.IsEnabled = false;
         }
+
+        private void AutomaticClick(object sender, RoutedEventArgs e)
+        {
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            start = true;
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+
+           
+
+            worker.RunWorkerAsync("argument");
+
+        }
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            object obj = e.Argument;
+            bl.StartDroneSimulator(drone.Id);
+
+            worker.ReportProgress(1);
+            e.Result = "result";
+        }
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+        }
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            object result = e.Result;
+        }
+
     }
 }

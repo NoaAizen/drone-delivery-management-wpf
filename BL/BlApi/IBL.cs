@@ -154,6 +154,9 @@ namespace BlApi
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
         public void DeleteParcel(Parcel parcel);
+
+        public void StartDroneSimulator(int id);
+
     }
 }
 

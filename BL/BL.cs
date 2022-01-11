@@ -1180,8 +1180,32 @@ namespace BL
         //DataSource.listDrones.Remove(d);
         //    d.Model = model;
         //    DataSource.listDrones.Add(d);
+        public void StartDroneSimulator(int id)
+        {
+            Drone drone = GetDrone(id);
+            //לתקן לוגיקה
+            if (drone.Battery <= 20)
+            {
+                SendingDroneForCharging(id);
+            }
+            else
+            {
+                try 
+                { 
+                     UpdateDroneToParcel(id);
+                     CollectionParcelFromDrone(id);
+                     DeliveryParcelByDrone(id);
+                
+                
+                
+                
+                }
+                catch (Exception ex)
+                {
+                    throw new DoesntExistException(ex.Message, ex);
+                }
+            }
+        }
     }
-
-    
 
 }
