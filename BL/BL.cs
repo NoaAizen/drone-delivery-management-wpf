@@ -14,7 +14,7 @@ namespace BL
         static readonly BL instance = new BL();//שדה פרטי סטטי 
         internal static BL Instance { get => instance; }
         private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
-        IDal dalObj;
+        internal IDal dalObj;
         private static Random r;
         private double available;//פנוי
         private double lightWeight; //נושא משקל קל
@@ -1180,31 +1180,32 @@ namespace BL
         //DataSource.listDrones.Remove(d);
         //    d.Model = model;
         //    DataSource.listDrones.Add(d);
-        public void StartDroneSimulator(int id)
+        public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop)
         {
-            Drone drone = GetDrone(id);
-            //לתקן לוגיקה
-            if (drone.Battery <= 20)
-            {
-                SendingDroneForCharging(id);
-            }
-            else
-            {
-                try 
-                { 
-                     UpdateDroneToParcel(id);
-                     CollectionParcelFromDrone(id);
-                     DeliveryParcelByDrone(id);
+            new Simulator(this, id, updateDrone, checkStop);
+            //Drone drone = GetDrone(id);
+            ////לתקן לוגיקה
+            //if (drone.Battery <= 20)
+            //{
+            //    SendingDroneForCharging(id);
+            //}
+            //else
+            //{
+            //    try 
+            //    { 
+            //         UpdateDroneToParcel(id);
+            //         CollectionParcelFromDrone(id);
+            //         DeliveryParcelByDrone(id);
                 
                 
                 
                 
-                }
-                catch (Exception ex)
-                {
-                    throw new DoesntExistException(ex.Message, ex);
-                }
-            }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        throw new DoesntExistException(ex.Message, ex);
+            //    }
+            //}
         }
     }
 

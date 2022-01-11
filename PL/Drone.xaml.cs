@@ -27,8 +27,13 @@ namespace PL
         private BlApi.IBL bl;//שדה בשביל שימוש הנתונים בBL
         private DroneToList selectedItem;//rjpi
         TimeSpan t;
-         BackgroundWorker worker;
+        BackgroundWorker worker;
         private bool start;
+        private void updateDrone() => worker.ReportProgress(0);
+        private bool checkStop() => worker.CancellationPending;
+
+
+
         /// <summary>
         /// בנאי של הוספת חלון
         /// </summary>
@@ -85,7 +90,7 @@ namespace PL
             statusText.ItemsSource = Enum.GetValues(typeof(StatusDrone));
             maxWeightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             notEnablFildes();
-            if (drone.Status==StatusDrone.Delivery)
+            if (drone.Status == StatusDrone.Delivery)
             {
                 ParcelTransfer.IsEnabled = true;
             }
@@ -103,7 +108,7 @@ namespace PL
             {
                 Id = int.Parse(id.Text),
                 Model = model.Text,
-                MaxWeight= (WeightCategories)Maxweight.SelectedItem
+                MaxWeight = (WeightCategories)Maxweight.SelectedItem
             };
             try
             {
@@ -112,7 +117,7 @@ namespace PL
                 this.Close();
                 RefreshEvent(this, EventArgs.Empty);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -143,7 +148,7 @@ namespace PL
             }
         }
 
-       
+
         /// <summary>
         /// פונקציב בשביל כפתור לשליחת רחפן לטעינה
         /// </summary>
@@ -151,9 +156,10 @@ namespace PL
         /// <param name="e"></param>
         private void ChargingClick(object sender, RoutedEventArgs e)
         {
-            try { 
-            bl.SendingDroneForCharging(drone.Id);
-            convertToPo(drone, bl.GetDrone(drone.Id));
+            try
+            {
+                bl.SendingDroneForCharging(drone.Id);
+                convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");
                 RefreshEvent(this, EventArgs.Empty);
             }
@@ -170,9 +176,10 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void ReleaseClick(object sender, RoutedEventArgs e)//
         {
-           try{
-            bl.ReleaseDroneFromCharging(drone.Id, t);
-            convertToPo(drone, bl.GetDrone(drone.Id));
+            try
+            {
+                bl.ReleaseDroneFromCharging(drone.Id, t);
+                convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");
                 RefreshEvent(this, EventArgs.Empty);
             }
@@ -188,10 +195,11 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void CollectionClick(object sender, RoutedEventArgs e)//
         {
-           try{
+            try
+            {
 
-            bl.CollectionParcelFromDrone(drone.Id);
-            convertToPo(drone, bl.GetDrone(drone.Id));
+                bl.CollectionParcelFromDrone(drone.Id);
+                convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");
                 RefreshEvent(this, EventArgs.Empty);
             }
@@ -226,9 +234,10 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void DeliveryClick(object sender, RoutedEventArgs e)
         {
-          try{
-            bl.DeliveryParcelByDrone(drone.Id);
-            convertToPo(drone, bl.GetDrone(drone.Id));
+            try
+            {
+                bl.DeliveryParcelByDrone(drone.Id);
+                convertToPo(drone, bl.GetDrone(drone.Id));
                 MessageBox.Show("sucssesed");
                 RefreshEvent(this, EventArgs.Empty);
             }
@@ -257,7 +266,7 @@ namespace PL
         /// <summary>
         /// פונקציה להפעלת שדות להיות לא זמינים 
         /// </summary>
-      public void notEnablFildes()//
+        public void notEnablFildes()//
         {
             idText.IsEnabled = false;
             statusText.IsEnabled = false;
@@ -287,7 +296,7 @@ namespace PL
             this.Close();
         }
 
-     
+
         /// <summary>
         /// מעבר לחלון של חבילה בהעברה
         /// </summary>
@@ -295,13 +304,13 @@ namespace PL
         /// <param name="e"></param>
         private void ParcelInTransferClick(object sender, RoutedEventArgs e)
         {
-            new ParcelInTransferWindow(bl,drone).Show();
+            new ParcelInTransferWindow(bl, drone).Show();
         }
-     /// <summary>
-     /// פונקציה של נעילה אירוע תעודת זהות בשביל הסופת נתונים
-     /// </summary>
-     /// <param name="sender"></param>
-     /// <param name="e"></param>
+        /// <summary>
+        /// פונקציה של נעילה אירוע תעודת זהות בשביל הסופת נתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IdClick(object sender, TextChangedEventArgs e)
         {
             if (id.Text != "" && model.Text != "" && Maxweight.SelectedItem != null && stationId.Text != "")
@@ -358,7 +367,8 @@ namespace PL
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
-           
+
+
 
             worker.RunWorkerAsync("argument");
 
@@ -366,19 +376,33 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             object obj = e.Argument;
-            bl.StartDroneSimulator(drone.Id);
+            //while(start)
+            //{
+            bl.StartDroneSimulator(drone.Id, updateDrone, checkStop);
+            //}
 
             worker.ReportProgress(1);
             e.Result = "result";
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int progress = e.ProgressPercentage;
+            RefreshEvent(this, EventArgs.Empty);
+            convertToPo(drone, bl.GetDrone(drone.Id));
+
+            //int progress = e.ProgressPercentage;
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             object result = e.Result;
         }
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (worker.WorkerSupportsCancellation == true)
+                // Cancel the asynchronous operation.
+                worker.CancelAsync();
+        }
+
+
 
     }
 }
