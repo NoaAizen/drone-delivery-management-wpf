@@ -29,8 +29,7 @@ namespace PL
         TimeSpan t;
         BackgroundWorker worker;
         private bool start;
-        private void updateDrone() => worker.ReportProgress(0);
-        private bool checkStop() => worker.CancellationPending;
+        
 
 
 
@@ -366,28 +365,24 @@ namespace PL
             worker.DoWork += Worker_DoWork;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
-
-
-
-
-            worker.RunWorkerAsync("argument");
-
+            worker.RunWorkerAsync();
         }
+
+        private void updateDrone() => worker.ReportProgress(0);
+        private bool checkStop() => worker.CancellationPending;
+
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            object obj = e.Argument;
-            //while(start)
-            //{
             bl.StartDroneSimulator(drone.Id, updateDrone, checkStop);
-            //}
-
-            worker.ReportProgress(1);
-            e.Result = "result";
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            RefreshEvent(this, EventArgs.Empty);
-            convertToPo(drone, bl.GetDrone(drone.Id));
+            try
+            {
+                convertToPo(drone, bl.GetDrone(drone.Id));
+                RefreshEvent(this, EventArgs.Empty);
+            }
+            catch { MessageBox.Show("error"); }
 
             //int progress = e.ProgressPercentage;
         }

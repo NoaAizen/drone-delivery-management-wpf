@@ -25,26 +25,28 @@ namespace BL
                 {
                     case StatusDrone.Available:
                         //לתקן לוגיקה
-                        if (drone.Battery >= 20)
-                        {
+                        //if (drone.Battery >= 20)
+                        //{
                             try
                             {
                                 bl.UpdateDroneToParcel(id);
                                 updateDrone();
-                                Thread.Sleep(TIMER);
+                                //Thread.Sleep(TIMER);
                             }
-                            catch (Exception ex)
+                            catch
                             {
-                                Thread.Sleep(TIMER);
-
+                                if (drone.Battery < 100) 
+                                {
+                                    bl.SendingDroneForCharging(id);
+                                    updateDrone();
+                                    Thread.Sleep(TIMER);
+                                }
                             }
-                        }
-                        else
-                        {
-                            bl.SendingDroneForCharging(id);
-                            updateDrone();
-                            Thread.Sleep(TIMER);
-                        }
+                        //}
+                        //else
+                        //{
+                            
+                        //}
                         break;
                     case StatusDrone.Delivery:
                         try
@@ -64,6 +66,14 @@ namespace BL
                         }
                         break;
                     case StatusDrone.Maintenance:
+                        while(drone.Battery<100)
+                        {
+                            drone.Battery += 3;
+                            if (drone.Battery > 100)
+                                drone.Battery = 100;
+                            updateDrone();
+                            Thread.Sleep(TIMER);
+                        }
                         bl.ReleaseDroneFromCharging(id, new(1, 0, 0));//למחוק פרמטר שני
                         Thread.Sleep(TIMER);
                         break;
