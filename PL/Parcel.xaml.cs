@@ -173,14 +173,15 @@ namespace PL
 
         private void Refresh(object sender, EventArgs e)
         {
-            int a = 0;
-            CustomerListsShow customerListsShow = new CustomerListsShow(bl, a);
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl);
         }
 
         private void ViewRecipientClick(object sender, RoutedEventArgs e)
         {
             BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelRecipient.Id);
-            new Customer(bl, customer).Show();
+            Customer win = new Customer(bl, customer);
+            win.RefreshEvent += Refresh;
+            win.Show();
         }
 
         private void ViewDroneClick(object sender, RoutedEventArgs e)
@@ -197,7 +198,7 @@ namespace PL
                 CurrentLocation = drone.CurrentLocation,
                 ParcelTransferredNumber = drone.ParcelInTransfer.Id
             };
-            new Drone(bl, droneToList).Show();//חג שמח
+            new Drone(bl, droneToList).Show();//
         }
 
         /// <summary>

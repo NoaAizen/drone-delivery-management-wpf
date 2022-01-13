@@ -581,39 +581,40 @@ namespace BL
             try
             {
                 dalDrone = dalObj.GetDrone(id);
+
+                Drone blDrone = new()
+                {
+                    Id = dalDrone.Id,
+                    Model = dalDrone.Model,
+                    MaxWeight = (WeightCategories)dalDrone.MaxWeight,
+                    Status = drone.Status,
+                    Battery = drone.Battery,
+                    CurrentLocation = drone.CurrentLocation
+                };
+                if (blDrone.Status == StatusDrone.Delivery)
+                {
+                    DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id);
+                    Parcel parcel = GetParcel(dalParcel.Id);
+                    blDrone.ParcelInTransfer = new()
+                    {
+                        Id = parcel.Id,
+                        Weight = parcel.Weight,
+                        Priority = parcel.Priority,
+                        ParcelStatus = checkParcelStatus(dalParcel) == StatusParcel.Collected,// true אם בדרך ליעד
+                        CustomerInParcelSender = parcel.CustomerInParcelSender,
+                        CustomerInParcelRecipient = parcel.CustomerInParcelRecipient,
+                        CollectionLocation = findCustomerLocation(parcel.CustomerInParcelSender.Id),
+                        DeliveryDestinationLocation = findCustomerLocation(parcel.CustomerInParcelRecipient.Id)
+                    };
+                    blDrone.ParcelInTransfer.TransportDistance =
+                        getDistance(blDrone.ParcelInTransfer.CollectionLocation, blDrone.ParcelInTransfer.DeliveryDestinationLocation);
+                }
+                return blDrone;
             }
             catch (Exception ex)
             {
                 throw new DoesntExistException(ex.Message, ex);
             }
-            Drone blDrone = new()
-            {
-                Id = dalDrone.Id,
-                Model = dalDrone.Model,
-                MaxWeight = (WeightCategories)dalDrone.MaxWeight,
-                Status = drone.Status,
-                Battery=drone.Battery,
-                CurrentLocation=drone.CurrentLocation
-            };
-            if(blDrone.Status == StatusDrone.Delivery)
-            {
-                DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id);
-                Parcel parcel = GetParcel(dalParcel.Id);
-                blDrone.ParcelInTransfer = new()
-                {
-                    Id=parcel.Id,
-                    Weight=parcel.Weight,
-                    Priority=parcel.Priority,
-                    ParcelStatus = checkParcelStatus(dalParcel) == StatusParcel.Collected,// true אם בדרך ליעד
-                    CustomerInParcelSender=parcel.CustomerInParcelSender,
-                    CustomerInParcelRecipient=parcel.CustomerInParcelRecipient,
-                    CollectionLocation= findCustomerLocation(parcel.CustomerInParcelSender.Id),
-                    DeliveryDestinationLocation =findCustomerLocation(parcel.CustomerInParcelRecipient.Id)
-                };
-                blDrone.ParcelInTransfer.TransportDistance =
-                    getDistance(blDrone.ParcelInTransfer.CollectionLocation, blDrone.ParcelInTransfer.DeliveryDestinationLocation);
-            }
-            return blDrone;
         }
         #endregion
 
@@ -1172,6 +1173,7 @@ namespace BL
             DO.Parcel dalParcel=dalObj.GetParcel(parcel.Id);
             dalObj.DeleteParcel(dalParcel);
         }
+
 
         //--------------------------------------- לממש!!!
 

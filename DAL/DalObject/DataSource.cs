@@ -18,8 +18,9 @@ namespace DalObject
         internal static List<DO.Customer> listCustomers = new List<DO.Customer>();
         internal static List<DO.Parcel> listParcels = new List<DO.Parcel>();
         internal static List<DO.DroneCharge> listDroneCharges = new List<DO.DroneCharge>();
+        internal static List<DO.User> listUser = new List<DO.User>();
 
-        
+
         internal class Config
         {
             //שדות
@@ -168,6 +169,16 @@ namespace DalObject
                         PickedUp = pickedUp,
                         Delivered = delivered
                     });
+                }
+                for (int i =0; i < 10; i++)
+                {
+                    User user = new()
+                    {
+                        Id = i,
+                        Name = Arr[i],
+                        Password = Arr[i]
+                    };
+                    listUser.Add(user);
                 }
 
             }

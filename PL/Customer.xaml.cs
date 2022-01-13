@@ -63,10 +63,10 @@ namespace PL
         /// </summary>
         /// <param name="bl"></param>
         /// <param name="selectedItem"></param>
-        public Customer(IBL bl, BO.Customer c)
+        public Customer(IBL bl, BO.Customer c,string Client=null)
         {
             InitializeComponent();
-
+           
             this.bl = bl;
             this.selectedItem = c;
             //c = bl.GetCustomer(selectedItem.Id);
@@ -85,6 +85,11 @@ namespace PL
             };
 
             Actions.DataContext = Customerpo;
+            if (Client == "Client")
+            {
+                ParcelAtCustomerToCustomer.IsEnabled = false;
+                ParcelAtCustomerFromCustomer.IsEnabled = false;
+            }
             notEnablFildes();
             NameText.IsEnabled = true;//עדכון של זמינות המודל
             PhoneText.IsEnabled = true;
@@ -219,8 +224,7 @@ namespace PL
 
             try
             {
-                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID
-                                                                                                     //    convertToPo(drone, bl.GetDrone(drone.Id));
+                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID                                                                                           //    convertToPo(drone, bl.GetDrone(drone.Id));
                MessageBox.Show("sucssesed");
               RefreshEvent(this, EventArgs.Empty);//יש בבעיה אחרי כניסה מחבילה
 
@@ -248,6 +252,8 @@ namespace PL
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
             CustomerListsShow customerListsShow = new CustomerListsShow(bl);
+     
+
         }
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {

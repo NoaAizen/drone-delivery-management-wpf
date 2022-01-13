@@ -91,30 +91,39 @@ namespace PL
 
         private void LoginClicentClick(object sender, RoutedEventArgs e)
         {
-            PasswordClient.Visibility = Visibility.Visible;
+            //bool falf=false;
+            //PasswordClient.Visibility = Visibility.Visible;
+            //string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel", "tamar", "ben", "gad", "dan", "moshe" };//מערך שמות של הלקוח
+            //foreach(var v in Arr)
+            //{
+            //    if (UsernameClient.Text == v)
+            //    {
+            //        falf = true;
+            //    }
+            //}
+            //if ((falf && PasswordC.Password == "123456") )
+            //{
+            //    MessageBox.Show("succeeded ");
+            //    new Client(bl,IdText.Text).Show();
 
-            if ((UsernameClient.Text == "oriya" && PasswordC.Password == "123456") )
-            {
-                MessageBox.Show("succeeded ");
-                new Client(bl,IdText.Text).Show();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
+            //    if (temp == 0)
+            //    {
+            //        MessageBox.Show("You did not make all the attempts");
+            //        this.Close();
+            //        temp = 5;
+            //    }
+            //    else
+            //    {
+            //        temp--;
 
-            }
-            else
-            {
-                MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
-                if (temp == 0)
-                {
-                    MessageBox.Show("You did not make all the attempts");
-                    this.Close();
-                    temp = 5;
-                }
-                else
-                {
-                    temp--;
-
-                }
-            }
+            //    }
+            //}
         }
     }
+
     }
 

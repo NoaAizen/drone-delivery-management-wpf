@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Remove="3.png" />
-    <None Remove="5.png" />
     <None Remove="image\1.jpg" />
     <None Remove="image\2.jpeg" />
     <None Remove="image\3.jpg" />
@@ -25,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="5.png" />
     <Resource Include="image\4.png" />
     <Resource Include="image\1.jpg" />
     <Resource Include="image\2.jpeg" />

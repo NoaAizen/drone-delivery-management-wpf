@@ -25,6 +25,7 @@ namespace PL
         private ObservableCollection<BO.CustomerToList> customers = new();
 
         public int A { get; }
+        public Action<object, EventArgs> RefreshEvent { get; internal set; }
 
         public CustomerListsShow(IBL bl)
         {
@@ -35,7 +36,10 @@ namespace PL
                 customers.Add(item);
             }
             customerlist.DataContext = customers;
+ 
+
         }
+
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -51,13 +55,6 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        public CustomerListsShow(IBL bl, int a) : this(bl)
-        {
-            A = a;
-            Customer win = new Customer(); 
-            win.RefreshEvent += Refresh;
         }
 
         private void GetActionsCustomer(object sender, MouseButtonEventArgs e)

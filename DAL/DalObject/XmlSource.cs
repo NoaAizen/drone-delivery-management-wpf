@@ -29,6 +29,8 @@ namespace DalObject
                 string dronePath = @"..\..\..\..\DAL\xml\Drone.xml";
                 string parcelPath = @"..\..\..\..\DAL\xml\Parcel.xml";
                 string configPath = @"..\..\..\..\DAL\xml\Config.xml";
+                string userPath = @"..\..\..\..\DAL\xml\User.xml";
+
 
                 stationRoot = new XElement("stations");
                 configRoot = new XElement("Confing");
@@ -57,6 +59,7 @@ namespace DalObject
                 XMLTools.SaveListToXMLSerializer(DataSource.listDrones, dronePath);
                 XMLTools.SaveListToXMLSerializer(DataSource.listDroneCharges, droneChargePath);
                 XMLTools.SaveListToXMLSerializer(DataSource.listParcels, parcelPath);
+                XMLTools.SaveListToXMLSerializer(DataSource.listUser, userPath);
 
             }
         }

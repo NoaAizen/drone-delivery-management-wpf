@@ -13,10 +13,12 @@ namespace PL
     public partial class DroneLists : Window
     {
         private BlApi.IBL bl;//שדה בשביל גישה לBL
-       /// <summary>
-       /// בנאי בשביל חלון של הרשימה
-       /// </summary>
-       /// <param name="b">רחפן של BL</param>
+        public event EventHandler RefreshEvent;
+
+        /// <summary>
+        /// בנאי בשביל חלון של הרשימה
+        /// </summary>
+        /// <param name="b">רחפן של BL</param>
         public DroneLists(BlApi.IBL b)//
         {
             InitializeComponent();
@@ -28,8 +30,14 @@ namespace PL
 
 
         }
+
+        //public DroneLists()
+        //{
+        //    DroneListsView.SelectedItem = bl.GetDroneList();
+        //}
+
         /// <summary>
-       /// פונקציית פקד של סינון לפני סטטוס
+        /// פונקציית פקד של סינון לפני סטטוס
         /// </summary>
         /// <param name="sender">חלן</param>
         /// <param name="e">אירוע</param>
@@ -88,7 +96,7 @@ namespace PL
             win.Show();
         }
         /// <summary>
-        /// פונקצית רענון רשימה
+        /// פונקצית רענון רשימה  
         /// </summary>
         /// <param name="sender">חלון</param>
         /// <param name="e">אירוע</param>

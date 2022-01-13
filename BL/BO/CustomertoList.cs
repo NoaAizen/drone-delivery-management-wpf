@@ -46,6 +46,11 @@ namespace BO
         {
             return this.ToStringProperty();
         }
+
+        internal bool Exists(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,18 +50,11 @@ namespace PL
         private void ParcelAtCustomerFromCustomerID_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            //new ActionsClinent().Show();
-
-
-
-
-            //BO.Parcel p = bl.GetParcel(customer.Id);
-            //Parcel win = new Parcel(bl, p);
-            //win.RefreshEvent += Refresh;
-            //win.Show();
+            new ActionsClinent(bl,(ParcelAtCustomer)ParcelAtCustomerFromCustomerID.SelectedItem).Show();
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl);
             ParcelAtCustomerFromCustomerID.ItemsSource = customer.ParcelAtCustomerFromCustomer;
             ParcelAtCustomerToCustomerID.ItemsSource = customer.ParcelAtCustomerToCustomer;
         }
@@ -69,7 +63,7 @@ namespace PL
         {
             System.Diagnostics.Process.Start(new ProcessStartInfo
             {
-                FileName = "https://www.youtube.com/watch?v=ZZFKyCJmWZI&list=RDHdB1F-u0d4Y&index=10",
+                FileName = "https://docs.google.com/forms/d/e/1FAIpQLSeI0z1QwnzIBkCv3Zel2og0Ie1AC7ULlO3jrR6cKI00a7CJLw/viewform?usp=sf_link",
                 UseShellExecute = true
             }); 
 
@@ -98,6 +92,21 @@ namespace PL
             //    MessageBox.Show(ex.Message);
             //}
         }
+
+        private void ParcelAtCustomerToCustomerID_SekectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            new ActionsClinent(bl, (ParcelAtCustomer)ParcelAtCustomerToCustomerID.SelectedItem).Show();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string Client = "Client";
+            Customer win = new Customer(bl, customer, Client);
+            win.RefreshEvent += Refresh;
+            win.Show();
+        }
+
         //מה זה אומרת-תתאפשר אישור איסוף ואישור קבלת חבילה
     }
 }
