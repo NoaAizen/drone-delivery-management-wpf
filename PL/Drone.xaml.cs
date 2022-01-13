@@ -374,15 +374,16 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             bl.StartDroneSimulator(drone.Id, updateDrone, checkStop);
+
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            try
+            //try
             {
                 convertToPo(drone, bl.GetDrone(drone.Id));
                 RefreshEvent(this, EventArgs.Empty);
             }
-            catch { MessageBox.Show("error"); }
+            //catch { MessageBox.Show("error"); }
 
             //int progress = e.ProgressPercentage;
         }

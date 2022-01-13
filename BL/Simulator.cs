@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using BO;
 using System.Threading;
 using static BL.BL;
-
+using BlApi;
 
 namespace BL
 {
-    class Simulator
+    internal class Simulator
     {
         const int TIMER = 1000;//מילי שניות
         const double SPEED = 100;//ק"מ לשנייה
@@ -18,10 +18,12 @@ namespace BL
 
         public Simulator(BL bl, int id, Action updateDrone, Func<bool> checkStop)
         {
-            Drone drone = bl.GetDrone(id);
-            while(!checkStop())
+            DroneToList droneBL = bl.DronesList.FirstOrDefault(x => x.Id == id);
+          
+
+            while (!checkStop())
             {
-                switch(drone.Status)
+                switch(droneBL.Status)
                 {
                     case StatusDrone.Available:
                         //לתקן לוגיקה
@@ -35,7 +37,7 @@ namespace BL
                             }
                             catch
                             {
-                                if (drone.Battery < 100) 
+                                if (droneBL.Battery < 100) 
                                 {
                                     bl.SendingDroneForCharging(id);
                                     updateDrone();
@@ -66,15 +68,19 @@ namespace BL
                         }
                         break;
                     case StatusDrone.Maintenance:
-                        while(drone.Battery<100)
+                        while(droneBL.Battery<100)
                         {
-                            drone.Battery += 3;
-                            if (drone.Battery > 100)
-                                drone.Battery = 100;
+                            droneBL.Battery += 3;
+                            if (droneBL.Battery > 100) { 
+                                droneBL.Battery = 100;
+                        }
                             updateDrone();
                             Thread.Sleep(TIMER);
                         }
-                        bl.ReleaseDroneFromCharging(id, new(1, 0, 0));//למחוק פרמטר שני
+                        
+                            bl.ReleaseDroneFromCharging(id, new(1, 0, 0));//למחוק פרמטר שני
+                        updateDrone();
+
                         Thread.Sleep(TIMER);
                         break;
                 }

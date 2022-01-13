@@ -13,7 +13,7 @@ namespace BL
     {
         static readonly BL instance = new BL();//שדה פרטי סטטי 
         internal static BL Instance { get => instance; }
-        private List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
+        internal List<DroneToList> DronesList = new List<DroneToList>();//רשימת רחפנים
         internal IDal dalObj;
         private static Random r;
         private double available;//פנוי
