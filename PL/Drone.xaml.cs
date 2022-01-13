@@ -383,13 +383,15 @@ namespace PL
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //try
+            try
             {
                 convertToPo(drone, bl.GetDrone(drone.Id));
                 RefreshEvent(this, EventArgs.Empty);
             }
-            //catch { MessageBox.Show("error"); }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             //int progress = e.ProgressPercentage;
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
