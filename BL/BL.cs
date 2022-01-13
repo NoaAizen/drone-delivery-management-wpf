@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DalApi;
+using System.Runtime.CompilerServices;
 
 
 namespace BL
@@ -77,10 +78,13 @@ namespace BL
                         }
                         else//הרחפן בתחזוקה
                         {
-                            stationId = getRandomStation();
-                            location = findStationLocation(stationId);
-                            dalObj.SendingDroneForCharging(drone.Id, stationId);
-                            battery = r.NextDouble() * (20 - 0) + 0;
+                            lock (dalObj)
+                            {
+                                stationId = getRandomStation();
+                                location = findStationLocation(stationId);
+                                dalObj.SendingDroneForCharging(drone.Id, stationId);
+                                battery = r.NextDouble() * (20 - 0) + 0;
+                            }
                         }
                     }
                 }
@@ -95,10 +99,13 @@ namespace BL
                     }
                     else//הרחפן בתחזוקה
                     {
-                        stationId = getRandomStation();
-                        location = findStationLocation(stationId);
-                        dalObj.SendingDroneForCharging(drone.Id, stationId);
-                        battery = r.NextDouble() * (20 - 0) + 0;
+                        lock (dalObj)
+                        {
+                            stationId = getRandomStation();
+                            location = findStationLocation(stationId);
+                            dalObj.SendingDroneForCharging(drone.Id, stationId);
+                            battery = r.NextDouble() * (20 - 0) + 0;
+                        }
                     }
                 }
                 DroneToList blDrone = new()
@@ -334,6 +341,7 @@ namespace BL
         /// </summary>
         /// <param name="id">מזהה רחפן</param>
         /// <param name="chargingTime">פרק זמן בטעינה</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReleaseDroneFromCharging(int id, TimeSpan chargingTime)//מה זה פרק זמן בטעינה?
         {
             DroneToList drone = DronesList.Find(x => x.Id == id);
@@ -342,7 +350,10 @@ namespace BL
             int stationId = dalObj.GetDroneChargesList().ToList().Find(x => x.DroneId == id).StationId;
             try
             {
-                dalObj.ReleaseDroneFromCharging(id, stationId);
+                lock (dalObj)
+                {
+                    dalObj.ReleaseDroneFromCharging(id, stationId);
+                }
             }
             catch (Exception ex)
             {
@@ -380,6 +391,11 @@ namespace BL
             DO.Parcel parcel = getClosestParcel(maxWeightParcels, drone.CurrentLocation);
             //double minCharge = getMinCharge(drone, parcel);
             dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
+            DronesList.Remove(drone);
+            //drone.Battery -= 20;
+            //drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
+            drone.Status = StatusDrone.Delivery;
+            DronesList.Add(drone);
         }
 
         private List<DO.Parcel> getRelevantParcels()

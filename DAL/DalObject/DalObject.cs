@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 
 namespace DalObject
@@ -301,6 +302,7 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReleaseDroneFromCharging(int idDrone, int idStation)
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))

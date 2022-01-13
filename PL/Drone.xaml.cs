@@ -261,6 +261,10 @@ namespace PL
             //dronePo.ParcelTransferredNumber = d.ParcelInTransfer.Id;
             dronePo.Latitude = d.CurrentLocation.Latitude;
             dronePo.Longitude = d.CurrentLocation.Longitude;
+            //if (dronePo.Status == StatusDrone.Delivery)
+            //{
+            //    new ParcelInTransferWindow(bl, dronePo).Show();
+            //}
         }
         /// <summary>
         /// פונקציה להפעלת שדות להיות לא זמינים 
@@ -358,6 +362,7 @@ namespace PL
 
         private void AutomaticClick(object sender, RoutedEventArgs e)
         {
+            ParcelTransfer.Visibility = Visibility.Hidden;
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;

@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using DalApi;
 using DO;
 using DalObject;
+using System.Runtime.CompilerServices;
 
 namespace DalXml
 {
@@ -35,6 +36,7 @@ namespace DalXml
         //-----------------------------------ADD-----------------------------------
 
         #region Station
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddStation(Station station)
         {
             XElement stationRoot= XMLTools.LoadListFromXMLElement(stationPath);
@@ -60,6 +62,7 @@ namespace DalXml
         /// פונקצית הוספת רחפן לרשימת רחפנים 
         /// </summary>
         /// <param name="d"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddDrone(DO.Drone d) 
         {
             List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -75,6 +78,7 @@ namespace DalXml
         ///  פונקציית קליטת לקוח חדש לרשימת הלקוחות 
         /// </summary>
         /// <param name="c"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AddCustomer(DO.Customer c) 
         {
             List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
@@ -84,13 +88,14 @@ namespace DalXml
             XMLTools.SaveListToXMLSerializer(customers, customerPath);
         }
         #endregion
-       
+
         #region Parcel
 
         /// <summary>
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
         /// <param name="p"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public int AddParcel(DO.Parcel p) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -120,6 +125,7 @@ namespace DalXml
         /// </summary>
         /// <param name="id">מזהה הרחפן לעדכון</param>
         /// <param name="model">שם המודל חדש</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateDroneModel(int id, string model) 
         {
             var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -140,6 +146,7 @@ namespace DalXml
         /// <param name="id">מזהה תחנה</param>
         /// <param name="name">שם חדש</param>
         /// <param name="totalChargingStations">כמות עמדות טעינה כוללת</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateStation(int id, string name, int totalChargingStations) 
         {
             XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
@@ -166,6 +173,7 @@ namespace DalXml
         /// <param name="id">מספר מזהה של הלקוח</param>
         /// <param name="name">שם חדש</param>
         /// <param name="phone">טלפון חדש</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateCustomer(int id, string name, string phone)
         {
             List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
@@ -189,6 +197,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdateDroneToParcel(int idDrone, int idParcel) {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
             List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -212,6 +221,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void CollectionParcelFromDrone(int idDrone, int idParcel) {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
             List<Drone> drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -235,6 +245,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeliveryParcelForCustomer(int idCustomer, int idParcel) {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
             List<Customer> customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
@@ -256,6 +267,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendingDroneForCharging(int idDrone, int idStation)
         {
             var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -286,6 +298,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReleaseDroneFromCharging(int idDrone, int idStation)
         {
             var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -320,6 +333,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idStation"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Station GetStation(int idStation) 
         {
             XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
@@ -349,6 +363,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idDrone"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Drone GetDrone(int idDrone) 
         {
             var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -365,6 +380,7 @@ namespace DalXml
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Customer GetCustomer(int idCustomer) 
         {
             var customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
@@ -374,13 +390,14 @@ namespace DalXml
             return customer; 
         }
         #endregion
-     
+
         #region Parcel
         /// <summary>
         /// הדפסת חבילה אחת
         /// </summary>
         /// <param name="idParcel"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DO.Parcel GetParcel(int idParcel)
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -399,6 +416,7 @@ namespace DalXml
         /// פונקציית הדפסת כל התחנות
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> GetStationList()
         {
             XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
@@ -420,6 +438,7 @@ namespace DalXml
         /// פונקציית הדפסת כל הרחפנים
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Drone> GetDroneList() 
         {
             return XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
@@ -436,13 +455,14 @@ namespace DalXml
             return XMLTools.LoadListFromXMLSerializer<Customer>(customerPath); 
         }
         #endregion
-       
+
         #region Parcel
 
         /// <summary>
         /// פונקציית הדפסת כל חבילות
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetParcelList() 
         {
             return XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -454,18 +474,20 @@ namespace DalXml
         /// תצוגת רשימת רחפנים בטעינה
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.DroneCharge> GetDroneChargesList() 
         {
             return XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath); 
         }
         #endregion
-      
+
         #region Parcels no drone
 
         /// <summary>
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Parcel> GetParcelNoDroneList() 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -482,6 +504,7 @@ namespace DalXml
         /// פונקציית הדפסת תחנות עם עמדות טעינה פנויות
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<DO.Station> GetAvailableChargingStationsList()
         {
             XElement stationRoot = XMLTools.LoadListFromXMLElement(stationPath);
@@ -507,6 +530,7 @@ namespace DalXml
         /// </summary>
         /// <param name="stationId">מזהה תחנה</param>
         /// <returns>רשימת מזהי הרחפנים הנטענים בתחנה זו </returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<int> GetDronesInStationId(int stationId)
         {
             var droneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(droneChargePath);
@@ -523,6 +547,7 @@ namespace DalXml
         /// </summary>
         /// <param name="senderId">מזהה לקוח</param>
         /// <returns>רשימת החבילות ששלח</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetSenderParcels(int senderId) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -540,6 +565,7 @@ namespace DalXml
         /// </summary>
         /// <param name="targetId">מזהה לקוח</param>
         /// <returns>רשימת החבילות שקיבל</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> GetTargetParcels(int targetId) 
         {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -548,11 +574,12 @@ namespace DalXml
                     select item).ToList();
         }
         #endregion
-    
+
         /// <summary>
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public double[] PowerRequestToDrone() 
         {
             XElement cofingRoot = XMLTools.LoadListFromXMLElement(configPath);
@@ -572,6 +599,7 @@ namespace DalXml
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeleteParcel(Parcel parcel) {
 
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
@@ -583,6 +611,7 @@ namespace DalXml
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<User> GetUserList()
         {
             List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
