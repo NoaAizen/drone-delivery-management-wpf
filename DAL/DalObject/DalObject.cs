@@ -666,6 +666,12 @@ namespace DalObject
         {
             DataSource.listParcels.Remove(parcel);
         }
+
+        public IEnumerable<User> GetUserList()
+        {
+            return from item in DataSource.listUser
+                   select item;
+        }
     }
 }
 

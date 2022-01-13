@@ -184,7 +184,11 @@ namespace DalApi
 
 
 
-
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת כל המשתמשים
+        /// </summary>
+        /// <returns>רשימת המשתמשים</returns>
+        IEnumerable<User> GetUserList();
 
 
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p);

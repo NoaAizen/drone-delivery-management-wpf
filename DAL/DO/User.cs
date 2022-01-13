@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    public class User
+    public struct User
     {
         public int Id { set; get; }
         public string Name { set; get; }

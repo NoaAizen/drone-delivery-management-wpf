@@ -91,20 +91,13 @@ namespace PL
 
         private void LoginClicentClick(object sender, RoutedEventArgs e)
         {
-            //bool falf=false;
+
             //PasswordClient.Visibility = Visibility.Visible;
-            //string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel", "tamar", "ben", "gad", "dan", "moshe" };//מערך שמות של הלקוח
-            //foreach(var v in Arr)
-            //{
-            //    if (UsernameClient.Text == v)
-            //    {
-            //        falf = true;
-            //    }
-            //}
-            //if ((falf && PasswordC.Password == "123456") )
+
+            //if ((falf && PasswordC.Password == "123456"))
             //{
             //    MessageBox.Show("succeeded ");
-            //    new Client(bl,IdText.Text).Show();
+            //    new Client(bl, IdText.Text).Show();
 
             //}
             //else

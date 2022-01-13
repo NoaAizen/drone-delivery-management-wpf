@@ -29,6 +29,8 @@ namespace DalXml
         string droneChargePath = @"..\..\..\..\DAL\xml\DroneCharge.xml";
         string parcelPath = @"..\..\..\..\DAL\xml\Parcel.xml";
         string configPath = @"..\..\..\..\DAL\xml\Config.xml";
+        string userPath = @"..\..\..\..\DAL\xml\User.xml";
+
 
         //-----------------------------------ADD-----------------------------------
 
@@ -581,7 +583,12 @@ namespace DalXml
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
 
-       
+        public IEnumerable<User> GetUserList()
+        {
+            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            return from item in users
+                   select item;
+        }
 
 
 
