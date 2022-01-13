@@ -1,18 +1,9 @@
 ﻿using BlApi;
 using BO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL
 {
@@ -27,6 +18,7 @@ namespace PL
         BO.Customer c = new();
         BO.Location L = new();
         private CustomerPo Customerpo;
+        int temp;
         ///// <summary>
         /////פתיחה חלון של עדכון (על ידי רשימות).
         ///// </summary>
@@ -105,12 +97,19 @@ namespace PL
         /// פונקציה של פתחית חלון הוספה
         /// </summary>
         /// <param name="bl"></param>
-        public Customer(IBL bl)
+        public Customer(IBL bl,UserToLIst userToLIst=null)
         {
             InitializeComponent();
             this.bl = bl;
             AddCustomerGrid.Visibility = Visibility.Visible;
             AddNewCustomer.IsEnabled = false;
+            if (userToLIst != null)
+            {
+                idteaxt.Text = (userToLIst.Id).ToString();
+                nameteaxt.Text = userToLIst.Name;
+                nameteaxt.IsEnabled = false;
+                idteaxt.IsEnabled = false;
+            }
         }
 
         public Customer()

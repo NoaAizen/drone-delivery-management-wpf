@@ -683,16 +683,19 @@ namespace DalObject
                    select item;
         }
         public void ChangePassword(string password, int id)
-        {
-            //var Users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
-            
+        {            
             if (!DataSource.listUser.Exists(x => x.Id == id))
                 throw new DoesntExistException("This user doesn't exist");
             User user = DataSource.listUser.Find(x => x.Id == id);
             DataSource.listUser.Remove(user);
             user.Password = password;
             DataSource.listUser.Add(user);
-           // XMLTools.SaveListToXMLSerializer(Users, userPath);
+        }
+        public void AddUser(DO.User u)
+        {
+            if (DataSource.listUser.Exists(x => x.Id == u.Id))
+                throw new AlreadyExistException("The user already exist");
+            DataSource.listUser.Add(u);
         }
     }
 }

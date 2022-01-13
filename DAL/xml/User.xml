@@ -11,6 +11,11 @@
     <Password>avi</Password>
   </User>
   <User>
+    <Id>2</Id>
+    <Name>oriya</Name>
+    <Password>oriya</Password>
+  </User>
+  <User>
     <Id>3</Id>
     <Name>ori</Name>
     <Password>ori</Password>
@@ -46,8 +51,8 @@
     <Password>moshe</Password>
   </User>
   <User>
-    <Id>2</Id>
-    <Name>oriya</Name>
-    <Password>noa</Password>
+    <Id>11</Id>
+    <Name>bgv</Name>
+    <Password>12</Password>
   </User>
 </ArrayOfUser>

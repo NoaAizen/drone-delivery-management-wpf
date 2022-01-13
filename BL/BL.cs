@@ -1238,7 +1238,23 @@ namespace BL
                 throw new DoesntExistException(ex.Message, ex);
             }
         }
-
+        public void AddUser(UserToLIst userToLIst)
+        {
+            DO.User user = new()//יצירת ישות נתונים של תחנה
+            {
+                Id = userToLIst.Id,
+                Name= userToLIst.Name,
+                Password= userToLIst.Password
+            };
+            try
+            {
+                dalObj.AddUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw new AlreadyExistException(ex.Message, ex);
+            }
+        }
     }
 
 }

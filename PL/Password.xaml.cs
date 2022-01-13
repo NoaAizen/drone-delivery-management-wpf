@@ -26,6 +26,7 @@ namespace PL
         private bool flag = false;
         private static int temp = 5;
         private IBL bl;
+        private UserToLIst user;
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -57,6 +58,10 @@ namespace PL
             else if (Name == "Forgot")
             {
                 ForgotPassword.Visibility = Visibility.Visible;
+            }
+            else if (Name == "NewClicent")
+            {
+                NewClicent.Visibility = Visibility.Visible;
             }
         }
 
@@ -130,6 +135,9 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             new Password("Forgot",bl).Show();
+            this.Close();
+
+
         }
 
         private void ForgotPasswordClick(object sender, RoutedEventArgs e)
@@ -145,6 +153,34 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
 }
+
+        private void NewClicentClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                user = new()
+                {
+                    Id = int.Parse(IdN.Text),
+                    Name = NameN.Text,
+                    Password = PasswordN.Password
+                };
+                bl.AddUser(user);//לעשות בידקה של שם משתמש ותעודת זהות שהן מחוברים
+                MessageBox.Show("succeeded ");
+                Customer win = new Customer(bl, user);
+                win.RefreshEvent += Refresh;
+                win.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        {
+            CustomerListsShow customerListsShow = new CustomerListsShow(bl);
+          
+        }
     }
     }
 

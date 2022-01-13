@@ -60,7 +60,7 @@ namespace PL
 
         private void NewClicentClick(object sender, RoutedEventArgs e)
         {
-            //new NewClicent(bl).Show();
+            new Password("NewClicent",bl).Show();
 
         }
 

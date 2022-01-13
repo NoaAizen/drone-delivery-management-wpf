@@ -630,7 +630,14 @@ namespace DalXml
             XMLTools.SaveListToXMLSerializer(Users, userPath);
         }
 
-
+        public void AddUser(DO.User u)
+        {
+            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (users.Exists(x => x.Id == u.Id))
+                throw new AlreadyExistException("This user already exist");
+            users.Add(u);
+            XMLTools.SaveListToXMLSerializer(users, userPath);
+        }
 
 
     }

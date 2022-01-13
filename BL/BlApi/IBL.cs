@@ -158,7 +158,7 @@ namespace BlApi
         public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop);
         public IEnumerable<UserToLIst> GetUSList();
         public void ChangePassword(string password, int id);
-
+        public void AddUser(UserToLIst userToLIst);
 
     }
 }

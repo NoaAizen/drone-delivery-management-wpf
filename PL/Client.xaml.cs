@@ -99,7 +99,7 @@ namespace PL
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)//עדכון פרטים
         {
             string Client = "Client";
             Customer win = new Customer(bl, customer, Client);
