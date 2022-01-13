@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BO;
+using System.Collections.ObjectModel;
 
 namespace PL
 {
@@ -20,7 +22,8 @@ namespace PL
     /// </summary>
     public partial class Password : Window
     {
-
+        private ObservableCollection <BO.UserToLIst> Users = new();
+        private bool flag = false;
         private static int temp = 5;
         private IBL bl;
         private void moveWindow(object sender, MouseButtonEventArgs e)
@@ -51,9 +54,14 @@ namespace PL
             {
                 PasswordClient.Visibility = Visibility.Visible;
             }
+            else if (Name == "Forgot")
+            {
+                ForgotPassword.Visibility = Visibility.Visible;
+            }
         }
 
   
+
 
         //oriya+AA1234
         //noa+AA5678
@@ -61,7 +69,6 @@ namespace PL
         private void LoginClickManager(object sender, RoutedEventArgs e)
         {
             PasswordManager.Visibility = Visibility.Visible;
-            
             if ( (Username.Text == "oriya"&& PasswordM.Password == "AA1234") || (Username.Text == "noa" && PasswordM.Password == "AA5678" )|| (Username.Text == "ori" && PasswordM.Password == "AA8989"))
             {
                 MessageBox.Show("succeeded ");
@@ -91,32 +98,53 @@ namespace PL
 
         private void LoginClicentClick(object sender, RoutedEventArgs e)
         {
+            PasswordClient.Visibility = Visibility.Visible;
+            foreach (var item in bl.GetUSList())
+            {
+                if (item.Name == UsernameClient.Text && item.Id == int.Parse(IdText.Text) && item.Password == PasswordC.Password)
+                {
+                    flag = true;
+                    break;
+                }
+            }
 
-            //PasswordClient.Visibility = Visibility.Visible;
+            if(flag==true)
+            {
+                MessageBox.Show("succeeded ");
+                new Client(bl, IdText.Text).Show();
 
-            //if ((falf && PasswordC.Password == "123456"))
-            //{
-            //    MessageBox.Show("succeeded ");
-            //    new Client(bl, IdText.Text).Show();
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
-            //    if (temp == 0)
-            //    {
-            //        MessageBox.Show("You did not make all the attempts");
-            //        this.Close();
-            //        temp = 5;
-            //    }
-            //    else
-            //    {
-            //        temp--;
-
-            //    }
-            //}
+            }
+            else
+            {
+                temp--;
+                MessageBox.Show("Incorrect id or password or username, you have " + temp + " more attempts");
+                if (temp == 0)
+                {
+                    temp = 0;
+                    MessageBox.Show("You did not make all the attempts");
+                    this.Close();
+                }
+            }
         }
-    }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new Password("Forgot",bl).Show();
+        }
+
+        private void ForgotPasswordClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ForgotPassword.Visibility = Visibility.Visible;
+                bl.ChangePassword(PasswordF.Password, int.Parse(IdF.Text));
+                MessageBox.Show("succeeded ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+}
+    }
     }
 

@@ -156,6 +156,9 @@ namespace BlApi
         public void DeleteParcel(Parcel parcel);
 
         public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop);
+        public IEnumerable<UserToLIst> GetUSList();
+        public void ChangePassword(string password, int id);
+
 
     }
 }

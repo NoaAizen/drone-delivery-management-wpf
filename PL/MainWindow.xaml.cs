@@ -54,6 +54,8 @@ namespace PL
         {
              string temp = "Client";
              new Password(temp,bl).Show();
+            Close();
+
         }
 
         private void NewClicentClick(object sender, RoutedEventArgs e)

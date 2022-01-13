@@ -74,38 +74,7 @@ namespace PL
                 this.DragMove();
             }
         }
-        //public Parcel(IBL bl, ParcelToList selectedItem)
-        //{
-        //    InitializeComponent();
-        //    this.bl = bl;
-        //    this.selectedItem = selectedItem;
-        //    Actions.IsEnabled = true;
-        //    Actions.Visibility = Visibility.Visible;
-        //    notEnablFildes();
-        //    BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
-        //    parcelPo = new()
-        //    {
-        //        Id = parcel.Id,
-        //        CustomerInParcelSender = parcel.CustomerInParcelSender,
-        //        CustomerInParcelRecipient = parcel.CustomerInParcelRecipient,
-        //        Weight = parcel.Weight,
-        //        Priority = parcel.Priority,
-        //        DroneInParcel = parcel.DroneInParcel,
-        //        Requested = parcel.Requested,
-        //        Scheduled = parcel.Scheduled,
-        //        PickedUp = parcel.PickedUp,
-        //        Delivered = parcel.Delivered
-        //    };
-        //    PriorityText.ItemsSource = Enum.GetValues(typeof(Priorities));
-        //    weightText.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-        //    Actions.DataContext = parcelPo;
-        //}
-
-        //public Parcel(IBL bl, BO.Parcel selectedItem1) : this(bl)
-        //{
-        //    this.selectedItem1 = selectedItem1;
-        //}
-
+       
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -157,6 +126,7 @@ namespace PL
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
             bl.DeleteParcel(selectedItem);
+            convertToPo(parcelPo, selectedItem);
             RefreshEvent(this, EventArgs.Empty);
             MessageBox.Show("sucssesed");
             this.Close();
@@ -249,6 +219,19 @@ namespace PL
                 AddNewParcel.IsEnabled = true;
             else
                 AddNewParcel.IsEnabled = false;
+        }
+        public void convertToPo(ParcelPo parcelPo, BO.Parcel parcel)
+        {
+            parcelPo.CustomerInParcelRecipient = parcel.CustomerInParcelRecipient;
+            parcelPo.CustomerInParcelSender = parcel.CustomerInParcelSender;
+            parcelPo.Delivered = parcel.Delivered;
+            parcelPo.DroneInParcel = parcel.DroneInParcel;
+            parcelPo.Id = parcel.Id;
+            parcelPo.PickedUp = parcel.PickedUp;
+            parcelPo.Priority = parcel.Priority;
+            parcelPo.Requested = parcel.Requested;
+            parcelPo.Scheduled = parcel.Scheduled;
+            parcelPo.Weight = parcel.Weight;
         }
     }
 }

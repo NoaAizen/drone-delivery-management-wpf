@@ -618,6 +618,18 @@ namespace DalXml
             return from item in users
                    select item;
         }
+        public void ChangePassword(string password,int id)
+        {
+            var Users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (!Users.Exists(x => x.Id == id))
+                throw new DoesntExistException("This user doesn't exist");
+            User user = Users.Find(x => x.Id == id);
+            Users.Remove(user);
+            user.Password = password;
+            Users.Add(user);
+            XMLTools.SaveListToXMLSerializer(Users, userPath);
+        }
+
 
 
 

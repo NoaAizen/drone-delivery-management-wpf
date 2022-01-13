@@ -1210,30 +1210,35 @@ namespace BL
         public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop)
         {
             new Simulator(this, id, updateDrone, checkStop);
-            //Drone drone = GetDrone(id);
-            ////לתקן לוגיקה
-            //if (drone.Battery <= 20)
-            //{
-            //    SendingDroneForCharging(id);
-            //}
-            //else
-            //{
-            //    try 
-            //    { 
-            //         UpdateDroneToParcel(id);
-            //         CollectionParcelFromDrone(id);
-            //         DeliveryParcelByDrone(id);
-                
-                
-                
-                
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw new DoesntExistException(ex.Message, ex);
-            //    }
-            //}
+          
         }
+        public IEnumerable<UserToLIst> GetUSList()
+        {
+            List<UserToLIst> Users = new();
+            foreach (var v in dalObj.GetUserList())
+            {
+                UserToLIst user = new()
+                {
+                    Id = v.Id,
+                    Name = v.Name,
+                    Password=v.Password
+                };
+                Users.Add(user);
+            }
+            return Users;
+        }
+        public void ChangePassword(string password, int id)
+        {
+            try
+            {
+                dalObj.ChangePassword(password, id);
+            }
+            catch (Exception ex)
+            {
+                throw new DoesntExistException(ex.Message, ex);
+            }
+        }
+
     }
 
 }

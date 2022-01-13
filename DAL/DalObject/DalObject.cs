@@ -682,6 +682,18 @@ namespace DalObject
             return from item in DataSource.listUser
                    select item;
         }
+        public void ChangePassword(string password, int id)
+        {
+            //var Users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            
+            if (!DataSource.listUser.Exists(x => x.Id == id))
+                throw new DoesntExistException("This user doesn't exist");
+            User user = DataSource.listUser.Find(x => x.Id == id);
+            DataSource.listUser.Remove(user);
+            user.Password = password;
+            DataSource.listUser.Add(user);
+           // XMLTools.SaveListToXMLSerializer(Users, userPath);
+        }
     }
 }
 

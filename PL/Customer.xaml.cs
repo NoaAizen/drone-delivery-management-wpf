@@ -224,8 +224,9 @@ namespace PL
 
             try
             {
-                bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID                                                                                           //    convertToPo(drone, bl.GetDrone(drone.Id));
-               MessageBox.Show("sucssesed");
+              bl.UpdateCustomer(Customerpo.Id, Customerpo.Name, Customerpo.Phone);//האם מותר  לשנות ID                                                                                           //    convertToPo(drone, bl.GetDrone(drone.Id));
+                convertToPo(Customerpo,bl.GetCustomer(Customerpo.Id));
+              MessageBox.Show("sucssesed");
               RefreshEvent(this, EventArgs.Empty);//יש בבעיה אחרי כניסה מחבילה
 
             }
@@ -262,5 +263,17 @@ namespace PL
             win.RefreshEvent += Refresh;
             win.Show();
         }
+        public void convertToPo(CustomerPo customerPo, BO.Customer c)
+        {
+            customerPo.Id = c.Id;
+            customerPo.Name = c.Name;
+            customerPo.Phone = c.Phone;
+            customerPo.Latitude = c.Location.Latitude;
+            customerPo.Longitude = c.Location.Longitude;
+            customerPo.ParcelAtCustomerFromCustomer = c.ParcelAtCustomerFromCustomer;
+            customerPo.ParcelAtCustomerToCustomer = c.ParcelAtCustomerToCustomer;
+            
+        }
+        
     }
 }

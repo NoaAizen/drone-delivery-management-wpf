@@ -63,7 +63,6 @@ namespace PL
             else
             {
                 drone = bl.GetDrone(parcel.DroneInParcel.Id);
-
             }
         }
 
@@ -72,7 +71,7 @@ namespace PL
             try
             {
                 bl.CollectionParcelFromDrone(drone.Id);
-                convertToPo(dronePO, bl.GetDrone(drone.Id));
+                convertToPo(parcelPo, bl.GetParcel(parcelPo.Id));
                 MessageBox.Show("sucssesed");
                 DroneLists win = new DroneLists(bl);
                 win.RefreshEvent += Refresh;
@@ -93,9 +92,8 @@ namespace PL
             try
             {
                 bl.DeliveryParcelByDrone(drone.Id);
-               convertToPo(dronePO, bl.GetDrone(drone.Id));
+                convertToPo(parcelPo, bl.GetParcel(selectedItem.Id));
                 MessageBox.Show("sucssesed");
-
                 DroneLists win = new DroneLists(bl);
                 win.RefreshEvent += Refresh;
     
@@ -109,23 +107,27 @@ namespace PL
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
             DroneLists DroneLists = new DroneLists(bl);
+
+
         }
         /// <summary>
         /// /פונקציה שעושה המרה בשביל הזרימת מידע
         /// </summary>
         /// <param name="dronePo">רחפן של PL</param>
         /// <param name="d">רחפן של BO</param>
-       
-        public void convertToPo(DronePO dronePo, BO.Drone d)
+
+        public void convertToPo(ParcelPo parcelPo, BO.Parcel parcel)
         {
-            dronePo.Battery = d.Battery;
-            dronePo.Id = d.Id;
-            dronePo.Status = d.Status;
-            dronePo.MaxWeight = d.MaxWeight;
-            dronePo.Model = d.Model;
-            //dronePo.ParcelTransferredNumber = d.ParcelInTransfer.Id;
-            dronePo.Latitude = d.CurrentLocation.Latitude;
-            dronePo.Longitude = d.CurrentLocation.Longitude;
+            parcelPo.CustomerInParcelRecipient = parcel.CustomerInParcelRecipient;
+            parcelPo.CustomerInParcelSender = parcel.CustomerInParcelSender;
+            parcelPo.Delivered = parcel.Delivered;
+            parcelPo.DroneInParcel = parcel.DroneInParcel;
+            parcelPo.Id = parcel.Id;
+            parcelPo.PickedUp = parcel.PickedUp;
+            parcelPo.Priority = parcel.Priority;
+            parcelPo.Requested = parcel.Requested;
+            parcelPo.Scheduled = parcel.Scheduled;
+            parcelPo.Weight = parcel.Weight;
         }
     }
 }
