@@ -159,6 +159,8 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
+
         public void UpdateDroneToParcel(int idDrone, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -187,6 +189,8 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
+
         public void CollectionParcelFromDrone(int idDrone, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -225,6 +229,8 @@ namespace DalObject
         /// </summary>
         /// <param name="idCustomer"></param>
         /// <param name="idParcel"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
+
         public void DeliveryParcelForCustomer(int idCustomer, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -265,6 +271,8 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
+                 [MethodImpl(MethodImplOptions.Synchronized)]
+
         public void SendingDroneForCharging(int idDrone, int idStation)
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))

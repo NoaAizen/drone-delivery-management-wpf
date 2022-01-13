@@ -390,7 +390,10 @@ namespace BL
             }
             DO.Parcel parcel = getClosestParcel(maxWeightParcels, drone.CurrentLocation);
             //double minCharge = getMinCharge(drone, parcel);
-            dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
+            lock (dalObj)
+            {
+                dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
+            }
             DronesList.Remove(drone);
             //drone.Battery -= 20;
             //drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
@@ -494,7 +497,10 @@ namespace BL
                 {
                     try
                     {
-                        dalObj.CollectionParcelFromDrone(idDrone, parcel.Id);
+                        lock (dalObj)
+                        {
+                            dalObj.CollectionParcelFromDrone(idDrone, parcel.Id);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -532,7 +538,10 @@ namespace BL
                 {
                     try
                     {
-                        dalObj.DeliveryParcelForCustomer(parcel.TargetId, parcel.Id);
+                        lock (dalObj)
+                        {
+                            dalObj.DeliveryParcelForCustomer(parcel.TargetId, parcel.Id);
+                        }
                     }
                     catch (Exception ex)
                     {
