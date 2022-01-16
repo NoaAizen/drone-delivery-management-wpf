@@ -97,6 +97,7 @@
             <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
             <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
             <Button x:Name="Automatic" Content="Automatic" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="AutomaticClick" Grid.Column="4"/>
+            <Button x:Name="Manual" Content="Manual" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="ManualClick" Grid.Column="4"/>
             <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>

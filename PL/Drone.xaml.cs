@@ -26,6 +26,7 @@ namespace PL
         private DronePO drone;//שדה בשביל המרת מידע 
         private BlApi.IBL bl;//שדה בשביל שימוש הנתונים בBL
         private DroneToList selectedItem;//rjpi
+        private bool close = false;
         TimeSpan t;
         BackgroundWorker worker;
         private bool start;
@@ -93,7 +94,8 @@ namespace PL
             {
                 ParcelTransfer.IsEnabled = true;
             }
-
+            Manual.IsEnabled = false;
+            Manual.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// פונקציית הוספת חרפן
@@ -296,7 +298,15 @@ namespace PL
         /// <param name="e">אירוע</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            close = true;
+            if (worker != null && worker.IsBusy == true)
+            {
+                Manual.IsEnabled = false;
+                Manual.Visibility = Visibility.Hidden;
+                worker.CancelAsync();
+            }
+            else
+                this.Close();
         }
 
 
@@ -362,6 +372,10 @@ namespace PL
 
         private void AutomaticClick(object sender, RoutedEventArgs e)
         {
+            Automatic.IsEnabled = false;
+            Automatic.Visibility = Visibility.Hidden;
+            Manual.IsEnabled = true;
+            Manual.Visibility = Visibility.Visible;
             ParcelTransfer.Visibility = Visibility.Hidden;
             worker = new BackgroundWorker();
             worker.WorkerReportsProgress = true;
@@ -379,6 +393,10 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             bl.StartDroneSimulator(drone.Id, updateDrone, checkStop);
+            if (worker.CancellationPending == true)
+            {
+                e.Cancel = true;
+            }
 
         }
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -397,16 +415,28 @@ namespace PL
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            object result = e.Result;
+            worker = null;
+            //Automatic.Visibility = Visibility.Visible;
+            //Automatic.IsEnabled = true;
+            Manual.Visibility = Visibility.Hidden;
+            Manual.IsEnabled = false;
+            if (close)
+                this.Close();
         }
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        //private void CancelButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (worker.WorkerSupportsCancellation == true)
+        //        // Cancel the asynchronous operation.
+        //        worker.CancelAsync();
+        //}
+
+        private void ManualClick(object sender, RoutedEventArgs e)
         {
-            if (worker.WorkerSupportsCancellation == true)
-                // Cancel the asynchronous operation.
-                worker.CancelAsync();
+            worker.CancelAsync();
+            Manual.IsEnabled = false;
+            Manual.Visibility = Visibility.Hidden;
+            Automatic.IsEnabled = false;
+            Automatic.Visibility = Visibility.Hidden;
         }
-
-
-
     }
 }
