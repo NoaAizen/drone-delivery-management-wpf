@@ -305,10 +305,18 @@ namespace BL
         /// <param name="id">מזהה רחפן</param>
         public void SendingDroneForCharging(int id)
         {
-            DroneToList drone = DronesList.Find(x => x.Id == id);
-            if (drone.Status == 0 && drone.Battery >= 20)//אם הרחפן פנוי ויש מספיק סוללה-
+            DroneToList drone = DronesList.FirstOrDefault(x => x.Id == id);
+            if (drone == null)
+                throw new DoesntExistException("This drone doesn't exist");
+            if (drone.Status == 0)//אם הרחפן פנוי
             {
                 int stationId = findClosestStationWithAvailableChargeSlots(id);
+                Location stationLocation = findStationLocation(stationId);
+                double distance = getDistance(drone.CurrentLocation, stationLocation);
+                double minCharge = getMinCharge(id, distance);
+                if(drone.Battery<minCharge)//אם אין מספיק סוללה
+                    throw new ActionProblemException
+                        ("Can't sending drone for charging, there isn't enough battery");
                 try
                 {
                     dalObj.SendingDroneForCharging(id, stationId);
@@ -317,21 +325,25 @@ namespace BL
                 {
                     throw new DoesntExistException(ex.Message, ex);
                 }
-                for (int i = 0; i < DronesList.Count; i++)//עדכון נתוני הרחפן
-                {
-                    if (DronesList[i].Id == id)
-                    {
-                        DroneToList d = DronesList[i];
-                        d.Status = (StatusDrone)1;
-                        d.Battery -= 5;
-                        d.CurrentLocation = GetStation(stationId).Location;
-                        DronesList[i] = d;
-                        break;
-                    }
-                }
+                drone.Status = StatusDrone.Maintenance;
+                drone.Battery -= minCharge;
+                drone.CurrentLocation = stationLocation;
+                //for (int i = 0; i < DronesList.Count; i++)//עדכון נתוני הרחפן
+                //{
+                //    if (DronesList[i].Id == id)
+                //    {
+                //        DroneToList d = DronesList[i];
+                //        d.Status = (StatusDrone)1;
+                //        d.Battery -= 5;
+                //        d.CurrentLocation = GetStation(stationId).Location;
+                //        DronesList[i] = d;
+                //        break;
+                //    }
+                //}
             }
             else
-                throw new ActionProblemException("Can't sending drone to charging");
+                throw new ActionProblemException
+                    ("Can't sending drone for charging, only available drone can be sent for charging");
         }
         #endregion
 
@@ -344,9 +356,12 @@ namespace BL
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReleaseDroneFromCharging(int id, TimeSpan chargingTime)//מה זה פרק זמן בטעינה?
         {
-            DroneToList drone = DronesList.Find(x => x.Id == id);
-            if (drone == null || drone.Status != StatusDrone.Maintenance)
-                throw new ActionProblemException("Can't release drone from charging");
+            DroneToList drone = DronesList.FirstOrDefault(x => x.Id == id);
+            if (drone == null)
+                throw new DoesntExistException("This drone doesn't exist");
+            if (drone.Status != StatusDrone.Maintenance)
+                throw new ActionProblemException
+                    ("Can't release drone from charging, only maintenance drone can be released");
             int stationId = dalObj.GetDroneChargesList().ToList().Find(x => x.DroneId == id).StationId;
             try
             {
@@ -359,10 +374,10 @@ namespace BL
             {
                 throw new DoesntExistException(ex.Message, ex);
             }
-            DronesList.Remove(drone);
+            //DronesList.Remove(drone);
             drone.Battery = 100;//בטרי קודם +קצב טעינה*זמן טעינה
             drone.Status = 0;
-            DronesList.Add(drone);
+            //DronesList.Add(drone);
         }
         #endregion
 
@@ -373,10 +388,12 @@ namespace BL
         /// <param name="idDrone">מזהה רחפן</param>
         public void UpdateDroneToParcel(int idDrone)
         {
-            DroneToList drone = DronesList.Find(x => x.Id == idDrone);
-            if (drone == null || drone.Status != StatusDrone.Available)
-                //לשנות חריגה
-                throw new Exception("Error");
+            DroneToList drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
+            if (drone == null)
+                throw new DoesntExistException("This drone doesn't exist");
+            if (drone.Status != StatusDrone.Available)
+                throw new ActionProblemException
+                    ("Can't assignment parcel to drone, only available drone can be assignment");
             DO.Priorities priority= DO.Priorities.Emergency;
             List<DO.Parcel> parcels = getRelevantParcels();
             List<DO.Parcel> highPriorityParcels = getHighPriorityParcels(parcels, priority);
@@ -389,16 +406,33 @@ namespace BL
                 maxWeightParcels = getMaxWeightParcels(highPriorityParcels, maxWeight);
             }
             DO.Parcel parcel = getClosestParcel(maxWeightParcels, drone.CurrentLocation);
+            double power = checkDeliveryDronePowerConsumption(idDrone);
+            Location senderLocation = findCustomerLocation(parcel.SenderId);
+            double distanceToSender = getDistance(drone.CurrentLocation, senderLocation);
+            double minChargeToSender = getMinCharge(idDrone, distanceToSender) /*power*distanceToSender*/;
+            Location targetLocation = findCustomerLocation(parcel.TargetId);
+            double distanceToTarget = getDistance(senderLocation, targetLocation);
+            double minChargeToTarget = power * distanceToTarget;
+            int stationId = findClosestStationToCustomer(parcel.TargetId);
+            Location stationLocation = findStationLocation(stationId);
+            double distanceToStation = getDistance(targetLocation, stationLocation);
+            double minChargeToStation = getMinCharge(idDrone, distanceToStation);
+            double minCharge = minChargeToSender + minChargeToTarget + minChargeToStation;
+            if(drone.Battery<minCharge)
+                throw new ActionProblemException
+                        ("Can't assignment parcel to drone, there isn't enough battery");
             //double minCharge = getMinCharge(drone, parcel);
             lock (dalObj)
             {
                 dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
             }
-            DronesList.Remove(drone);
+            //DronesList.Remove(drone);
             //drone.Battery -= 20;
             //drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
             drone.Status = StatusDrone.Delivery;
-            DronesList.Add(drone);
+            drone.ParcelInTransfer = GetDrone(idDrone).ParcelInTransfer;
+            drone.ParcelTransferredNumber = drone.ParcelInTransfer.Id;
+            //DronesList.Add(drone);
         }
 
         private List<DO.Parcel> getRelevantParcels()
@@ -414,14 +448,31 @@ namespace BL
             return parcels;
         }
 
-        private double getMinCharge(DroneToList drone, DO.Parcel parcel)
+        private double getMinCharge(int id, double distance)
         {
-            throw new NotImplementedException();
+            return checkDronePowerConsumption(id) * distance;
         }
-
+        /// <summary>
+        /// בדיקת צריכת חשמל של רחפן
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <returns>צריכת חשמל בהתאם למצבו ומשקלו</returns>
         private double checkDronePowerConsumption(int id)
         {
-            throw new NotImplementedException();
+            Drone drone = GetDrone(id);
+            if (drone.Status == StatusDrone.Available)
+                return available;
+            else return checkDeliveryDronePowerConsumption(id);
+        }
+
+        private double checkDeliveryDronePowerConsumption(int id)
+        {
+            Drone drone = GetDrone(id);
+            if (drone.MaxWeight == WeightCategories.Light)
+                return lightWeight;
+            if (drone.MaxWeight == WeightCategories.Medium)
+                return mediumWeight;
+            return heavyWeight;
         }
 
         private DO.Parcel getClosestParcel(List<DO.Parcel> parcels, Location droneLocation)
@@ -486,15 +537,21 @@ namespace BL
         /// <param name="idDrone">מזהה רחפן</param>
         public void CollectionParcelFromDrone(int idDrone)
         {
-            DroneToList drone = DronesList.Find(x => x.Id == idDrone);
+            DroneToList drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
-            if (drone!=null && parcels.Exists(x => x.DroneId == idDrone) && drone.Status==StatusDrone.Delivery)
+            if (drone == null)
+                throw new DoesntExistException("This drone doesn't exist");               
+            if (drone.Status != StatusDrone.Delivery)
+                    throw new ActionProblemException
+                    ("Can't collection parcel, only delivery drone can collection");
+            if (parcels.Exists(x => x.DroneId == idDrone && x.Scheduled != null && x.PickedUp == null))
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
-                                         where item.DroneId == idDrone
-                                         select item).FirstOrDefault();
-                if (parcel.Scheduled != null && parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
-                {
+                                         where item.DroneId == idDrone && 
+                                         item.Scheduled != null && item.PickedUp == null
+                                    select item).FirstOrDefault();
+                //if (parcel.Scheduled != null && parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
+                //{
                     try
                     {
                         lock (dalObj)
@@ -506,17 +563,21 @@ namespace BL
                     {
                         throw new DoesntExistException(ex.Message, ex);
                     }
-                    DronesList.Remove(drone);
-                    drone.Battery -= 20;
-                    drone.CurrentLocation=findCustomerLocation(parcel.SenderId);
-                    DronesList.Add(drone);
-                }
-                else
-                    throw new ActionProblemException("Can't collection parcel");
+                    Location senderLocation= findCustomerLocation(parcel.SenderId);
+                    double distance = getDistance(drone.CurrentLocation, senderLocation);
+                    double minCharge = getMinCharge(idDrone, distance);
+                    //DronesList.Remove(drone);
+                    drone.Battery -= minCharge;
+                    drone.CurrentLocation= senderLocation;
+                    //DronesList.Add(drone);
+                //}
+                //else
+                   // throw new ActionProblemException("Can't collection parcel");
 
             }
             else
-                throw new DoesntExistException("Doesnt exist");
+                throw new ActionProblemException("Can't collection parcel");
+            //throw new DoesntExistException("Doesnt exist");
         }
         #endregion
 
@@ -527,15 +588,21 @@ namespace BL
         /// <param name="idDrone">מזהה רחפן</param>
         public void DeliveryParcelByDrone(int idDrone)
         {
-            DroneToList drone = DronesList.Find(x => x.Id == idDrone);
+            DroneToList drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
-            if (drone != null && parcels.Exists(x => x.DroneId == idDrone) && drone.Status == StatusDrone.Delivery)
+            if (drone == null)
+                throw new DoesntExistException("This drone doesn't exist");
+            if (drone.Status != StatusDrone.Delivery)
+                throw new ActionProblemException
+                ("Can't delivery parcel, only delivery drone can delivery");
+            if (parcels.Exists(x => x.DroneId == idDrone && x.PickedUp != null && x.Delivered == null))
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
-                                         where item.DroneId == idDrone
-                                         select item).FirstOrDefault();
-                if (parcel.PickedUp != null && parcel.Delivered == null)//החבילה נאספה אך לא סופקה
-                {
+                                         where item.DroneId == idDrone && 
+                                         item.PickedUp != null && item.Delivered == null
+                                    select item).FirstOrDefault();
+                //if (parcel.PickedUp != null && parcel.Delivered == null)//החבילה נאספה אך לא סופקה
+                //{
                     try
                     {
                         lock (dalObj)
@@ -547,17 +614,20 @@ namespace BL
                     {
                         throw new DoesntExistException(ex.Message, ex);
                     }
-                    DronesList.Remove(drone);
-                    drone.Battery -= 20;
+                    double distance = drone.ParcelInTransfer.TransportDistance;
+                    double minCharge = getMinCharge(idDrone, distance);
+                    //DronesList.Remove(drone);
+                    drone.Battery -= minCharge;
                     drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
                     drone.Status = 0;
-                    DronesList.Add(drone);
-                }
-                else
-                    throw new ActionProblemException("Can't collection parcel");
+                    //DronesList.Add(drone);
+                //}
+                //else
+                    //throw new ActionProblemException("Can't collection parcel");
             }
             else
-                throw new DoesntExistException("Doesnt exist");
+                throw new ActionProblemException("Can't delivery parcel");
+            //throw new DoesntExistException("Doesnt exist");
         }
         #endregion
 

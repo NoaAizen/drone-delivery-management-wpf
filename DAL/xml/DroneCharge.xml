@@ -6,10 +6,18 @@
   </DroneCharge>
   <DroneCharge>
     <DroneId>2</DroneId>
-    <StationId>0</StationId>
+    <StationId>1</StationId>
   </DroneCharge>
   <DroneCharge>
     <DroneId>6</DroneId>
+    <StationId>0</StationId>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>8</DroneId>
+    <StationId>1</StationId>
+  </DroneCharge>
+  <DroneCharge>
+    <DroneId>9</DroneId>
     <StationId>1</StationId>
   </DroneCharge>
 </ArrayOfDroneCharge>
