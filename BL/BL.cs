@@ -115,9 +115,9 @@ namespace BL
                     MaxWeight = (WeightCategories)drone.MaxWeight,
                     Status = status,
                     Battery = battery,
-                    //ParcelInTransfer
+                    //ParcelInTransfer= GetDrone(drone.Id).ParcelInTransfer,
                     CurrentLocation = location,
-                    //ParcelTransferredNumber=...
+                    //ParcelTransferredNumber= GetDrone(drone.Id).ParcelInTransfer.Id
                 };
                 DronesList.Add(blDrone);
             }
@@ -614,7 +614,7 @@ namespace BL
                     {
                         throw new DoesntExistException(ex.Message, ex);
                     }
-                    double distance = drone.ParcelInTransfer.TransportDistance;
+                    double distance =GetDrone(drone.Id).ParcelInTransfer.TransportDistance;
                     double minCharge = getMinCharge(idDrone, distance);
                     //DronesList.Remove(drone);
                     drone.Battery -= minCharge;
@@ -688,7 +688,7 @@ namespace BL
                 };
                 if (blDrone.Status == StatusDrone.Delivery)
                 {
-                    DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id);
+                    DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id && x.Delivered==null);
                     Parcel parcel = GetParcel(dalParcel.Id);
                     blDrone.ParcelInTransfer = new()
                     {

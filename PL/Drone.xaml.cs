@@ -387,6 +387,7 @@ namespace PL
             {
                 convertToPo(drone, bl.GetDrone(drone.Id));
                 RefreshEvent(this, EventArgs.Empty);
+                MessageBox.Show(drone.Status.ToString());
             }
             catch (Exception ex)
             {

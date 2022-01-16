@@ -52,20 +52,25 @@ namespace BL
                     case StatusDrone.Delivery:
                         try
                         {
-                            lock (bl) lock (bl.dalObj) 
+                            Parcel parcel = bl.GetParcel(bl.GetDrone(droneBL.Id).ParcelInTransfer.Id);
+                            if(parcel.Scheduled != null && parcel.PickedUp == null)
                             {
-                                    bl.CollectionParcelFromDrone(id);
+                                lock (bl) lock (bl.dalObj)
+                                    {
+                                        bl.CollectionParcelFromDrone(id);
+                                    }
+                                updateDrone();
+                                Thread.Sleep(TIMER);
                             }
-                                    
-                            updateDrone();
-                            Thread.Sleep(TIMER);
-                            lock (bl) lock (bl.dalObj) 
+                            if(parcel.PickedUp != null && parcel.Delivered == null)
                             {
-                                    bl.DeliveryParcelByDrone(id);
-                            }
-                            updateDrone();
-                            Thread.Sleep(TIMER);
-
+                                lock (bl) lock (bl.dalObj)
+                                    {
+                                        bl.DeliveryParcelByDrone(id);
+                                    }
+                                updateDrone();
+                                Thread.Sleep(TIMER);
+                            }  
                         }
                         catch
                         {
