@@ -62,7 +62,9 @@ namespace BL
                                 updateDrone();
                                 Thread.Sleep(TIMER);
                             }
-                            if(parcel.PickedUp != null && parcel.Delivered == null)
+                             parcel = bl.GetParcel(bl.GetDrone(droneBL.Id).ParcelInTransfer.Id);
+
+                            if (parcel.PickedUp != null && parcel.Delivered == null)
                             {
                                 lock (bl) lock (bl.dalObj)
                                     {
