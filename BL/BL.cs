@@ -614,11 +614,13 @@ namespace BL
                     {
                         throw new DoesntExistException(ex.Message, ex);
                     }
-                    double distance =GetDrone(drone.Id).ParcelInTransfer.TransportDistance;
+                    Location senderLocation = findCustomerLocation(parcel.SenderId);
+                    Location targetLocation = findCustomerLocation(parcel.TargetId);
+                    double distance = getDistance(senderLocation, targetLocation);
                     double minCharge = getMinCharge(idDrone, distance);
                     //DronesList.Remove(drone);
                     drone.Battery -= minCharge;
-                    drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
+                    drone.CurrentLocation = targetLocation;
                     drone.Status = 0;
                     //DronesList.Add(drone);
                 //}

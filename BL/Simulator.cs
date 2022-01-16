@@ -40,12 +40,19 @@ namespace BL
                         {
                             if (droneBL.Battery < 100)
                             {
-                                lock (bl) lock (bl.dalObj)
+                                try
                                 {
-                                    bl.SendingDroneForCharging(id);
+                                    lock (bl) lock (bl.dalObj)
+                                        {
+                                            bl.SendingDroneForCharging(id);
+                                        }
+                                    updateDrone();
+                                    Thread.Sleep(TIMER);
                                 }
-                                updateDrone();
-                                Thread.Sleep(TIMER);
+                                catch
+                                {
+                                    Thread.Sleep(TIMER);
+                                }
                             }
                         }
                         break;
