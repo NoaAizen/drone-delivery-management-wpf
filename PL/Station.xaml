@@ -11,7 +11,7 @@
     </Window.Background>
 
     <Grid x:Name="MainGrid">
-        <Grid x:Name="AddStationGrid" Visibility="Hidden">
+        <Grid x:Name="AddStationGrid" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Enter the details of the new station:" HorizontalAlignment="Left" Margin="0,20,0,19" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
+            <Label Content="Enter the details of the new station:" HorizontalAlignment="Left" Margin="0,56,0,20" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="3"/>
             <Label Content="Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Name:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Longitude:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
@@ -41,8 +41,13 @@
             <TextBox x:Name="longitudeText" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="4" TextChanged="longitudeTextClick" />
             <TextBox x:Name="latitudeText" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="5" TextChanged="latitudeTextClick" />
             <TextBox x:Name="chargeSlots" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="6" TextChanged="ChargeSlotsClick"/>
-            <Button x:Name="AddNewStation" Content="Add station" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewStationClick"/>
-            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
+            <Button x:Name="AddNewStation" Content="Add station" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Heavy" Grid.Column="2" Grid.Row="8" Click="AddNewStationClick"/>
+            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Heavy" Grid.Column="1" Grid.Row="8" Click="CloseClick"/>
+            <Image  Source="image/לוגו קטן בלי רקע (2).png"  Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="-209,-26,9,26" HorizontalAlignment="Center"/>
+            <Image Margin="143,-25,109,8" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Image Margin="-19,43,182,19" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
+
+
         </Grid>
         <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -63,6 +68,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
+            <Label Content="station:"  Grid.Column="1"  Grid.Row="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2" Margin="128,-2,72,2"   />
             <Label Content="Id:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Longitude:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
@@ -81,54 +87,12 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="Update" Content="Update" Grid.Column="3" HorizontalAlignment="Center" Margin="0,22,0,0" Grid.Row="9" VerticalAlignment="Top" Height="43" Width="110" Click="UpdateClick"/>
+            <Button x:Name="Update" Content="Update" Grid.Column="3"  Grid.Row="9"  Click="UpdateClick" FontSize="20" FontWeight="Bold" Margin="10,0,0,11"/>
+            <Image  Source="image/לוגו קטן בלי רקע (2).png"  Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="-209,-26,9,26" HorizontalAlignment="Center"/>
+            <Image Margin="143,-25,79,8" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Image Margin="-19,43,182,19" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
             <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
 
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <Label Content="Id:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Model:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Max weight:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Status:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Battery:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Longitude:" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Latitude:" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Parcel Number:" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <TextBox x:Name="idTex" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="modelText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Model}" />
-            <TextBox x:Name="batteryText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Battery}"/>
-            <TextBox x:Name="longitud" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Longitude}" />
-            <TextBox x:Name="latitud" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
-            <TextBox x:Name="parcelNumberText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=ParcelTransferredNumber}" />
-            <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
-            <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
-            <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
-            <Button x:Name="closed" Content="close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
-            <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4"/>
-            <Button x:Name="Release" Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4"/>
-            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
-            <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
-            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">-->
-
-            <!--</Button>-->
         </Grid>
     </Grid>
 </Window>

@@ -2,52 +2,52 @@
 <ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Drone>
     <Id>1</Id>
-    <Model>FF3701</Model>
-    <MaxWeight>Light</MaxWeight>
+    <Model>FF7201</Model>
+    <MaxWeight>Heavy</MaxWeight>
   </Drone>
   <Drone>
     <Id>2</Id>
-    <Model>FF5073</Model>
+    <Model>FF6986</Model>
     <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>3</Id>
-    <Model>FF4463</Model>
+    <Model>FF4150</Model>
     <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>4</Id>
-    <Model>FF5655</Model>
-    <MaxWeight>Light</MaxWeight>
-  </Drone>
-  <Drone>
-    <Id>5</Id>
-    <Model>FF6155</Model>
+    <Model>FF2243</Model>
     <MaxWeight>Heavy</MaxWeight>
   </Drone>
   <Drone>
+    <Id>5</Id>
+    <Model>FF7203</Model>
+    <MaxWeight>Light</MaxWeight>
+  </Drone>
+  <Drone>
     <Id>6</Id>
-    <Model>FF110</Model>
+    <Model>FF6197</Model>
     <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>7</Id>
-    <Model>FF9190</Model>
+    <Model>FF1509</Model>
     <MaxWeight>Heavy</MaxWeight>
   </Drone>
   <Drone>
     <Id>8</Id>
-    <Model>FF8689</Model>
-    <MaxWeight>Light</MaxWeight>
+    <Model>FF3170</Model>
+    <MaxWeight>Medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>9</Id>
-    <Model>FF7623</Model>
+    <Model>FF2989</Model>
     <MaxWeight>Heavy</MaxWeight>
   </Drone>
   <Drone>
     <Id>10</Id>
-    <Model>FF3222</Model>
-    <MaxWeight>Heavy</MaxWeight>
+    <Model>FF1556</Model>
+    <MaxWeight>Light</MaxWeight>
   </Drone>
 </ArrayOfDrone>

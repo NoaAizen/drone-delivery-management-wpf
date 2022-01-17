@@ -24,20 +24,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="251*"/>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="105*"/>
+            <ColumnDefinition Width="145*"/>
         </Grid.ColumnDefinitions >
-        <ComboBox x:Name="StatusSelector" Grid.Column="2"  SelectionChanged="StatusSelectorSelectionChanged" RenderTransformOrigin="-0.268,0.01" Margin="163,9,51,37" Grid.ColumnSpan="2"/>
-        <Label Grid.Column="0" FontSize="20" Margin="141,12,26,29" FontWeight="Bold">
-            <Button x:Name="Grouping" Content="Grouping for Sender Id" Click="GroupingClick"  />
-      
-        </Label>
-        <ListView x:Name="parcelsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4">
+        <ComboBox x:Name="StatusSelector" Grid.Column="4"  SelectionChanged="StatusSelectorSelectionChanged" Margin="0,31,0,41" Grid.RowSpan="2"  />
+        <Button x:Name="Grouping" Content="Sender Id" Click="GroupingClick" Margin="148,30,104,7" Grid.ColumnSpan="3" Grid.Column="1" FontWeight="Bold" FontSize="20"  />
+        <Label Content="status:" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" FontSize="20"  FontWeight="Bold" Grid.Column="3" Grid.Row="0" Margin="17,29,10,11" />
+        <ListView x:Name="parcelsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Sender Name" DisplayMemberBinding="{Binding SenderName}"/>
+                    <GridViewColumn Header="Recipient Name" DisplayMemberBinding="{Binding RecipientName}"/>
+                    <GridViewColumn Header="Weight" DisplayMemberBinding="{Binding Weight}"/>
+                    <GridViewColumn Header="Priority" DisplayMemberBinding="{Binding Priority}"/>
+                    <GridViewColumn Header="Status Parcel" DisplayMemberBinding="{Binding StatusParcel}"/>
+
+
                 </GridView>
             </ListView.View>
             <ListView.GroupStyle>
@@ -50,7 +56,7 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <Button x:Name="addParcel" Content="Add new parcel" Grid.Row="9" Grid.ColumnSpan="4" FontSize="20" FontWeight="Bold" Click="ShowAddParcelWindow"/>
+        <Button x:Name="addParcel" Content="Add new parcel" Grid.Row="8" Grid.ColumnSpan="5" FontSize="20" FontWeight="Bold" Click="ShowAddParcelWindow" Margin="0,41,0,0" Grid.RowSpan="2"/>
         <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
 
     </Grid>

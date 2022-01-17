@@ -25,7 +25,8 @@ namespace PL
         private IBL bl;
         private ObservableCollection<StationToList> stations = new();
         private CollectionView view;
-
+        private CollectionView CollectionView;
+        private bool temp = false;
         public StationsList(IBL bl)
         {
             InitializeComponent();
@@ -59,7 +60,6 @@ namespace PL
             Station win = new Station(bl, station);
             win.RefreshEvent += Refresh;
             win.Show();
-            Close();
         }
 
         private void ShowAddStationWindow(object sender, RoutedEventArgs e)
@@ -67,8 +67,8 @@ namespace PL
             Station win = new Station(bl);
             win.RefreshEvent += Refresh;
             Grouping.IsEnabled = true;
+            GroupingNotAvailableStations.IsEnabled = true;
             win.Show();
-            Close();
 
         }
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
@@ -81,7 +81,8 @@ namespace PL
             view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("AvailableStations");
             view.GroupDescriptions.Add(groupDescription);
-            if (view.GroupDescriptions.Count == 1)
+            temp = true;
+            if (view.GroupDescriptions.Count >= 1 )
             {
                 Grouping.IsEnabled = false;
             }
@@ -97,6 +98,17 @@ namespace PL
             this.Close();
         }
 
+        private void GroupinNotAvailableStationsgClick(object sender, RoutedEventArgs e)
+        {
+            CollectionView = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
+            PropertyGroupDescription groupDescriptionName = new PropertyGroupDescription("NotAvailableStations");
+            CollectionView.GroupDescriptions.Add(groupDescriptionName);
+            if (CollectionView.GroupDescriptions.Count >= 1)
+            {
+                GroupingNotAvailableStations.IsEnabled = false;
+            }
+
+        }
     }
 }
 

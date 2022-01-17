@@ -26,12 +26,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="263*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="260*"/>
         </Grid.ColumnDefinitions >
-        <ListView x:Name="stationsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,72,0,10" Grid.RowSpan="9" Grid.ColumnSpan="4" >
+        <ListView x:Name="stationsList" ItemsSource="{Binding}" MouseDoubleClick="GetActions" Margin="0,81,0,7" Grid.RowSpan="9" Grid.ColumnSpan="4" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>
@@ -50,9 +50,29 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <Button x:Name="addStation" Content="Add new station" HorizontalAlignment="Stretch" Grid.Row="9" Grid.ColumnSpan="4" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow"/>
-        <Button x:Name="Grouping" Content="Available Stations" HorizontalAlignment="Left"  VerticalAlignment="Top"  Click="GroupingClick" Grid.Column="3" Margin="31,27,0,0" Height="31" Width="121"/>
+        <ListView Grid.ColumnSpan="3" Grid.Column="1" Margin="262,67,21,15" Grid.RowSpan="2" Visibility="Hidden">
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1" ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListView.RenderTransform>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="GroupingName1" FontWeight="Bold" FontSize="14" Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Button x:Name="addStation" Content="Add new station" Grid.Row="8" Grid.ColumnSpan="4" FontSize="20" FontWeight="Bold" Click="ShowAddStationWindow" Margin="0,41,0,0" Grid.RowSpan="2"/>
+        <Button x:Name="Grouping" Content="Available Stations"  Click="GroupingClick" Grid.Column="3" FontWeight="Bold" FontSize="19" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         <Button x:Name="close" Content="Close" HorizontalAlignment="Left"  VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
+        <Button x:Name="GroupingNotAvailableStations" Content="Not Available Stations"  Click="GroupinNotAvailableStationsgClick" FontWeight="Bold" FontSize="19" Grid.ColumnSpan="2" Margin="258,0,4,1" />
 
     </Grid>
 </Window>
