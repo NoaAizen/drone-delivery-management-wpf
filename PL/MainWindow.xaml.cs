@@ -82,6 +82,7 @@ namespace PL
         private void NewClicentClick(object sender, RoutedEventArgs e)
         {
             new Password("NewClicent",bl).Show();
+            Close();
 
         }
 
