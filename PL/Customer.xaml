@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
     <Grid x:Name="MainGrid">
-        <Grid x:Name="Actions" Visibility="Hidden"  >
+        <Grid x:Name="Actions" Visibility="Visible"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="59*"/>
                 <RowDefinition Height="39*"/>
@@ -46,9 +46,9 @@
             <TextBox x:Name="latitudeText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
             <Label Content="Longitude:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="parcels from customer:" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,57,39" Grid.RowSpan="2"/>
-            <Label Content="parcels to customer:" Grid.Row= "6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1"/>
-            <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="9,56,4,12" Grid.RowSpan="6" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick"  >
+            <Label Content="parcels from customer:" Grid.Column="2" Grid.ColumnSpan="3" Margin="110,59,61,0" Grid.RowSpan="2"/>
+            <Label Content="parcels to customer:" Grid.Row= "6" Grid.ColumnSpan="2" Margin="102,0,4,39" Grid.RowSpan="2"/>
+            <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="15,56,-2,12" Grid.RowSpan="6" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick"  >
                 <ListView.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -58,7 +58,7 @@
                     </TransformGroup>
                 </ListView.RenderTransform>
             </ListView>
-            <ListView x:Name="ParcelAtCustomerToCustomer" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="1,9,1,21" ItemsSource="{Binding Path=ParcelAtCustomerToCustomer}" MouseDoubleClick="ParcelAtCustomerToCustomerClick" >
+            <ListView x:Name="ParcelAtCustomerToCustomer" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="7,9,110,21" ItemsSource="{Binding Path=ParcelAtCustomerToCustomer}" MouseDoubleClick="ParcelAtCustomerToCustomerClick" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>

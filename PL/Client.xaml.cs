@@ -44,7 +44,7 @@ namespace PL
 
         private void AddParcelClick(object sender, RoutedEventArgs e)
          {
-            new Parcel(bl).Show();
+            new Parcel(bl, "Client").Show();
         }
 
         private void ParcelAtCustomerFromCustomerID_SelectionChanged(object sender, SelectionChangedEventArgs e)

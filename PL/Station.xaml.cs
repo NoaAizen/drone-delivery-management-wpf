@@ -183,20 +183,24 @@ namespace PL
 
         private void DroneChageClick(object sender, MouseButtonEventArgs e)
         {
-            int id =((BO.DroneInCharging)DroneCharge.SelectedItem).Id;
-            BO.Drone drone = bl.GetDrone(id);
-            DroneToList droneToList = new()
+            if(DroneCharge.SelectedItem!=null)
             {
-                Id = drone.Id,
-                Model = drone.Model,
-                MaxWeight = drone.MaxWeight,
-                Status = drone.Status,
-                Battery = drone.Battery,
-                ParcelInTransfer = drone.ParcelInTransfer,
-                CurrentLocation = drone.CurrentLocation,
-                //ParcelTransferredNumber = drone.ParcelInTransfer.Id
-            };
-            new Drone(bl, droneToList).Show();
+                int id = ((BO.DroneInCharging)DroneCharge.SelectedItem).Id;
+                BO.Drone drone = bl.GetDrone(id);
+                DroneToList droneToList = new()
+                {
+                    Id = drone.Id,
+                    Model = drone.Model,
+                    MaxWeight = drone.MaxWeight,
+                    Status = drone.Status,
+                    Battery = drone.Battery,
+                    ParcelInTransfer = drone.ParcelInTransfer,
+                    CurrentLocation = drone.CurrentLocation,
+                    //ParcelTransferredNumber = drone.ParcelInTransfer.Id
+                };
+                new Drone(bl, droneToList).Show();
+            }
+            
         }
         
     }

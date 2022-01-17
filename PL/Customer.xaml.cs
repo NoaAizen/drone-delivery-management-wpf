@@ -243,10 +243,14 @@ namespace PL
 
         private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
-            BO.Parcel p = bl.GetParcel(selectedItem.Id);
-            Parcel win = new Parcel(bl,p);
-            win.RefreshEvent += Refresh;
-            win.Show();
+            if(ParcelAtCustomerFromCustomer.SelectedItem != null)
+            {
+                BO.Parcel p = bl.GetParcel(selectedItem.Id);
+                Parcel win = new Parcel(bl, p);
+                win.RefreshEvent += Refresh;
+                win.Show();
+            }
+            
         }
 
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
@@ -257,10 +261,14 @@ namespace PL
         }
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {
-            BO.Parcel p = bl.GetParcel(selectedItem.Id);
-            Parcel win = new Parcel(bl, p);
-            win.RefreshEvent += Refresh;
-            win.Show();
+            if (ParcelAtCustomerToCustomer.SelectedItems != null)
+            {
+                BO.Parcel p = bl.GetParcel(selectedItem.Id);
+                Parcel win = new Parcel(bl, p);
+                win.RefreshEvent += Refresh;
+                win.Show();
+            }
+           
         }
         public void convertToPo(CustomerPo customerPo, BO.Customer c)
         {

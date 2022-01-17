@@ -26,9 +26,11 @@ namespace PL
         private BO.Parcel selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private ParcelPo parcelPo;//שדה בשביל המרת מידע
+        string st;
 
-        public Parcel(IBL bl)
+        public Parcel(IBL bl, string st=null)
         {
+            this.st = st;
             InitializeComponent();
             this.bl = bl;
             AddParcelGrid.IsEnabled = true;
@@ -99,7 +101,8 @@ namespace PL
             try
             {
                 int id= bl.AddParcel(parcel);
-                RefreshEvent(this, EventArgs.Empty);
+                if(st!="Client")
+                    RefreshEvent(this, EventArgs.Empty);
                 MessageBox.Show("sucssesed\nparcel's id: "+id);
                 this.Close();
 
@@ -143,6 +146,7 @@ namespace PL
 
         private void Refresh(object sender, EventArgs e)
         {
+            ParcelsList parcelsList = new ParcelsList(bl);
             CustomerListsShow customerListsShow = new CustomerListsShow(bl);
         }
 
