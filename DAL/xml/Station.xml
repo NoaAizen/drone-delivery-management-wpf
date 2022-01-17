@@ -9,9 +9,9 @@
   </Station>
   <Station>
     <Id>1</Id>
-    <Name>st5107</Name>
-    <Longitude>29.73739352702973</Longitude>
-    <Latitude>34.72525692061766</Latitude>
-    <AvailableStations>83</AvailableStations>
+    <Name>st4015</Name>
+    <Longitude>29.945805513321332</Longitude>
+    <Latitude>35.33780965117636</Latitude>
+    <AvailableStations>90</AvailableStations>
   </Station>
 </stations>

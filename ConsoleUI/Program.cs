@@ -142,15 +142,12 @@ Enter your selection:
                             {
                                 case ViewList.STATIONS://הצגת רשימת תחנות-בסיס 
                                     ViewStationListPrint();
-                                    //UpdateStationData();
                                     break;
                                 case ViewList.DRONES:// הצגת רשימת הרחפנים 
                                     ViewDroneListPrint();
-                                    //UpdateDroneModelData();
                                     break;
                                 case ViewList.CUSTOMERS:// הצגת רשימת הלקוחות 
                                     ViewCustomerListPrint();
-                                    //UpdateCustomerData();
                                     break;
                                 case ViewList.PARCELS:// הצגת רשימת החבילות 
                                     ViewParcelListPrint();
@@ -462,43 +459,6 @@ Enter your selection:
                 Console.WriteLine(item);
             }
         }
-
-        //public static void UpdateStationData()
-        //{
-        //    Console.WriteLine("Enter station's Id:");
-        //    int id = int.Parse(Console.ReadLine());
-        //    Console.WriteLine("Enter station's name:");
-        //    string name = Console.ReadLine();
-        //    Console.WriteLine("Enter Number of charging stations:");
-        //    int chargeSlots = int.Parse(Console.ReadLine());
-        //    D.UpdateStation(id, name, chargeSlots);
-        //}
-
-        ///// <summary>
-        ///// עדכון נתוני לקוח
-        ///// </summary>
-        //public static void UpdateCustomerData()
-        //{
-        //    Console.WriteLine("Enter customer's Id:");
-        //    int id = int.Parse(Console.ReadLine());
-        //    Console.WriteLine("Enter customer's name:");
-        //    string name = Console.ReadLine();
-        //    Console.WriteLine("Enter customer's phone number:");
-        //    string telephon = Console.ReadLine();
-        //    D.UpdateCustomer(id, name, telephon);
-        //}
-
-        ///// <summary>
-        ///// עדכון מודל רחפן
-        ///// </summary>
-        //public static void UpdateDroneModelData()
-        //{
-        //    Console.WriteLine("Enter drone's Id:");
-        //    int id = int.Parse(Console.ReadLine());
-        //    Console.WriteLine("Enter new model:");
-        //    string model = Console.ReadLine();
-        //    D.UpdateDroneModel(id, model);
-        //}
         public static void GetDroneChargesListPrint()
         {
             foreach (var item in D.GetDroneChargesList())

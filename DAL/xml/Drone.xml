@@ -7,47 +7,47 @@
   </Drone>
   <Drone>
     <Id>2</Id>
-    <Model>FF8713</Model>
-    <MaxWeight>Medium</MaxWeight>
+    <Model>FF2561</Model>
+    <MaxWeight>Heavy</MaxWeight>
   </Drone>
   <Drone>
     <Id>3</Id>
-    <Model>FF1869</Model>
+    <Model>FF8131</Model>
     <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>4</Id>
-    <Model>FF7104</Model>
-    <MaxWeight>Light</MaxWeight>
-  </Drone>
-  <Drone>
-    <Id>5</Id>
-    <Model>FF4268</Model>
+    <Model>FF945</Model>
     <MaxWeight>Medium</MaxWeight>
   </Drone>
   <Drone>
+    <Id>5</Id>
+    <Model>FF9485</Model>
+    <MaxWeight>Light</MaxWeight>
+  </Drone>
+  <Drone>
     <Id>6</Id>
-    <Model>FF9386</Model>
-    <MaxWeight>Heavy</MaxWeight>
+    <Model>FF8335</Model>
+    <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>7</Id>
-    <Model>FF868</Model>
-    <MaxWeight>Heavy</MaxWeight>
+    <Model>FF3249</Model>
+    <MaxWeight>Light</MaxWeight>
   </Drone>
   <Drone>
     <Id>8</Id>
-    <Model>FF7601</Model>
-    <MaxWeight>Heavy</MaxWeight>
+    <Model>FF6419</Model>
+    <MaxWeight>Medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>9</Id>
-    <Model>FF9882</Model>
-    <MaxWeight>Light</MaxWeight>
+    <Model>FF4868</Model>
+    <MaxWeight>Medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>10</Id>
-    <Model>FF6275</Model>
-    <MaxWeight>Light</MaxWeight>
+    <Model>FF3773</Model>
+    <MaxWeight>Medium</MaxWeight>
   </Drone>
 </ArrayOfDrone>

@@ -175,25 +175,50 @@ namespace DalApi
         /// </summary>
         /// <returns>מערך של תכונות סטטיות עבור צריכת חשמל לק"מ ע"י רחפן</returns>
         double[] PowerRequestToDrone();
-
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
         public void DeleteParcel(Parcel parcel);
-
-
-
         /// <summary>
         /// פונקצייה המחזירה את רשימת כל המשתמשים
         /// </summary>
         /// <returns>רשימת המשתמשים</returns>
         IEnumerable<User> GetUserList();
-
-
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת הרחפנים לפי תנאי
+        /// </summary>
+        /// <param name="p">פרדיקט</param>
+        /// <returns>רשימה מסוננת עפ"י תנאי</returns>
         public IEnumerable<Drone> GetDroneList(Predicate<Drone> p);
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת התחנות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימה מסוננת עפ"י תנאי</returns>
+        public IEnumerable<Station> GetPartOfStationList(Predicate<Station> predicate);
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת הלקוחות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימה מסוננת עפ"י תנאי</returns>
+        public IEnumerable<Customer> GetPartOfCustomerList(Predicate<Customer> predicate);
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת החבילות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימה מסוננת עפ"י תנאי</returns>
         public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate);
+        /// <summary>
+        /// פונקציית שינוי סיסמא
+        /// </summary>
+        /// <param name="password">סיסמא</param>
+        /// <param name="id">מזהה</param>
         public void ChangePassword(string password, int id);
+        /// <summary>
+        /// הוספת משתמש
+        /// </summary>
+        /// <param name="u">משתמש</param>
         public void AddUser(DO.User u);
 
     }

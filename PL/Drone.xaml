@@ -98,9 +98,9 @@
             <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
             <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="Release"  Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4" FontWeight="Bold"/>
-            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4" FontWeight="Bold"/>
-            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="Automatic" Content="Automatic" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="AutomaticClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="Manual" Content="Manual" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="ManualClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">

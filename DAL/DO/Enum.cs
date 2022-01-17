@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 
 namespace DO
-{/// <summary>
- /// enums
- /// </summary>
-    public enum WeightCategories { Light, Medium, Heavy }; // קטגוריית משקל- קל, ביניים, כבד
+{
+    /// <summary>
+    /// enums
+    /// </summary>
 
-    //public enum StatusDrone {Available, Maintenance, Delivery}; // מצב רחפן- פנוי, תחזוקה, משלוח
 
-    public enum Priorities { Normal, Fast, Emergency }; // עדיפות- רגיל, מהיר, חירום
+    /// <summary>
+    ///   קטגוריית משקל- קל, ביניים, כבד
+    /// </summary
+    public enum WeightCategories { Light, Medium, Heavy };
+
+    /// <summary>
+    /// עדיפות- רגיל, מהיר, חירום
+    /// </summary>
+    public enum Priorities { Normal, Fast, Emergency }; 
 
 }
 

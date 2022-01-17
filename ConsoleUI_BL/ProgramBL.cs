@@ -12,8 +12,6 @@ namespace ConsoleUI_BL
 
     class ProgramBL
     {
-        //public static DAL.DalObject.DalObject D = new DAL.DalObject.DalObject();//קריאה לבנאי שמתאחל
-        //static DalApi.IDal D = DalApi.DalFactory.GetDal("1");//קריאה לבנאי שמתאחל
         static BlApi.IBL bl = BlApi.BlFactory.GetBl();//קריאה לבנאי שמתאחל
         static void Main(string[] args)
         {
@@ -80,7 +78,6 @@ Enter your selection:
                             update = (Update)int.Parse(Console.ReadLine());
                             switch (update)//עדכון
                             {
-                                //{ DRONE=1, STATION, CUSTOMERS, CHARGING, RELEASE, ASSING , COLLECTION, DELIVERY };
                                 case Update.DRONE://עדכון מודל רחפן 
                                     UpdateDroneModelData();
                                     break;
@@ -171,7 +168,7 @@ Enter your selection:
                                 case ViewList.AVAILABLE://הצגת תחנות-בסיס עם עמדות טעינה פנויות 
                                     ViewAvailableChargingStationslListPrint();
                                     break;
-                                case ViewList.DRONECHARGES://הצגת תחנות-בסיס עם עמדות טעינה פנויות 
+                                case ViewList.DRONECHARGES://הצגת רשימת רחפנים בטעינה 
                                     GetDroneChargesListPrint();
                                     break;
                                 default:
@@ -378,6 +375,9 @@ Enter your selection:
             BO.Station s = bl.GetStation(idStation);
             Console.WriteLine(s);
         }
+        /// <summary>
+        ///הדפסת נתונים של לקוח 
+        /// </summary>
         public static void ViewCustomerPrint()
         {
             Console.WriteLine("Enter Customer's Id:");
@@ -395,16 +395,6 @@ Enter your selection:
             BO.Drone d = bl.GetDrone(idDrone);
             Console.WriteLine(d);
         }
-        ///// <summary>
-        ////הדפסת נתונים של לקוח 
-        ///// </summary>
-        //public static void ViewCustomerPrint()
-        //{
-        //    Console.WriteLine("Enter Customer's Id:");
-        //    int idCustomer = int.Parse(Console.ReadLine());
-        //    DalApi.DO.Customer c = D.GetCustomer(idCustomer);//DalObjectקריאה לפונקציה שנמצאת ב
-        //    Console.WriteLine(c);
-        //}
         /// <summary>
         ///הדפסת נתונים של חבילה
         /// </summary>
@@ -420,11 +410,6 @@ Enter your selection:
         /// </summary>
         public static void ViewStationListPrint()
         {
-            //List<DO.Station> s = (List<DO.Station>)D.GetStationList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DO.Station item in s)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetStationList())
             {
                 Console.WriteLine(item);
@@ -435,11 +420,6 @@ Enter your selection:
         /// </summary>
         public static void ViewDroneListPrint()
         {
-            //List<DalApi.DO.Drone> d = (List<DalApi.DO.Drone>)D.GetDroneList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Drone item in d)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetDroneList())
             {
                 Console.WriteLine(item);
@@ -450,11 +430,6 @@ Enter your selection:
         /// </summary>
         public static void ViewCustomerListPrint()
         {
-            //List<DO.Customer> c = (List<DO.Customer>)D.GetCustomerList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DO.Customer item in c)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetCustomerList())
             {
                 Console.WriteLine(item);
@@ -465,27 +440,17 @@ Enter your selection:
         /// </summary>
         public static void ViewParcelListPrint()
         {
-            //List<DO.Parcel> p = (List<DO.Parcel>)D.GetParcelList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DO.Parcel item in p)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetParcelList())
             {
                 Console.WriteLine(item);
             }
         }
         /// <summary>
-        ///            הדפסת נתונים של רשימת חבילות
+        ///הדפסת נתונים של רשימת חבילות
         ///שעוד לא שויכו לרחפן 
         /// </summary>
         public static void ViewParcelNoDronelListPrint()
         {
-            //List<DalApi.DO.Parcel> p = (List<DalApi.DO.Parcel>)D.GetParcelNoDroneList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DalApi.DO.Parcel item in p)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetParcelNoDroneList())
             {
                 Console.WriteLine(item);
@@ -494,21 +459,17 @@ Enter your selection:
         /// <summary>
         ///  הדפסת נתונים של רשימת תחנות בסיס
         ///  עם עמדות טעינה פנויות 
-        /// 
         /// </summary>
         public static void ViewAvailableChargingStationslListPrint()
         {
-            //List<DO.Station> s = (List<DO.Station>)D.GetAvailableChargingStationsList();//DalObjectקריאה לפונקציה שנמצאת ב
-            //foreach (DO.Station item in s)
-            //{
-            //    Console.WriteLine(item);
-            //}
             foreach (var item in bl.GetAvailableChargingStationsList())
             {
                 Console.WriteLine(item);
             }
         }
-
+        /// <summary>
+        /// הדפסת רשימת רחפנים בטעינה
+        /// </summary>
         public static void GetDroneChargesListPrint()
         {
             foreach (var item in bl.GetDroneChargesList())
