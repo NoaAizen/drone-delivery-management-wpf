@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:DronePO}"
+        mc:Ignorable="d"
+
         Icon="image/2.jpeg"
         
        Title="Drone" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
@@ -15,7 +17,7 @@
     </Window.Background>
 
     <Grid x:Name="MainGrid">
-        <Grid x:Name="AddDroneGrid" Visibility="Visible"   >
+        <Grid x:Name="AddDroneGrid" Visibility="Hidden"   >
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
@@ -89,18 +91,18 @@
             <TextBox x:Name="parcelNumberText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=ParcelTransferredNumber}" />
             <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
             <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
-            <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
+            <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" FontWeight="Bold" />
             <Image  Source="image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="4" Margin="29,-19,0,27" HorizontalAlignment="Left" Width="278" Grid.ColumnSpan="2"/>
             <Image Margin="143,-25,4,8" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
             <Image Margin="-12,51,15,11" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5"/>
-            <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
-            <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4"/>
-            <Button x:Name="Release"  Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4"/>
-            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4"/>
-            <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
-            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="Automatic" Content="Automatic" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="AutomaticClick" Grid.Column="4"/>
-            <Button x:Name="Manual" Content="Manual" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="ManualClick" Grid.Column="4"/>
+            <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0" FontSize="20" FontWeight="Bold"/>
+            <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Release"  Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Collection" Content="Collection" HorizontalAlignment="Stretch"  Grid.Row="5" VerticalAlignment="Stretch" Click="CollectionClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Automatic" Content="Automatic" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="AutomaticClick" Grid.Column="4" FontWeight="Bold"/>
+            <Button x:Name="Manual" Content="Manual" HorizontalAlignment="Stretch"  Grid.Row="8" VerticalAlignment="Stretch" Click="ManualClick" Grid.Column="4" FontWeight="Bold"/>
             <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>
