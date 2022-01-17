@@ -100,8 +100,9 @@ namespace PL
                 MessageBox.Show("Incorrect password or username, you have " + temp + " more attempts");
                 if (temp == 0)
                 {
-                    temp = 0;
+                    temp = 5;
                     MessageBox.Show("You did not make all the attempts");
+                    new MainWindow().Show();
                     this.Close();
                 }
             }
@@ -146,8 +147,9 @@ namespace PL
                 MessageBox.Show("Incorrect id or password or username, you have " + temp + " more attempts");
                 if (temp == 0)
                 {
-                    temp = 0;
+                    temp = 5;
                     MessageBox.Show("You did not make all the attempts");
+                    new MainWindow().Show();
                     this.Close();
                 }
             }
