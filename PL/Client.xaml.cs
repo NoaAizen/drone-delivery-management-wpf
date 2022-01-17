@@ -72,26 +72,7 @@ namespace PL
         {
             this.Close();
         }
-        /// <summary>
-        /// פונקציה בשביל כפתור של איסוף חבילה
-        /// </summary>
-        /// <param name="sender">חלון</param>
-        /// <param name="e">אירוע</param>
-        private void CollectionClick(object sender, RoutedEventArgs e)//
-        {
-           
-            //try
-            //{
-            //    bl.CollectionParcelFromDrone(drone.Id);
-            //    convertToPo(drone, bl.GetDrone(drone.Id));
-            //    MessageBox.Show("sucssesed");
-            //    RefreshEvent(this, EventArgs.Empty);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-        }
+        
 
         private void ParcelAtCustomerToCustomerID_SekectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -107,6 +88,5 @@ namespace PL
             win.Show();
         }
 
-        //מה זה אומרת-תתאפשר אישור איסוף ואישור קבלת חבילה
     }
 }

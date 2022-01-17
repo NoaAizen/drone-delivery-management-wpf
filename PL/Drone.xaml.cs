@@ -303,6 +303,18 @@ namespace PL
             {
                 Manual.IsEnabled = false;
                 Manual.Visibility = Visibility.Hidden;
+                UpdateModel.IsEnabled = true;
+                charging.IsEnabled = true;
+                Release.IsEnabled = true;
+                Collection.IsEnabled = true;
+                Delivery.IsEnabled = true;
+                Assignment.IsEnabled = true;
+                UpdateModel.Visibility = Visibility.Visible;
+                charging.Visibility = Visibility.Visible;
+                Release.Visibility = Visibility.Visible;
+                Collection.Visibility = Visibility.Visible;
+                Delivery.Visibility = Visibility.Visible;
+                Assignment.Visibility = Visibility.Visible;
                 worker.CancelAsync();
             }
             else
@@ -385,6 +397,19 @@ namespace PL
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             worker.RunWorkerAsync();
+            UpdateModel.IsEnabled = false;
+            charging.IsEnabled = false;
+            Release.IsEnabled = false;
+            Collection.IsEnabled = false;
+            Delivery.IsEnabled = false;
+            Assignment.IsEnabled = false;
+            UpdateModel.Visibility = Visibility.Hidden;
+            charging.Visibility = Visibility.Hidden;
+            Release.Visibility = Visibility.Hidden;
+            Collection.Visibility = Visibility.Hidden;
+            Delivery.Visibility = Visibility.Hidden;
+            Assignment.Visibility = Visibility.Hidden;
+
         }
 
         private void updateDrone() => worker.ReportProgress(0);
@@ -437,6 +462,18 @@ namespace PL
             Manual.Visibility = Visibility.Hidden;
             Automatic.IsEnabled = false;
             Automatic.Visibility = Visibility.Hidden;
+            UpdateModel.IsEnabled = true;
+            charging.IsEnabled = true;
+            Release.IsEnabled = true;
+            Collection.IsEnabled = true;
+            Delivery.IsEnabled = true;
+            Assignment.IsEnabled = true;
+            UpdateModel.Visibility = Visibility.Visible;
+            charging.Visibility = Visibility.Visible;
+            Release.Visibility = Visibility.Visible;
+            Collection.Visibility = Visibility.Visible;
+            Delivery.Visibility = Visibility.Visible;
+            Assignment.Visibility = Visibility.Visible;
         }
     }
 }

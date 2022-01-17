@@ -36,7 +36,7 @@ namespace PL
             InitializeComponent();
             this.bl = bl;
             parcel = bl.GetParcel(selectedItem.Id);
-            //notEnablFildes();
+            notEnablFildes();
             //BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
             parcelPo = new()
             {
@@ -128,6 +128,24 @@ namespace PL
             parcelPo.Requested = parcel.Requested;
             parcelPo.Scheduled = parcel.Scheduled;
             parcelPo.Weight = parcel.Weight;
+        }
+        /// <summary>
+        /// פונקציה להפעלת שדות להיות לא זמינים 
+        /// </summary>
+        public void notEnablFildes()//
+        {
+            idText.IsEnabled = false;
+            requestedText.IsEnabled = false;
+            scheduledText.IsEnabled = false;
+            pickedUpText.IsEnabled = false;
+            deliveredText.IsEnabled = false;
+            weightText.IsEnabled = false;
+            PriorityText.IsEnabled = false;
+        }
+
+        private void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
