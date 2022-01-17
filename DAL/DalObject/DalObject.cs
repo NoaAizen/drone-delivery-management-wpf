@@ -21,14 +21,6 @@ namespace DalObject
             DataSource.Config.Initialize();
         }
 
-        /// <summary>
-        /// בנאי
-        /// </summary>
-        //public DalObject()
-        //{
-        //    DataSource.Config.Initialize();
-        //}
-
 
         //-----------------------------------ADD-----------------------------------
 
@@ -89,6 +81,15 @@ namespace DalObject
             DataSource.Config.CounterForParcels++;//עדכון הרץ
             DataSource.listParcels.Add(p);
             return p.Id;
+        }
+        #endregion
+
+        #region User
+        public void AddUser(DO.User u)
+        {
+            if (DataSource.listUser.Exists(x => x.Id == u.Id))
+                throw new AlreadyExistException("The user already exist");
+            DataSource.listUser.Add(u);
         }
         #endregion
 
@@ -160,7 +161,6 @@ namespace DalObject
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
-
         public void UpdateDroneToParcel(int idDrone, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -190,7 +190,6 @@ namespace DalObject
         /// <param name="idDrone"></param>
         /// <param name="idParcel"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
-
         public void CollectionParcelFromDrone(int idDrone, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -208,18 +207,6 @@ namespace DalObject
 
                 }
             }
-            //for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס של הרחפן שהוא לא פנוי
-            //{
-
-            //    if (DataSource.listDrones[i].Id == idDrone)
-            //    {
-            //        DalApi.DO.Drone d = DataSource.listDrones[i];
-            //        //d.Status = (DAL.DalApi.DO.StatusDrone)2;
-            //        DataSource.listDrones[i] = d;
-            //        break;
-
-            //    }
-            //}
         }
         #endregion
 
@@ -230,7 +217,6 @@ namespace DalObject
         /// <param name="idCustomer"></param>
         /// <param name="idParcel"></param>
         [MethodImpl(MethodImplOptions.Synchronized)]
-
         public void DeliveryParcelForCustomer(int idCustomer, int idParcel)
         {
             if (!DataSource.listParcels.Exists(x => x.Id == idParcel))
@@ -244,20 +230,8 @@ namespace DalObject
                 {
                     DO.Parcel p = DataSource.listParcels[i];
                     p.Delivered = DateTime.Now;
-                    //p.TargetId = idCustomer;
                     idDrone = p.DroneId;
                     DataSource.listParcels[i] = p;
-                    break;
-
-                }
-            }
-            for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטטוס
-            {
-                if (DataSource.listDrones[i].Id == idDrone)
-                {
-                    DO.Drone d = DataSource.listDrones[i];
-                    //d.Status = (DAL.DalApi.DO.StatusDrone)0;
-                    DataSource.listDrones[i] = d;
                     break;
 
                 }
@@ -271,24 +245,13 @@ namespace DalObject
         /// </summary>
         /// <param name="idDrone"></param>
         /// <param name="idStation"></param>
-                 [MethodImpl(MethodImplOptions.Synchronized)]
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendingDroneForCharging(int idDrone, int idStation)
         {
             if (!DataSource.listStations.Exists(x => x.Id == idStation))
                 throw new DoesntExistException("This station doesn't exist");
             if (!DataSource.listDrones.Exists(x => x.Id == idDrone))
                 throw new DoesntExistException("This drone doesn't exist");
-            //for (int i = 0; i < DataSource.listDrones.Count; i++)//עדכון סטוטוס של הרחן
-            //{
-            //    if (DataSource.listDrones[i].Id == idDrone)
-            //    {
-            //        DalApi.DO.Drone d = DataSource.listDrones[i];
-            //        //  d.Status = (DAL.DalApi.DO.StatusDrone)1;
-            //        DataSource.listDrones[i] = d;
-            //        break;
-            //    }
-            //}
             for (int i = 0; i < DataSource.listStations.Count; i++)//עדכון מספר תחנות הטענה פנויות
             {
                 if (DataSource.listStations[i].Id == idStation)
@@ -317,17 +280,6 @@ namespace DalObject
                 throw new DoesntExistException("This station doesn't exist");
             if (!DataSource.listDrones.Exists(x => x.Id == idDrone))
                 throw new DoesntExistException("This drone doesn't exist");
-            //for (int i = 0; i < DataSource.listDrones.Count; i++)//  עדכון בטירה ועדכון סטטוס
-            //{
-            //    if (DataSource.listDrones[i].Id == idDrone)
-            //    {
-            //       DalApi.DO.Drone d = DataSource.listDrones[i];
-            //        // d.Status = (DAL.DalApi.DO.StatusDrone)0;
-            //        // d.Battery = 100;
-            //        DataSource.listDrones[i] = d;
-            //        break;
-            //    }
-            //}
             for (int i = 0; i < DataSource.listStations.Count; i++)//עדכון מספר תחנות הטענה פנויות
             {
                 if (DataSource.listStations[i].Id == idStation)
@@ -338,7 +290,7 @@ namespace DalObject
                     break;
                 }
             }
-            for (int i = 0; i < DataSource.listDroneCharges.Count; i++)//עדכון של רשימת טעינת הסוללה 
+            for (int i = 0; i < DataSource.listDroneCharges.Count; i++)//עדכון של רשימת טעינת רחפן 
             {
                 if (DataSource.listDroneCharges[i].StationId == idStation &&
                     DataSource.listDroneCharges[i].DroneId == idDrone)
@@ -367,20 +319,6 @@ namespace DalObject
             return (from item in DataSource.listStations
                    where item.Id==idStation
                     select item).FirstOrDefault();
-            
-            
-            //DO.Station s = new DO.Station();
-            //for (int i = 0; i < DataSource.listStations.Count; i++)
-            //{
-            //    if (DataSource.listStations[i].Id == idStation)
-            //    {
-            //        s = DataSource.listStations[i];
-            //        return s;
-
-            //    }
-
-            //}
-            //return s;
         }
         #endregion
 
@@ -398,21 +336,6 @@ namespace DalObject
             return (from item in DataSource.listDrones
                     where item.Id == idDrone
                     select item).FirstOrDefault();
-
-
-
-            //DO.Drone d = new DO.Drone();
-            //for (int i = 0; i < DataSource.listDrones.Count; i++)
-            //{
-            //    if (DataSource.listDrones[i].Id == idDrone)
-            //    {
-            //        d = DataSource.listDrones[i];
-            //        return d;
-
-            //    }
-
-            //}
-            //return d;
         }
         #endregion
 
@@ -429,18 +352,6 @@ namespace DalObject
             return (from item in DataSource.listCustomers
                     where item.Id == idCustomer
                     select item).FirstOrDefault();
-            
-            
-            //DO.Customer c = new DO.Customer();
-            //for (int i = 0; i < DataSource.listCustomers.Count; i++)
-            //{
-            //    if (DataSource.listCustomers[i].Id == idCustomer)
-            //    {
-            //        c = DataSource.listCustomers[i];
-            //        return c;
-            //    }
-            //}
-            //return c;
         }
         #endregion
 
@@ -457,18 +368,18 @@ namespace DalObject
             return (from item in DataSource.listParcels
                     where item.Id == idParcel
                     select item).FirstOrDefault();
+        }
+        #endregion
 
-            //DO.Parcel p = new DO.Parcel();
-            //for (int i = 0; i < DataSource.listParcels.Count; i++)
-            //{
-            //    if (DataSource.listParcels[i].Id == idParcel)
-            //    {
-            //        p = DataSource.listParcels[i];
-            //        return p;
-
-            //    }
-            //}
-            //return p;
+        #region ChangePassword
+        public void ChangePassword(string password, int id)
+        {
+            if (!DataSource.listUser.Exists(x => x.Id == id))
+                throw new DoesntExistException("This user doesn't exist");
+            User user = DataSource.listUser.Find(x => x.Id == id);
+            DataSource.listUser.Remove(user);
+            user.Password = password;
+            DataSource.listUser.Add(user);
         }
         #endregion
 
@@ -483,14 +394,6 @@ namespace DalObject
         {
             return (from item in DataSource.listStations
                     select item).ToList();
-            //List<DalApi.DO.Station> temp = new List<DalApi.DO.Station>();
-
-            //for (int i = 0; i < DataSource.listStations.Count; i++)
-            //{
-
-            //    temp.Add(DataSource.listStations[i]);
-            //}
-            //return temp;
         }
         #endregion
 
@@ -501,18 +404,8 @@ namespace DalObject
         /// <returns>רשימת כל הרחפנים</returns>
         public IEnumerable<DO.Drone> GetDroneList()
         {
-
             return (from item in DataSource.listDrones
                     select item).ToList();
-
-            //List<DO.Drone> temp = new List<DO.Drone>();
-
-            //for (int i = 0; i < DataSource.listDrones.Count; i++)
-            //{
-
-            //    temp.Add(DataSource.listDrones[i]);
-            //}
-            //return temp;
         }
         #endregion
 
@@ -525,14 +418,6 @@ namespace DalObject
         {
             return (from item in DataSource.listCustomers
                     select item).ToList();
-            //List<DO.Customer> temp = new List<DO.Customer>();
-
-            //for (int i = 0; i < DataSource.listCustomers.Count; i++)
-            //{
-
-            //    temp.Add(DataSource.listCustomers[i]);
-            //}
-            //return temp;
         }
         #endregion
 
@@ -545,14 +430,6 @@ namespace DalObject
         {
             return (from item in DataSource.listParcels
                     select item).ToList();
-            //List<DO.Parcel> temp = new List<DO.Parcel>();
-
-            //for (int i = 0; i < DataSource.listParcels.Count; i++)
-            //{
-
-            //    temp.Add(DataSource.listParcels[i]);
-            //}
-            //return temp;
         }
         #endregion
 
@@ -575,12 +452,9 @@ namespace DalObject
         /// <returns>רשימת חבילות שעוד לא שויכו לרחפן</returns>
         public IEnumerable<DO.Parcel> GetParcelNoDroneList()
         {
-
             return (from item in DataSource.listParcels
                     where item.DroneId==0
                     select item).ToList();
-
-
         }
         #endregion
 
@@ -591,9 +465,53 @@ namespace DalObject
         /// <returns>רשימת תחנות עם עמדות טעינה פנויות</returns>
         public IEnumerable<DO.Station> GetAvailableChargingStationsList()
         {
-                    return (from item in DataSource.listStations
-                    where item.AvailableStations >0
+            return (from item in DataSource.listStations
+                    where item.AvailableStations > 0
                     select item).ToList();
+        }
+        #endregion
+
+        #region PartOfDrone
+        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p)
+        {
+            return (from item in DataSource.listDrones
+                    where p(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfStation
+        public IEnumerable<Station> GetPartOfStationList(Predicate<Station> predicate)
+        {
+            return (from item in DataSource.listStations
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfCustomer
+        public IEnumerable<Customer> GetPartOfCustomerList(Predicate<Customer> predicate)
+        {
+            return (from item in DataSource.listCustomers
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfParcel
+        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate)
+        {
+            return (from item in DataSource.listParcels
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region Users
+        public IEnumerable<User> GetUserList()
+        {
+            return from item in DataSource.listUser
+                   select item;
         }
         #endregion
 
@@ -654,20 +572,7 @@ namespace DalObject
         }
         #endregion
 
-        #region GetDroneList
-        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p)
-        {
-            return( from item in DataSource.listDrones
-                    where p(item)
-                    select item).ToList();
-        }
-        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate)
-        {
-            return (from item in DataSource.listParcels
-                    where predicate(item)
-                    select item).ToList();
-        }
-        #endregion
+        #region DeleteParcel
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
@@ -676,27 +581,8 @@ namespace DalObject
         {
             DataSource.listParcels.Remove(parcel);
         }
-
-        public IEnumerable<User> GetUserList()
-        {
-            return from item in DataSource.listUser
-                   select item;
-        }
-        public void ChangePassword(string password, int id)
-        {            
-            if (!DataSource.listUser.Exists(x => x.Id == id))
-                throw new DoesntExistException("This user doesn't exist");
-            User user = DataSource.listUser.Find(x => x.Id == id);
-            DataSource.listUser.Remove(user);
-            user.Password = password;
-            DataSource.listUser.Add(user);
-        }
-        public void AddUser(DO.User u)
-        {
-            if (DataSource.listUser.Exists(x => x.Id == u.Id))
-                throw new AlreadyExistException("The user already exist");
-            DataSource.listUser.Add(u);
-        }
+        #endregion
+       
     }
 }
 

@@ -100,7 +100,7 @@ namespace BL
 
                         lock (bl) lock (bl.dalObj)
                             {
-                                bl.ReleaseDroneFromCharging(id, new(1, 0, 0));//למחוק פרמטר שני
+                                bl.ReleaseDroneFromCharging(id, new(1, 0, 0));  
                             }
                         updateDrone();
 

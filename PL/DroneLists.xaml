@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Icon="image/2.jpeg"
-        Title="DroneLists" Height="640" Width="800"
+        Title="DroneLists" Height="640" Width="900" 
           WindowStyle="None" MouseDown="moveWindow">
 
   

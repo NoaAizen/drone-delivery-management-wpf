@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Confing>
-  <CounterForParcels>11</CounterForParcels>
+  <CounterForParcels>10</CounterForParcels>
   <available>0.01</available>
   <lightWeight>0.03</lightWeight>
   <mediumWeight>0.05</mediumWeight>

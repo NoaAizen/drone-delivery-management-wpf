@@ -18,7 +18,6 @@ namespace DalApi
                 case "2":
                     return DalXml.DalXml.Instance;
                 default:
-                    //throw new...
                     return DalObject.DalObject.Instance;
             }
             

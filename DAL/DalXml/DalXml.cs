@@ -90,7 +90,6 @@ namespace DalXml
         #endregion
 
         #region Parcel
-
         /// <summary>
         ///  פונקציית קליטת חבילה למשלוח
         /// </summary>
@@ -116,6 +115,16 @@ namespace DalXml
         }
         #endregion
 
+        #region User
+        public void AddUser(DO.User u)
+        {
+            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (users.Exists(x => x.Id == u.Id))
+                throw new AlreadyExistException("This user already exist");
+            users.Add(u);
+            XMLTools.SaveListToXMLSerializer(users, userPath);
+        }
+        #endregion
 
         //-----------------------------------UPDATE-----------------------------------
 
@@ -191,7 +200,6 @@ namespace DalXml
         #endregion
 
         #region Assignment
-
         /// <summary>
         /// פונקצית שיוך חבילה לרחפן 
         /// </summary>
@@ -211,7 +219,6 @@ namespace DalXml
             parcel.Scheduled = DateTime.Now;
             parcels.Add(parcel);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
-
         }
         #endregion
 
@@ -325,6 +332,20 @@ namespace DalXml
         }
         #endregion
 
+        #region ChangePassword
+        public void ChangePassword(string password, int id)
+        {
+            var Users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            if (!Users.Exists(x => x.Id == id))
+                throw new DoesntExistException("This user doesn't exist");
+            User user = Users.Find(x => x.Id == id);
+            Users.Remove(user);
+            user.Password = password;
+            Users.Add(user);
+            XMLTools.SaveListToXMLSerializer(Users, userPath);
+        }
+        #endregion
+
         //-----------------------------------REQUEST-----------------------------------
 
         #region Station
@@ -413,7 +434,7 @@ namespace DalXml
 
         #region Stations
         /// <summary>
-        /// פונקציית הדפסת כל התחנות
+        /// תצוגת כל התחנות
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -435,7 +456,7 @@ namespace DalXml
 
         #region Drones
         /// <summary>
-        /// פונקציית הדפסת כל הרחפנים
+        /// תצוגת כל הרחפנים
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -457,9 +478,8 @@ namespace DalXml
         #endregion
 
         #region Parcel
-
         /// <summary>
-        /// פונקציית הדפסת כל חבילות
+        /// תצוגת כל החבילות
         /// </summary>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -482,7 +502,6 @@ namespace DalXml
         #endregion
 
         #region Parcels no drone
-
         /// <summary>
         /// פונקציית הדפסת  חבילות שעוד לא שויכו לרחפן 
         /// </summary>
@@ -497,7 +516,6 @@ namespace DalXml
                     select item).ToList();
         }
         #endregion
-
 
         #region Available charging stations
         /// <summary>
@@ -519,6 +537,57 @@ namespace DalXml
                         Latitude = double.Parse(s.Element("Latitude").Value),
                         AvailableStations = Int32.Parse(s.Element("AvailableStations").Value)
                     }).ToList();
+        }
+        #endregion
+
+        #region PartOfDrone
+        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p)
+        {
+            var drones = XMLTools.LoadListFromXMLSerializer<Drone>(dronePath);
+            return (from item in drones
+                    where p(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfStation
+        public IEnumerable<Station> GetPartOfStationList(Predicate<Station> predicate)
+        {
+            return (from item in DataSource.listStations
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfCustomer
+        public IEnumerable<Customer> GetPartOfCustomerList(Predicate<Customer> predicate)
+        {
+            var customers = XMLTools.LoadListFromXMLSerializer<Customer>(customerPath);
+
+            return (from item in customers
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfParcel
+        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate)
+        {
+            List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
+
+            return (from item in parcels
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region User
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public IEnumerable<User> GetUserList()
+        {
+            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
+            return from item in users
+                   select item;
         }
         #endregion
 
@@ -575,6 +644,7 @@ namespace DalXml
         }
         #endregion
 
+        #region PowerRequestToDrone
         /// <summary>
         /// מתודת בקשת צריכת חשמל ע"י רחפן
         /// </summary>
@@ -594,51 +664,22 @@ namespace DalXml
             };
             return arr;
         }
+        #endregion
 
+        #region DeleteParcel
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public void DeleteParcel(Parcel parcel) {
-
+        public void DeleteParcel(Parcel parcel) 
+        {
             List<Parcel> parcels = XMLTools.LoadListFromXMLSerializer<Parcel>(parcelPath);
             parcels.Remove(parcel);
             XMLTools.SaveListToXMLSerializer(parcels, parcelPath);
 
         }
-        //לעשותתתת
-        public IEnumerable<Drone> GetDroneList(Predicate<Drone> p) { return new List<Drone>(); }
-        public IEnumerable<Parcel> GetParcelList(Predicate<Parcel> predicate) { return new List<Parcel>(); }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<User> GetUserList()
-        {
-            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
-            return from item in users
-                   select item;
-        }
-        public void ChangePassword(string password,int id)
-        {
-            var Users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
-            if (!Users.Exists(x => x.Id == id))
-                throw new DoesntExistException("This user doesn't exist");
-            User user = Users.Find(x => x.Id == id);
-            Users.Remove(user);
-            user.Password = password;
-            Users.Add(user);
-            XMLTools.SaveListToXMLSerializer(Users, userPath);
-        }
-
-        public void AddUser(DO.User u)
-        {
-            List<User> users = XMLTools.LoadListFromXMLSerializer<User>(userPath);
-            if (users.Exists(x => x.Id == u.Id))
-                throw new AlreadyExistException("This user already exist");
-            users.Add(u);
-            XMLTools.SaveListToXMLSerializer(users, userPath);
-        }
-
+        #endregion
 
     }
 }
