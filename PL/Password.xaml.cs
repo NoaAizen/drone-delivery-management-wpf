@@ -105,7 +105,6 @@ namespace PL
                     this.Close();
                 }
             }
-
      }
         /// <summary>
         /// סגירת חלון
