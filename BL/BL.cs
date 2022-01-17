@@ -24,28 +24,28 @@ namespace BL
         private double chargingRate;//קצב טעינת רחפן - % בשעה
 
         static BL() { }
-        
-        BL() 
+
+        #region constructor
+        /// <summary>
+        /// בנאי
+        /// </summary>
+        BL()
         {
             r = new Random();
             dalObj = DalFactory.GetDal("2");
             DO.Parcel parcel = new();
             StatusDrone status = 0;
             Location location = new();
-            double minCharge, battery = 0;
-            int stationId=0;
-            lock (dalObj)
-            {
-                double[] arr = dalObj.PowerRequestToDrone();
-                available = arr[0];
-                lightWeight = arr[1];
-                mediumWeight = arr[2];
-                heavyWeight = arr[3];
-                chargingRate = arr[4];
-            }
-                List<DO.Drone> drones = (List<DO.Drone>)dalObj.GetDroneList();
-                List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
-            
+            double battery = 0;
+            int stationId = 0;
+            double[] arr = dalObj.PowerRequestToDrone();
+            available = arr[0];
+            lightWeight = arr[1];
+            mediumWeight = arr[2];
+            heavyWeight = arr[3];
+            chargingRate = arr[4];
+            List<DO.Drone> drones = (List<DO.Drone>)dalObj.GetDroneList();
+            List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             foreach (var drone in drones)
             {
                 if (parcels.Exists(x => x.DroneId == drone.Id))
@@ -53,31 +53,26 @@ namespace BL
                     parcel = (from item in parcels
                               where item.DroneId == drone.Id
                               select item).FirstOrDefault();
-                    //לברר איך אפשר לעשות את הבדיקה
-                    if (/*parcel!=null &&*/ parcel.Scheduled != null && parcel.Delivered == null)//חבילה שעוד לא סופקה אך הרחפן כבר שויך
+                    if (parcel.Scheduled != null && parcel.Delivered == null)//חבילה שעוד לא סופקה אך הרחפן כבר שויך
                     {
                         status = (StatusDrone)2;
                         if (parcel.PickedUp == null)//החבילה שויכה אך לא נאספה
                         {
                             stationId = findClosestStationToCustomer(parcel.SenderId);
-                            location = /*GetStation(stationId).Location*/ findStationLocation(stationId);
+                            location = findStationLocation(stationId);
                         }
                         else
                         {
                             location = findCustomerLocation(parcel.SenderId);
                         }
-                        //minCharge = checkDronePowerConsumption(drone.Id) * (getDistance(location, findCustomerLocation(parcel.TargetId)) + getDistance(findCustomerLocation(parcel.TargetId), findStationLocation(findClosestStationToCustomer(parcel.SenderId))));
-                        //random.NextDouble() * (maximum - minimum) + minimum
                         battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
-                        //battery = r.NextDouble() * (100 - minCharge) + minCharge;//הגרלת סוללה בין טעינה מינימלית ל100
                     }
                     else
                     {//הרחפן לא במשלוח
-                     //if(parcel == null) כנ"ל
                         status = (StatusDrone)r.Next(0, 2);
                         if (status == 0)//הרחפן פנוי
                         {
-                            location = getRandomCustomerLocation(); //לסדר את הבעייה
+                            location = getRandomCustomerLocation();
                             battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
                         }
                         else//הרחפן בתחזוקה
@@ -94,18 +89,17 @@ namespace BL
                 }
                 else
                 {//הרחפן לא במשלוח
-                    //if(parcel == null) כנ"ל
                     status = (StatusDrone)r.Next(0, 2);
                     if (status == 0)//הרחפן פנוי
                     {
-                        location = getRandomCustomerLocation(); //לסדר את הבעייה
+                        location = getRandomCustomerLocation();
                         battery = r.NextDouble() * (100 - 50) + 50;//הגרלת סוללה בין 50 ל100
                     }
                     else//הרחפן בתחזוקה
                     {
                         lock (dalObj)
                         {
-                            stationId 
+                            stationId
                                 = getRandomStation();
                             location = findStationLocation(stationId);
                             dalObj.SendingDroneForCharging(drone.Id, stationId);
@@ -127,8 +121,15 @@ namespace BL
                 DronesList.Add(blDrone);
             }
         }
+        #endregion
 
-       
+        #region StartDroneSimulator
+        public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop)
+        {
+            new Simulator(this, id, updateDrone, checkStop);
+
+        }
+        #endregion
 
 
         //-----------------------------------ADD-----------------------------------
@@ -254,6 +255,26 @@ namespace BL
         }
         #endregion
 
+        #region User
+        public void AddUser(UserToLIst userToLIst)
+        {
+            DO.User user = new()
+            {
+                Id = userToLIst.Id,
+                Name = userToLIst.Name,
+                Password = userToLIst.Password
+            };
+            try
+            {
+                dalObj.AddUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw new AlreadyExistException(ex.Message, ex);
+            }
+        }
+        #endregion
+
         //-----------------------------------UPDATE-----------------------------------
 
         #region Drone
@@ -271,7 +292,7 @@ namespace BL
                     dalObj.UpdateDroneModel(id, model);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new DoesntExistException(ex.Message, ex);
             }
@@ -357,7 +378,7 @@ namespace BL
                 drone.Status = StatusDrone.Maintenance;
                 drone.Battery -= minCharge;
                 drone.CurrentLocation = stationLocation;
-                }
+            }
             else
                 throw new ActionProblemException
                     ("Can't sending drone for charging, only available drone can be sent for charging");
@@ -379,7 +400,7 @@ namespace BL
             if (drone.Status != StatusDrone.Maintenance)
                 throw new ActionProblemException
                     ("Can't release drone from charging, only maintenance drone can be released");
-     
+
             int stationId = dalObj.GetDroneChargesList().ToList().Find(x => x.DroneId == id).StationId;
             try
             {
@@ -392,7 +413,7 @@ namespace BL
             {
                 throw new DoesntExistException(ex.Message, ex);
             }
-            drone.Battery = 100;//בטרי קודם +קצב טעינה*זמן טעינה
+            drone.Battery = 100;
             drone.Status = 0;
         }
         #endregion
@@ -410,12 +431,12 @@ namespace BL
             if (drone.Status != StatusDrone.Available)
                 throw new ActionProblemException
                     ("Can't assignment parcel to drone, only available drone can be assignment");
-            DO.Priorities priority= DO.Priorities.Emergency;
+            DO.Priorities priority = DO.Priorities.Emergency;
             List<DO.Parcel> parcels = getRelevantParcels();
             List<DO.Parcel> highPriorityParcels = getHighPriorityParcels(parcels, priority);
             DO.WeightCategories maxWeight = (DO.WeightCategories)drone.MaxWeight;
             List<DO.Parcel> maxWeightParcels = getMaxWeightParcels(highPriorityParcels, maxWeight);
-            while(maxWeightParcels == null && priority!= DO.Priorities.Normal)
+            while (maxWeightParcels == null && priority != DO.Priorities.Normal)
             {
                 priority--;
                 highPriorityParcels = getHighPriorityParcels(parcels, priority);
@@ -425,7 +446,7 @@ namespace BL
             double power = checkDeliveryDronePowerConsumption(idDrone);
             Location senderLocation = findCustomerLocation(parcel.SenderId);
             double distanceToSender = getDistance(drone.CurrentLocation, senderLocation);
-            double minChargeToSender = getMinCharge(idDrone, distanceToSender) /*power*distanceToSender*/;
+            double minChargeToSender = getMinCharge(idDrone, distanceToSender);
             Location targetLocation = findCustomerLocation(parcel.TargetId);
             double distanceToTarget = getDistance(senderLocation, targetLocation);
             double minChargeToTarget = power * distanceToTarget;
@@ -434,22 +455,23 @@ namespace BL
             double distanceToStation = getDistance(targetLocation, stationLocation);
             double minChargeToStation = getMinCharge(idDrone, distanceToStation);
             double minCharge = minChargeToSender + minChargeToTarget + minChargeToStation;
-            if(drone.Battery<minCharge)
+            if (drone.Battery < minCharge)
                 throw new ActionProblemException
                         ("Can't assignment parcel to drone, there isn't enough battery");
             lock (dalObj)
             {
                 dalObj.UpdateDroneToParcel(drone.Id, parcel.Id);
             }
-            //DronesList.Remove(drone);
-            //drone.Battery -= 20;
-            //drone.CurrentLocation = findCustomerLocation(parcel.TargetId);
             drone.Status = StatusDrone.Delivery;
             drone.ParcelInTransfer = GetDrone(idDrone).ParcelInTransfer;
             drone.ParcelTransferredNumber = drone.ParcelInTransfer.Id;
-            //DronesList.Add(drone);
         }
 
+        #region getRelevantParcels
+        /// <summary>
+        /// פונקצייה המחזירה רק חבילות שהוגדרו אבל לא שוייכו עדיין
+        /// </summary>
+        /// <returns>רשימה של חבילות שהוגדרו אך לא שויכו</returns>
         private List<DO.Parcel> getRelevantParcels()
         {
             List<DO.Parcel> parcels = new();
@@ -465,11 +487,22 @@ namespace BL
             }
             return parcels;
         }
+        #endregion
 
+        #region getMinCharge
+        /// <summary>
+        /// פונקצייה הבודקת בטרייה מינמלית שהרחפן זקוק לו
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <param name="distance">מרחק שעל הרחפן לעבור</param>
+        /// <returns></returns>
         private double getMinCharge(int id, double distance)
         {
             return checkDronePowerConsumption(id) * distance;
         }
+        #endregion
+
+        #region checkDronePowerConsumption
         /// <summary>
         /// בדיקת צריכת חשמל של רחפן
         /// </summary>
@@ -482,7 +515,14 @@ namespace BL
                 return available;
             else return checkDeliveryDronePowerConsumption(id);
         }
+        #endregion
 
+        #region checkDeliveryDronePowerConsumption
+        /// <summary>
+        /// בדיקת צריכת חשמל של רחפן עבור רחפן שאינו פנוי
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <returns>צריכת חשמל בהתאם למשקלו</returns>
         private double checkDeliveryDronePowerConsumption(int id)
         {
             Drone drone = GetDrone(id);
@@ -492,7 +532,15 @@ namespace BL
                 return mediumWeight;
             return heavyWeight;
         }
+        #endregion
 
+        #region getClosestParcel
+        /// <summary>
+        /// פונקצייה הבודקת מי החבילה הקרובה ביותר לרחפן כלשהו
+        /// </summary>
+        /// <param name="parcels">רשימת חבילות</param>
+        /// <param name="droneLocation">מיקום הרחפן</param>
+        /// <returns>החבילה הקרובה ביותר</returns>
         private DO.Parcel getClosestParcel(List<DO.Parcel> parcels, Location droneLocation)
         {
             double distance;
@@ -500,7 +548,7 @@ namespace BL
             double minDistance = getDistance(droneLocation, parcelLocation);
             DO.Parcel parcel = parcels[0];
             parcels.RemoveAt(0);
-            foreach(var item in parcels)
+            foreach (var item in parcels)
             {
                 distance = getDistance(droneLocation, parcelLocation);
                 if (distance < minDistance)
@@ -511,10 +559,19 @@ namespace BL
             }
             return parcel;
         }
+        #endregion
 
+        #region getMaxWeightParcels
+        /// <summary>
+        /// פונקצייה הבודקת מיהן החבילות
+        /// בעלות המשקל המקסילי שרחפן מסוגל לשאת
+        /// </summary>
+        /// <param name="parcels">רשימה של חבילות</param>
+        /// <param name="maxWeight">משקל מקסימלי שרחפן מסוגל לשאת</param>
+        /// <returns>רשימת חבילות בעלות משקל מקסימלי שהרחפן מסוגל לשאת</returns>
         private List<DO.Parcel> getMaxWeightParcels(List<DO.Parcel> parcels, DO.WeightCategories maxWeight)
         {
-            while(maxWeight!= DO.WeightCategories.Light)//בדיקה האם קיימת חבילה במשקל מקסימלי כמו הרחפן ואם לא אז במשקל נמוך יותר
+            while (maxWeight != DO.WeightCategories.Light)//בדיקה האם קיימת חבילה במשקל מקסימלי כמו הרחפן ואם לא אז במשקל נמוך יותר
             {
                 if (!parcels.Exists(x => x.Weight == maxWeight))
                     maxWeight--;
@@ -525,27 +582,30 @@ namespace BL
                     where item.Weight == maxWeight
                     select item).ToList();
         }
+        #endregion
 
+        #region getHighPriorityParcels
+        /// <summary>
+        /// פונקצייה המחזירה את רשימת החבילות בעלות העדיפות הגבוהה ביותר
+        /// </summary>
+        /// <param name="parcels">רשימה של חבילות</param>
+        /// <param name="priority">עדיפות מקסימלית</param>
+        /// <returns>רשימה של חבילות עם העדיפות המקסימלית</returns>
         private List<DO.Parcel> getHighPriorityParcels(List<DO.Parcel> parcels, DO.Priorities priority)
         {
-            while(priority!=DO.Priorities.Normal)
+            while (priority != DO.Priorities.Normal)
             {
                 if (!parcels.Exists(x => x.Priority == priority))
                     priority--;
                 else
                     break;
             }
-            //DO.Priorities priority = DO.Priorities.Emergency;
-            //if (!dalObj.GetParcelList().ToList().Exists(x => x.Priority == priority))
-            //{
-            //    priority = DO.Priorities.Fast;
-            //    if(!dalObj.GetParcelList().ToList().Exists(x => x.Priority == priority))
-            //        priority = DO.Priorities.Normal;
-            //}
             return (from item in parcels
                     where item.Priority == priority
                     select item).ToList();
         }
+        #endregion
+
         #endregion
 
         #region Collection
@@ -558,32 +618,32 @@ namespace BL
             DroneToList drone = DronesList.FirstOrDefault(x => x.Id == idDrone);
             List<DO.Parcel> parcels = (List<DO.Parcel>)dalObj.GetParcelList();
             if (drone == null)
-                throw new DoesntExistException("This drone doesn't exist");               
+                throw new DoesntExistException("This drone doesn't exist");
             if (drone.Status != StatusDrone.Delivery)
-                    throw new ActionProblemException
-                    ("Can't collection parcel, only delivery drone can collection");
+                throw new ActionProblemException
+                ("Can't collection parcel, only delivery drone can collection");
             if (parcels.Exists(x => x.DroneId == idDrone && x.Scheduled != null && x.PickedUp == null))
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
-                                         where item.DroneId == idDrone && 
-                                         item.Scheduled != null && item.PickedUp == null
+                                    where item.DroneId == idDrone &&
+                                    item.Scheduled != null && item.PickedUp == null
                                     select item).FirstOrDefault();
-                    try
+                try
+                {
+                    lock (dalObj)
                     {
-                        lock (dalObj)
-                        {
-                            dalObj.CollectionParcelFromDrone(idDrone, parcel.Id);
-                        }
+                        dalObj.CollectionParcelFromDrone(idDrone, parcel.Id);
                     }
-                    catch (Exception ex)
-                    {
-                        throw new DoesntExistException(ex.Message, ex);
-                    }
-                    Location senderLocation= findCustomerLocation(parcel.SenderId);
-                    double distance = getDistance(drone.CurrentLocation, senderLocation);
-                    double minCharge = getMinCharge(idDrone, distance);
-                    drone.Battery -= minCharge;
-                    drone.CurrentLocation= senderLocation;
+                }
+                catch (Exception ex)
+                {
+                    throw new DoesntExistException(ex.Message, ex);
+                }
+                Location senderLocation = findCustomerLocation(parcel.SenderId);
+                double distance = getDistance(drone.CurrentLocation, senderLocation);
+                double minCharge = getMinCharge(idDrone, distance);
+                drone.Battery -= minCharge;
+                drone.CurrentLocation = senderLocation;
             }
             else
                 throw new ActionProblemException("Can't collection parcel");
@@ -607,30 +667,44 @@ namespace BL
             if (parcels.Exists(x => x.DroneId == idDrone && x.PickedUp != null && x.Delivered == null))
             {//הרחפן במשלוח
                 DO.Parcel parcel = (from item in parcels
-                                         where item.DroneId == idDrone && 
-                                         item.PickedUp != null && item.Delivered == null
+                                    where item.DroneId == idDrone &&
+                                    item.PickedUp != null && item.Delivered == null
                                     select item).FirstOrDefault();
-                    try
+                try
+                {
+                    lock (dalObj)
                     {
-                        lock (dalObj)
-                        {
-                            dalObj.DeliveryParcelForCustomer(parcel.TargetId, parcel.Id);
-                        }
+                        dalObj.DeliveryParcelForCustomer(parcel.TargetId, parcel.Id);
                     }
-                    catch (Exception ex)
-                    {
-                        throw new DoesntExistException(ex.Message, ex);
-                    }
-                    Location senderLocation = findCustomerLocation(parcel.SenderId);
-                    Location targetLocation = findCustomerLocation(parcel.TargetId);
-                    double distance = getDistance(senderLocation, targetLocation);
-                    double minCharge = getMinCharge(idDrone, distance);
-                    drone.Battery -= minCharge;
-                    drone.CurrentLocation = targetLocation;
-                    drone.Status = 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new DoesntExistException(ex.Message, ex);
+                }
+                Location senderLocation = findCustomerLocation(parcel.SenderId);
+                Location targetLocation = findCustomerLocation(parcel.TargetId);
+                double distance = getDistance(senderLocation, targetLocation);
+                double minCharge = getMinCharge(idDrone, distance);
+                drone.Battery -= minCharge;
+                drone.CurrentLocation = targetLocation;
+                drone.Status = 0;
             }
             else
                 throw new ActionProblemException("Can't delivery parcel");
+        }
+        #endregion
+
+        #region ChangePassword
+        public void ChangePassword(string password, int id)
+        {
+            try
+            {
+                dalObj.ChangePassword(password, id);
+            }
+            catch (Exception ex)
+            {
+                throw new DoesntExistException(ex.Message, ex);
+            }
         }
         #endregion
 
@@ -691,10 +765,10 @@ namespace BL
                 };
                 if (blDrone.Status == StatusDrone.Delivery)
                 {
-                        DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id && x.Delivered == null);
+                    DO.Parcel dalParcel = dalObj.GetParcelList().ToList().Find(x => x.DroneId == id && x.Delivered == null);
 
-                        Parcel parcel = GetParcel(dalParcel.Id);
-                    
+                    Parcel parcel = GetParcel(dalParcel.Id);
+
                     blDrone.ParcelInTransfer = new()
                     {
                         Id = parcel.Id,
@@ -760,8 +834,6 @@ namespace BL
                     CustomerInParcel = new() { Id = parcel.SenderId, Name = dalObj.GetCustomer(parcel.SenderId).Name }
                 }).ToList()
             };
-            //Console.WriteLine(blCustomer.Name);
-            //Console.WriteLine(blCustomer.Phone);
             return blCustomer;
         }
         #endregion
@@ -818,7 +890,7 @@ namespace BL
         public IEnumerable<StationToList> GetStationList()
         {
             List<StationToList> stations = new();
-            foreach(var station in dalObj.GetStationList())
+            foreach (var station in dalObj.GetStationList())
             {
                 StationToList blStation = new()
                 {
@@ -845,15 +917,15 @@ namespace BL
             List<DroneToList> drones = new();
             foreach (var drone in dalObj.GetDroneList())
             {
-                droneInList = DronesList.Find(x => x.Id ==drone.Id);
+                droneInList = DronesList.Find(x => x.Id == drone.Id);
                 DroneToList blDrone = new()
                 {
                     Id = drone.Id,
                     Model = drone.Model,
                     MaxWeight = (WeightCategories)drone.MaxWeight,
-                    Status = /*checkDroneStatus(drone.Id)*/ droneInList.Status,
+                    Status =  droneInList.Status,
                     Battery = droneInList.Battery,
-                    CurrentLocation = /*getDroneLocation(drone.Id)*/ droneInList.CurrentLocation
+                    CurrentLocation =  droneInList.CurrentLocation
                 };
                 if (blDrone.Status == StatusDrone.Delivery)
                 {
@@ -879,7 +951,7 @@ namespace BL
             return drones;
         }
 
-        
+
         #endregion
 
         #region Customers
@@ -890,26 +962,26 @@ namespace BL
         public IEnumerable<CustomerToList> GetCustomerList()
         {
             List<CustomerToList> customers = new();
-            foreach(var customer in dalObj.GetCustomerList())
+            foreach (var customer in dalObj.GetCustomerList())
             {
                 CustomerToList blCustomer = new()
                 {
                     Id = customer.Id,
                     Name = customer.Name,
                     Phone = customer.Phone,
-                    NumberOfParcelSentAndDelivered= findNumberOfParcelSentAndDelivered(customer.Id),
-                    NumberOfParcelSentButNotYetDelivered= 
-                    dalObj.GetSenderParcels(customer.Id).Count()- findNumberOfParcelSentAndDelivered(customer.Id),
-                    NumberOfParcelReceived= findNumberOfParcelReceived(customer.Id),
-                    NumberOfParcelOnTheWayToTheCustomer=
-                    dalObj.GetTargetParcels(customer.Id).Count()- findNumberOfParcelReceived(customer.Id)
+                    NumberOfParcelSentAndDelivered = findNumberOfParcelSentAndDelivered(customer.Id),
+                    NumberOfParcelSentButNotYetDelivered =
+                    dalObj.GetSenderParcels(customer.Id).Count() - findNumberOfParcelSentAndDelivered(customer.Id),
+                    NumberOfParcelReceived = findNumberOfParcelReceived(customer.Id),
+                    NumberOfParcelOnTheWayToTheCustomer =
+                    dalObj.GetTargetParcels(customer.Id).Count() - findNumberOfParcelReceived(customer.Id)
                 };
                 customers.Add(blCustomer);
             }
             return customers;
         }
 
-       
+
 
         #endregion
 
@@ -1000,6 +1072,20 @@ namespace BL
             return stations;
         }
         #endregion
+
+        #region DroneCharges
+        /// <summary>
+        /// תצוגת רחפנים בטעינה
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DO.DroneCharge> GetDroneChargesList()
+        {
+            return (from item in dalObj.GetDroneChargesList()
+                    select item).ToList();
+        }
+        #endregion
+
+        #region PartOfDrone
         /// <summary>
         /// פונקצית תצוגת רשימת רחפנים לפי תנאי
         /// </summary>
@@ -1012,20 +1098,67 @@ namespace BL
                     where p(item)
                     select item).ToList();
         }
+        #endregion
+
+        #region PartOfParcel
+        /// <summary>
+        /// תצוגת חבילות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת חבילות לפי תנאי</returns>
         public IEnumerable<ParcelToList> GetParcelList(Predicate<ParcelToList> predicate)
         {
             return (from item in GetParcelList()
                     where predicate(item)
                     select item).ToList();
         }
+        #endregion
 
-
-        public IEnumerable<DO.DroneCharge> GetDroneChargesList()
+        #region PartOfStation
+        /// <summary>
+        /// תצוגת תחנות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת תחנות לפי תנאי</returns>
+        public IEnumerable<StationToList> GetPartOfStationList(Predicate<StationToList> predicate)
         {
-            return (from item in  dalObj.GetDroneChargesList()
-                   select item).ToList();
+            return (from item in GetStationList()
+                    where predicate(item)
+                    select item).ToList();
         }
+        #endregion
 
+        #region PartOfCustomer
+        /// <summary>
+        /// תצוגת לקוחות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת לקוחות לפי תנאי</returns>
+        public IEnumerable<CustomerToList> GetPartOfCustomerList(Predicate<CustomerToList> predicate)
+        {
+            return (from item in GetCustomerList()
+                    where predicate(item)
+                    select item).ToList();
+        }
+        #endregion
+
+        #region Users
+        public IEnumerable<UserToLIst> GetUSList()
+        {
+            List<UserToLIst> Users = new();
+            foreach (var v in dalObj.GetUserList())
+            {
+                UserToLIst user = new()
+                {
+                    Id = v.Id,
+                    Name = v.Name,
+                    Password = v.Password
+                };
+                Users.Add(user);
+            }
+            return Users;
+        }
+        #endregion
 
         //-----------------------------------HELP-METHODS-----------------------------------
 
@@ -1039,9 +1172,6 @@ namespace BL
         /// <returns>מרחק בין 2 המיקומים</returns>
         private double getDistance(Location location1, Location location2, char unit = 'K')
         {
-            //var coord1 = new GeoCoordinate(location1.Longitude, location1.Latitude);
-            //var coord2 = new GeoCoordinate(location2.Longitude, location2.Latitude);
-            //return coord1.GetDistanceTo(coord2);
             double lat1 = location1.Latitude;
             double lon1 = location1.Longitude;
             double lat2 = location2.Latitude;
@@ -1082,20 +1212,19 @@ namespace BL
             double distance;
             Location droneLocation = getDroneLocation(droneId);
             List<DO.Station> stations = (List<DO.Station>)dalObj.GetStationList();
-            Location stationLocation=new() { Longitude = stations[0].Longitude, Latitude= stations[0].Latitude };
-            int stationId= stations[0].Id;
+            Location stationLocation = new() { Longitude = stations[0].Longitude, Latitude = stations[0].Latitude };
+            int stationId = stations[0].Id;
             double minDistance = getDistance(droneLocation, stationLocation);
             for (int i = 1; i < stations.Count; i++)
             {
                 stationLocation.Longitude = stations[i].Longitude;
-                stationLocation.Latitude = stations[i].Latitude ;
+                stationLocation.Latitude = stations[i].Latitude;
                 distance = getDistance(droneLocation, stationLocation);
-                //אפשר לייעל ובמקום התנאי לסנן רק מתוך רשימת תחנות עם עמדות טעינה פנויות לפי הפונקצייה
-                if(distance < minDistance && stations[i].AvailableStations > 0)
+                if (distance < minDistance && stations[i].AvailableStations > 0)
                 {
                     minDistance = distance;
                     stationId = stations[i].Id;
-                } 
+                }
             }
             return stationId;
         }
@@ -1177,7 +1306,6 @@ namespace BL
         {
             List<DO.Station> stations = dalObj.GetStationList().ToList();
             DO.Station rndStation = stations[r.Next(stations.Count)];
-            //Location location = new() { Longitude = rndStation.Longitude, Latitude = rndStation.Latitude };
             return rndStation.Id;
         }
         #endregion
@@ -1227,13 +1355,25 @@ namespace BL
         }
         #endregion
 
+        #region findStationLocation
+        /// <summary>
+        /// מציאת מיקום תחנה
+        /// </summary>
+        /// <param name="stationId">מזהה תחנה</param>
+        /// <returns>מיקום התחנה</returns>
         private Location findStationLocation(int stationId)
         {
             DO.Station station = dalObj.GetStation(stationId);
             Location location = new() { Longitude = station.Longitude, Latitude = station.Latitude };
             return location;
         }
+        #endregion
 
+        #region getRandomCustomerLocation
+        /// <summary>
+        /// מיקום רנדומלי של לקוח
+        /// </summary>
+        /// <returns>מיקום רנדומלי של לקוח</returns>
         private Location getRandomCustomerLocation()
         {
             List<int> customerId = new();
@@ -1245,13 +1385,26 @@ namespace BL
             Location location = findCustomerLocation(customerId[r.Next(customerId.Count)]);
             return location;
         }
+        #endregion
 
-
+        #region getDroneLocation
+        /// <summary>
+        /// מציאת מיקום רחפן
+        /// </summary>
+        /// <param name="droneId">מזהה רחפן</param>
+        /// <returns>מיקום הרחפן</returns>
         private Location getDroneLocation(int droneId)
         {
             return DronesList.Find(drone => drone.Id == droneId).CurrentLocation;
         }
+        #endregion
 
+        #region checkDroneStatus
+        /// <summary>
+        /// בדיקת סטטוס רחפן
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <returns>סטטוס רחפן</returns>
         private StatusDrone checkDroneStatus(int id)
         {
             StatusDrone status;
@@ -1263,73 +1416,20 @@ namespace BL
                 status = StatusDrone.Available;
             return status;
         }
+        #endregion
 
+        #region DeleteParcel
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
         public void DeleteParcel(Parcel parcel)
         {
-            DO.Parcel dalParcel=dalObj.GetParcel(parcel.Id);
+            DO.Parcel dalParcel = dalObj.GetParcel(parcel.Id);
             dalObj.DeleteParcel(dalParcel);
         }
-
-
-        //--------------------------------------- לממש!!!
-
-        //לעדכון:
-        //Drone d = DataSource.listDrones.Find(x => x.Id == id);
-        //DataSource.listDrones.Remove(d);
-        //    d.Model = model;
-        //    DataSource.listDrones.Add(d);
-        public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop)
-        {
-            new Simulator(this, id, updateDrone, checkStop);
-          
-        }
-        public IEnumerable<UserToLIst> GetUSList()
-        {
-            List<UserToLIst> Users = new();
-            foreach (var v in dalObj.GetUserList())
-            {
-                UserToLIst user = new()
-                {
-                    Id = v.Id,
-                    Name = v.Name,
-                    Password=v.Password
-                };
-                Users.Add(user);
-            }
-            return Users;
-        }
-        public void ChangePassword(string password, int id)
-        {
-            try
-            {
-                dalObj.ChangePassword(password, id);
-            }
-            catch (Exception ex)
-            {
-                throw new DoesntExistException(ex.Message, ex);
-            }
-        }
-        public void AddUser(UserToLIst userToLIst)
-        {
-            DO.User user = new()//יצירת ישות נתונים של תחנה
-            {
-                Id = userToLIst.Id,
-                Name= userToLIst.Name,
-                Password= userToLIst.Password
-            };
-            try
-            {
-                dalObj.AddUser(user);
-            }
-            catch (Exception ex)
-            {
-                throw new AlreadyExistException(ex.Message, ex);
-            }
-        }
+        #endregion
+       
     }
 
 }
