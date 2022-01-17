@@ -146,18 +146,56 @@ namespace BlApi
         /// <param name="p">פרדיקט</param>
         /// <returns>רשימת רחפנים לפי תנאי</returns>
         public IEnumerable<DroneToList> GetPartOfDroneList(Predicate<DroneToList> p);
+        /// <summary>
+        /// תצוגת חבילות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת חבילות לפי תנאי</returns>
         public IEnumerable<ParcelToList> GetParcelList(Predicate<ParcelToList> predicate);
+        /// <summary>
+        /// תצוגת תחנות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת תחנות לפי תנאי</returns>
+        public IEnumerable<StationToList> GetPartOfStationList(Predicate<StationToList> predicate);
+        /// <summary>
+        /// תצוגת לקוחות לפי תנאי
+        /// </summary>
+        /// <param name="predicate">פרדיקט</param>
+        /// <returns>רשימת לקוחות לפי תנאי</returns>
+        public IEnumerable<CustomerToList> GetPartOfCustomerList(Predicate<CustomerToList> predicate);
+        /// <summary>
+        /// תצוגת רחפנים בטעינה
+        /// </summary>
+        /// <returns>רשימת רחפנים בטעינה</returns>
         public IEnumerable<DO.DroneCharge> GetDroneChargesList();
-
         /// <summary>
         /// מחיקת חבילה 
         /// </summary>
         /// <param name="parcel">חבילה למחיקה</param>
         public void DeleteParcel(Parcel parcel);
-
+        /// <summary>
+        /// פונקצייה להפעלת הסימולטור
+        /// </summary>
+        /// <param name="id">מזהה רחפן</param>
+        /// <param name="updateDrone">מתודת עדכון</param>
+        /// <param name="checkStop">מתודת עצירה</param>
         public void StartDroneSimulator(int id, Action updateDrone, Func<bool> checkStop);
+        /// <summary>
+        /// תצוגת המשתמשים
+        /// </summary>
+        /// <returns>רשימת המשתמשים</returns>
         public IEnumerable<UserToLIst> GetUSList();
+        /// <summary>
+        /// פונקצייה לשינוי סיסמא
+        /// </summary>
+        /// <param name="password">סיסמא</param>
+        /// <param name="id">מזהה</param>
         public void ChangePassword(string password, int id);
+        /// <summary>
+        /// הוספת משתמש
+        /// </summary>
+        /// <param name="userToLIst">משתמש</param>
         public void AddUser(UserToLIst userToLIst);
 
     }
