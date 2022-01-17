@@ -99,8 +99,7 @@ namespace BL
                     {
                         lock (dalObj)
                         {
-                            stationId
-                                = getRandomStation();
+                            stationId = getRandomStation();
                             location = findStationLocation(stationId);
                             dalObj.SendingDroneForCharging(drone.Id, stationId);
                             battery = r.NextDouble() * (20 - 0) + 0;
