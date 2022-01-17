@@ -22,6 +22,7 @@ namespace PL
     /// </summary>
     public partial class StationsList : Window
     {
+        public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private IBL bl;
         private ObservableCollection<StationToList> stations = new();
         private CollectionView view;
@@ -67,7 +68,6 @@ namespace PL
             Station win = new Station(bl);
             win.RefreshEvent += Refresh;
             Grouping.IsEnabled = true;
-            GroupingNotAvailableStations.IsEnabled = true;
             win.Show();
 
         }
@@ -81,8 +81,7 @@ namespace PL
             view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("AvailableStations");
             view.GroupDescriptions.Add(groupDescription);
-            temp = true;
-            if (view.GroupDescriptions.Count >= 1 )
+            if (view.GroupDescriptions.Count == 1 )
             {
                 Grouping.IsEnabled = false;
             }
@@ -98,17 +97,7 @@ namespace PL
             this.Close();
         }
 
-        private void GroupinNotAvailableStationsgClick(object sender, RoutedEventArgs e)
-        {
-            CollectionView = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);
-            PropertyGroupDescription groupDescriptionName = new PropertyGroupDescription("NotAvailableStations");
-            CollectionView.GroupDescriptions.Add(groupDescriptionName);
-            if (CollectionView.GroupDescriptions.Count >= 1)
-            {
-                GroupingNotAvailableStations.IsEnabled = false;
-            }
-
-        }
+       
     }
 }
 
