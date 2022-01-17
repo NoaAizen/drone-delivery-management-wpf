@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ActionsClinent" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="image/1.jpg" />
+    </Window.Background>
     <Grid x:Name="main">
         <Grid x:Name="Actions" Visibility="Visible">
             <Grid.RowDefinitions>

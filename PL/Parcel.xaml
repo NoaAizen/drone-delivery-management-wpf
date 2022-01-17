@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:ParcelPo}"
         mc:Ignorable="d"
+        
+        
         Title="Parcel" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
@@ -25,22 +27,26 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Enter the details of the new parcel:" HorizontalAlignment="Left" Margin="0,20,0,19" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2"/>
-            <Label Content="Sender Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Recipient Id:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Weight:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Priority:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <TextBox x:Name="senderId" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextChanged="SenderIdClick" />
-            <TextBox x:Name="recipientId" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3" TextChanged="recipientIdClick" />
-            <ComboBox x:Name="weight" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="4" SelectionChanged="WeightClick" />
-            <ComboBox x:Name="priority" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="5" SelectionChanged="PriorityClick"  />
-            <Button x:Name="AddNewParcel" Content="Add parcel" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="2" Grid.RowSpan="3" Grid.Row="7" Margin="40,36,0,0" Click="AddNewParcelClick"/>
-            <Button x:Name="Close" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="120" FontWeight="Heavy" Grid.Column="1" Grid.RowSpan="2" Grid.Row="8" Click="CloseClick"/>
+            <Label Content="Enter the details of the new parcel:" HorizontalAlignment="Left" Margin="20,63,0,4" Width="443" FontSize="25" FontWeight="Bold" Grid.ColumnSpan="4" Grid.Column="1" Grid.RowSpan="3"/>
+            <Label Content="Sender Id:" Grid.Column="2" Grid.Row="1" Margin="0,37,0,0" Grid.RowSpan="2"/>
+            <Label Content="Recipient Id:" Grid.Column="2" Grid.Row="3" Margin="0,0,0,37" Grid.RowSpan="2"/>
+            <Label Content="Weight:" Grid.Column="2" Grid.Row="4"/>
+            <Label Content="Priority:" Grid.Column="2" Grid.Row="5"/>
+            <TextBox x:Name="senderId" Grid.Column="3" Grid.Row="1" TextChanged="SenderIdClick" Margin="0,37,0,0" Grid.RowSpan="2" />
+            <TextBox x:Name="recipientId"  Grid.Column="3" Grid.Row="3" TextChanged="recipientIdClick" Margin="0,0,0,37" Grid.RowSpan="2" />
+            <ComboBox x:Name="weight"  Grid.Column="3" Grid.Row="4" SelectionChanged="WeightClick" />
+            <ComboBox x:Name="priority"  Grid.Column="3" Grid.Row="5" SelectionChanged="PriorityClick"  />
+            <Button x:Name="AddNewParcel" Content="Add parcel" FontWeight="Heavy" Grid.Column="3" Grid.Row="7"  Click="AddNewParcelClick" Margin="0,0,0,37" Grid.RowSpan="2"/>
+            <Button x:Name="Close" Content="Cancel"  FontWeight="Heavy" Grid.Column="2" Grid.Row="7" Click="CloseClick" Margin="0,0,0,37" Grid.RowSpan="2"/>
+            <Image  Source="image/לוגו קטן בלי רקע (2).png"  Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="31,-26,0,26" HorizontalAlignment="Left"/>
+            <Image Margin="143,-25,99,20" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+            <Image Margin="-19,43,182,19" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
         </Grid>
         <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -56,36 +62,37 @@
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Id:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Weight:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Priority:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Requested:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Scheduled:" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="PickedUp:" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="Delivered:" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <TextBox x:Name="idText" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Id}" />
-            <TextBox x:Name="requestedText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Requested}"/>
-            <TextBox x:Name="scheduledText" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Scheduled}" />
-            <TextBox x:Name="pickedUpText" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=PickedUp}"/>
-            <TextBox x:Name="deliveredText" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Delivered}" />
-            <ComboBox x:Name="weightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=Weight}"/>
-            <ComboBox x:Name="PriorityText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Priority}"/>
-            <!--<Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />-->
-            <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="CloseClick" Grid.Column="0" Grid.Row="0"/>
-            <Button x:Name="Delete" Content="Delete" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="DeleteClick" Grid.Column="4"/>
-            <Button x:Name="viewSender" Content="View sender" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ViewSenderClick" Grid.Column="4"/>
-            <Button x:Name="viewRecipient" Content="View recipient" HorizontalAlignment="Stretch" Grid.Row="5" VerticalAlignment="Stretch" Click="ViewRecipientClick" Grid.Column="4"/>
-            <Button x:Name="viewDrone" Content="View drone" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="ViewDroneClick" Grid.Column="4"/>
-            <!--<Button x:Name="Delivery" Content="Delivery"  Grid.Row="7" Click="DeliveryClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4"/>
-            <Button x:Name="Assignment" Content="Assignment" HorizontalAlignment="Stretch"  Grid.Row="6" VerticalAlignment="Stretch" Click="AssignmentClick" Grid.Column="4"/>
-            <Button x:Name="ParcelTransfer" Content="Parcel in transfer" Grid.Column="4" HorizontalAlignment="Stretch"  Grid.Row="9" VerticalAlignment="Stretch" Click="ParcelInTransferClick" Height="36" FontWeight="UltraBold" FontStyle="Normal">-->   
-            <!--</Button>-->
+            <Label Content="parcel:"  Grid.Column="3" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2" Margin="0,17,0,39" Grid.RowSpan="3"   />
+            <Label Content="Id:" Grid.Column="2" Grid.Row="2" Margin="0,0,0,39" Grid.RowSpan="2"/>
+            <Label Content="Weight:" Grid.Column="2" Grid.Row="3"/>
+            <Label Content="Priority:" Grid.Column="2" Grid.Row="3" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Label Content="Requested:" Grid.Column="2" Grid.Row="4" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Label Content="Scheduled:" Grid.Column="2" Grid.Row="5" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Label Content="PickedUp:" Grid.Column="2" Grid.Row="6" Margin="0,39,0,39" Grid.RowSpan="3"/>
+            <Label Content="Delivered:" Grid.Column="2" Grid.Row="8" Margin="0,0,0,78" Grid.RowSpan="2"/>
+            <TextBox x:Name="idText" Grid.Column="3" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=Id}" Margin="0,0,0,39" Grid.RowSpan="2" />
+            <TextBox x:Name="requestedText" Grid.Column="3" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=Requested}" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <TextBox x:Name="scheduledText" Grid.Column="3" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Path=Scheduled}" Margin="0,39,0,0" Grid.RowSpan="2" />
+            <TextBox x:Name="pickedUpText" Grid.Column="3" Grid.Row="6" TextWrapping="Wrap" Text="{Binding Path=PickedUp}" Margin="0,39,0,39" Grid.RowSpan="3"/>
+            <TextBox x:Name="deliveredText" Grid.Column="3" Grid.Row="8" TextWrapping="Wrap" Text="{Binding Path=Delivered}" Margin="0,0,0,78" Grid.RowSpan="2" />
+            <ComboBox x:Name="weightText" Grid.Column="3" Grid.Row="3" SelectedItem="{Binding Path=Weight}"/>
+            <ComboBox x:Name="PriorityText" Grid.Column="3" Grid.Row="3" Text="{Binding Path=Priority}" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Image  Source="image/לוגו קטן בלי רקע (2).png"  Grid.ColumnSpan="4" Grid.RowSpan="4" Margin="-19,-26,0,10" HorizontalAlignment="Left" Width="432"/>
+            <Image Margin="45,-25,158,31" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="4" Grid.ColumnSpan="3" Grid.Column="1"/>
+            <Image Margin="-19,43,156,19" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
+            <Button x:Name="closed" Content="Close" Click="CloseClick" Grid.Column="0" Grid.Row="0" FontSize="20" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,0,39" Grid.RowSpan="2"/>
+            <Button x:Name="Delete" Content="Delete" Grid.Row="3" Click="DeleteClick" Grid.Column="5"/>
+            <Button x:Name="viewSender" Content="View sender" Grid.Row="3" Click="ViewSenderClick" Grid.Column="5" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Button x:Name="viewRecipient" Content="View recipient" Grid.Row="4" Click="ViewRecipientClick" Grid.Column="5" Margin="0,39,0,0" Grid.RowSpan="2"/>
+            <Button x:Name="viewDrone" Content="View drone"  Grid.Row="5" Click="ViewDroneClick" Grid.Column="5" Margin="0,39,0,0" Grid.RowSpan="2"/>
+
         </Grid>
     </Grid>
 </Window>

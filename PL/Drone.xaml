@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:DronePO}"
-        mc:Ignorable="d"
         Icon="image/2.jpeg"
         
        Title="Drone" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
@@ -53,7 +52,7 @@
         </Grid>
 
 
-        <Grid x:Name="Actions" Visibility="Visible">
+        <Grid x:Name="Actions" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
                 <RowDefinition Height="*"/>
@@ -73,6 +72,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
+            <Label Content="drone:" Grid.Column="2"  FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Stretch"  Grid.Row="0" Grid.ColumnSpan="2" Margin="7,13,124,2" />
             <Label Content="Id:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Model:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Max weight:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
@@ -90,6 +90,9 @@
             <ComboBox x:Name="maxWeightText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch" SelectedItem="{Binding Path=MaxWeight}"/>
             <ComboBox x:Name="statusText" Grid.Column="2" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Text="{Binding Path=Status}"/>
             <Button x:Name="UpdateModel" Content="Updat model" Click="UpdateModelClick" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="2" />
+            <Image  Source="image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="4" Margin="29,-19,0,27" HorizontalAlignment="Left" Width="278" Grid.ColumnSpan="2"/>
+            <Image Margin="143,-25,4,8" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+            <Image Margin="-12,51,15,11" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5"/>
             <Button x:Name="closed" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_Click" Grid.Column="0" Grid.Row="0"/>
             <Button x:Name="charging" Content="Charging" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Click="ChargingClick" Grid.Column="4"/>
             <Button x:Name="Release"  Content="Release" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch" Click="ReleaseClick" Grid.Column="4"/>

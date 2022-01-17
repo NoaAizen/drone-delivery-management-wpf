@@ -8,7 +8,9 @@
         Title="Client" Height="450" Width="800"
           WindowStyle="None" MouseDown="moveWindow"
         >
-
+    <Window.Background>
+        <ImageBrush ImageSource="image/1.jpg" />
+    </Window.Background>
 
     <Grid x:Name="ClientMian" >
         <Grid.RowDefinitions>

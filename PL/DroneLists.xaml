@@ -9,9 +9,7 @@
         Title="DroneLists" Height="640" Width="800"
           WindowStyle="None" MouseDown="moveWindow">
 
-    <Window.Resources>
-        <Color x:Key="SolidColorBrushColor1">#FF030B21</Color>
-    </Window.Resources>
+  
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>
@@ -46,15 +44,11 @@
                 <ComboBox Name="StatusSelector" HorizontalContentAlignment="Stretch" SelectionChanged="StatusSelector_SelectionChanged"  Grid.Column="2" Grid.Row="1"  />
                 <Label Content="status:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16"  FontWeight="Bold" Grid.Column="1" Grid.Row="1"/>
                 <ComboBox x:Name="WeightSelector" HorizontalContentAlignment="Center" Grid.Column="4" SelectionChanged="WeightSelector_SelectionChanged" Grid.Row="1"/>
-                <Label Content="drone:" Grid.Column="0"  FontSize="16" FontWeight="Bold"  VerticalAlignment="Stretch" HorizontalContentAlignment="Right" Grid.Row="1"/>
 
                 <Label Content="max weight:" Grid.Column="3"  FontSize="16" FontWeight="Bold"  VerticalAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="1"/>
                 <Button x:Name="close" Content="Close" HorizontalAlignment="Left" Margin="-6,2,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.161,0.202" Click="CloseClick" Height="31" Width="100" FontStyle="Normal" FontWeight="Bold" FontSize="20"/>
             </Grid>
-            <ListView x:Name="DroneListsView"  Margin="1,69,-1,16" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2" FontWeight="Bold" Grid.RowSpan="2">
-                <ListView.Foreground>
-                    <SolidColorBrush Color="{DynamicResource SolidColorBrushColor1}"/>
-                </ListView.Foreground>
+            <ListView x:Name="DroneListsView"  Margin="1,69,-1,16" MouseDoubleClick="GetActions" ItemsSource="{Binding}" Grid.ColumnSpan="2"  Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"/>

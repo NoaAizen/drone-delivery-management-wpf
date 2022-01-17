@@ -21,6 +21,8 @@ namespace PL
     /// </summary>
     public partial class CustomerListsShow : Window
     {
+        private CollectionView CollectionView;
+        private CollectionView view;
         private IBL bl;
         private ObservableCollection<BO.CustomerToList> customers = new();
 
@@ -86,6 +88,19 @@ namespace PL
 
         }
 
+        private void NumberOfParcelReceivedClick(object sender, RoutedEventArgs e)
+        {
+            view = (CollectionView)CollectionViewSource.GetDefaultView(customerlist.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("NumberOfParcelReceived");
+            view.GroupDescriptions.Add(groupDescription);
+            if (view.GroupDescriptions.Count >=1)
+            {
+                NumberOfParcelReceivedGroing.IsEnabled = false;
+            }
+
+        }
+   
+       
     }
 
    

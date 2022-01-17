@@ -12,16 +12,16 @@
     <Grid x:Name="MainGrid">
         <Grid x:Name="Actions" Visibility="Hidden"  >
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="39*"/>
+                <RowDefinition Height="78*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -33,6 +33,7 @@
                 <ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions >
+            <Label Content="Customer:"  Grid.Column="2"  Grid.Row="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="3" Margin="76,-2,48,2"   />
             <Label Content="Id:" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Name:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Phone:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
@@ -45,7 +46,7 @@
             <TextBox x:Name="latitudeText" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="{Binding Path=Latitude}"/>
             <Label Content="Longitude:" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
             <Label Content="Latitude:" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-            <Label Content="parcels from customer:" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Label Content="parcels from customer:" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,57,39" Grid.RowSpan="2"/>
             <Label Content="parcels to customer:" Grid.Row= "6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Grid.Column="1"/>
             <ListView x:Name="ParcelAtCustomerFromCustomer" Grid.Column="4" ItemsSource="{Binding Path=ParcelAtCustomerFromCustomer}" Grid.ColumnSpan="3" Margin="9,56,4,12" Grid.RowSpan="6" RenderTransformOrigin="0.5,0.5" MouseDoubleClick="ParcelAtCustomerFromCustomerClick"  >
                 <ListView.RenderTransform>
@@ -64,8 +65,11 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+            <Image  Source="image/לוגו קטן בלי רקע (2).png"  Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="30,-3,0,6" HorizontalAlignment="Left" Width="113"/>
+            <Image Margin="94,-32,114,15" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+            <Image Margin="-19,27,69,35" Stretch="Fill" Source="/image/לוגו קטן בלי רקע (2).png" Grid.RowSpan="5" Grid.ColumnSpan="2"/>
             <Button x:Name="Updat" Content="Update" Grid.Column="6" HorizontalAlignment="Left" Margin="2,15,0,0" Grid.Row="9" VerticalAlignment="Top" Height="41" Width="102" Click="UpdatClick"/>
-            <Button x:Name="CloseActions" Content="close" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="CloseClick"/>
+            <Button x:Name="CloseActions" Content="close" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Click="CloseClick" FontSize="20" FontWeight="Bold"/>
 
         </Grid>
         <Grid x:Name="AddCustomerGrid" Visibility="Hidden">

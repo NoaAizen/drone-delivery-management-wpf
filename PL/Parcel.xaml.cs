@@ -45,7 +45,6 @@ namespace PL
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
             notEnablFildes();
-            //BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
             parcelPo = new()
             {
                 Id = parcel.Id,
@@ -103,6 +102,7 @@ namespace PL
                 RefreshEvent(this, EventArgs.Empty);
                 MessageBox.Show("sucssesed\nparcel's id: "+id);
                 this.Close();
+
             }
             catch (Exception ex)
             {
