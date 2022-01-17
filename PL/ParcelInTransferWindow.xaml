@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL" d:DataContext="{d:DesignInstance Type=local:DronePO}"
         mc:Ignorable="d"
-        Icon="image/2.jpeg"
+        Icon="image/לוגו.png"
 
         Title="ParcelInTransfer" Height="450" Width="800" WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>

@@ -229,7 +229,7 @@ namespace PL
             if(ParcelAtCustomerFromCustomer.SelectedItem != null)
             {
                 BO.Parcel p = bl.GetParcel(selectedItem.Id);
-                Parcel win = new Parcel(bl, p);
+                Parcel win = new Parcel(bl, p,"c");
                 win.RefreshEvent += Refresh;
                 win.Show();
             }
@@ -256,7 +256,7 @@ namespace PL
             if (ParcelAtCustomerToCustomer.SelectedItems != null)
             {
                 BO.Parcel p = bl.GetParcel(selectedItem.Id);
-                Parcel win = new Parcel(bl, p);
+                Parcel win = new Parcel(bl, p, "c");
                 win.RefreshEvent += Refresh;
                 win.Show();
             }

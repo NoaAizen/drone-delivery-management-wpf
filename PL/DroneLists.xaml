@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Icon="image/2.jpeg"
+        Icon="image/לוגו.png"
         Title="DroneLists" Height="640" Width="900" 
           WindowStyle="None" MouseDown="moveWindow">
 

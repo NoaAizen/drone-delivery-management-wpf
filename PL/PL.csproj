@@ -16,6 +16,7 @@
     <None Remove="image\לוגו בלי רקע.png" />
     <None Remove="image\לוגו עם מסגרת.png" />
     <None Remove="image\לוגו קטן בלי רקע %282%29.png" />
+    <None Remove="image\לוגו.png" />
     <None Remove="image\רקע.png" />
   </ItemGroup>
 
@@ -31,6 +32,7 @@
     <Resource Include="image\לוגו בלי רקע.png" />
     <Resource Include="image\לוגו עם מסגרת.png" />
     <Resource Include="image\לוגו קטן בלי רקע (2).png" />
+    <Resource Include="image\לוגו.png" />
     <Resource Include="image\רקע.png" />
   </ItemGroup>
 

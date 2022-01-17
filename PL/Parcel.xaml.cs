@@ -47,10 +47,14 @@ namespace PL
         /// </summary>
         /// <param name="bl"></param>
         /// <param name="parcel"></param>
-        public Parcel(IBL bl, BO.Parcel parcel)
+        public Parcel(IBL bl, BO.Parcel parcel, string st = null)
         {
             InitializeComponent();
             this.bl = bl;
+            if (st == "c")
+            {
+                Delete.Visibility = Visibility.Hidden;
+            }
             this.selectedItem = parcel;
             Actions.IsEnabled = true;
             Actions.Visibility = Visibility.Visible;
