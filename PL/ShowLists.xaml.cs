@@ -20,13 +20,21 @@ namespace PL
     /// </summary>
     public partial class ShowLists : Window
     {
-        // bl = BlFactory.GetBl();//שדה בשביח להגיע לאחפנים שבBL
         private IBL bl;
-
+        /// <summary>
+        /// סגירת חלון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -34,7 +42,7 @@ namespace PL
                 this.DragMove();
             }
         }
-
+        //בנאי
         public ShowLists(IBL bl)
         {
             InitializeComponent();
@@ -42,7 +50,7 @@ namespace PL
         }
 
         /// <summary>
-        /// פונקציה בשביל לבגיע לכפתור של הרשימות
+        /// פונקציה בשביל לבגיע לכפתור של רחפנים
         /// </summary>
         /// <param name="sender">חלון</param>
         /// <param name="e">אירוע</param>
@@ -50,17 +58,29 @@ namespace PL
         {
             new DroneLists(bl).Show();
         }
-
+        /// <summary>
+        /// מעבר לחלון של תחנות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowStationsListClick(object sender, RoutedEventArgs e)
         {
             new StationsList(bl).Show();
         }
-
+        /// <summary>
+        /// מעבר לחלון של לקוחות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CustomerListClick(object sender, RoutedEventArgs e)
         {
             new CustomerListsShow(bl).Show();
         }
-
+        /// <summary>
+        /// מעבר לחלון של חבילות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowParcelsListClick(object sender, RoutedEventArgs e)
         {
             new ParcelsList(bl).Show();

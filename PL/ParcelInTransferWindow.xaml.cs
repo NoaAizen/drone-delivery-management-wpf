@@ -31,6 +31,11 @@ namespace PL
         {
             this.Close();
         }
+        /// <summary>
+        /// בנאי של חלון חבילה בהעברה
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="drone"></param>
         public ParcelInTransferWindow(IBL bl, DronePO drone)
         {
             InitializeComponent();
@@ -75,6 +80,11 @@ namespace PL
             PriorityText.IsEnabled = false;
             ParcelStatusText.IsEnabled = false;
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -82,6 +92,11 @@ namespace PL
                 this.DragMove();
             }
         }
+        /// <summary>
+        /// פונקציה לסגירת חלון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();

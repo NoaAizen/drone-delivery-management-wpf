@@ -24,10 +24,13 @@ namespace PL
     {
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private IBL bl;
-        private ObservableCollection<StationToList> stations = new();
-        private CollectionView view;
-        private CollectionView CollectionView;
-        private bool temp = false;
+        private ObservableCollection<StationToList> stations = new();//אוסף של תחנות
+        private CollectionView view;//שדה בשביל גרופניג
+ 
+        /// <summary>
+        /// בנאי
+        /// </summary>
+        /// <param name="bl"></param>
         public StationsList(IBL bl)
         {
             InitializeComponent();
@@ -38,6 +41,11 @@ namespace PL
             }
             stationsList.DataContext = stations;
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -54,7 +62,11 @@ namespace PL
         {
             this.Close();
         }
-
+        /// <summary>
+        /// מעבר לחלון של תחנה בשביל לפעולות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GetActions(object sender, MouseButtonEventArgs e)
         {
             BO.Station station=bl.GetStation(((StationToList)stationsList.SelectedItem).Id);
@@ -62,7 +74,11 @@ namespace PL
             win.RefreshEvent += Refresh;
             win.Show();
         }
-
+        /// <summary>
+        /// מעבר לחלון של תחנה בשביל להוסיף תחנה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowAddStationWindow(object sender, RoutedEventArgs e)
         {
             Station win = new Station(bl);
@@ -71,11 +87,20 @@ namespace PL
             win.Show();
 
         }
+        /// <summary>
+        /// פונקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
             stationsList.ItemsSource = bl.GetStationList();
         }
-
+        /// <summary>
+        /// פונקצית גרופניג
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GroupingClick(object sender, RoutedEventArgs e)
         {
             view = (CollectionView)CollectionViewSource.GetDefaultView(stationsList.ItemsSource);

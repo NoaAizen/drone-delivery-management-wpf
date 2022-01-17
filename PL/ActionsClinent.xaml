@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ActionsClinent" Height="450" Width="800">
+        Title="ActionsClinent" Height="450" Width="800"
+         WindowStyle="None" MouseDown="moveWindow">
     <Window.Background>
         <ImageBrush ImageSource="image/1.jpg" />
     </Window.Background>

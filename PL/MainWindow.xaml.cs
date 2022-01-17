@@ -29,7 +29,11 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// כפתור מנהל
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ManagerClick(object sender, RoutedEventArgs e)
         {
            string temp = "Manager";
@@ -37,11 +41,20 @@ namespace PL
             Close();
 
         }
+        /// <summary>
+        /// כפתור סגירה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -49,7 +62,11 @@ namespace PL
                 this.DragMove();
             }
         }
-
+        /// <summary>
+        /// כפתור לקוח
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClientClick(object sender, RoutedEventArgs e)
         {
              string temp = "Client";
@@ -57,7 +74,11 @@ namespace PL
             Close();
 
         }
-
+        /// <summary>
+        /// כפתור ללקוח חדש
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewClicentClick(object sender, RoutedEventArgs e)
         {
             new Password("NewClicent",bl).Show();

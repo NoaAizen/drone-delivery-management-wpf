@@ -25,6 +25,11 @@ namespace PL
         private BO.Station selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private StationPo stationPo;//שדה בשביל המרת מידע
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -32,6 +37,10 @@ namespace PL
                 this.DragMove();
             }
         }
+        /// <summary>
+        /// בנאי הוספת חלון
+        /// </summary>
+        /// <param name="bl"></param>
         public Station(BlApi.IBL bl)
         {
             InitializeComponent();
@@ -40,7 +49,11 @@ namespace PL
             AddStationGrid.Visibility = Visibility.Visible;
             AddNewStation.IsEnabled = false;
         }
-
+        /// <summary>
+        /// בנאי של פעןלןת
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="station"></param>
         public Station(IBL bl, BO.Station station)
         {
             
@@ -64,12 +77,20 @@ namespace PL
            
 
         }
-
+       /// <summary>
+       /// סגירת חלון
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// הוספת תחנה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNewStationClick(object sender, RoutedEventArgs e)
         {
             double longitude = double.Parse(longitudeText.Text);
@@ -93,7 +114,11 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-
+        /// <summary>
+        /// עכדכון תחנה פונקציה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateClick(object sender, RoutedEventArgs e)
         {
             stationPo.Name = nameText.Text;
@@ -141,6 +166,11 @@ namespace PL
         {
             this.Close();
         }
+        /// <summary>
+        /// פונקציות של נעילה כפתור הוספה עד שלא מוספים את כל הנתונים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IdClick(object sender, TextChangedEventArgs e)
         {
             if (id.Text != "" && longitudeText.Text != "" && name.Text != "" && latitudeText.Text != "" && chargeSlots.Text != "")
@@ -180,7 +210,11 @@ namespace PL
             else
                 AddNewStation.IsEnabled = false;
         }
-
+        /// <summary>
+        /// המעבר לחלון רחפנים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DroneChageClick(object sender, MouseButtonEventArgs e)
         {
             if(DroneCharge.SelectedItem!=null)

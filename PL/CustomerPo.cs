@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace PL
 {
-    public class CustomerPo : INotifyPropertyChanged
+    public class CustomerPo : INotifyPropertyChanged//מחלקה שנלמדה בכיתה בשביל הזרמתת מידע
     {
         private int id;
         public int Id

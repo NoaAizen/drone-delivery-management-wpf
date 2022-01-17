@@ -21,14 +21,15 @@ namespace PL
     /// </summary>
     public partial class CustomerListsShow : Window
     {
-        private CollectionView CollectionView;
-        private CollectionView view;
+        private CollectionView view;//שדה בשביל הגרופינג
         private IBL bl;
-        private ObservableCollection<BO.CustomerToList> customers = new();
+        private ObservableCollection<BO.CustomerToList> customers = new();//רשימת לקחות
 
-        public int A { get; }
-        public Action<object, EventArgs> RefreshEvent { get; internal set; }
-
+        public event EventHandler RefreshEvent; //שדה בשביל הרענון
+        /// <summary>
+        /// בנאי 
+        /// </summary>
+        /// <param name="bl"></param>
         public CustomerListsShow(IBL bl)
         {
             InitializeComponent();
@@ -41,7 +42,11 @@ namespace PL
  
 
         }
-
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -58,7 +63,11 @@ namespace PL
         {
             this.Close();
         }
-
+        /// <summary>
+        /// פונקציה לפתית חלון פעולות
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GetActionsCustomer(object sender, MouseButtonEventArgs e)
         {
             BO.Customer customer = bl.GetCustomer(((BO.CustomerToList)customerlist.SelectedItem).Id);
@@ -68,7 +77,11 @@ namespace PL
 
         }
    
-
+        /// <summary>
+        /// פונקציה להוספת לקוח
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCustomerClick(object sender, RoutedEventArgs e)
         {
             Customer ADD = new Customer(bl);
@@ -76,18 +89,31 @@ namespace PL
             ADD.Show();
         }
 
-
+        /// <summary>
+        /// פונקציה לסגירת חלון של הוספה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
 
         }
-        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        /// <summary>
+        /// פונקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh(object sender, EventArgs e)
         {
             customerlist.ItemsSource = bl.GetCustomerList();
 
         }
-
+        /// <summary>
+        /// פונקציה שעושה גרופניג
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberOfParcelReceivedClick(object sender, RoutedEventArgs e)
         {
             view = (CollectionView)CollectionViewSource.GetDefaultView(customerlist.ItemsSource);

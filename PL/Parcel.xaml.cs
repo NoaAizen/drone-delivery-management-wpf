@@ -22,12 +22,15 @@ namespace PL
     public partial class Parcel : Window
     {
         private IBL bl;
-        //private ParcelToList selectedItem;
         private BO.Parcel selectedItem;
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
         private ParcelPo parcelPo;//שדה בשביל המרת מידע
         string st;
-
+        /// <summary>
+        /// בנאי לפתיחת חלון של הוספה
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="st"></param>
         public Parcel(IBL bl, string st=null)
         {
             this.st = st;
@@ -39,6 +42,11 @@ namespace PL
             weight.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             AddNewParcel.IsEnabled = false;
         }
+        /// <summary>
+        /// בנאי פתחית פעולות של חבילה
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="parcel"></param>
         public Parcel(IBL bl, BO.Parcel parcel)
         {
             InitializeComponent();
@@ -68,6 +76,11 @@ namespace PL
             if (parcel.Scheduled != null)
                 Delete.IsEnabled = false;
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -75,7 +88,11 @@ namespace PL
                 this.DragMove();
             }
         }
-       
+       /// <summary>
+       /// פונקציה סגירת חלון הוספה
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -89,6 +106,11 @@ namespace PL
         {
             this.Close();
         }
+        /// <summary>
+        /// פונקציה להוספת כפתור של חבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNewParcelClick(object sender, RoutedEventArgs e)
         {
             BO.Parcel parcel = new()
@@ -125,7 +147,11 @@ namespace PL
             deliveredText.IsEnabled = false;
             PriorityText.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה לכפתור של מחיקת חבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
             bl.DeleteParcel(selectedItem);
@@ -134,7 +160,11 @@ namespace PL
             MessageBox.Show("sucssesed");
             this.Close();
         }
-
+        /// <summary>
+        /// פומקציה לכפתור של פרטי שולח החבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewSenderClick(object sender, RoutedEventArgs e)
         {
 
@@ -143,13 +173,21 @@ namespace PL
             win.RefreshEvent += Refresh;
             win.Show();
         }
-
+        /// <summary>
+        /// פונקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refresh(object sender, EventArgs e)
         {
             ParcelsList parcelsList = new ParcelsList(bl);
             CustomerListsShow customerListsShow = new CustomerListsShow(bl);
         }
-
+        /// <summary>
+        /// פומקציה לכפתור של פרטי מקבל החבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewRecipientClick(object sender, RoutedEventArgs e)
         {
             BO.Customer customer = bl.GetCustomer(selectedItem.CustomerInParcelRecipient.Id);
@@ -157,7 +195,11 @@ namespace PL
             win.RefreshEvent += Refresh;
             win.Show();
         }
-
+        /// <summary>
+        /// פומקציה לכפתור של פרטי רחפן
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ViewDroneClick(object sender, RoutedEventArgs e)
         {
             BO.Drone drone = bl.GetDrone(selectedItem.DroneInParcel.Id);
@@ -224,6 +266,11 @@ namespace PL
             else
                 AddNewParcel.IsEnabled = false;
         }
+        /// <summary>
+        /// פונקציה להמרת נתונים
+        /// </summary>
+        /// <param name="parcelPo"></param>
+        /// <param name="parcel"></param>
         public void convertToPo(ParcelPo parcelPo, BO.Parcel parcel)
         {
             parcelPo.CustomerInParcelRecipient = parcel.CustomerInParcelRecipient;

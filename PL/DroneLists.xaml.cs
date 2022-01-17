@@ -13,7 +13,7 @@ namespace PL
     public partial class DroneLists : Window
     {
         private BlApi.IBL bl;//שדה בשביל גישה לBL
-        public event EventHandler RefreshEvent;
+        public event EventHandler RefreshEvent;//שדה בשביל רענון
 
         /// <summary>
         /// בנאי בשביל חלון של הרשימה
@@ -31,11 +31,7 @@ namespace PL
 
         }
 
-        //public DroneLists()
-        //{
-        //    DroneListsView.SelectedItem = bl.GetDroneList();
-        //}
-
+        
         /// <summary>
         /// פונקציית פקד של סינון לפני סטטוס
         /// </summary>
@@ -134,6 +130,11 @@ namespace PL
         {
             this.Close();
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

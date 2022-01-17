@@ -22,11 +22,16 @@ namespace PL
     /// </summary>
     public partial class Password : Window
     {
-        private ObservableCollection <BO.UserToLIst> Users = new();
+        private ObservableCollection <BO.UserToLIst> Users = new();///רשימה של משתמשים
         private bool flag = false;
         private static int temp = 5;
         private IBL bl;
         private UserToLIst user;
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -43,6 +48,11 @@ namespace PL
         {
             this.Close();
         }
+        /// <summary>
+        /// בנאי
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="bl"></param>
         public Password(string Name, IBL bl)
         {
             InitializeComponent();
@@ -67,7 +77,11 @@ namespace PL
 
   
 
-
+        /// <summary>
+        /// פונקצית כפתור בשביל כניסה למנהל
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         //oriya+AA1234
         //noa+AA5678
         //ori+AA8989
@@ -93,14 +107,22 @@ namespace PL
             }
 
      }
-
+        /// <summary>
+        /// סגירת חלון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClosedClick(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
             this.Close();
 
         }
-
+        /// <summary>
+        /// פונקצית כפתור בשביל כניסה לקוח
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LoginClicentClick(object sender, RoutedEventArgs e)
         {
             PasswordClient.Visibility = Visibility.Visible;
@@ -131,7 +153,11 @@ namespace PL
                 }
             }
         }
-
+        /// <summary>
+        /// פונקציה לכפתור ששכחתי סיסמא
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             new Password("Forgot",bl).Show();
@@ -139,7 +165,11 @@ namespace PL
 
 
         }
-
+        /// <summary>
+        /// פונקצית שינוי הסיסמא בשביל הכפתור
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ForgotPasswordClick(object sender, RoutedEventArgs e)
         {
             try
@@ -153,7 +183,11 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
 }
-
+        /// <summary>
+        /// פונקציה בשביל כפתור הוספת לקוח חדש
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewClicentClick(object sender, RoutedEventArgs e)
         {
             try
@@ -164,7 +198,7 @@ namespace PL
                     Name = NameN.Text,
                     Password = PasswordN.Password
                 };
-                bl.AddUser(user);//לעשות בידקה של שם משתמש ותעודת זהות שהן מחוברים
+                bl.AddUser(user);
                 MessageBox.Show("succeeded ");
                 Customer win = new Customer(bl, user);
                 win.RefreshEvent += Refresh;
@@ -176,6 +210,11 @@ namespace PL
             }
 
         }
+        /// <summary>
+        /// פונקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Refresh(object sender, EventArgs e)//פןנקצית רענון
         {
             CustomerListsShow customerListsShow = new CustomerListsShow(bl);

@@ -12,44 +12,13 @@ namespace PL
     /// </summary>
     public partial class Customer : Window
     {
-        public event EventHandler RefreshEvent;
-        private IBL bl;
-        private BO.Customer selectedItem;
-        BO.Customer c = new();
-        BO.Location L = new();
-        private CustomerPo Customerpo;
-        int temp;
-        ///// <summary>
-        /////פתיחה חלון של עדכון (על ידי רשימות).
-        ///// </summary>
-        ///// <param name="bl"></param>
-        ///// <param name="selectedItem"></param>
-        //public Customer(IBL bl, CustomerToList selectedItem)
-        //{
-        //    InitializeComponent();
-
-        //    this.bl = bl;
-        //    this.selectedItem = selectedItem;
-        //    c = bl.GetCustomer(selectedItem.Id);
-        //    Actions.IsEnabled = true;
-        //    Actions.Visibility = Visibility.Visible;
-
-        //    Customerpo = new()
-        //    {
-        //        Id = c.Id,
-        //        Name = c.Name,
-        //        Phone = c.Phone,
-        //        Latitude = c.Location.Latitude,
-        //        Longitude = c.Location.Longitude,
-        //        ParcelAtCustomerFromCustomer = c.ParcelAtCustomerFromCustomer,
-        //        ParcelAtCustomerToCustomer = c.ParcelAtCustomerToCustomer,
-        //    };
-            
-        //    Actions.DataContext = Customerpo;
-        //    notEnablFildes();
-        //    NameText.IsEnabled = true;//עדכון של זמינות המודל
-        //    PhoneText.IsEnabled = true;
-        //}
+        public event EventHandler RefreshEvent;//שדה רענון
+        private IBL bl;//ממשק 
+        private BO.Customer selectedItem;//  בנתונים בBOשדהבשביל שימוש 
+        BO.Customer c = new();//משתנה עזר
+        BO.Location L = new();//משתנה עזר
+        private CustomerPo Customerpo;//בשביל הזרמת במידע
+        
         /// <summary>
         ///פתיחה חלון של עדכון (על ידי רשימות).
         /// </summary>
@@ -86,6 +55,11 @@ namespace PL
             NameText.IsEnabled = true;//עדכון של זמינות המודל
             PhoneText.IsEnabled = true;
         }
+        /// <summary>
+        ///          פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -112,9 +86,7 @@ namespace PL
             }
         }
 
-        public Customer()
-        {
-        }
+     
 
 
         /// <summary>
@@ -165,7 +137,11 @@ namespace PL
         {
             this.Close();
         }
-
+        /// <summary>
+        /// פונקציות בשביל לא לאשר נתונים עד שכולם מוספים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IdClick(object sender, TextChangedEventArgs e)
         {
             if (idteaxt.Text != "" && phoneeteaxt.Text != "" && nameteaxt.Text != "" && longitudetext.Text != "" && latitudeteaxt.Text != "")
@@ -234,13 +210,20 @@ namespace PL
                 MessageBox.Show(ex.Message);
             }
         }
-        public void notEnablFildes()//
+        /// <summary>
+        /// פונקציה של כפתורים לא זמינים
+        /// </summary>
+        public void notEnablFildes()
         {
             idText.IsEnabled = false;
             longitudeText.IsEnabled = false;
             latitudeText.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה למעבר של נתונים של חבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParcelAtCustomerFromCustomerClick(object sender, MouseButtonEventArgs e)
         {
             if(ParcelAtCustomerFromCustomer.SelectedItem != null)
@@ -250,15 +233,24 @@ namespace PL
                 win.RefreshEvent += Refresh;
                 win.Show();
             }
-            
-        }
 
-        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        }
+        /// <summary>
+        /// פןנקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh(object sender, EventArgs e)
         {
             CustomerListsShow customerListsShow = new CustomerListsShow(bl);
      
 
         }
+        /// <summary>
+        /// פונקציה למעבר של נתונים של חבילה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ParcelAtCustomerToCustomerClick(object sender, MouseButtonEventArgs e)
         {
             if (ParcelAtCustomerToCustomer.SelectedItems != null)
@@ -270,6 +262,11 @@ namespace PL
             }
            
         }
+        /// <summary>
+        /// פונקציה להמרת נתונים
+        /// </summary>
+        /// <param name="customerPo"></param>
+        /// <param name="c"></param>
         public void convertToPo(CustomerPo customerPo, BO.Customer c)
         {
             customerPo.Id = c.Id;

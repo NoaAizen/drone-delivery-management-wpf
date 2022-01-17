@@ -22,13 +22,17 @@ namespace PL
     public partial class ActionsClinent : Window
     {
         public event EventHandler RefreshEvent; //שדה בשביל הרענון
-        private IBL bl;
+        private IBL bl;//ממשק bl
         private BO.Parcel parcel;
         private ParcelPo parcelPo;//שדה בשביל המרת מידע
         private ParcelAtCustomer selectedItem;
         private BO.Drone drone;
         private DronePO dronePO=new() ;//שדה בשביל המרת מידע 
-
+        /// <summary>
+        /// פתיחת של חלון עם הרישמות בשביל לעדכן
+        /// </summary>
+        /// <param name="bl"></param>
+        /// <param name="selectedItem"></param>
         public ActionsClinent(IBL bl, ParcelAtCustomer selectedItem)
         {
             this.bl = bl;
@@ -37,7 +41,6 @@ namespace PL
             this.bl = bl;
             parcel = bl.GetParcel(selectedItem.Id);
             notEnablFildes();
-            //BO.Parcel parcel = bl.GetParcel(selectedItem.Id);
             parcelPo = new()
             {
                 Id = parcel.Id,
@@ -65,7 +68,11 @@ namespace PL
                 drone = bl.GetDrone(parcel.DroneInParcel.Id);
             }
         }
-
+        /// <summary>
+        /// פונקצית איסוף
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CollectionClick(object sender, RoutedEventArgs e)
         {
             try
@@ -104,7 +111,12 @@ namespace PL
             }
 
         }
-        private void Refresh(object sender, EventArgs e)//פןנקצית רענון
+        /// <summary>
+        /// פונקצית רענון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh(object sender, EventArgs e)
         {
             DroneLists DroneLists = new DroneLists(bl);
 
@@ -142,10 +154,26 @@ namespace PL
             weightText.IsEnabled = false;
             PriorityText.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה לסגירת חלון
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void moveWindow(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
     }
 }

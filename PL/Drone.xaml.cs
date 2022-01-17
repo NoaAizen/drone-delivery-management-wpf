@@ -50,6 +50,11 @@ namespace PL
 
 
         }
+        /// <summary>
+        /// פונקציה לביטול הלחצנים הרגילים של סגירה והגדלה
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void moveWindow(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -260,13 +265,9 @@ namespace PL
             dronePo.Status = d.Status;
             dronePo.MaxWeight = d.MaxWeight;
             dronePo.Model = d.Model;
-            //dronePo.ParcelTransferredNumber = d.ParcelInTransfer.Id;
             dronePo.Latitude = d.CurrentLocation.Latitude;
             dronePo.Longitude = d.CurrentLocation.Longitude;
-            //if (dronePo.Status == StatusDrone.Delivery)
-            //{
-            //    new ParcelInTransferWindow(bl, dronePo).Show();
-            //}
+           
         }
         /// <summary>
         /// פונקציה להפעלת שדות להיות לא זמינים 
@@ -381,7 +382,11 @@ namespace PL
             else
                 AddNewDrone.IsEnabled = false;
         }
-
+        /// <summary>
+        /// פונקציה בשיל כפתור הסימולטור
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AutomaticClick(object sender, RoutedEventArgs e)
         {
             Automatic.IsEnabled = false;
@@ -412,8 +417,8 @@ namespace PL
 
         }
 
-        private void updateDrone() => worker.ReportProgress(0);
-        private bool checkStop() => worker.CancellationPending;
+        private void updateDrone() => worker.ReportProgress(0);//]ונקצית עדכון 
+        private bool checkStop() => worker.CancellationPending;//עצירת הסימולטור
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -424,36 +429,41 @@ namespace PL
             }
 
         }
+        /// <summary>
+        /// עדכון שינוייםשל הסימולטור
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             try
             {
                 convertToPo(drone, bl.GetDrone(drone.Id));
                 RefreshEvent(this, EventArgs.Empty);
-                //MessageBox.Show(drone.Status.ToString());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            //int progress = e.ProgressPercentage;
         }
+        /// <summary>
+        /// פונקציה כאשר סימולטור מסיים
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             worker = null;
-            //Automatic.Visibility = Visibility.Visible;
-            //Automatic.IsEnabled = true;
             Manual.Visibility = Visibility.Hidden;
             Manual.IsEnabled = false;
             if (close)
                 this.Close();
         }
-        //private void CancelButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (worker.WorkerSupportsCancellation == true)
-        //        // Cancel the asynchronous operation.
-        //        worker.CancelAsync();
-        //}
+        /// <summary>
+        /// פונקציה בשביל לסיים את התהליכון בעזרת לחיצה על כפתור
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void ManualClick(object sender, RoutedEventArgs e)
         {
