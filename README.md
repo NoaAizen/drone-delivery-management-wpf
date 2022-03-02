@@ -1,6 +1,6 @@
-àðé ðòä ,îé àú?
+Ã Ã°Ã© Ã°Ã²Ã¤ ,Ã®Ã© Ã Ãº?
 # dotNet5782_3394_8965
 Hello Oriya
 hey World
 Oriya aizen 
-noa and noa  
+noa aizen mageni 
