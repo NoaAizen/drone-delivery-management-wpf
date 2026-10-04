@@ -2,70 +2,70 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>0</Id>
-    <Name>noa</Name>
+    <Name>alice</Name>
     <Phone>9300629</Phone>
     <Latitude>36.16135709754254</Latitude>
     <Longitude>32.3679315134268</Longitude>
   </Customer>
   <Customer>
     <Id>1</Id>
-    <Name>avi</Name>
+    <Name>bob</Name>
     <Phone>5503844</Phone>
     <Latitude>35.22980629370073</Latitude>
     <Longitude>29.314611808589945</Longitude>
   </Customer>
   <Customer>
     <Id>2</Id>
-    <Name>oriya</Name>
+    <Name>carol</Name>
     <Phone>9004667</Phone>
     <Latitude>34.63307834664969</Latitude>
     <Longitude>31.11625370439899</Longitude>
   </Customer>
   <Customer>
     <Id>3</Id>
-    <Name>ori</Name>
+    <Name>david</Name>
     <Phone>8166984</Phone>
     <Latitude>34.22459814815065</Latitude>
     <Longitude>33.49802662255151</Longitude>
   </Customer>
   <Customer>
     <Id>4</Id>
-    <Name>rachel</Name>
+    <Name>emma</Name>
     <Phone>7108430</Phone>
     <Latitude>34.168109397621876</Latitude>
     <Longitude>31.121654787110934</Longitude>
   </Customer>
   <Customer>
     <Id>5</Id>
-    <Name>tamar</Name>
+    <Name>frank</Name>
     <Phone>8464342</Phone>
     <Latitude>36.21396136764155</Latitude>
     <Longitude>29.713835151593123</Longitude>
   </Customer>
   <Customer>
     <Id>6</Id>
-    <Name>ben</Name>
+    <Name>grace</Name>
     <Phone>7112504</Phone>
     <Latitude>34.76719068161547</Latitude>
     <Longitude>29.569961822903696</Longitude>
   </Customer>
   <Customer>
     <Id>7</Id>
-    <Name>gad</Name>
+    <Name>henry</Name>
     <Phone>7507893</Phone>
     <Latitude>33.814975226724044</Latitude>
     <Longitude>31.124408729013247</Longitude>
   </Customer>
   <Customer>
     <Id>8</Id>
-    <Name>dan</Name>
+    <Name>irene</Name>
     <Phone>7330270</Phone>
     <Latitude>36.16043131372911</Latitude>
     <Longitude>30.249670553742757</Longitude>
   </Customer>
   <Customer>
     <Id>9</Id>
-    <Name>moshe</Name>
+    <Name>jack</Name>
     <Phone>5337872</Phone>
     <Latitude>33.83946346628455</Latitude>
     <Longitude>32.648295291023466</Longitude>

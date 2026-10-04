@@ -82,13 +82,11 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //oriya+AA1234
-        //noa+AA5678
-        //ori+AA8989
         private void LoginClickManager(object sender, RoutedEventArgs e)
         {
             PasswordManager.Visibility = Visibility.Visible;
-            if ( (Username.Text == "oriya"&& PasswordM.Password == "AA1234") || (Username.Text == "noa" && PasswordM.Password == "AA5678" )|| (Username.Text == "ori" && PasswordM.Password == "AA8989"))
+            // demo manager account (fictional credentials)
+            if (Username.Text == "manager" && PasswordM.Password == "manager123")
             {
                 MessageBox.Show("succeeded ");
                 new ShowLists(bl).Show();

@@ -38,7 +38,7 @@ namespace DalObject
             public static void Initialize()
             {
                 //משתני עזר
-                string[] Arr = new string[10] { "noa", "avi", "oriya", "ori", "rachel", "tamar", "ben", "gad", "dan", "moshe" };//מערך שמות של הלקוח
+                string[] Arr = new string[10] { "alice", "bob", "carol", "david", "emma", "frank", "grace", "henry", "irene", "jack" };//מערך שמות של הלקוח
                                                                                                                                 //  StatusDrone status;
                 WeightCategories maxWeight;
                 Priorities priority;

@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="3.png" />
     <None Remove="image\1.jpg" />
-    <None Remove="image\2.jpeg" />
-    <None Remove="image\3.jpg" />
-    <None Remove="image\3.png" />
-    <None Remove="image\5.png" />
-    <None Remove="image\לוגו בלי רקע.png" />
     <None Remove="image\לוגו עם מסגרת.png" />
     <None Remove="image\לוגו קטן בלי רקע %282%29.png" />
     <None Remove="image\לוגו.png" />
@@ -25,11 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="image\4.png" />
     <Resource Include="image\1.jpg" />
-    <Resource Include="image\2.jpeg" />
-    <Resource Include="image\3.png" />
-    <Resource Include="image\לוגו בלי רקע.png" />
     <Resource Include="image\לוגו עם מסגרת.png" />
     <Resource Include="image\לוגו קטן בלי רקע (2).png" />
     <Resource Include="image\לוגו.png" />

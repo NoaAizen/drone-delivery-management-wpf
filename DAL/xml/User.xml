@@ -2,52 +2,52 @@
 <ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <User>
     <Id>0</Id>
-    <Name>noa</Name>
-    <Password>noa</Password>
+    <Name>alice</Name>
+    <Password>alice</Password>
   </User>
   <User>
     <Id>1</Id>
-    <Name>avi</Name>
-    <Password>avi</Password>
+    <Name>bob</Name>
+    <Password>bob</Password>
   </User>
   <User>
     <Id>2</Id>
-    <Name>oriya</Name>
-    <Password>oriya</Password>
+    <Name>carol</Name>
+    <Password>carol</Password>
   </User>
   <User>
     <Id>3</Id>
-    <Name>ori</Name>
-    <Password>ori</Password>
+    <Name>david</Name>
+    <Password>david</Password>
   </User>
   <User>
     <Id>4</Id>
-    <Name>rachel</Name>
-    <Password>rachel</Password>
+    <Name>emma</Name>
+    <Password>emma</Password>
   </User>
   <User>
     <Id>5</Id>
-    <Name>tamar</Name>
-    <Password>tamar</Password>
+    <Name>frank</Name>
+    <Password>frank</Password>
   </User>
   <User>
     <Id>6</Id>
-    <Name>ben</Name>
-    <Password>ben</Password>
+    <Name>grace</Name>
+    <Password>grace</Password>
   </User>
   <User>
     <Id>7</Id>
-    <Name>gad</Name>
-    <Password>gad</Password>
+    <Name>henry</Name>
+    <Password>henry</Password>
   </User>
   <User>
     <Id>8</Id>
-    <Name>dan</Name>
-    <Password>dan</Password>
+    <Name>irene</Name>
+    <Password>irene</Password>
   </User>
   <User>
     <Id>9</Id>
-    <Name>moshe</Name>
-    <Password>moshe</Password>
+    <Name>jack</Name>
+    <Password>jack</Password>
   </User>
 </ArrayOfUser>
