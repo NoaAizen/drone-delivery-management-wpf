@@ -1174,7 +1174,7 @@ namespace BL
             double lat1 = location1.Latitude;
             double lon1 = location1.Longitude;
             double lat2 = location2.Latitude;
-            double lon2 = location2.Latitude;
+            double lon2 = location2.Longitude;
 
             double rlat1 = Math.PI * lat1 / 180;
             double rlat2 = Math.PI * lat2 / 180;
